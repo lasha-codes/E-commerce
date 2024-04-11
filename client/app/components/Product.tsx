@@ -8,7 +8,7 @@ type ProductPropTypes = {
 
 const Product: React.FC<ProductPropTypes> = ({ image, title, count }) => {
   return (
-    <div className='bg-white border max-w-[270px] p-2 flex rounded-xl justify-center items-center'>
+    <div className='bg-white border max-w-[270px] py-2.5 px-5 flex rounded-xl justify-center items-center'>
       <div className='flex items-center gap-4 w-full'>
         <div className='bg-cultured p-2 rounded-xl border w-[65px] h-[50px]'>
           <Image

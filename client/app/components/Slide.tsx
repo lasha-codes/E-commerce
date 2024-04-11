@@ -22,7 +22,7 @@ const Slide: React.FC<PropTypes> = ({ banner, desc, price, type }) => {
         className='w-full h-full object-cover absolute bottom-0 left-0 z-[1]'
       />
       <div className='z-[10] flex flex-col gap-2 w-full h-full absolute bottom-0 left-[11%] top-[20%]'>
-        <h2 className='text-salmonPink text-[24px] tracking-[1.6px] font-medium max-md:text-lg max-sm:hidden max-xsm:block max-xsm:text-eerieBlack'>
+        <h2 className='text-salmonPink text-[24px] tracking-[1.6px] font-medium max-md:text-lg max-sm:hidden max-xsm:hidden'>
           {type}
         </h2>
         <p className='max-w-[350px] text-4xl font-extrabold text-eerieBlack max-md:text-xl max-md:max-w-[200px] max-xsm:hidden'>
