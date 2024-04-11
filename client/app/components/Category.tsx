@@ -47,7 +47,7 @@ const Category = () => {
                           {category.name}
                         </span>
                         <span className='text-spanishGray'>
-                          {category.count}
+                          {category.count} pcs
                         </span>
                       </button>
                     )
