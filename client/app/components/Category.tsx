@@ -13,7 +13,7 @@ const Category = () => {
   return (
     <main className='px-28 mt-16'>
       <div className='border py-6 px-5 w-fit rounded-xl flex flex-col gap-3'>
-        <h1>Category</h1>
+        <h1 className='tracking-wide font-medium'>Category</h1>
         {categories.map((item, idx) => {
           return (
             <Accordion
