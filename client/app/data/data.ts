@@ -6,3 +6,13 @@ export const socialLinks = [
   { href: 'https://instagram.com', icon: FaInstagram },
   { href: 'https://linkedin.com', icon: FaLinkedin },
 ]
+
+export const navigation = [
+  { link: 'HOME', href: '' },
+  { link: "MEN'S", href: '' },
+  { link: "WOMEN'S", href: '' },
+  { link: 'JEWELRY', href: '' },
+  { link: 'PERFUME', href: '' },
+  { link: 'BLOG', href: '' },
+  { link: 'HOT OFFERS', href: '' },
+]

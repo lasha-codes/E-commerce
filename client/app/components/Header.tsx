@@ -3,6 +3,7 @@ import { socialLinks } from '../data/data'
 import { CiSearch, CiUser } from 'react-icons/ci'
 import { IoIosHeartEmpty } from 'react-icons/io'
 import { BsHandbag } from 'react-icons/bs'
+import Navbar from './Navbar'
 
 const Header = () => {
   return (
@@ -31,7 +32,7 @@ const Header = () => {
         <Link href='/'>
           <h1 className='text-[26px] font-bold'>Anon</h1>
         </Link>
-        <div className='w-[60%] max-sm:w-[80%] py-2 flex justify-start items-center px-5 border focus-within:border-sonicSilver rounded-lg'>
+        <form className='w-[60%] max-sm:w-[80%] py-2 flex justify-start items-center px-5 border focus-within:border-sonicSilver rounded-lg'>
           <input
             id='search-inp'
             placeholder='Enter your product name...'
@@ -40,7 +41,8 @@ const Header = () => {
           <label htmlFor='search-inp' className='cursor-pointer'>
             <CiSearch className='text-[20px] text-sonicSilver' />
           </label>
-        </div>
+        </form>
+
         <div className='flex items-center gap-4 max-sm:hidden'>
           <div>
             <CiUser className='text-3xl cursor-pointer icon-style' />
@@ -59,6 +61,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <Navbar />
     </header>
   )
 }
