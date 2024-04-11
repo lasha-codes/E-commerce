@@ -8,8 +8,8 @@ import Navbar from './Navbar'
 const Header = () => {
   return (
     <header className='flex flex-col gap-2'>
-      <div className='flex items-center justify-between border-b px-8 pb-2.5 max-xsm:justify-center'>
-        <nav className='flex items-center gap-2'>
+      <div className='flex items-center justify-between border-b px-20 pb-2.5 max-xsm:justify-center'>
+        <nav className='flex items-center gap-2 max-md:hidden'>
           {socialLinks.map((link, idx) => (
             <Link
               href={link.href}
@@ -21,29 +21,29 @@ const Header = () => {
             </Link>
           ))}
         </nav>
-        <div className='flex items-center gap-1 text-[12px] max-xsm:hidden'>
+        <div className='flex items-center max-md:justify-center gap-1 text-[12px]'>
           <span className='font-medium text-sonicSilver'>FREE SHIPPING</span>
           <span>-</span>
           <p className='text-spanishGray'>THIS WEEK ORDER OVER $55</p>
         </div>
-        <div className='max-sm:hidden'></div>
+        <div className='max-md:hidden'></div>
       </div>
-      <div className='flex items-center px-12 justify-between border-b pt-3 pb-5 max-xsm:flex-col max-xsm:gap-2'>
+      <div className='flex items-center px-28 justify-between border-b pt-3 pb-5 max-sm:flex-col max-sm:gap-2'>
         <Link href='/'>
           <h1 className='text-[26px] font-bold'>Anon</h1>
         </Link>
-        <form className='w-[60%] max-sm:w-[80%] py-2 flex justify-start items-center px-5 border focus-within:border-sonicSilver rounded-lg'>
+        <form className='w-[60%] max-sm:w-[100%] py-2 flex justify-start items-center px-5 border focus-within:border-sonicSilver rounded-xl'>
           <input
             id='search-inp'
             placeholder='Enter your product name...'
-            className='w-full h-full outline-none text-[16px]'
+            className='w-full h-full outline-none text-[16px] max-md:placeholder:text-white'
           />
           <label htmlFor='search-inp' className='cursor-pointer'>
             <CiSearch className='text-[20px] text-sonicSilver' />
           </label>
         </form>
 
-        <div className='flex items-center gap-4 max-sm:hidden'>
+        <div className='flex items-center gap-4 max-md:hidden'>
           <div>
             <CiUser className='text-3xl cursor-pointer icon-style' />
           </div>
@@ -65,5 +65,4 @@ const Header = () => {
     </header>
   )
 }
-
 export default Header
