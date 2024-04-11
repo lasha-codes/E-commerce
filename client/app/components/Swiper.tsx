@@ -5,7 +5,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import Image from 'next/image'
 
 import banner1 from '../assets/banner-1.jpg'
 import banner2 from '../assets/banner-2.jpg'

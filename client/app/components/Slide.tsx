@@ -28,9 +28,9 @@ const Slide: React.FC<PropTypes> = ({ banner, desc, price, type }) => {
         <p className='max-w-[350px] text-4xl font-extrabold text-eerieBlack max-md:text-xl max-md:max-w-[200px] max-xsm:hidden'>
           {desc}
         </p>
-        <p className='text-xl text-sonicSilver font-medium max-md:text-base max-xsm:hidden'>
+        <p className='text-xl text-sonicSilver font-medium max-md:text-base max-xsm:text-sm'>
           starting at ${' '}
-          <span className='text-3xl font-bold text-sonicSilver max-md:text-2xl'>
+          <span className='text-3xl font-bold text-sonicSilver max-md:text-2xl max-xsm:text-lg'>
             {price}
           </span>
           .00
