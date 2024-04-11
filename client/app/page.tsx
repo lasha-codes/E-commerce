@@ -2,7 +2,7 @@ import Header from './components/Header'
 
 const Home = () => {
   return (
-    <main>
+    <main className='py-2'>
       <Header />
     </main>
   )
