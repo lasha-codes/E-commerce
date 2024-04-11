@@ -1,6 +1,7 @@
 import Swiper from './components/Swiper'
 import Header from './components/Header'
 import ProductsSlider from './components/ProductsSlider'
+import Category from './components/Category'
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Header />
       <Swiper />
       <ProductsSlider />
+      <Category />
     </main>
   )
 }

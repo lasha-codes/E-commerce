@@ -16,3 +16,16 @@ export const navigation = [
   { link: 'BLOG', href: '' },
   { link: 'HOT OFFERS', href: '' },
 ]
+
+export const categories = [
+  {
+    image: '',
+    title: 'Clothes',
+    categories: [
+      { name: 'Shirt', count: 300 },
+      { name: 'Short & Jeans', count: 60 },
+      { name: 'Jacket', count: 50 },
+      { name: 'Dress & Frock', count: 87 },
+    ],
+  },
+]
