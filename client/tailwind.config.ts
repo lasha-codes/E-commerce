@@ -18,6 +18,9 @@ const config: Config = {
         oceanGreen: 'hsl(152, 51%, 52%)',
         cultured: 'hsl(0, 0%, 93%)',
       },
+      screens: {
+        xsm: '500px',
+      },
     },
   },
   plugins: [],
