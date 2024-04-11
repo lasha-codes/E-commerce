@@ -1,4 +1,5 @@
 import { FaFacebook, FaDiscord, FaInstagram, FaLinkedin } from 'react-icons/fa6'
+import dress from '../assets/dress.svg'
 
 export const socialLinks = [
   { href: 'https://facebook.com', icon: FaFacebook },
@@ -19,7 +20,7 @@ export const navigation = [
 
 export const categories = [
   {
-    image: '',
+    image: dress,
     title: 'Clothes',
     categories: [
       { name: 'Shirt', count: 300 },
