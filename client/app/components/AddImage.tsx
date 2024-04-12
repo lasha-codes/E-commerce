@@ -1,5 +1,5 @@
 import { IoCloseOutline } from 'react-icons/io5'
-import { closeAddImage } from '../lib/features/products/productSlice'
+import { closeAddImage, addImage } from '../lib/features/products/productSlice'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
@@ -22,6 +22,7 @@ const AddImage = () => {
         />
         <button
           onClick={() => {
+            dispatch(addImage({ address }))
             dispatch(closeAddImage())
           }}
           className='bg-oceanGreen text-white rounded-xl py-1 mt-3 hover:opacity-85 transition-all duration-200'
