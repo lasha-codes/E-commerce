@@ -1,6 +1,6 @@
 const AddImage = () => {
   return (
-    <div className='absolute top-[30%] left-[20%] bg-white w-[300px] h-[180px] translate-x-[50%] translate-y-[50%] z-[999] flex justify-center items-center rounded shadow-sm shadow-cultured'>
+    <div className='bg-white w-[300px] h-[180px] translate-x-[50%] translate-y-[50%] z-[999] flex justify-center items-center rounded shadow-sm shadow-cultured'>
       <div className='flex gap-2 flex-col'>
         <label htmlFor='address' className='cursor-pointer text-eerieBlack'>
           Enter image address

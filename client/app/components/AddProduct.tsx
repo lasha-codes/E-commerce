@@ -8,18 +8,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import AddImage from './AddImage'
+import { openAddImage } from '../lib/features/products/productSlice'
 
 interface ProductState {
   addedImages: string[]
+  toggle: boolean
 }
 
 const AddProduct = () => {
-  const { addedImages }: ProductState = useSelector(
+  const dispatch = useDispatch()
+  const { addedImages, toggle }: ProductState = useSelector(
     (state: any) => state.product
   )
-  console.log(addedImages)
   return (
     <main className='w-full flex flex-col justify-center items-center gap-10 overflow-x-hidden relative'>
       <header className='w-full border-b px-5 py-3'>
@@ -30,7 +32,16 @@ const AddProduct = () => {
         </div>
       </header>
       <div className='flex items-start gap-16 px-20  max-lg:px-5 max-lg:flex-col max-lg:gap-5 '>
-        <AddImage />
+        <div
+          className={`${
+            toggle
+              ? 'opacity-100 translate-y-0'
+              : 'translate-y-5 opacity-0 pointer-events-none'
+          } transition-all duration-300 absolute top-[30%] left-[20%]`}
+        >
+          <AddImage />
+        </div>
+
         <div className='flex flex-col gap-2'>
           <span>- Product Information</span>
           <span>- Review</span>
@@ -39,7 +50,10 @@ const AddProduct = () => {
           <h1 className='text-3xl font-medium'>Product Information</h1>
           <form className='w-full'>
             <div className='border rounded-xl p-2'>
-              <div className='p-9 w-fit rounded-xl bg-cultured border border-dashed cursor-pointer'>
+              <div
+                onClick={() => dispatch(openAddImage())}
+                className='p-9 w-fit rounded-xl bg-cultured border border-dashed cursor-pointer'
+              >
                 <FaCirclePlus className='text-3xl' />
               </div>
             </div>
