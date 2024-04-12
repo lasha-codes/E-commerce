@@ -18,7 +18,7 @@ const AddProduct = () => {
               <FaCirclePlus className='text-3xl' />
             </div>
           </div>
-          <div className='flex flex-col gap-4 mt-5'>
+          <div className='flex flex-col gap-4 mt-5 border-b pb-5'>
             <div className='flex flex-col gap-1'>
               <label htmlFor='name' className='text-eerieBlack text-[15.5px]'>
                 Name
@@ -42,6 +42,21 @@ const AddProduct = () => {
                   placeholder='Enter product description.'
                 ></textarea>
               </div>
+            </div>
+          </div>
+          <div className='mt-5'>
+            <h2 className='text-xl mb-5 text-salmonPink'>Additional info</h2>
+            <div>
+              <div className='flex flex-col gap-1'>
+                <label htmlFor='price'>Product price</label>
+                <input
+                  type='number'
+                  id='price'
+                  className='border rounded py-0.5 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
+                  placeholder='0$'
+                />
+              </div>
+              <div></div>
             </div>
           </div>
         </form>
