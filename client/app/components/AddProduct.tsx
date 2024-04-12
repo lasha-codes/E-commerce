@@ -54,13 +54,23 @@ const AddProduct = () => {
         <div className='flex flex-col gap-10 md:w-[600px] max-md:w-full max-lg:mx-auto'>
           <h1 className='text-3xl font-medium'>Product Information</h1>
           <form className='w-full'>
-            <div className='border rounded-xl p-2'>
+            <div className='border gap-3 flex items-center rounded-xl p-2'>
               <div
                 onClick={() => dispatch(openAddImage())}
                 className='p-9 w-fit rounded-xl bg-cultured border border-dashed cursor-pointer'
               >
                 <FaCirclePlus className='text-3xl' />
               </div>
+              {addedImages &&
+                addedImages.map((address, idx) => {
+                  return (
+                    <img
+                      src={address}
+                      alt={`added/image${idx}`}
+                      className='h-[100px] rounded-xl w-[120px] object-cover'
+                    />
+                  )
+                })}
             </div>
             <div className='flex flex-col gap-4 mt-5 border-b pb-5'>
               <div className='flex flex-col gap-1'>

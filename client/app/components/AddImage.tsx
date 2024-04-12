@@ -24,6 +24,7 @@ const AddImage = () => {
           onClick={() => {
             dispatch(addImage({ address }))
             dispatch(closeAddImage())
+            setAddress('')
           }}
           className='bg-oceanGreen text-white rounded-xl py-1 mt-3 hover:opacity-85 transition-all duration-200'
         >
