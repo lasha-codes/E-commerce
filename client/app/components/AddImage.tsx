@@ -1,8 +1,10 @@
 import { IoCloseOutline } from 'react-icons/io5'
 import { closeAddImage } from '../lib/features/products/productSlice'
 import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 
 const AddImage = () => {
+  const [address, setAddress] = useState<string>('')
   const dispatch = useDispatch()
   return (
     <div className='relative bg-white w-[300px] h-[180px] translate-x-[50%] translate-y-[50%] z-[999] flex justify-center items-center rounded shadow-sm shadow-cultured'>
@@ -11,9 +13,11 @@ const AddImage = () => {
           Enter image address
         </label>
         <input
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
           id='address'
           type='text'
-          className='rounded cursor-pointer border placeholder:font-light placeholder:opacity-70 px-3 py0.5'
+          className='rounded cursor-pointer border placeholder:font-light placeholder:opacity-70 px-3 py-1'
           placeholder='address.'
         />
         <button

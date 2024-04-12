@@ -16,6 +16,9 @@ const productSlice = createSlice({
     closeAddImage: (state) => {
       state.toggle = false
     },
+    addImage: (state, action) => {
+      const { address } = action.payload
+    },
   },
 })
 
