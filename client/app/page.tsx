@@ -4,6 +4,7 @@ import Swiper from './components/Swiper'
 import Header from './components/Header'
 import ProductsSlider from './components/ProductsSlider'
 import Category from './components/Category'
+import Link from 'next/link'
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Swiper />
       <ProductsSlider />
       <Category />
+      <Link href='/add-product'>Add product</Link>
     </main>
   )
 }

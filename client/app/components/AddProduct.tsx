@@ -13,6 +13,8 @@ import AddImage from './AddImage'
 import { openAddImage } from '../lib/features/products/productSlice'
 import { FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
+import Link from 'next/link'
+import { toast } from 'sonner'
 
 interface ProductState {
   addedImages: string[]
@@ -26,7 +28,23 @@ const AddProduct = () => {
   )
   const [name, setName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
-  const [price, setPrice] = useState<string>('')
+  const [price, setPrice] = useState<number | string>('')
+  const [type, setType] = useState<string>('')
+
+  const continuePost = () => {
+    if (
+      description.length === 0 ||
+      name.length === 0 ||
+      price.toString().length === 0 ||
+      type.length === 0
+    ) {
+      return toast.error('All of the fields are required')
+    }
+    if (addedImages.length !== 2) {
+      return toast.error('U must have 2 photos')
+    }
+  }
+
   return (
     <main className='w-full flex flex-col justify-start h-screen items-center gap-10 overflow-x-hidden relative'>
       <div
@@ -132,7 +150,7 @@ const AddProduct = () => {
                   <input
                     value={price}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setPrice(e.target.value)
+                      setPrice(Number(e.target.value))
                     }
                     type='number'
                     id='price'
@@ -141,7 +159,7 @@ const AddProduct = () => {
                   />
                 </div>
                 <div>
-                  <Select>
+                  <Select onValueChange={(value) => setType(value)}>
                     <SelectTrigger className='w-[200px] rounded'>
                       <SelectValue placeholder='Product type' />
                     </SelectTrigger>
@@ -149,6 +167,7 @@ const AddProduct = () => {
                       <SelectItem className='cursor-pointer' value='sweater'>
                         Sweater
                       </SelectItem>
+
                       <SelectItem className='cursor-pointer' value='jacket'>
                         Jacket
                       </SelectItem>
@@ -188,13 +207,15 @@ const AddProduct = () => {
               </div>
             </div>
             <div className='w-full justify-between flex items-end'>
-              <button
+              <Link
+                href='/'
                 className='underline text-eerieBlack hover:font-medium'
                 type='button'
               >
                 Cancel
-              </button>
+              </Link>
               <button
+                onClick={continuePost}
                 type='button'
                 className='bg-eerieBlack gap-0.5 flex items-center text-white rounded-full px-5 py-1.5 mt-5 group hover:opacity-80 transition-all duration-300 ease-in-out'
               >
