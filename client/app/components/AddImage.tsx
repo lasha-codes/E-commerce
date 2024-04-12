@@ -1,6 +1,11 @@
+import { IoCloseOutline } from 'react-icons/io5'
+import { closeAddImage } from '../lib/features/products/productSlice'
+import { useDispatch } from 'react-redux'
+
 const AddImage = () => {
+  const dispatch = useDispatch()
   return (
-    <div className='bg-white w-[300px] h-[180px] translate-x-[50%] translate-y-[50%] z-[999] flex justify-center items-center rounded shadow-sm shadow-cultured'>
+    <div className='relative bg-white w-[300px] h-[180px] translate-x-[50%] translate-y-[50%] z-[999] flex justify-center items-center rounded shadow-sm shadow-cultured'>
       <div className='flex gap-2 flex-col'>
         <label htmlFor='address' className='cursor-pointer text-eerieBlack'>
           Enter image address
@@ -12,6 +17,10 @@ const AddImage = () => {
           placeholder='address.'
         />
       </div>
+      <IoCloseOutline
+        className='absolute top-3 right-3 text-xl text-bitterSweet cursor-pointer hover:text-salmonPink transition-all duration-200'
+        onClick={() => dispatch(closeAddImage())}
+      />
     </div>
   )
 }
