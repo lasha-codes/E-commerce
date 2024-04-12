@@ -25,6 +25,8 @@ const AddImage = () => {
           onClick={() => {
             if (address.length > 350) {
               return toast.error("base 64 isn't allowed.")
+            } else if (address.length === 0) {
+              return toast.error("address can't be null")
             }
             dispatch(addImage({ address }))
             dispatch(closeAddImage())
