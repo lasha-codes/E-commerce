@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'sonner'
 
 const initialState: {
   toggle: boolean
@@ -23,7 +24,7 @@ const productSlice = createSlice({
     addImage: (state, action) => {
       const { address } = action.payload
       if (state.addedImages.length === 2) {
-        console.log('2 images is the max')
+        toast.error('Only 2 images allowed.')
       } else {
         state.addedImages.push(address)
       }

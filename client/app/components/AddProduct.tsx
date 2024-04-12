@@ -65,6 +65,7 @@ const AddProduct = () => {
                 addedImages.map((address, idx) => {
                   return (
                     <img
+                      key={idx}
                       src={address}
                       alt={`added/image${idx}`}
                       className='h-[100px] rounded-xl w-[120px] object-cover'
