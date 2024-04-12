@@ -1,6 +1,8 @@
+import { FaCirclePlus } from 'react-icons/fa6'
+
 const AddProduct = () => {
   return (
-    <main className='w-full'>
+    <main className='w-full flex flex-col justify-center items-center gap-10'>
       <header className='w-full border-b px-5 py-3'>
         <div className='flex items-center gap-3'>
           <h1 className='text-2xl font-medium'>Anon</h1>
@@ -8,6 +10,26 @@ const AddProduct = () => {
           <h3 className='text-sonicSilver'>Add Product</h3>
         </div>
       </header>
+      <div className='flex flex-col gap-10 md:w-[600px] max-md:w-[80%] max-sm:w-[85%]'>
+        <h1 className='text-3xl font-medium'>Product Information</h1>
+        <form>
+          <div className='border rounded-xl p-2'>
+            <div className='p-9 w-fit rounded-xl bg-cultured border border-salmonPink border-dashed cursor-pointer'>
+              <FaCirclePlus className='text-3xl' />
+            </div>
+          </div>
+          <div className='flex flex-col gap-1'>
+            <label htmlFor='name'>Name</label>
+            <input
+              required
+              type='text'
+              id='name'
+              className='border rounded px-4 py-0.5 placeholder:text-sm placeholder:opacity-60 placeholder:font-light cursor-pointer'
+              placeholder='Name'
+            />
+          </div>
+        </form>
+      </div>
     </main>
   )
 }
