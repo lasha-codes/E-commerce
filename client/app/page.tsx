@@ -1,3 +1,5 @@
+'use client'
+
 import Swiper from './components/Swiper'
 import Header from './components/Header'
 import ProductsSlider from './components/ProductsSlider'
