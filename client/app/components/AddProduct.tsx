@@ -274,23 +274,50 @@ const AddProduct = () => {
               <span className='text-eerieBlack font-medium'>Review</span>
             </span>
           </div>
-          <div className='flex flex-col gap-10 md:w-[600px] max-md:w-full max-lg:mx-auto'>
+          <div className='flex flex-col gap-10 md:w-[600px] max-md:w-full max-lg:mx-auto items-center'>
             <div>
-              <div className='flex items-center justify-center gap-10'>
+              <div className='flex items-center justify-center gap-10 max-md:flex-col'>
                 {addedImages &&
                   addedImages.map((address, idx) => {
                     return (
                       <div key={idx} className='flex flex-col gap-5'>
                         <h3 className='text-2xl'>{idx + 1}</h3>
-                        <div className='h-[250px] w-[300px] border rounded-xl overflow-hidden hover:scale-110 transition-all duration-300m ease-in'>
+                        <div className='h-[250px] w-[300px] border rounded-xl overflow-hidden hover:scale-105 transition-all duration-300m ease-in'>
                           <img
                             src={address}
-                            className='w-full h-full object-cover hover:zoom-in-50'
+                            className='w-full h-full object-cover hover:h-[110%] hover:w-[110%] transition-all duration-500'
                           />
                         </div>
                       </div>
                     )
                   })}
+              </div>
+              <div className='flex flex-col gap-5'>
+                <h2 className='font-semibold filter text-center w-full text-2xl pt-5 pb-7 border-b'>
+                  {name}
+                </h2>
+                <div>
+                  <div>
+                    <h2 className='text-lg text-eerieBlack font-medium'>
+                      ProductDetails
+                    </h2>
+                    <div>{/* TODO edit icon */}</div>
+                  </div>
+                  <div className='mt-3 flex flex-col gap-3'>
+                    <div className='flex items-center justify-between'>
+                      <h4 className='text-[15.5px] text-spanishGray'>
+                        Product Name
+                      </h4>
+                      <p>{name}</p>
+                    </div>
+                    <div className='flex items-center justify-between'>
+                      <h4 className='text-[15.5px] text-spanishGray'>
+                        Product Description
+                      </h4>
+                      <p className='max-w-[330px]'>{description}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
