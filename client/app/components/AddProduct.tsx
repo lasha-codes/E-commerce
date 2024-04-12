@@ -1,5 +1,6 @@
 import { FaCirclePlus } from 'react-icons/fa6'
 import { IoArrowForwardOutline } from 'react-icons/io5'
+import { FcCheckmark } from 'react-icons/fc'
 
 import {
   Select,
@@ -10,7 +11,10 @@ import {
 } from '@/components/ui/select'
 import { useSelector, useDispatch } from 'react-redux'
 import AddImage from './AddImage'
-import { openAddImage } from '../lib/features/products/productSlice'
+import {
+  openAddImage,
+  continueProduct,
+} from '../lib/features/products/productSlice'
 import { FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
 import Link from 'next/link'
@@ -19,11 +23,12 @@ import { toast } from 'sonner'
 interface ProductState {
   addedImages: string[]
   toggle: boolean
+  continued: boolean
 }
 
 const AddProduct = () => {
   const dispatch = useDispatch()
-  const { addedImages, toggle }: ProductState = useSelector(
+  const { addedImages, toggle, continued }: ProductState = useSelector(
     (state: any) => state.product
   )
   const [name, setName] = useState<string>('')
@@ -43,6 +48,7 @@ const AddProduct = () => {
     if (addedImages.length !== 2) {
       return toast.error('U must have 2 photos')
     }
+    dispatch(continueProduct())
   }
 
   return (
@@ -72,13 +78,25 @@ const AddProduct = () => {
 
         <div className='flex flex-col gap-2'>
           <span className='flex items-center gap-2'>
-            <FaMinus className='text-lg text-[#2d5c99]' />
+            <div className='w-[20px] flex justify-center items-center overflow-hidden relative h-[20px]'>
+              <FaMinus
+                className={`text-lg text-[#2d5c99] absolute transition-all duration-500 ease-in-out ${
+                  continued ? 'translate-x-[-30px]' : 'translate-x-0'
+                }`}
+              />
+              <FcCheckmark
+                className={`absolute transition-all duration-500 ease-in-out ${
+                  continued ? 'translate-x-0' : 'top-[50%] translate-x-[30px]'
+                }`}
+              />
+            </div>
             <span className='text-eerieBlack font-medium'>
               Product Information
             </span>
           </span>
           <span className='flex items-center gap-2'>
             <FaMinus className='text-lg text-[#2d5c99]' />
+
             <span className='text-eerieBlack font-medium'>Review</span>
           </span>
         </div>

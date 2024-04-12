@@ -29,9 +29,13 @@ const productSlice = createSlice({
         state.addedImages.push(address)
       }
     },
+    continueProduct: (state) => {
+      state.continued = true
+    },
   },
 })
 
 export default productSlice.reducer
 
-export const { openAddImage, closeAddImage, addImage } = productSlice.actions
+export const { openAddImage, closeAddImage, addImage, continueProduct } =
+  productSlice.actions
