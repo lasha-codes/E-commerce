@@ -1,4 +1,11 @@
 import { FaCirclePlus } from 'react-icons/fa6'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const AddProduct = () => {
   return (
@@ -45,18 +52,35 @@ const AddProduct = () => {
             </div>
           </div>
           <div className='mt-5'>
-            <h2 className='text-xl mb-5 text-salmonPink'>Additional info</h2>
-            <div>
+            <h2 className='text-xl mb-5 text-oceanGreen'>Additional info</h2>
+            <div className='flex flex-col gap-4'>
               <div className='flex flex-col gap-1'>
                 <label htmlFor='price'>Product price</label>
                 <input
                   type='number'
                   id='price'
-                  className='border rounded py-0.5 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
+                  className='border rounded w-[200px] py-0.5 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
                   placeholder='0$'
                 />
               </div>
-              <div></div>
+              <div>
+                <Select>
+                  <SelectTrigger className='w-[200px] rounded'>
+                    <SelectValue placeholder='Product type' />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem className='cursor-pointer' value='light'>
+                      Sweater
+                    </SelectItem>
+                    <SelectItem className='cursor-pointer' value='dark'>
+                      Jacket
+                    </SelectItem>
+                    <SelectItem className='cursor-pointer' value='system'>
+                      Dress
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
         </form>
