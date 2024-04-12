@@ -14,19 +14,35 @@ const AddProduct = () => {
         <h1 className='text-3xl font-medium'>Product Information</h1>
         <form>
           <div className='border rounded-xl p-2'>
-            <div className='p-9 w-fit rounded-xl bg-cultured border border-salmonPink border-dashed cursor-pointer'>
+            <div className='p-9 w-fit rounded-xl bg-cultured border border-dashed cursor-pointer'>
               <FaCirclePlus className='text-3xl' />
             </div>
           </div>
-          <div className='flex flex-col gap-1'>
-            <label htmlFor='name'>Name</label>
-            <input
-              required
-              type='text'
-              id='name'
-              className='border rounded px-4 py-0.5 placeholder:text-sm placeholder:opacity-60 placeholder:font-light cursor-pointer'
-              placeholder='Name'
-            />
+          <div className='flex flex-col gap-4 mt-5'>
+            <div className='flex flex-col gap-1'>
+              <label htmlFor='name' className='text-eerieBlack text-[15.5px]'>
+                Name
+              </label>
+              <input
+                required
+                type='text'
+                id='name'
+                className='border rounded px-4 py-0.5 placeholder:text-sm placeholder:opacity-60 placeholder:font-light cursor-pointer'
+                placeholder='Name'
+              />
+            </div>
+            <div className='w-full'>
+              <div className='flex flex-col gap-1'>
+                <label htmlFor='desc' className='text-eerieBlack text-[15.5px]'>
+                  Description
+                </label>
+                <textarea
+                  required
+                  className='border rounded w-full pt-4 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
+                  placeholder='Enter product description.'
+                ></textarea>
+              </div>
+            </div>
           </div>
         </form>
       </div>
