@@ -2,6 +2,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { closeAddImage, addImage } from '../lib/features/products/productSlice'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 const AddImage = () => {
   const [address, setAddress] = useState<string>('')
@@ -22,6 +23,9 @@ const AddImage = () => {
         />
         <button
           onClick={() => {
+            if (address.length > 350) {
+              return toast.error("base 64 isn't allowed.")
+            }
             dispatch(addImage({ address }))
             dispatch(closeAddImage())
             setAddress('')
