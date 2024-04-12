@@ -1,4 +1,6 @@
 import { FaCirclePlus } from 'react-icons/fa6'
+import { IoArrowForwardOutline } from 'react-icons/io5'
+
 import {
   Select,
   SelectContent,
@@ -31,7 +33,6 @@ const AddProduct = () => {
                 Name
               </label>
               <input
-                required
                 type='text'
                 id='name'
                 className='border rounded px-4 py-0.5 placeholder:text-sm placeholder:opacity-60 placeholder:font-light cursor-pointer'
@@ -44,7 +45,6 @@ const AddProduct = () => {
                   Description
                 </label>
                 <textarea
-                  required
                   className='border rounded w-full pt-4 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
                   placeholder='Enter product description.'
                 ></textarea>
@@ -102,6 +102,21 @@ const AddProduct = () => {
                 </Select>
               </div>
             </div>
+          </div>
+          <div className='w-full justify-between flex items-end'>
+            <button
+              className='underline text-eerieBlack hover:font-medium'
+              type='button'
+            >
+              Cancel
+            </button>
+            <button
+              type='button'
+              className='bg-eerieBlack gap-0.5 flex items-center text-white rounded-full px-5 py-1.5 mt-5 group hover:opacity-80 transition-all duration-300 ease-in-out'
+            >
+              Continue
+              <IoArrowForwardOutline className='group-hover:translate-x-2 transition-all duration-300 ease' />
+            </button>
           </div>
         </form>
       </div>
