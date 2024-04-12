@@ -53,13 +53,12 @@ const AddProduct = () => {
           </div>
           <div className='mt-5'>
             <h2 className='text-xl mb-5 text-oceanGreen'>Additional info</h2>
-            <div className='flex flex-col gap-4'>
+            <div className='flex items-center gap-4'>
               <div className='flex flex-col gap-1'>
-                <label htmlFor='price'>Product price</label>
                 <input
                   type='number'
                   id='price'
-                  className='border rounded w-[200px] py-0.5 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
+                  className='border rounded w-[200px] min-h-[36px] py-0.5 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
                   placeholder='0$'
                 />
               </div>
@@ -69,14 +68,35 @@ const AddProduct = () => {
                     <SelectValue placeholder='Product type' />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem className='cursor-pointer' value='light'>
+                    <SelectItem className='cursor-pointer' value='sweater'>
                       Sweater
                     </SelectItem>
-                    <SelectItem className='cursor-pointer' value='dark'>
+                    <SelectItem className='cursor-pointer' value='jacket'>
                       Jacket
                     </SelectItem>
-                    <SelectItem className='cursor-pointer' value='system'>
+                    <SelectItem className='cursor-pointer' value='dress'>
                       Dress
+                    </SelectItem>
+                    <SelectItem className='cursor-pointer' value='Winter Wear'>
+                      Winter Wear
+                    </SelectItem>
+                    <SelectItem className='cursor-pointer' value='Hats & Caps'>
+                      Hats & Caps
+                    </SelectItem>
+                    <SelectItem
+                      className='cursor-pointer'
+                      value='Shirts & Jeans'
+                    >
+                      Shorts & Jeans
+                    </SelectItem>
+                    <SelectItem className='cursor-pointer' value='Glasses'>
+                      Glasses
+                    </SelectItem>
+                    <SelectItem className='cursor-pointer' value='Watch'>
+                      Watch
+                    </SelectItem>
+                    <SelectItem className='cursor-pointer' value='Perfume'>
+                      Perfume
                     </SelectItem>
                   </SelectContent>
                 </Select>
