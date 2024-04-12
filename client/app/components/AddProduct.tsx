@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useSelector } from 'react-redux'
+import AddImage from './AddImage'
 
 interface ProductState {
   addedImages: string[]
@@ -20,7 +21,7 @@ const AddProduct = () => {
   )
   console.log(addedImages)
   return (
-    <main className='w-full flex flex-col justify-center items-center gap-10'>
+    <main className='w-full flex flex-col justify-center items-center gap-10 overflow-x-hidden relative'>
       <header className='w-full border-b px-5 py-3'>
         <div className='flex items-center gap-3'>
           <h1 className='text-2xl font-medium'>Anon</h1>
@@ -28,14 +29,15 @@ const AddProduct = () => {
           <h3 className='text-sonicSilver'>Add Product</h3>
         </div>
       </header>
-      <div className='flex items-start w-full gap-16 px-20'>
+      <div className='flex items-start gap-16 px-20  max-lg:px-5 max-lg:flex-col max-lg:gap-5 '>
+        <AddImage />
         <div className='flex flex-col gap-2'>
           <span>- Product Information</span>
           <span>- Review</span>
         </div>
-        <div className='flex flex-col gap-10 md:w-[600px] max-md:w-[80%] max-sm:w-[85%]'>
+        <div className='flex flex-col gap-10 md:w-[600px] max-md:w-full max-lg:mx-auto'>
           <h1 className='text-3xl font-medium'>Product Information</h1>
-          <form>
+          <form className='w-full'>
             <div className='border rounded-xl p-2'>
               <div className='p-9 w-fit rounded-xl bg-cultured border border-dashed cursor-pointer'>
                 <FaCirclePlus className='text-3xl' />
@@ -43,7 +45,10 @@ const AddProduct = () => {
             </div>
             <div className='flex flex-col gap-4 mt-5 border-b pb-5'>
               <div className='flex flex-col gap-1'>
-                <label htmlFor='name' className='text-eerieBlack text-[15.5px]'>
+                <label
+                  htmlFor='name'
+                  className='text-eerieBlack text-[15.5px] max-lg:hidden'
+                >
                   Name
                 </label>
                 <input
@@ -57,7 +62,7 @@ const AddProduct = () => {
                 <div className='flex flex-col gap-1'>
                   <label
                     htmlFor='desc'
-                    className='text-eerieBlack text-[15.5px]'
+                    className='text-eerieBlack text-[15.5px] max-lg:hidden'
                   >
                     Description
                   </label>
