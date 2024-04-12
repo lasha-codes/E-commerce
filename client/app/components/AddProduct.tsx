@@ -23,7 +23,12 @@ const AddProduct = () => {
     (state: any) => state.product
   )
   return (
-    <main className='w-full flex flex-col justify-center items-center gap-10 overflow-x-hidden relative'>
+    <main className='w-full flex flex-col justify-start h-screen items-center gap-10 overflow-x-hidden relative'>
+      <div
+        className={`absolute w-full h-screen opacity-50 bg-spanishGray z-[80] ${
+          toggle ? 'block' : 'hidden'
+        }`}
+      ></div>
       <header className='w-full border-b px-5 py-3'>
         <div className='flex items-center gap-3'>
           <h1 className='text-2xl font-medium'>Anon</h1>
@@ -37,7 +42,7 @@ const AddProduct = () => {
             toggle
               ? 'opacity-100 translate-y-0'
               : 'translate-y-5 opacity-0 pointer-events-none'
-          } transition-all duration-300 absolute top-[30%] left-[20%]`}
+          } transition-all duration-300 absolute top-[30%] left-[20%] z-[100]`}
         >
           <AddImage />
         </div>

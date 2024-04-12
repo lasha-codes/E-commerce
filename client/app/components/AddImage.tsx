@@ -16,6 +16,14 @@ const AddImage = () => {
           className='rounded cursor-pointer border placeholder:font-light placeholder:opacity-70 px-3 py0.5'
           placeholder='address.'
         />
+        <button
+          onClick={() => {
+            dispatch(closeAddImage())
+          }}
+          className='bg-oceanGreen text-white rounded-xl py-1 mt-3 hover:opacity-85 transition-all duration-200'
+        >
+          Add
+        </button>
       </div>
       <IoCloseOutline
         className='absolute top-3 right-3 text-xl text-bitterSweet cursor-pointer hover:text-salmonPink transition-all duration-200'
