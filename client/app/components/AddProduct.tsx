@@ -185,7 +185,7 @@ const AddProduct = () => {
                         setDescription(e.target.value)
                       }
                       id='desc'
-                      className='border rounded w-full pt-4 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
+                      className='border rounded w-full py-4 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
                       placeholder='Enter product description.'
                     ></textarea>
                   </div>
@@ -350,7 +350,7 @@ const AddProduct = () => {
                         Product Description
                       </h4>
                       <p className='max-w-[330px] max-sm:max-w-[250px] max-xsm:max-w-[220px]'>
-                        {description}
+                        {description.slice(0, 60)}...
                       </p>
                     </div>
                     <div className='flex items-center justify-between mt-2'>
@@ -396,8 +396,9 @@ const AddProduct = () => {
                 >
                   Back
                 </button>
-                <button className='bg-eerieBlack text-white rounded-full px-5 py-2 hover:opacity-85 transition-all'>
-                  Submit Product
+                <button className='bg-eerieBlack text-white rounded-full px-5 py-2 hover:opacity-85 transition-all flex items-center gap-3'>
+                  <div className='loader'></div>
+                  <span>Processing Product</span>
                 </button>
               </div>
             </div>
