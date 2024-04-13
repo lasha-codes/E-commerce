@@ -93,8 +93,8 @@ const AddProduct = () => {
           continued ? 'translate-y-[-100vh]' : 'translate-y-0'
         }`}
       >
-        <div className='flex items-start h-screen gap-16 px-20  max-lg:px-5 max-lg:flex-col max-lg:gap-5'>
-          <div className='flex flex-col gap-2 relative'>
+        <div className='flex items-start -mt-[15px] h-screen gap-16 px-20 max-lg:px-5 max-lg:flex-col max-lg:gap-5'>
+          <div className='flex flex-col gap-1 relative'>
             <span className='flex items-center gap-2'>
               <div className='w-[20px] flex justify-center items-center overflow-hidden relative h-[20px]'>
                 <FaMinus

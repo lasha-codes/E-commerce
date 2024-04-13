@@ -1,6 +1,7 @@
-CREATE TABLE products (
+CREATE TABLE products (    
    id SERIAL PRIMARY KEY,
-   image TEXT, 
-   title VARCHAR(150),
-   description TEXT
+   image TEXT[] NOT NULL, 
+   title VARCHAR(150) NOT NULL,
+   description TEXT NOT NULL,
+   type VARCHAR(50) NOT NULL
 );

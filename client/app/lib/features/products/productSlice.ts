@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'sonner'
 
 const initialState: {
@@ -12,6 +12,11 @@ const initialState: {
   toReview: false,
   addedImages: [],
 }
+
+export const addProductToDB = createAsyncThunk('product/send', (product) => {
+  console.log(product)
+  const { name, description, price, type, images } = product
+})
 
 const productSlice = createSlice({
   initialState,
