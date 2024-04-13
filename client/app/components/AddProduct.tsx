@@ -15,6 +15,7 @@ import AddImage from './AddImage'
 import {
   openAddImage,
   continueProduct,
+  backToProduct,
 } from '../lib/features/products/productSlice'
 import { FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
@@ -199,8 +200,8 @@ const AddProduct = () => {
                         <SelectValue placeholder='Product type' />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem className='cursor-pointer' value='sweater'>
-                          Sweater
+                        <SelectItem className='cursor-pointer' value='T-shirt'>
+                          T-shirt
                         </SelectItem>
 
                         <SelectItem className='cursor-pointer' value='jacket'>
@@ -293,7 +294,7 @@ const AddProduct = () => {
                     return (
                       <div key={idx} className='flex flex-col gap-5'>
                         <h3 className='text-2xl max-lg:hidden'>{idx + 1}</h3>
-                        <div className='h-[250px] w-[300px] max-md:w-full max-md:h-auto max-h-[300px] border rounded-xl overflow-hidden hover:scale-105 transition-all duration-300m ease-in'>
+                        <div className='h-[250px] w-[330px] max-md:w-full max-md:h-auto max-h-[300px] border rounded-xl overflow-hidden hover:scale-105 transition-all duration-300m ease-in'>
                           <img
                             src={address}
                             className='w-full h-full object-cover hover:h-[110%] hover:w-[110%] transition-all duration-500'
@@ -363,7 +364,10 @@ const AddProduct = () => {
                 <button className='underline text-eerieBlack font-semibold hover:opacity-80 transition-all'>
                   Cancel
                 </button>
-                <button className='border rounded-full bg-transparent text-spanishGray  px-7 py-1'>
+                <button
+                  onClick={() => dispatch(backToProduct())}
+                  className='border rounded-full bg-transparent text-spanishGray  px-7 py-1'
+                >
                   Back
                 </button>
                 <button className='bg-eerieBlack text-white rounded-full px-5 py-2 hover:opacity-85 transition-all'>

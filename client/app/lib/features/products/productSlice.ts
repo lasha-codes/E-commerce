@@ -32,10 +32,18 @@ const productSlice = createSlice({
     continueProduct: (state) => {
       state.continued = true
     },
+    backToProduct: (state) => {
+      state.continued = false
+    },
   },
 })
 
 export default productSlice.reducer
 
-export const { openAddImage, closeAddImage, addImage, continueProduct } =
-  productSlice.actions
+export const {
+  openAddImage,
+  closeAddImage,
+  addImage,
+  continueProduct,
+  backToProduct,
+} = productSlice.actions
