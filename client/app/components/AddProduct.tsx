@@ -24,7 +24,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'sonner'
 import { addProductToDB } from '../lib/features/products/productSlice'
-import { spawn } from 'child_process'
+import { useRouter } from 'next/navigation'
 
 interface ProductState {
   addedImages: string[]
@@ -36,6 +36,7 @@ interface ProductState {
 
 const AddProduct = () => {
   const dispatch: any = useDispatch()
+  const router = useRouter()
   const { addedImages, toggle, continued, toReview, isLoading }: ProductState =
     useSelector((state: any) => state.product)
   const [name, setName] = useState<string>('')
@@ -213,7 +214,10 @@ const AddProduct = () => {
                     />
                   </div>
                   <div>
-                    <Select onValueChange={(value) => setType(value)}>
+                    <Select
+                      value={type}
+                      onValueChange={(value) => setType(value)}
+                    >
                       <SelectTrigger className='w-[200px] rounded'>
                         <SelectValue placeholder='Product type' />
                       </SelectTrigger>
@@ -230,9 +234,9 @@ const AddProduct = () => {
                         </SelectItem>
                         <SelectItem
                           className='cursor-pointer'
-                          value='Winter Wear'
+                          value='Foot Wear'
                         >
-                          Winter Wear
+                          Foot Wear
                         </SelectItem>
                         <SelectItem
                           className='cursor-pointer'
@@ -425,6 +429,10 @@ const AddProduct = () => {
                       <span
                         onClick={() => {
                           dispatch(handleSubmitProduct())
+                          setName('')
+                          setDescription('')
+                          setPrice('')
+                          setType('')
                           toast.success('U have uploaded a product.')
                         }}
                       >
