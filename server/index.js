@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
+import productRoutes from './routes/products.js'
 dotenv.config()
 
 const app = express()
