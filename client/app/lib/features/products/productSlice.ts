@@ -31,11 +31,11 @@ export const addProductToDB = createAsyncThunk(
   async (product: productTypes): Promise<any> => {
     const { name, description, price, type, addedImages } = product
     const response: AxiosResponse<any> = await axios.post('/products/add', {
-      name,
+      title: name,
       description,
       price,
       type,
-      image: addedImages,
+      images: addedImages,
     })
     return response.data
   }
