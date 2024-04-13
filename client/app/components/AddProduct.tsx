@@ -1,6 +1,7 @@
 import { FaCirclePlus } from 'react-icons/fa6'
 import { IoArrowForwardOutline } from 'react-icons/io5'
 import { FcCheckmark } from 'react-icons/fc'
+import { BiDollar } from 'react-icons/bi'
 
 import {
   Select,
@@ -51,8 +52,18 @@ const AddProduct = () => {
     dispatch(continueProduct())
   }
 
+  const returnPricingModel = () => {
+    if (Number(price) >= 200 && Number(price) <= 500) {
+      return 'Standard Pricing'
+    } else if (Number(price) >= 500) {
+      return 'High Pricing'
+    } else {
+      return 'Low Pricing'
+    }
+  }
+
   return (
-    <main className='w-full flex flex-col overflow-hidden justify-start h-screen items-center gap-10 overflow-x-hidden relative'>
+    <main className='w-full flex flex-col overflow-hidden justify-start h-screen items-center gap-10  relative'>
       <div
         className={`${
           toggle
@@ -250,7 +261,7 @@ const AddProduct = () => {
             </form>
           </div>
         </div>
-        <div className='flex items-start h-screen gap-16 px-20  max-lg:px-5 max-lg:flex-col max-lg:gap-5 '>
+        <div className='flex items-start h-screen overflow-y-scroll section gap-16 px-20 max-lg:px-14 max-lg:flex-col max-lg:gap-5 '>
           <div className='flex flex-col gap-2'>
             <span className='flex items-center gap-2'>
               <div className='w-[20px] flex justify-center items-center overflow-hidden relative h-[20px]'>
@@ -276,13 +287,13 @@ const AddProduct = () => {
           </div>
           <div className='flex flex-col gap-10 md:w-[600px] max-md:w-full max-lg:mx-auto items-center'>
             <div>
-              <div className='flex items-center justify-center gap-10 max-md:flex-col'>
+              <div className='flex items-center justify-center gap-10'>
                 {addedImages &&
                   addedImages.map((address, idx) => {
                     return (
                       <div key={idx} className='flex flex-col gap-5'>
                         <h3 className='text-2xl'>{idx + 1}</h3>
-                        <div className='h-[250px] w-[300px] border rounded-xl overflow-hidden hover:scale-105 transition-all duration-300m ease-in'>
+                        <div className='h-[250px] w-[300px] max-md:w-full max-md:h-auto max-h-[300px] border rounded-xl overflow-hidden hover:scale-105 transition-all duration-300m ease-in'>
                           <img
                             src={address}
                             className='w-full h-full object-cover hover:h-[110%] hover:w-[110%] transition-all duration-500'
@@ -301,7 +312,6 @@ const AddProduct = () => {
                     <h2 className='text-lg text-oceanGreen mb-5 font-medium'>
                       ProductDetails
                     </h2>
-                    <div>{/* TODO edit icon */}</div>
                   </div>
                   <div className='mt-3 flex flex-col gap-3'>
                     <div className='flex items-center justify-between'>
@@ -340,9 +350,12 @@ const AddProduct = () => {
                   </span>
                   <span></span>
                 </div>
-                <div className='w-full justify-between items-center px-5'>
-                  <span>{price}</span>
-                  <span></span>
+                <div className='w-full flex justify-between items-center px-5 mt-2'>
+                  <span className='flex items-center'>
+                    <BiDollar />
+                    {price}
+                  </span>
+                  <span>{returnPricingModel()}</span>
                   <span></span>
                 </div>
               </div>
