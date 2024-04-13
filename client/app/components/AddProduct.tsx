@@ -292,13 +292,13 @@ const AddProduct = () => {
                     )
                   })}
               </div>
-              <div className='flex flex-col gap-5'>
+              <div className='flex flex-col gap-5 border-b pt-2 pb-7'>
                 <h2 className='font-semibold filter text-center w-full text-2xl pt-5 pb-7 border-b'>
                   {name}
                 </h2>
                 <div>
                   <div>
-                    <h2 className='text-lg text-eerieBlack font-medium'>
+                    <h2 className='text-lg text-oceanGreen mb-5 font-medium'>
                       ProductDetails
                     </h2>
                     <div>{/* TODO edit icon */}</div>
@@ -316,7 +316,34 @@ const AddProduct = () => {
                       </h4>
                       <p className='max-w-[330px]'>{description}</p>
                     </div>
+                    <div className='flex items-center justify-between mt-2'>
+                      <p className='text-[14.5px] text-spanishGray'>
+                        Product Type
+                      </p>
+                      <span className='text-eerieBlack text-[15px]'>
+                        {type}
+                      </span>
+                    </div>
                   </div>
+                </div>
+              </div>
+              <div className='mt-4'>
+                <h1 className='font-medium text-lg text-oceanGreen filter'>
+                  Pricing Details
+                </h1>
+                <div className='w-full h-[30px] flex items-center justify-between px-5 bg-cultured rounded mt-3'>
+                  <span className='text-[15px] text-spanishGray filter'>
+                    PRICE
+                  </span>
+                  <span className='text-[15px] text-spanishGray filter'>
+                    PRICING MODEL
+                  </span>
+                  <span></span>
+                </div>
+                <div className='w-full justify-between items-center px-5'>
+                  <span>{price}</span>
+                  <span></span>
+                  <span></span>
                 </div>
               </div>
             </div>
