@@ -22,6 +22,7 @@ import { FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { addProductToDB } from '../lib/features/products/productSlice'
 
 interface ProductState {
   addedImages: string[]
@@ -31,7 +32,7 @@ interface ProductState {
 }
 
 const AddProduct = () => {
-  const dispatch = useDispatch()
+  const dispatch: any = useDispatch()
   const { addedImages, toggle, continued, toReview }: ProductState =
     useSelector((state: any) => state.product)
   const [name, setName] = useState<string>('')
@@ -396,7 +397,21 @@ const AddProduct = () => {
                 >
                   Back
                 </button>
-                <button className='bg-eerieBlack text-white rounded-full px-5 py-2 hover:opacity-85 transition-all flex items-center gap-3'>
+                <button
+                  onClick={() => {
+                    console.log('btn clicked')
+                    dispatch(
+                      addProductToDB({
+                        name,
+                        description,
+                        price,
+                        type,
+                        addedImages,
+                      })
+                    )
+                  }}
+                  className='bg-eerieBlack text-white rounded-full px-5 py-2 hover:opacity-85 transition-all flex items-center gap-3'
+                >
                   <div className='loader'></div>
                   <span>Processing Product</span>
                 </button>
