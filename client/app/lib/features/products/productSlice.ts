@@ -6,7 +6,7 @@ const initialState: {
   toggle: boolean
   continued: boolean
   addedImages: string[] | any
-  isLoading: string
+  isLoading: string | 'pending' | 'rejected' | 'idle'
   toReview: boolean
 } = {
   toggle: false,

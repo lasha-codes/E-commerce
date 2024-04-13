@@ -23,17 +23,19 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'sonner'
 import { addProductToDB } from '../lib/features/products/productSlice'
+import { spawn } from 'child_process'
 
 interface ProductState {
   addedImages: string[]
   toggle: boolean
   continued: boolean
   toReview: boolean
+  isLoading: string
 }
 
 const AddProduct = () => {
   const dispatch: any = useDispatch()
-  const { addedImages, toggle, continued, toReview }: ProductState =
+  const { addedImages, toggle, continued, toReview, isLoading }: ProductState =
     useSelector((state: any) => state.product)
   const [name, setName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
@@ -412,8 +414,16 @@ const AddProduct = () => {
                   }}
                   className='bg-eerieBlack text-white rounded-full px-5 py-2 hover:opacity-85 transition-all flex items-center gap-3'
                 >
-                  <div className='loader'></div>
-                  <span>Processing Product</span>
+                  <>
+                    {isLoading === 'pending' ? (
+                      <>
+                        <div className='loader'></div>
+                        <span>Processing Product</span>
+                      </>
+                    ) : (
+                      <span>Submit Product</span>
+                    )}
+                  </>
                 </button>
               </div>
             </div>
