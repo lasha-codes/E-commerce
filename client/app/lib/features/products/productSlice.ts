@@ -69,6 +69,11 @@ const productSlice = createSlice({
     submitProduct: (state) => {
       state.toReview = true
     },
+    handleSubmitProduct: (state) => {
+      state.toReview = false
+      state.continued = false
+      state.addedImages = []
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
@@ -95,4 +100,5 @@ export const {
   continueProduct,
   backToProduct,
   submitProduct,
+  handleSubmitProduct,
 } = productSlice.actions

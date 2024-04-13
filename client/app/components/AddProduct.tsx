@@ -17,6 +17,7 @@ import {
   continueProduct,
   backToProduct,
   submitProduct,
+  handleSubmitProduct,
 } from '../lib/features/products/productSlice'
 import { FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
@@ -421,7 +422,14 @@ const AddProduct = () => {
                         <span>Processing Product</span>
                       </>
                     ) : (
-                      <span>Submit Product</span>
+                      <span
+                        onClick={() => {
+                          dispatch(handleSubmitProduct())
+                          toast.success('U have uploaded a product.')
+                        }}
+                      >
+                        Submit Product
+                      </span>
                     )}
                   </>
                 </button>
