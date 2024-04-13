@@ -5,9 +5,11 @@ const initialState: {
   toggle: boolean
   continued: boolean
   addedImages: [string] | any
+  toReview: boolean
 } = {
   toggle: false,
   continued: false,
+  toReview: false,
   addedImages: [],
 }
 
@@ -34,6 +36,10 @@ const productSlice = createSlice({
     },
     backToProduct: (state) => {
       state.continued = false
+      state.toReview = false
+    },
+    submitProduct: (state) => {
+      state.toReview = true
     },
   },
 })
@@ -46,4 +52,5 @@ export const {
   addImage,
   continueProduct,
   backToProduct,
+  submitProduct,
 } = productSlice.actions

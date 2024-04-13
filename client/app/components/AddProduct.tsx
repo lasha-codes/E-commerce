@@ -16,6 +16,7 @@ import {
   openAddImage,
   continueProduct,
   backToProduct,
+  submitProduct,
 } from '../lib/features/products/productSlice'
 import { FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
@@ -26,13 +27,13 @@ interface ProductState {
   addedImages: string[]
   toggle: boolean
   continued: boolean
+  toReview: boolean
 }
 
 const AddProduct = () => {
   const dispatch = useDispatch()
-  const { addedImages, toggle, continued }: ProductState = useSelector(
-    (state: any) => state.product
-  )
+  const { addedImages, toggle, continued, toReview }: ProductState =
+    useSelector((state: any) => state.product)
   const [name, setName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [price, setPrice] = useState<number | string>('')
@@ -51,6 +52,7 @@ const AddProduct = () => {
       return toast.error('U must have 2 photos')
     }
     dispatch(continueProduct())
+    dispatch(submitProduct())
   }
 
   const returnPricingModel = () => {
@@ -111,9 +113,21 @@ const AddProduct = () => {
               </span>
             </span>
             <span className='flex items-center gap-2'>
-              <FaMinus className='text-lg text-[#2d5c99]' />
-
-              <span className='text-eerieBlack font-medium'>Review</span>
+              <div className='w-[20px] flex justify-center items-center overflow-hidden relative h-[20px]'>
+                <FaMinus
+                  className={`text-lg text-[#2d5c99] absolute transition-all duration-500 ease-in-out ${
+                    continued ? 'translate-x-[-30px]' : 'translate-x-0'
+                  }`}
+                />
+                <FcCheckmark
+                  className={`absolute transition-all duration-500 ease-in-out ${
+                    continued ? 'translate-x-0' : 'top-[50%] translate-x-[30px]'
+                  }`}
+                />
+              </div>
+              <span className='text-eerieBlack font-medium'>
+                Product Information
+              </span>
             </span>
           </div>
           <div className='flex flex-col gap-10 md:w-[600px] max-md:w-full max-lg:mx-auto h-screen'>
@@ -282,7 +296,18 @@ const AddProduct = () => {
               </span>
             </span>
             <span className='flex items-center gap-2'>
-              <FaMinus className='text-lg text-[#2d5c99]' />
+              <div className='w-[20px] flex justify-center items-center overflow-hidden relative h-[20px]'>
+                <FaMinus
+                  className={`text-lg text-[#2d5c99] absolute transition-all duration-500 ease-in-out ${
+                    toReview ? 'translate-x-[-30px]' : 'translate-x-0'
+                  }`}
+                />
+                <FcCheckmark
+                  className={`absolute transition-all duration-500 ease-in-out ${
+                    toReview ? 'translate-x-0' : 'top-[50%] translate-x-[30px]'
+                  }`}
+                />
+              </div>
               <span className='text-eerieBlack font-medium'>Review</span>
             </span>
           </div>
@@ -293,8 +318,7 @@ const AddProduct = () => {
                   addedImages.map((address, idx) => {
                     return (
                       <div key={idx} className='flex flex-col gap-5'>
-                        <h3 className='text-2xl max-lg:hidden'>{idx + 1}</h3>
-                        <div className='h-[250px] w-[330px] max-md:w-full max-md:h-auto max-h-[300px] border rounded-xl overflow-hidden hover:scale-105 transition-all duration-300m ease-in'>
+                        <div className='h-[250px] w-[330px] max-md:w-full max-md:h-auto max-h-[300px] border rounded-xl overflow-hidden hover:scale-95 transition-all duration-700 ease-in'>
                           <img
                             src={address}
                             className='w-full h-full object-cover hover:h-[110%] hover:w-[110%] transition-all duration-500'
@@ -325,7 +349,9 @@ const AddProduct = () => {
                       <h4 className='text-[15.5px] text-spanishGray'>
                         Product Description
                       </h4>
-                      <p className='max-w-[330px]'>{description}</p>
+                      <p className='max-w-[330px] max-sm:max-w-[250px] max-xsm:max-w-[220px]'>
+                        {description}
+                      </p>
                     </div>
                     <div className='flex items-center justify-between mt-2'>
                       <p className='text-[14.5px] text-spanishGray'>
