@@ -7,3 +7,5 @@ CREATE TABLE products (
    description TEXT NOT NULL,
    type VARCHAR(50) NOT NULL
 );
+
+ALTER TABLE products ADD COLUMN sold INT NOT NULL DEFAULT 0;
