@@ -5,6 +5,7 @@ import Header from './components/Header'
 import ProductsSlider from './components/ProductsSlider'
 import Category from './components/Category'
 import Link from 'next/link'
+import Products from './components/Products'
 
 const Home = () => {
   return (
@@ -12,7 +13,10 @@ const Home = () => {
       <Header />
       <Swiper />
       <ProductsSlider />
-      <Category />
+      <div className='flex items-start'>
+        <Category />
+        <Products />
+      </div>
       <Link href='/add-product'>Add product</Link>
     </main>
   )
