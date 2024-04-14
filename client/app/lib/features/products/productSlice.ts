@@ -3,12 +3,14 @@ import { toast } from 'sonner'
 import axios, { AxiosResponse } from 'axios'
 
 const initialState: {
+  products: object[]
   toggle: boolean
   continued: boolean
   addedImages: string[] | any
   isLoading: string | 'pending' | 'rejected' | 'idle'
   toReview: boolean
 } = {
+  products: [],
   toggle: false,
   continued: false,
   toReview: false,
@@ -38,6 +40,18 @@ export const addProductToDB = createAsyncThunk(
       images: addedImages,
     })
     return response.data
+  }
+)
+
+export const getProductsFromDB = createAsyncThunk(
+  'product/getProducts',
+  async () => {
+    try {
+      const response = await axios.get('/products/get')
+      return response.data
+    } catch (err) {
+      console.error(err)
+    }
   }
 )
 
@@ -88,6 +102,18 @@ const productSlice = createSlice({
         state.isLoading = 'rejected'
         console.log('rejected')
       })
+    builder.addCase(getProductsFromDB.pending, (state) => {
+      console.log('pending')
+      state.products = []
+    })
+    builder.addCase(getProductsFromDB.fulfilled, (state, action) => {
+      state.products = action.payload
+      console.log('fulfilled')
+    })
+    builder.addCase(getProductsFromDB.rejected, (state) => {
+      state.products = []
+      console.log('rejected')
+    })
   },
 })
 
