@@ -21,7 +21,6 @@ import {
 } from '../lib/features/products/productSlice'
 import { FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
-import Link from 'next/link'
 import { toast } from 'sonner'
 import { addProductToDB } from '../lib/features/products/productSlice'
 import { useRouter } from 'next/navigation'
@@ -264,14 +263,16 @@ const AddProduct = () => {
                   </div>
                 </div>
               </div>
-              <div className='w-full justify-between flex items-end'>
-                <Link
-                  href='/'
+              <div className='w-full justify-between flex items-end cursor-pointer'>
+                <span
+                  onClick={() => {
+                    dispatch(handleSubmitProduct())
+                    router.push('/')
+                  }}
                   className='underline text-eerieBlack hover:font-medium'
-                  type='button'
                 >
                   Cancel
-                </Link>
+                </span>
                 <button
                   onClick={continuePost}
                   type='button'
@@ -395,7 +396,13 @@ const AddProduct = () => {
                 </div>
               </div>
               <div className='px-5 flex items-center w-full justify-between mt-5'>
-                <button className='underline text-eerieBlack font-semibold hover:opacity-80 transition-all'>
+                <button
+                  onClick={() => {
+                    dispatch(handleSubmitProduct())
+                    router.push('/')
+                  }}
+                  className='underline text-eerieBlack font-semibold hover:opacity-80 transition-all'
+                >
                   Cancel
                 </button>
                 <button
