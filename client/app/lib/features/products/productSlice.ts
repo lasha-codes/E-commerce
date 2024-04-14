@@ -108,7 +108,7 @@ const productSlice = createSlice({
     })
     builder.addCase(getProductsFromDB.fulfilled, (state, action) => {
       state.products = action.payload
-      console.log('fulfilled')
+      console.log('fulfilled', action.payload)
     })
     builder.addCase(getProductsFromDB.rejected, (state) => {
       state.products = []
