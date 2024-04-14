@@ -18,3 +18,15 @@ export const addProduct = async (req, res) => {
     res.status(500).json({ message: 'Server error please try again.' })
   }
 }
+
+export const getProducts = async (req, res) => {
+  try {
+    const query = 'SELECT * FROM products'
+    const products = await pool.query(query)
+    res.status(200).json(products)
+  } catch (err) {
+    res.status(500).json({
+      message: 'Something went wrong with the server please try again',
+    })
+  }
+}
