@@ -8,11 +8,14 @@ const Products = () => {
         {products &&
           products.map((product: any) => {
             return (
-              <div key={product.id} className='bg-white border rounded-xl p-5'>
+              <div
+                key={product.id}
+                className='bg-white h-[130px] w-[260px] flex items-center border rounded-xl p-5'
+              >
                 <div className='flex items-start gap-5'>
                   <img
-                    src={product.image[1]}
-                    className='w-[80px] object-cover'
+                    src={product.image[0]}
+                    className='w-[80px] max-h-full object-cover pt-5'
                   />
                   <div className='flex flex-col gap-2'>
                     <h1 className=''>{product.title.slice(0, 10)}...</h1>
