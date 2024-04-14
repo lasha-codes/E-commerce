@@ -10,7 +10,7 @@ export const addProduct = async (req, res) => {
       title,
       description,
       type,
-      price,
+      parseInt(price),
     ])
     res.status(200).json(data.rows)
   } catch (err) {
