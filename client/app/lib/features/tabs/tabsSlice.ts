@@ -28,4 +28,5 @@ const tabsSlice = createSlice({
 
 export default tabsSlice.reducer
 
-export const { openCart, closeCart } = tabsSlice.actions
+export const { openCart, closeCart, closeSidebar, openSideBar } =
+  tabsSlice.actions

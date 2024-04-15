@@ -2,10 +2,16 @@ import Category from './Category'
 import { IoCloseOutline } from 'react-icons/io5'
 import { useSelector, useDispatch } from 'react-redux'
 import { BsCurrencyDollar } from 'react-icons/bs'
+import { closeSidebar } from '../lib/features/tabs/tabsSlice'
 
 const SideBar = () => {
   const dispatch = useDispatch()
-  const { products } = useSelector((state: any) => state.product)
+  const { products }: { products: [productType] } = useSelector(
+    (state: any) => state.product
+  )
+  const { sideBarOpen }: { sideBarOpen: boolean } = useSelector(
+    (state: any) => state.tabs
+  )
 
   interface productType {
     id: number
@@ -19,13 +25,20 @@ const SideBar = () => {
   }
 
   return (
-    <div className='fixed flex flex-col max-md:w-[300px] max-md:pb-20 items-center overflow-hidden max-sm:overflow-y-scroll px-10 top-0 h-screen z-[99] left-0 w-[500px] bg-white'>
+    <div
+      className={`fixed flex flex-col max-md:w-[300px] max-md:pb-20 items-center overflow-hidden max-sm:overflow-y-scroll px-10 top-0 h-screen z-[99] left-0 w-[500px] transition-all duration-700 ease-in-out bg-white ${
+        sideBarOpen ? 'translate-x-0' : 'translate-x-[-500px]'
+      }`}
+    >
       <Category
         extraClass={
           'border-none w-[390px] max-md:w-[200px] -mt-[5px] text-xl uppercase'
         }
         closeIcon={
-          <IoCloseOutline className='text-[25px] absolute top-6 -right-5 icon-style' />
+          <IoCloseOutline
+            onClick={() => dispatch(closeSidebar())}
+            className='text-[25px] absolute top-6 -right-5 icon-style'
+          />
         }
       ></Category>
       <div className='self-start'>
