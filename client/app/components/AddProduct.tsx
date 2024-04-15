@@ -18,9 +18,10 @@ import {
   backToProduct,
   submitProduct,
   handleSubmitProduct,
+  closeAddImage,
 } from '../lib/features/products/productSlice'
 import { FaMinus } from 'react-icons/fa'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { addProductToDB } from '../lib/features/products/productSlice'
 import { useRouter } from 'next/navigation'
@@ -69,6 +70,18 @@ const AddProduct = () => {
       return 'Low Pricing'
     }
   }
+
+  const handleCloseAddImage = () => {
+    dispatch(closeAddImage())
+  }
+
+  useEffect(() => {
+    window.addEventListener('click', handleCloseAddImage)
+
+    return () => {
+      window.removeEventListener('click', handleCloseAddImage)
+    }
+  }, [])
 
   return (
     <main className='w-full flex flex-col overflow-hidden justify-start h-screen items-center gap-10  relative'>
@@ -142,7 +155,10 @@ const AddProduct = () => {
             <form className='w-full'>
               <div className='border gap-3 flex items-center rounded-xl p-2'>
                 <div
-                  onClick={() => dispatch(openAddImage())}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    dispatch(openAddImage())
+                  }}
                   className='p-9 w-fit rounded-xl bg-cultured border border-dashed cursor-pointer'
                 >
                   <FaCirclePlus className='text-3xl' />

@@ -9,7 +9,7 @@ import Products from './components/Products'
 import FooterNav from './components/FooterNav'
 import ShoppingCart from './components/ShoppingCart'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { closeCart } from './lib/features/tabs/tabsSlice'
 
 const Home = () => {
