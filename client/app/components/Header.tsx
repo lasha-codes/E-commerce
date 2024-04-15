@@ -4,8 +4,11 @@ import { CiSearch, CiUser } from 'react-icons/ci'
 import { IoIosHeartEmpty } from 'react-icons/io'
 import { IoBagHandleOutline } from 'react-icons/io5'
 import Navbar from './Navbar'
+import { useDispatch } from 'react-redux'
+import { openCart } from '../lib/features/tabs/tabsSlice'
 
 const Header = () => {
+  const dispatch = useDispatch()
   return (
     <header className='flex flex-col gap-2'>
       <div className='flex items-center justify-between border-b px-20 pb-2.5 max-xsm:justify-center'>
@@ -54,7 +57,10 @@ const Header = () => {
             </div>
           </div>
           <div className='relative'>
-            <IoBagHandleOutline className='text-[26.5px] icon-style' />
+            <IoBagHandleOutline
+              className='text-[26.5px] icon-style'
+              onClick={() => dispatch(openCart())}
+            />
             <div className='bg-salmonPink absolute text-white w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
               0
             </div>

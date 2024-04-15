@@ -7,7 +7,16 @@ const initialState = {
 const tabsSlice = createSlice({
   initialState,
   name: 'tabs',
-  reducers: {},
+  reducers: {
+    openCart: (state) => {
+      state.cartOpen = true
+    },
+    closeCart: (state) => {
+      state.cartOpen = false
+    },
+  },
 })
 
 export default tabsSlice.reducer
+
+export const { openCart, closeCart } = tabsSlice.actions

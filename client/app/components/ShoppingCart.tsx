@@ -1,9 +1,24 @@
 import { HiArrowSmallRight } from 'react-icons/hi2'
 import { FaRegTrashAlt } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+
+interface tabsTypes {
+  cartOpen: boolean
+}
 
 const ShoppingCart = () => {
+  const { cartOpen }: tabsTypes = useSelector((state: any) => state.tabs)
+
+  console.log(cartOpen)
+
   return (
-    <div className='fixed h-screen flex flex-col justify-between right-0 top-0 w-[500px] bg-white p-10'>
+    <div
+      className={`fixed h-screen flex flex-col justify-between right-0 top-0 bg-white p-10 transition-all duration-500 ease-out ${
+        cartOpen
+          ? 'w-[500px] opacity-100 pointer-events-auto'
+          : 'w-0 opacity-0 pointer-events-none'
+      }`}
+    >
       <div className='w-full flex justify-between items-center border-b pb-4'>
         <h3 className='font-semibold text-[14px]'>SHOPPING BAG ( 0 )</h3>
         <HiArrowSmallRight className='text-xl icon-style' />
