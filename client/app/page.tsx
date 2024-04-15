@@ -6,10 +6,11 @@ import ProductsSlider from './components/ProductsSlider'
 import Category from './components/Category'
 import Link from 'next/link'
 import Products from './components/Products'
+import FooterNav from './components/FooterNav'
 
 const Home = () => {
   return (
-    <main className='py-2.5'>
+    <main className='py-2.5 relative'>
       <Header />
       <Swiper />
       <ProductsSlider />
@@ -18,6 +19,7 @@ const Home = () => {
         <Products />
       </div>
       <Link href='/add-product'>Add product</Link>
+      <FooterNav />
     </main>
   )
 }

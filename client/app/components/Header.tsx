@@ -49,13 +49,13 @@ const Header = () => {
           </div>
           <div className='relative'>
             <IoIosHeartEmpty className='text-[27px] icon-style' />
-            <div className='bg-salmonPink absolute text-cultured w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
+            <div className='bg-salmonPink absolute text-white w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
               0
             </div>
           </div>
           <div className='relative'>
             <IoBagHandleOutline className='text-[26.5px] icon-style' />
-            <div className='bg-salmonPink absolute text-cultured w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
+            <div className='bg-salmonPink absolute text-white w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
               0
             </div>
           </div>
