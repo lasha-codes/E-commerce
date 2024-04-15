@@ -10,17 +10,16 @@ import FooterNav from './components/FooterNav'
 import ShoppingCart from './components/ShoppingCart'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { closeCart } from './lib/features/tabs/tabsSlice'
+import { closeCart, closeSidebar } from './lib/features/tabs/tabsSlice'
 import SideBar from './components/SideBar'
 
 const Home = () => {
   const dispatch = useDispatch()
-  const { cartOpen }: { cartOpen: boolean } = useSelector(
-    (state: any) => state.tabs
-  )
+  const { cartOpen, sideBarOpen }: { cartOpen: boolean; sideBarOpen: boolean } =
+    useSelector((state: any) => state.tabs)
 
   const checkTabOpened = () => {
-    if (cartOpen) {
+    if (cartOpen || sideBarOpen) {
       return true
     } else {
       return false
@@ -29,6 +28,7 @@ const Home = () => {
 
   const handleCloseTab = () => {
     dispatch(closeCart())
+    dispatch(closeSidebar())
   }
 
   useEffect(() => {

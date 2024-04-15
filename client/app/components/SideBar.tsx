@@ -26,13 +26,16 @@ const SideBar = () => {
 
   return (
     <div
-      className={`fixed flex flex-col max-md:w-[300px] max-md:pb-20 items-center overflow-hidden max-sm:overflow-y-scroll px-10 top-0 h-screen z-[99] left-0 w-[500px] transition-all duration-700 ease-in-out bg-white ${
-        sideBarOpen ? 'translate-x-0' : 'translate-x-[-500px]'
+      onClick={(e) => e.stopPropagation()}
+      className={`fixed flex flex-col max-xsm:w-full max-md:pb-20 items-center overflow-hidden max-sm:overflow-y-scroll px-10 top-0 h-screen z-[99] left-0 w-[500px] transition-all duration-700 ease-in-out bg-white ${
+        sideBarOpen
+          ? 'translate-x-0'
+          : 'translate-x-[-500px] max-md:translate-x-[-700px]'
       }`}
     >
       <Category
         extraClass={
-          'border-none w-[390px] max-md:w-[200px] -mt-[5px] text-xl uppercase'
+          'border-none w-[390px] max-xsm:w-[400px] -mt-[5px] text-xl uppercase'
         }
         closeIcon={
           <IoCloseOutline

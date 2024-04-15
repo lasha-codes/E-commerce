@@ -6,6 +6,7 @@ import {
 import { IoIosHeartEmpty } from 'react-icons/io'
 import { useDispatch } from 'react-redux'
 import { openCart } from '../lib/features/tabs/tabsSlice'
+import { openSideBar } from '../lib/features/tabs/tabsSlice'
 
 const FooterNav = () => {
   const dispatch = useDispatch()
@@ -34,7 +35,13 @@ const FooterNav = () => {
           </div>
         </div>
         <div>
-          <IoGridOutline className='text-3xl cursor-pointer icon-style' />
+          <IoGridOutline
+            className='text-3xl cursor-pointer icon-style'
+            onClick={(e) => {
+              e.stopPropagation()
+              dispatch(openSideBar())
+            }}
+          />
         </div>
       </nav>
     </div>
