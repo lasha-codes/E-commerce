@@ -46,7 +46,7 @@ const Header = () => {
           </label>
         </form>
 
-        <div className='flex items-center gap-4 max-md:hidden'>
+        <div className='flex items-center gap-4 max-lg:hidden'>
           <div>
             <CiUser className='text-3xl cursor-pointer icon-style' />
           </div>

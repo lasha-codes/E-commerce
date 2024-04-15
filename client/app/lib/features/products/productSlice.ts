@@ -92,27 +92,21 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
       state.isLoading = 'pending'
-      console.log('pending')
     }),
       builder.addCase(addProductToDB.fulfilled, (state) => {
         state.isLoading = 'idle'
-        console.log('idle')
       }),
       builder.addCase(addProductToDB.rejected, (state) => {
         state.isLoading = 'rejected'
-        console.log('rejected')
       })
     builder.addCase(getProductsFromDB.pending, (state) => {
-      console.log('pending')
       state.products = []
     })
     builder.addCase(getProductsFromDB.fulfilled, (state, action) => {
       state.products = action.payload
-      console.log('fulfilled', action.payload)
     })
     builder.addCase(getProductsFromDB.rejected, (state) => {
       state.products = []
-      console.log('rejected')
     })
   },
 })

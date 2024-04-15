@@ -28,7 +28,6 @@ const Home = () => {
 
   const handleCloseTab = () => {
     dispatch(closeCart())
-    console.log('clicked')
   }
 
   useEffect(() => {
