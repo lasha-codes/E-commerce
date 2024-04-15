@@ -6,6 +6,8 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 
+import Autoplay from 'embla-carousel-autoplay'
+
 import banner1 from '../assets/banner-1.jpg'
 import banner2 from '../assets/banner-2.jpg'
 import banner3 from '../assets/banner-3.jpg'
@@ -14,7 +16,13 @@ import Slide from './Slide'
 const Swiper = () => {
   return (
     <div className='px-28 max-sm:px-20 xl:w-[80%] mt-1 lg:mx-auto max-md:mt-5'>
-      <Carousel>
+      <Carousel
+        plugins={[
+          Autoplay({
+            delay: 3000,
+          }),
+        ]}
+      >
         <CarouselContent>
           <CarouselItem>
             <Slide
