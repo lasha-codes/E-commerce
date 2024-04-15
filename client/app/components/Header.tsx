@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { socialLinks } from '../data/data'
 import { CiSearch, CiUser } from 'react-icons/ci'
 import { IoIosHeartEmpty } from 'react-icons/io'
-import { BsHandbag } from 'react-icons/bs'
+import { IoBagHandleOutline } from 'react-icons/io5'
 import Navbar from './Navbar'
 
 const Header = () => {
@@ -54,7 +54,7 @@ const Header = () => {
             </div>
           </div>
           <div className='relative'>
-            <BsHandbag className='text-[24px] icon-style' />
+            <IoBagHandleOutline className='text-[26.5px] icon-style' />
             <div className='bg-salmonPink absolute text-cultured w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
               0
             </div>
