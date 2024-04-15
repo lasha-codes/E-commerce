@@ -9,21 +9,28 @@ import {
 
 import { categories } from '../data/data'
 
-const Category = ({ extraClass }: { extraClass: string }) => {
+const Category = ({
+  extraClass,
+  closeIcon,
+}: {
+  extraClass: string
+  closeIcon: any
+}) => {
   return (
     <main className='px-28 mt-16 max-lg:hidden'>
       <div
-        className={`border py-6 px-5 w-fit rounded-xl flex flex-col gap-3 ${
+        className={`border py-6 px-5 w-fit rounded-xl flex relative flex-col gap-3 ${
           extraClass && extraClass
         }`}
       >
         <h1 className='tracking-wide font-medium'>Category</h1>
+        {closeIcon && closeIcon}
         {categories.map((item, idx) => {
           return (
             <Accordion
               type='single'
               collapsible
-              className='w-[250px]'
+              className={`w-[250px] ${extraClass}`}
               key={idx}
             >
               <AccordionItem value='item-1'>
