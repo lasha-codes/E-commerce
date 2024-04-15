@@ -11,6 +11,7 @@ import ShoppingCart from './components/ShoppingCart'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { closeCart } from './lib/features/tabs/tabsSlice'
+import SideBar from './components/SideBar'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -59,6 +60,7 @@ const Home = () => {
       <Link href='/add-product'>Add product</Link>
       <FooterNav />
       <ShoppingCart />
+      <SideBar />
     </main>
   )
 }

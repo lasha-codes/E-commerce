@@ -9,10 +9,14 @@ import {
 
 import { categories } from '../data/data'
 
-const Category = () => {
+const Category = ({ extraClass }: { extraClass: string }) => {
   return (
     <main className='px-28 mt-16 max-lg:hidden'>
-      <div className='border py-6 px-5 w-fit rounded-xl flex flex-col gap-3'>
+      <div
+        className={`border py-6 px-5 w-fit rounded-xl flex flex-col gap-3 ${
+          extraClass && extraClass
+        }`}
+      >
         <h1 className='tracking-wide font-medium'>Category</h1>
         {categories.map((item, idx) => {
           return (
