@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className='flex flex-col gap-2'>
       <div className='flex items-center justify-between border-b px-20 pb-2.5 max-xsm:justify-center'>
-        <nav className='flex items-center gap-2 max-md:hidden'>
+        <nav className='flex items-center gap-2 max-lg:hidden'>
           {socialLinks.map((link, idx) => (
             <Link
               href={link.href}

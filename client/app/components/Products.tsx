@@ -4,7 +4,7 @@ const Products = () => {
   const { products } = useSelector((state: any) => state.product)
   return (
     <div className='mt-16'>
-      <div className='flex items-center flex-wrap gap-5'>
+      <div className='flex items-center justify-center flex-wrap gap-5'>
         {products &&
           products.map((product: any) => {
             return (

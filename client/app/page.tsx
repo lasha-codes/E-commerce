@@ -10,12 +10,13 @@ import FooterNav from './components/FooterNav'
 
 const Home = () => {
   return (
-    <main className='py-2.5 relative'>
+    <main className='py-2.5 relative max-lg:pb-20'>
       <Header />
       <Swiper />
       <ProductsSlider />
-      <div className='flex items-start'>
+      <div className='flex items-start justify-center'>
         <Category />
+
         <Products />
       </div>
       <Link href='/add-product'>Add product</Link>
