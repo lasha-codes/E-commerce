@@ -7,6 +7,7 @@ import Category from './components/Category'
 import Link from 'next/link'
 import Products from './components/Products'
 import FooterNav from './components/FooterNav'
+import ShoppingCart from './components/ShoppingCart'
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       </div>
       <Link href='/add-product'>Add product</Link>
       <FooterNav />
+      <ShoppingCart />
     </main>
   )
 }
