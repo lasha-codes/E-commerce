@@ -7,7 +7,7 @@ import { IoIosHeartEmpty } from 'react-icons/io'
 
 const FooterNav = () => {
   return (
-    <div className='hidden max-lg:block fixed bottom-0 left-[20%] md:w-[590px] w-full max-md:left-0 rounded-t-xl py-5 drop-shadow-xl bg-[#ffffff]'>
+    <div className='hidden max-lg:block fixed bottom-0 left-[20%] md:w-[590px] w-full max-md:left-0 rounded-t-xl max-md:rounded-none py-5 shadow-eerieBlack drop-shadow-xl border bg-[#ffffff]'>
       <nav className='flex items-center justify-between px-12'>
         <div className='relative'>
           <IoBagHandleOutline className='text-3xl cursor-pointer icon-style' />
