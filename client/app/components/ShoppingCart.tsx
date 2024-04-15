@@ -2,7 +2,6 @@ import { HiArrowSmallRight } from 'react-icons/hi2'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeCart } from '../lib/features/tabs/tabsSlice'
-import { useEffect } from 'react'
 
 interface tabsTypes {
   cartOpen: boolean
@@ -12,14 +11,13 @@ const ShoppingCart = () => {
   const dispatch = useDispatch()
   const { cartOpen }: tabsTypes = useSelector((state: any) => state.tabs)
 
-  useEffect(() => {}, [])
-
   return (
     <div
-      className={`fixed h-screen flex flex-col justify-between right-0 top-0 bg-white p-10 transition-all duration-700 ease-in-out w-[500px] max-md:w-full z-[99]  ${
+      onClick={(e) => e.stopPropagation()}
+      className={`fixed h-screen max-lg:duration-1000 flex flex-col justify-between right-0 top-0 bg-white p-10 transition-all duration-700 ease-in-out w-[500px] max-md:w-full z-[99]  ${
         cartOpen
           ? 'translate-x-0 pointer-events-auto'
-          : 'translate-x-[550px] pointer-events-none'
+          : 'translate-x-[550px] pointer-events-none max-lg:translate-x-[750px]'
       }`}
     >
       <div className='w-full flex justify-between items-center border-b pb-4'>

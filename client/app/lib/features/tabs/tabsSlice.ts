@@ -10,6 +10,7 @@ const tabsSlice = createSlice({
   reducers: {
     openCart: (state) => {
       state.cartOpen = true
+      console.log(state.cartOpen)
     },
     closeCart: (state) => {
       state.cartOpen = false

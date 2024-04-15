@@ -8,10 +8,15 @@ import Link from 'next/link'
 import Products from './components/Products'
 import FooterNav from './components/FooterNav'
 import ShoppingCart from './components/ShoppingCart'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { closeCart } from './lib/features/tabs/tabsSlice'
 
 const Home = () => {
-  const { cartOpen } = useSelector((state: any) => state.tabs)
+  const dispatch = useDispatch()
+  const { cartOpen }: { cartOpen: boolean } = useSelector(
+    (state: any) => state.tabs
+  )
 
   const checkTabOpened = () => {
     if (cartOpen) {
@@ -21,11 +26,29 @@ const Home = () => {
     }
   }
 
+  const handleCloseTab = () => {
+    dispatch(closeCart())
+    console.log('clicked')
+  }
+
+  useEffect(() => {
+    window.addEventListener('click', handleCloseTab)
+
+    return () => {
+      window.removeEventListener('click', handleCloseTab)
+    }
+  }, [])
+
   return (
     <main className='py-2.5 relative max-lg:pb-20'>
-      {checkTabOpened() && (
-        <div className='fixed z-[10] w-full h-full bg-spanishGray top-0 right-0 opacity-60' />
-      )}
+      <div
+        className={`fixed z-[10] w-full transition-all h-full bg-spanishGray top-0 right-0 ${
+          checkTabOpened()
+            ? 'opacity-70 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
+        }`}
+      />
+
       <Header />
       <Swiper />
       <ProductsSlider />
