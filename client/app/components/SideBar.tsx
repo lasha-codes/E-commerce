@@ -27,7 +27,7 @@ const SideBar = () => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className={`fixed flex flex-col max-xsm:w-full max-md:pb-20 items-center overflow-hidden max-sm:overflow-y-scroll px-10 top-0 h-screen z-[99] left-0 w-[500px] transition-all duration-700 ease-in-out bg-white ${
+      className={`fixed flex flex-col max-xsm:w-full max-md:pb-20 items-center overflow-hidden max-sm:overflow-y-scroll px-10 top-0 h-screen z-[99] left-0 w-[500px] transition-all duration-700 max-md:duration-1000 ease-in-out bg-white ${
         sideBarOpen
           ? 'translate-x-0'
           : 'translate-x-[-500px] max-md:translate-x-[-700px]'

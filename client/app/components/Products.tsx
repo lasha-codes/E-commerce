@@ -1,4 +1,17 @@
 import { useSelector } from 'react-redux'
+import {
+  IoHeartOutline,
+  IoEyeOutline,
+  IoGitCompareOutline,
+  IoBagAddOutline,
+} from 'react-icons/io5'
+
+const sideData = [
+  { icon: IoHeartOutline },
+  { icon: IoEyeOutline },
+  { icon: IoGitCompareOutline },
+  { icon: IoBagAddOutline },
+]
 
 const Products = () => {
   const { products } = useSelector((state: any) => state.product)
@@ -10,15 +23,15 @@ const Products = () => {
             return (
               <div
                 key={product.id}
-                className='bg-white h-[130px] w-[260px] flex items-center border rounded-xl p-5'
+                className='bg-white overflow-hidden group h-[150px] w-[300px] flex items-center border rounded-xl p-5 relative'
               >
-                <div className='flex items-center gap-6'>
+                <div className='flex items-center gap-8'>
                   <img
                     src={product.image[0]}
                     className='w-[80px] max-h-full object-cover pt-5'
                   />
                   <div className='flex flex-col gap-2'>
-                    <h1 className=''>{product.title.slice(0, 10)}...</h1>
+                    <h1 className=''>{product.title.slice(0, 12)}...</h1>
                     <span className='text-sm capitalize text-sonicSilver'>
                       {product.type}
                     </span>
@@ -26,6 +39,20 @@ const Products = () => {
                       ${product.price.toFixed(2)}
                     </span>
                   </div>
+                </div>
+                <div className='absolute right-3 top-2 group-hover:translate-x-0 transition-all duration-300 ease flex flex-col items-center gap-[6px] translate-x-12'>
+                  {sideData.map((item: any) => {
+                    return (
+                      <div className='relative z-[10] side-icon-container overflow-hidden'>
+                        <div className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10]'>
+                          <span className='z-[10]'>
+                            <item.icon className='text-[19px] text-sonicSilver cursor-pointer icon-style z-[10]' />
+                          </span>
+                        </div>
+                        <div className='absolute transition-all duration-500 top-0 left-0 rounded-[6px] w-full h-full opacity-0 bg-eerieBlack z-[1]' />
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             )

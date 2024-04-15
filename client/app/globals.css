@@ -38,7 +38,14 @@
   display: none;
 }
 
-/* HTML: <div class="loader"></div> */
+.side-icon:hover span svg {
+  color: hsl(0, 0%, 100%);
+}
+
+.side-icon-container:hover div {
+  opacity: 1;
+}
+
 .loader {
   width: 30px;
   height: 15px;
