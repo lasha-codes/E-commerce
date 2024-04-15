@@ -17,7 +17,7 @@ const Category = ({
   closeIcon: any
 }) => {
   return (
-    <main className='px-28 mt-16 max-lg:hidden'>
+    <main className='px-28 mt-16'>
       <div
         className={`border py-6 px-5 w-fit rounded-xl flex relative flex-col gap-3 ${
           extraClass && extraClass

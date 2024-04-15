@@ -53,7 +53,9 @@ const Home = () => {
       <Swiper />
       <ProductsSlider />
       <div className='flex items-start justify-center'>
-        <Category extraClass={''} closeIcon={false} />
+        <div className='max-lg:hidden'>
+          <Category extraClass={''} closeIcon={false} />
+        </div>
 
         <Products />
       </div>
