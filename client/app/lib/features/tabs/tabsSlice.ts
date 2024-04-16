@@ -86,4 +86,5 @@ export const {
   openSideBar,
   addItemToCart,
   renderCart,
+  decreaseProductQTY,
 } = tabsSlice.actions

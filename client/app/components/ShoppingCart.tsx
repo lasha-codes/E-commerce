@@ -1,7 +1,7 @@
 import { HiArrowSmallRight } from 'react-icons/hi2'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeCart } from '../lib/features/tabs/tabsSlice'
+import { closeCart, decreaseProductQTY } from '../lib/features/tabs/tabsSlice'
 import { FaPlus, FaMinus } from 'react-icons/fa6'
 
 interface cartProductType {
@@ -61,7 +61,7 @@ const ShoppingCart = () => {
 
       <div className='flex flex-col gap-0.5'>
         {cartProducts &&
-          cartProducts.map((product) => {
+          cartProducts.map((product: cartProductType) => {
             return (
               <div
                 key={product.id}
@@ -87,7 +87,12 @@ const ShoppingCart = () => {
                         <span className='text-eerieBlack font-medium'>
                           {product.count}
                         </span>
-                        <button className='text-sm text-eerieBlack icon-style'>
+                        <button
+                          onClick={() =>
+                            dispatch(decreaseProductQTY({ id: product.id }))
+                          }
+                          className='text-sm text-eerieBlack icon-style'
+                        >
                           <FaMinus />
                         </button>
                       </div>
