@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'sonner'
 
 const initialState = {
-  cartProducts:
-    typeof window !== 'undefined' && localStorage.getItem('cartProducts')
-      ? JSON.parse(localStorage.getItem('cartProducts')!)
-      : [],
+  cartProducts: [],
   cartOpen: false,
   sideBarOpen: false,
 }
@@ -44,15 +42,30 @@ const tabsSlice = createSlice({
       })
       if (productInCart) {
         productInCart.count++
+        toast.success(`${productInCart.title} QTY increased`)
       } else {
+        toast.success(`${payload.title} Added to the cart`)
         state.cartProducts.push({ ...payload, count: 1 })
       }
       localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
+    },
+    renderCart: (state: any) => {
+      if (localStorage.getItem('cartProducts')) {
+        state.cartProducts = JSON.parse(localStorage.getItem('cartProducts')!)
+      } else {
+        state.cartProducts = []
+      }
     },
   },
 })
 
 export default tabsSlice.reducer
 
-export const { openCart, closeCart, closeSidebar, openSideBar, addItemToCart } =
-  tabsSlice.actions
+export const {
+  openCart,
+  closeCart,
+  closeSidebar,
+  openSideBar,
+  addItemToCart,
+  renderCart,
+} = tabsSlice.actions

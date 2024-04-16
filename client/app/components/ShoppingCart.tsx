@@ -3,18 +3,31 @@ import { FaRegTrashAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeCart } from '../lib/features/tabs/tabsSlice'
 
+interface cartProductType {
+  id: number
+  title: string
+  price: number
+  image: string[]
+  discountedPrice: number | null
+  count: number
+  description: string
+}
+
 interface tabsTypes {
   cartOpen: boolean
+  cartProducts: cartProductType[]
 }
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
-  const { cartOpen }: tabsTypes = useSelector((state: any) => state.tabs)
+  const { cartOpen, cartProducts }: tabsTypes = useSelector(
+    (state: any) => state.tabs
+  )
 
   return (
-    <div
+    <section
       onClick={(e) => e.stopPropagation()}
-      className={`fixed h-screen max-lg:duration-1000 flex overflow-hidden max-xsm:overflow-y-scroll flex-col justify-between right-0 top-0 bg-white p-10 transition-all duration-700 ease-in-out w-[500px] max-sm:w-full z-[99]  ${
+      className={`fixed h-screen max-lg:duration-1000 flex overflow-hidden max-xsm:overflow-y-scroll flex-col right-0 top-0 bg-white p-10 transition-all duration-700 ease-in-out w-[500px] max-sm:w-full z-[99]  ${
         cartOpen
           ? 'translate-x-0 pointer-events-auto'
           : 'translate-x-[550px] pointer-events-none max-lg:translate-x-[750px]'
@@ -27,7 +40,18 @@ const ShoppingCart = () => {
           onClick={() => dispatch(closeCart())}
         />
       </div>
-      <div className='w-full flex flex-col gap-7 border-t pt-6'>
+
+      <div>
+        {cartProducts &&
+          cartProducts.map((product) => {
+            return (
+              <div key={product.id}>
+                <h3>{product.title}</h3>
+              </div>
+            )
+          })}
+      </div>
+      <div className='w-full flex mt-auto flex-col gap-7 border-t pt-6'>
         <div className='flex justify-between items-center'>
           <span className='flex items-center gap-2 font-medium'>
             <span className='text-[16px]'>TOTAL: </span>
@@ -46,7 +70,7 @@ const ShoppingCart = () => {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

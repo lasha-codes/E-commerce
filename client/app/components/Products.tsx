@@ -8,6 +8,8 @@ import {
   IoBagAddOutline,
 } from 'react-icons/io5'
 import { addItemToCart } from '../lib/features/tabs/tabsSlice'
+import { toast } from 'sonner'
+import { Toaster } from 'sonner'
 
 const Products = () => {
   const dispatch = useDispatch()
@@ -76,7 +78,9 @@ const Products = () => {
                     <div className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10]'>
                       <span className='z-[10]'>
                         <IoBagAddOutline
-                          onClick={() => addToCart(product)}
+                          onClick={() => {
+                            addToCart(product)
+                          }}
                           className='text-[19px] text-sonicSilver cursor-pointer icon-style z-[10]
 '
                         />
@@ -89,6 +93,7 @@ const Products = () => {
             )
           })}
       </div>
+      <Toaster />
     </div>
   )
 }
