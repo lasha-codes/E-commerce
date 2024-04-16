@@ -5,6 +5,7 @@ import {
   closeCart,
   decreaseProductQTY,
   increaseProductQuantity,
+  removeProductFromTheCart,
 } from '../lib/features/tabs/tabsSlice'
 import { FaPlus, FaMinus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
@@ -17,6 +18,7 @@ interface cartProductType {
   discountedPrice: number | null
   count: number
   description: string
+  type: string
 }
 
 interface tabsTypes {
@@ -72,7 +74,12 @@ const ShoppingCart = () => {
                 key={product.id}
                 className='border-b cart-product pb-4 pt-6 relative'
               >
-                <IoIosClose className='absolute top-2 right-2 text-2xl text-sonicSilver transition-all duration-500 hover:text-red-500 icon-style cursor-pointer' />
+                <IoIosClose
+                  onClick={() =>
+                    dispatch(removeProductFromTheCart({ id: product.id }))
+                  }
+                  className='absolute top-2 right-2 text-2xl text-sonicSilver transition-all duration-500 hover:text-[#f55c5c] icon-style cursor-pointer'
+                />
                 <div className='flex items-center gap-5'>
                   <div className='min-w-[100px] max-w-[100px] h-[80px] '>
                     <img
@@ -82,9 +89,14 @@ const ShoppingCart = () => {
                     />
                   </div>
                   <div className='flex flex-col gap-3'>
-                    <h3 className='font-medium text-eerieBlack text-[15px]'>
-                      {product.title}
-                    </h3>
+                    <div className='flex flex-col'>
+                      <h3 className='font-medium max-w-[270px] text-eerieBlack text-[15px]'>
+                        {product.title}
+                      </h3>
+                      <span className='uppercase py-[6px] text-[13px] text-salmonPink font-medium'>
+                        {product.type}
+                      </span>
+                    </div>
                     <div className='flex items-center gap-4'>
                       <div className='border rounded-[3px] flex items-center justify-between px-2 py-1 w-[85px]'>
                         <button

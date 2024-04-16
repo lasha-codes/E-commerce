@@ -86,6 +86,13 @@ const tabsSlice = createSlice({
       toast.success(`${targetedProduct.title} increased`)
       localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
     },
+    removeProductFromTheCart: (state: any, { payload }) => {
+      state.cartProducts = state.cartProducts.filter((product: ProductType) => {
+        return product.id !== payload.id
+      })
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
+      toast.success(`${payload.title} removed from the cart`)
+    },
   },
 })
 
@@ -100,4 +107,5 @@ export const {
   renderCart,
   decreaseProductQTY,
   increaseProductQuantity,
+  removeProductFromTheCart,
 } = tabsSlice.actions
