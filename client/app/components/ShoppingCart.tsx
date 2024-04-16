@@ -1,7 +1,11 @@
 import { HiArrowSmallRight } from 'react-icons/hi2'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeCart, decreaseProductQTY } from '../lib/features/tabs/tabsSlice'
+import {
+  closeCart,
+  decreaseProductQTY,
+  increaseProductQuantity,
+} from '../lib/features/tabs/tabsSlice'
 import { FaPlus, FaMinus } from 'react-icons/fa6'
 
 interface cartProductType {
@@ -81,7 +85,14 @@ const ShoppingCart = () => {
                     </h3>
                     <div className='flex items-center gap-4'>
                       <div className='border rounded-[3px] flex items-center justify-between px-2 py-1 w-[85px]'>
-                        <button className='text-sm text-eerieBlack icon-style'>
+                        <button
+                          onClick={() =>
+                            dispatch(
+                              increaseProductQuantity({ id: product.id })
+                            )
+                          }
+                          className='text-sm text-eerieBlack icon-style'
+                        >
                           <FaPlus />
                         </button>
                         <span className='text-eerieBlack font-medium'>

@@ -64,14 +64,26 @@ const tabsSlice = createSlice({
         }
       )
       if (targetedProduct.count === 1) {
+        toast.success(`${targetedProduct.title} removed from the cart`)
         state.cartProducts = state.cartProducts.filter(
           (product: ProductType) => {
             return targetedProduct.id !== product.id
           }
         )
       } else {
+        toast.success(`${targetedProduct.title} QTY decreased`)
         targetedProduct.count -= 1
       }
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
+    },
+    increaseProductQuantity: (state: any, { payload }) => {
+      const targetedProduct = state.cartProducts.find(
+        (product: ProductType) => {
+          return payload.id === product.id
+        }
+      )
+      targetedProduct.count += 1
+      toast.success(`${targetedProduct.title} increased`)
       localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
     },
   },
@@ -87,4 +99,5 @@ export const {
   addItemToCart,
   renderCart,
   decreaseProductQTY,
+  increaseProductQuantity,
 } = tabsSlice.actions
