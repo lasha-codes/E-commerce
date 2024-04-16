@@ -7,6 +7,7 @@ import {
   increaseProductQuantity,
 } from '../lib/features/tabs/tabsSlice'
 import { FaPlus, FaMinus } from 'react-icons/fa6'
+import { IoIosClose } from 'react-icons/io'
 
 interface cartProductType {
   id: number
@@ -69,8 +70,9 @@ const ShoppingCart = () => {
             return (
               <div
                 key={product.id}
-                className='border-b cart-product py-4 relative'
+                className='border-b cart-product pb-4 pt-6 relative'
               >
+                <IoIosClose className='absolute top-2 right-2 text-2xl text-sonicSilver transition-all duration-500 hover:text-red-500 icon-style cursor-pointer' />
                 <div className='flex items-center gap-5'>
                   <div className='min-w-[100px] max-w-[100px] h-[80px] '>
                     <img
