@@ -15,6 +15,7 @@ interface ProductType {
   discountedPrice: null | number
   title: string
   description: string
+  count: number
 }
 
 const tabsSlice = createSlice({
@@ -55,6 +56,23 @@ const tabsSlice = createSlice({
       } else {
         state.cartProducts = []
       }
+    },
+    decreaseProductQTY: (state: any, { payload }) => {
+      const targetedProduct = state.cartProducts.find(
+        (product: ProductType) => {
+          return payload.id === product.id
+        }
+      )
+      if (targetedProduct.count === 1) {
+        state.cartProducts = state.cartProducts.filter(
+          (product: ProductType) => {
+            return targetedProduct.id !== product.id
+          }
+        )
+      } else {
+        targetedProduct.count -= 1
+      }
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
     },
   },
 })

@@ -4,11 +4,31 @@ import { CiSearch, CiUser } from 'react-icons/ci'
 import { IoIosHeartEmpty } from 'react-icons/io'
 import { IoBagHandleOutline } from 'react-icons/io5'
 import Navbar from './Navbar'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { openCart } from '../lib/features/tabs/tabsSlice'
 
 const Header = () => {
   const dispatch = useDispatch()
+
+  interface cartProductType {
+    id: number
+    title: string
+    price: number
+    image: string[]
+    discountedPrice: number | null
+    count: number
+    description: string
+  }
+
+  const { cartProducts } = useSelector((state: any) => state.tabs)
+
+  let cartCount = 0
+  cartProducts &&
+    cartProducts.forEach((product: cartProductType) => {
+      cartCount += product.count
+    })
+  console.log(cartCount)
+
   return (
     <header className='flex flex-col gap-2'>
       <div className='flex items-center justify-between border-b px-20 pb-2.5 max-xsm:justify-center'>
@@ -64,8 +84,8 @@ const Header = () => {
                 dispatch(openCart())
               }}
             />
-            <div className='bg-salmonPink absolute text-white w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
-              0
+            <div className='bg-salmonPink absolute text-white w-[17px] h-[17px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
+              {cartCount}
             </div>
           </div>
         </div>

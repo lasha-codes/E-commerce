@@ -25,6 +25,21 @@ const ShoppingCart = () => {
     (state: any) => state.tabs
   )
 
+  let cartCount = 0
+  let totalPrice = 0
+
+  cartProducts &&
+    cartProducts.forEach((product: cartProductType) => {
+      cartCount += product.count
+    })
+
+  cartProducts &&
+    cartProducts.forEach((product: cartProductType) => {
+      totalPrice += product.count * product.price
+    })
+
+  console.log(cartCount)
+
   return (
     <section
       onClick={(e) => e.stopPropagation()}
@@ -35,7 +50,9 @@ const ShoppingCart = () => {
       }`}
     >
       <div className='w-full flex justify-between items-center border-b pb-4'>
-        <h3 className='font-semibold text-[14px]'>SHOPPING BAG ( 0 )</h3>
+        <h3 className='font-semibold text-[14px]'>
+          SHOPPING BAG ( {cartCount} )
+        </h3>
         <HiArrowSmallRight
           className='text-xl icon-style'
           onClick={() => dispatch(closeCart())}
@@ -93,7 +110,7 @@ const ShoppingCart = () => {
         <div className='flex justify-between items-center'>
           <span className='flex items-center gap-2 font-medium'>
             <span className='text-[16px]'>TOTAL: </span>
-            <span className='text-[18px]'>$ 0.00</span>
+            <span className='text-[18px]'>$ {totalPrice.toFixed(2)}</span>
           </span>
           <div className='bg-[#f33c3cf5] p-3 rounded-[1px] cursor-pointer hover:opacity-80 transition-all duration-300'>
             <FaRegTrashAlt className='text-white' />
