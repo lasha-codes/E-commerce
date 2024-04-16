@@ -75,9 +75,7 @@ const ShoppingCart = () => {
                 className='border-b cart-product pb-4 pt-6 relative'
               >
                 <IoIosClose
-                  onClick={() =>
-                    dispatch(removeProductFromTheCart({ id: product.id }))
-                  }
+                  onClick={() => dispatch(removeProductFromTheCart(product))}
                   className='absolute top-2 right-2 text-2xl text-sonicSilver transition-all duration-500 hover:text-[#f55c5c] icon-style cursor-pointer'
                 />
                 <div className='flex items-center gap-5'>
