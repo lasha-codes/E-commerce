@@ -42,19 +42,26 @@ const ShoppingCart = () => {
         />
       </div>
 
-      <div>
+      <div className='flex flex-col gap-0.5'>
         {cartProducts &&
           cartProducts.map((product) => {
             return (
-              <div key={product.id} className='border-b py-4 relative'>
+              <div
+                key={product.id}
+                className='border-b cart-product py-4 relative'
+              >
                 <div className='flex items-center gap-5'>
-                  <img
-                    src={product.image[0]}
-                    className='w-[100px] object-cover'
-                    alt='cart-product'
-                  />
+                  <div className='min-w-[100px] max-w-[100px] h-[80px] '>
+                    <img
+                      src={product.image[0]}
+                      className='w-full h-full object-contain'
+                      alt='cart-product'
+                    />
+                  </div>
                   <div className='flex flex-col gap-3'>
-                    <h3>{product.title}</h3>
+                    <h3 className='font-medium text-eerieBlack text-[15px]'>
+                      {product.title}
+                    </h3>
                     <div className='flex items-center gap-4'>
                       <div className='border rounded-[3px] flex items-center justify-between px-2 py-1 w-[85px]'>
                         <button className='text-sm text-eerieBlack icon-style'>
@@ -71,7 +78,7 @@ const ShoppingCart = () => {
                         <span className='flex items-center text-sonicSilver'>
                           ${product.price.toFixed(2)}
                         </span>
-                        <span>
+                        <span className='font-medium text-eerieBlack'>
                           ${(product.price * product.count).toFixed(2)}
                         </span>
                       </div>

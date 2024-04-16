@@ -26,6 +26,10 @@
   border-radius: 100px;
 }
 
+.cart-product:last-child {
+  border-bottom: none;
+}
+
 .links:hover {
   color: hsl(353, 100%, 78%);
 }
