@@ -38,8 +38,15 @@ const tabsSlice = createSlice({
       state.sideBarOpen = false
     },
     addItemToCart: (state: any, { payload }: { payload: ProductType }) => {
-      console.log(payload)
-      state.cartProducts.push(payload)
+      console.log({ ...payload, count: 1 })
+      const productInCart = state.cartProducts.find((product: ProductType) => {
+        return product.id === payload.id
+      })
+      if (productInCart) {
+        productInCart.count++
+      } else {
+        state.cartProducts.push({ ...payload, count: 1 })
+      }
       localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
     },
   },
