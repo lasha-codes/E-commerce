@@ -2,6 +2,7 @@ import { HiArrowSmallRight } from 'react-icons/hi2'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeCart } from '../lib/features/tabs/tabsSlice'
+import { FaPlus, FaMinus } from 'react-icons/fa6'
 
 interface cartProductType {
   id: number
@@ -45,8 +46,38 @@ const ShoppingCart = () => {
         {cartProducts &&
           cartProducts.map((product) => {
             return (
-              <div key={product.id}>
-                <h3>{product.title}</h3>
+              <div key={product.id} className='border-b py-4 relative'>
+                <div className='flex items-center gap-5'>
+                  <img
+                    src={product.image[0]}
+                    className='w-[100px] object-cover'
+                    alt='cart-product'
+                  />
+                  <div className='flex flex-col gap-3'>
+                    <h3>{product.title}</h3>
+                    <div className='flex items-center gap-4'>
+                      <div className='border rounded-[3px] flex items-center justify-between px-2 py-1 w-[85px]'>
+                        <button className='text-sm text-eerieBlack icon-style'>
+                          <FaPlus />
+                        </button>
+                        <span className='text-eerieBlack font-medium'>
+                          {product.count}
+                        </span>
+                        <button className='text-sm text-eerieBlack icon-style'>
+                          <FaMinus />
+                        </button>
+                      </div>
+                      <div className='flex items-center gap-5'>
+                        <span className='flex items-center text-sonicSilver'>
+                          ${product.price.toFixed(2)}
+                        </span>
+                        <span>
+                          ${(product.price * product.count).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             )
           })}
