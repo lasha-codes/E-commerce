@@ -93,6 +93,11 @@ const tabsSlice = createSlice({
       localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
       toast.success(`${payload.title} removed from the cart`)
     },
+    clearCart: (state) => {
+      state.cartProducts = []
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
+      toast.success('Cart cleared')
+    },
   },
 })
 
@@ -108,4 +113,5 @@ export const {
   decreaseProductQTY,
   increaseProductQuantity,
   removeProductFromTheCart,
+  clearCart,
 } = tabsSlice.actions

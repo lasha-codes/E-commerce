@@ -6,6 +6,7 @@ import {
   decreaseProductQTY,
   increaseProductQuantity,
   removeProductFromTheCart,
+  clearCart,
 } from '../lib/features/tabs/tabsSlice'
 import { FaPlus, FaMinus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
@@ -140,9 +141,12 @@ const ShoppingCart = () => {
             <span className='text-[16px]'>TOTAL: </span>
             <span className='text-[18px]'>$ {totalPrice.toFixed(2)}</span>
           </span>
-          <div className='bg-[#f33c3cf5] p-3 rounded-[1px] cursor-pointer hover:opacity-80 transition-all duration-300'>
+          <button
+            onClick={() => dispatch(clearCart())}
+            className='bg-[#f33c3cf5] p-3 rounded-[1px] cursor-pointer hover:opacity-80 transition-all duration-300'
+          >
             <FaRegTrashAlt className='text-white' />
-          </div>
+          </button>
         </div>
         <div className='flex flex-col gap-2.5'>
           <button className='bg-cultured font-medium text-[16px] py-3 text-eerieBlack rounded-[2px]'>
