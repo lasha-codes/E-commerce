@@ -42,6 +42,10 @@
   display: none;
 }
 
+.liked-product:hover span svg {
+  fill: white;
+}
+
 .side-icon:hover span svg {
   color: hsl(0, 0%, 100%);
   stroke: white;

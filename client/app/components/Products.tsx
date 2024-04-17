@@ -10,11 +10,21 @@ import {
 import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
 
+interface ProductType {
+  id: number
+  sold: number
+  price: number
+  image: string[]
+  discountedPrice: null | number
+  title: string
+  description: string
+  count: number
+}
+
 const Products = () => {
   const dispatch = useDispatch()
   const { products } = useSelector((state: any) => state.product)
   const { watchList } = useSelector((state: any) => state.tabs)
-
   const addToCart = (product: any) => {
     dispatch(addItemToCart(product))
   }
@@ -23,6 +33,9 @@ const Products = () => {
       <div className='flex items-center justify-center flex-wrap gap-5'>
         {products &&
           products.map((product: any) => {
+            const productLiked = watchList.find((liked: ProductType) => {
+              return product.id === liked.id
+            })
             return (
               <div
                 key={product.id}
@@ -47,12 +60,14 @@ const Products = () => {
                   <div className='relative z-[10] side-icon-container overflow-hidden'>
                     <div
                       onClick={() => dispatch(addToWatchList(product))}
-                      className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10] cursor-pointer'
+                      className={`p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10] cursor-pointer ${
+                        productLiked ? 'liked-product' : ''
+                      }`}
                     >
                       <span className='z-[10]'>
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
-                          fill='none'
+                          fill={`${productLiked ? 'hsl(0, 0%, 47%)' : 'none'}`}
                           viewBox='0 0 24 24'
                           strokeWidth={1}
                           stroke='hsl(0, 0%, 47%)'
