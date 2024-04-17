@@ -44,7 +44,7 @@ const Products = () => {
                 <div className='flex items-center gap-8'>
                   <img
                     src={product.image[0]}
-                    className='w-[80px] max-h-full object-cover pt-5'
+                    className='w-[80px] max-h-[125px] object-contain pt-5'
                   />
                   <div className='flex flex-col gap-2'>
                     <h1 className=''>{product.title.slice(0, 12)}...</h1>

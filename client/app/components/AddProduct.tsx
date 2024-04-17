@@ -170,7 +170,7 @@ const AddProduct = () => {
                         key={idx}
                         src={address}
                         alt={`added/image${idx}`}
-                        className='h-[100px] rounded-xl w-[120px] object-cover'
+                        className='h-[100px] rounded-xl w-[120px] object-contain'
                       />
                     )
                   })}
@@ -349,7 +349,7 @@ const AddProduct = () => {
                         <div className='h-[250px] w-[330px] max-md:w-full max-md:h-auto max-h-[300px] border rounded-xl overflow-hidden hover:scale-95 transition-all duration-700 ease-in'>
                           <img
                             src={address}
-                            className='w-full h-full object-cover hover:h-[110%] hover:w-[110%] transition-all duration-500'
+                            className='w-full h-full object-contain hover:h-[110%] hover:w-[110%] transition-all duration-500'
                           />
                         </div>
                       </div>

@@ -23,7 +23,7 @@ const ProductsSlider = () => {
       <Carousel
         plugins={[
           Autoplay({
-            delay: 4000,
+            delay: 6000,
           }),
         ]}
         className='max-w-[900px] w-full mx-auto border p-4 rounded-xl border-salmonPink'
