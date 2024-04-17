@@ -6,7 +6,7 @@ import {
 import { IoIosHeartEmpty } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 import { openCart } from '../lib/features/tabs/tabsSlice'
-import { openSideBar } from '../lib/features/tabs/tabsSlice'
+import { openSideBar, openWatchList } from '../lib/features/tabs/tabsSlice'
 
 const FooterNav = () => {
   const dispatch = useDispatch()
@@ -49,7 +49,13 @@ const FooterNav = () => {
           <IoHomeOutline className='text-3xl cursor-pointer icon-style' />
         </div>
         <div className='relative'>
-          <IoIosHeartEmpty className='text-[32.5px] cursor-pointer icon-style' />
+          <IoIosHeartEmpty
+            onClick={(e) => {
+              e.stopPropagation()
+              dispatch(openWatchList())
+            }}
+            className='text-[32.5px] cursor-pointer icon-style'
+          />
           <div className='absolute bg-salmonPink rounded-full w-[19px] h-[19px] flex items-center justify-center text-white text-sm -top-0.5 -right-1'>
             0
           </div>

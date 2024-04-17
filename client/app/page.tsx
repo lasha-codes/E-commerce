@@ -10,17 +10,25 @@ import FooterNav from './components/FooterNav'
 import ShoppingCart from './components/ShoppingCart'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { closeCart, closeSidebar } from './lib/features/tabs/tabsSlice'
+import {
+  closeCart,
+  closeSidebar,
+  closeWatchList,
+} from './lib/features/tabs/tabsSlice'
 import SideBar from './components/SideBar'
 import WatchList from './components/WatchList'
 
 const Home = () => {
   const dispatch = useDispatch()
-  const { cartOpen, sideBarOpen }: { cartOpen: boolean; sideBarOpen: boolean } =
+  const {
+    cartOpen,
+    sideBarOpen,
+    watchListOpen,
+  }: { cartOpen: boolean; sideBarOpen: boolean; watchListOpen: boolean } =
     useSelector((state: any) => state.tabs)
 
   const checkTabOpened = () => {
-    if (cartOpen || sideBarOpen) {
+    if (cartOpen || sideBarOpen || watchListOpen) {
       return true
     } else {
       return false
@@ -30,6 +38,7 @@ const Home = () => {
   const handleCloseTab = () => {
     dispatch(closeCart())
     dispatch(closeSidebar())
+    dispatch(closeWatchList())
   }
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { IoIosHeartEmpty } from 'react-icons/io'
 import { IoBagHandleOutline } from 'react-icons/io5'
 import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
-import { openCart } from '../lib/features/tabs/tabsSlice'
+import { openCart, openWatchList } from '../lib/features/tabs/tabsSlice'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -70,7 +70,13 @@ const Header = () => {
             <CiUser className='text-3xl cursor-pointer icon-style' />
           </div>
           <div className='relative'>
-            <IoIosHeartEmpty className='text-[27px] icon-style' />
+            <IoIosHeartEmpty
+              onClick={(e) => {
+                e.stopPropagation()
+                dispatch(openWatchList())
+              }}
+              className='text-[27px] icon-style'
+            />
             <div className='bg-salmonPink absolute text-white w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
               0
             </div>

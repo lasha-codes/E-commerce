@@ -15,7 +15,7 @@ import Slide from './Slide'
 
 const Swiper = () => {
   return (
-    <div className='px-28 max-sm:px-20 xl:w-[80%] mt-1 lg:mx-auto max-md:mt-5'>
+    <div className='px-28 max-sm:px-20 xl:w-[85%] 2xl:w-[65%] mt-1 lg:mx-auto max-md:mt-5'>
       <Carousel
         plugins={[
           Autoplay({

@@ -124,7 +124,7 @@ const tabsSlice = createSlice({
       state.watchListOpen = true
     },
     closeWatchList: (state: any) => {
-      state.watchListOpen = true
+      state.watchListOpen = false
     },
   },
 })
