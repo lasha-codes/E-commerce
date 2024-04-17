@@ -10,7 +10,11 @@ export const registerUser = async (req, res) => {
     return res.status(400).json({ message: 'All of the fields are required' })
   }
   const hashedPassword = await bcrypt.hash(password, 10)
-  console.log(hashedPassword)
+  const checkDupQuery = 'SELECT * FROM users WHERE email = $1'
+  const dupUser = await postgres.query(checkDupQuery, [email])
+  if (dupUser.rows.length > 0) {
+    return res.status(400).json({ message: 'This user already exists' })
+  }
   const query =
     'INSERT INTO users (email, username, password) VALUES ($1, $2, $3)'
   const registeredUser = await postgres.query(query, [
@@ -18,6 +22,8 @@ export const registerUser = async (req, res) => {
     username,
     hashedPassword,
   ])
-  res.status(200).json(registerUser.rows)
+  res
+    .status(200)
+    .json({ message: 'User has successfully registered an account' })
   console.log(registerUser)
 }

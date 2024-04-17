@@ -17,3 +17,5 @@ CREATE TABLE users (
    username VARCHAR(50) NOT NULL,
    password VARCHAR(60) NOT NULL
 );
+
+ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE(email);
