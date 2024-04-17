@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { GiMoebiusStar } from 'react-icons/gi'
 
 const Login = () => {
@@ -12,25 +13,54 @@ const Login = () => {
             <h1 className='text-4xl font-semibold'>Welcome back!</h1>
             <p className='text-[16px] flex items-center gap-2'>
               Don't have account yet?
-              <span className='border-eerieBlack border-b pb-0.5 font-semibold'>
+              <Link
+                href={'/user/register'}
+                className='border-eerieBlack border-b pb-0.5 font-semibold'
+              >
                 Register
-              </span>
+              </Link>
             </p>
           </div>
         </div>
         <form className='mt-10'>
-          <div className='flex flex-col items-start gap-1'>
-            <label htmlFor='email' className='font-medium text-eerieBlack'>
-              Email
-            </label>
-            <input
-              type='text'
-              id='email'
-              className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
-              placeholder='E.g. yourname@gmail.com'
-            />
+          <div className='flex flex-col items-center gap-6'>
+            <div className='flex flex-col items-start gap-2'>
+              <label
+                htmlFor='email'
+                className='font-semibold text-eerieBlack cursor-pointer'
+              >
+                Email
+              </label>
+              <input
+                type='text'
+                id='email'
+                className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
+                placeholder='E.g. yourname@gmail.com'
+              />
+            </div>
+            <div className='flex flex-col items-start gap-2'>
+              <label
+                htmlFor='password'
+                className='font-semibold text-eerieBlack cursor-pointer'
+              >
+                Password
+              </label>
+              <input
+                type='password'
+                id='password'
+                className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
+                placeholder='Enter your password'
+              />
+            </div>
           </div>
-          <div></div>
+          <div className='flex flex-col items-center gap-2'>
+            <button className='w-full text-white bg-eerieBlack mt-12 py-2.5 hover:opacity-90 transition-all duration-300 rounded-full'>
+              Sign In
+            </button>
+            <span className='font-semibold border-b border-eerieBlack text-eerieBlack hover:opacity-90 transition-all cursor-pointer'>
+              Forgot password?
+            </span>
+          </div>
         </form>
       </div>
       <div className='h-full w-full bg-sonicSilver'></div>
