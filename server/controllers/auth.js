@@ -18,5 +18,6 @@ export const registerUser = async (req, res) => {
     username,
     hashedPassword,
   ])
+  res.status(200).json(registerUser.rows)
   console.log(registerUser)
 }

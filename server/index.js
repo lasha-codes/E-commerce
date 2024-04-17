@@ -3,6 +3,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import productRoutes from './routes/products.js'
+import authRoutes from './routes/auth.js'
 dotenv.config()
 
 const app = express()
@@ -16,6 +17,7 @@ app.use(
   })
 )
 app.use('/products', productRoutes)
+app.use('/user', authRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on http://localhost:${process.env.PORT}`)
