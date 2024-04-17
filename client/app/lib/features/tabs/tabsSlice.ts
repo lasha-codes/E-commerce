@@ -119,4 +119,5 @@ export const {
   increaseProductQuantity,
   removeProductFromTheCart,
   clearCart,
+  addToWatchList,
 } = tabsSlice.actions

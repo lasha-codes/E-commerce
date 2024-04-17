@@ -7,7 +7,7 @@ import {
   IoGitCompareOutline,
   IoBagAddOutline,
 } from 'react-icons/io5'
-import { addItemToCart } from '../lib/features/tabs/tabsSlice'
+import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
 
 const Products = () => {
@@ -44,7 +44,10 @@ const Products = () => {
                 </div>
                 <div className='absolute right-3 top-2 group-hover:translate-x-0 transition-all duration-300 ease flex flex-col items-center gap-[6px] translate-x-12'>
                   <div className='relative z-[10] side-icon-container overflow-hidden'>
-                    <div className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10]'>
+                    <div
+                      onClick={() => dispatch(addToWatchList(product))}
+                      className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10] cursor-pointer'
+                    >
                       <span className='z-[10]'>
                         <IoHeartOutline className='text-[19px] text-sonicSilver cursor-pointer icon-style z-[10]' />
                       </span>
@@ -74,12 +77,14 @@ const Products = () => {
                     <div className='absolute transition-all duration-500 top-0 left-0 rounded-[6px] w-full h-full opacity-0 bg-eerieBlack z-[1]' />
                   </div>
                   <div className='relative z-[10] side-icon-container overflow-hidden'>
-                    <div className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10]'>
+                    <div
+                      onClick={() => {
+                        addToCart(product)
+                      }}
+                      className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10] cursor-pointer'
+                    >
                       <span className='z-[10]'>
                         <IoBagAddOutline
-                          onClick={() => {
-                            addToCart(product)
-                          }}
                           className='text-[19px] text-sonicSilver cursor-pointer icon-style z-[10]
 '
                         />
