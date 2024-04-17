@@ -35,6 +35,7 @@ export const authenticateToken = (req, res) => {
       {},
       (err, token) => {
         if (err) throw err
+        const { email, name } = token
         res.status(200).json({ email, name })
       }
     )
