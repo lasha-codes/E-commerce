@@ -17,13 +17,12 @@ export const registerUser = async (req, res) => {
   }
   const query =
     'INSERT INTO users (email, username, password) VALUES ($1, $2, $3)'
-  const registeredUser = await postgres.query(query, [
-    email,
-    username,
-    hashedPassword,
-  ])
-  res
-    .status(200)
-    .json({ message: 'User has successfully registered an account' })
-  console.log(registerUser)
+  await postgres.query(query, [email, username, hashedPassword])
+  jwt.sign({ email, username }, process.env.JWT_SECRET, {}, (err, token) => {
+    if (err) throw err
+    res
+      .cookie('token', token)
+      .json({ message: 'User has successfully registered an account' })
+    console.log(token)
+  })
 }
