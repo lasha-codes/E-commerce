@@ -21,7 +21,7 @@ const WatchList = () => {
         </h2>
         <HiArrowSmallRight
           onClick={() => dispatch(closeWatchList())}
-          className='icon-style'
+          className='icon-style text-xl'
         />
       </div>
       <div>

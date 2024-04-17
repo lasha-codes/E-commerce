@@ -96,9 +96,11 @@ const tabsSlice = createSlice({
       toast.success(`${payload.title} removed from the cart`)
     },
     clearCart: (state) => {
-      state.cartProducts = []
-      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
-      toast.success('Cart cleared')
+      if (state.cartProducts.length !== 0) {
+        state.cartProducts = []
+        localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
+        toast.success('Cart cleared')
+      }
     },
     renderWatchList: (state) => {
       if (localStorage.getItem('watchList')) {

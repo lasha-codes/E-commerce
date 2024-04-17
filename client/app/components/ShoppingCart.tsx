@@ -65,6 +65,11 @@ const ShoppingCart = () => {
         />
       </div>
 
+      {cartProducts && cartProducts.length === 0 && (
+        <p className='w-full text-center mt-4 text-lg tracking-wide text-spanishGray'>
+          Cart is empty.
+        </p>
+      )}
       <div className='flex flex-col gap-0.5'>
         {cartProducts &&
           cartProducts.map((product: cartProductType) => {
