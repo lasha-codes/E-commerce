@@ -26,6 +26,20 @@ export const registerUser = async (req, res) => {
   })
 }
 
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body
+  try {
+    if (!email || !password) {
+      return res.status(400).json({ message: 'both fields are required' })
+    }
+    const query = 'SELECT password FROM users WHERE email = $1'
+    const userPassword = await postgres.query(query, [email])
+    res.json({ password, userPassword: userPassword.rows[0].password })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
+
 export const authenticateToken = (req, res) => {
   try {
     const { token } = req.cookies
