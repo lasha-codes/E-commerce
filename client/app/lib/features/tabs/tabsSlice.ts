@@ -6,6 +6,7 @@ const initialState = {
   watchList: [],
   cartOpen: false,
   sideBarOpen: false,
+  watchListOpen: false,
 }
 
 interface ProductType {
@@ -119,6 +120,12 @@ const tabsSlice = createSlice({
       }
       localStorage.setItem('watchList', JSON.stringify(state.watchList))
     },
+    openWatchList: (state: any) => {
+      state.watchListOpen = true
+    },
+    closeWatchList: (state: any) => {
+      state.watchListOpen = true
+    },
   },
 })
 
@@ -137,4 +144,6 @@ export const {
   clearCart,
   addToWatchList,
   renderWatchList,
+  openWatchList,
+  closeWatchList,
 } = tabsSlice.actions

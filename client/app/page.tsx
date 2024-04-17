@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { closeCart, closeSidebar } from './lib/features/tabs/tabsSlice'
 import SideBar from './components/SideBar'
+import WatchList from './components/WatchList'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -62,6 +63,7 @@ const Home = () => {
       <Link href='/add-product'>Add product</Link>
       <FooterNav />
       <ShoppingCart />
+      <WatchList />
       <SideBar />
     </main>
   )
