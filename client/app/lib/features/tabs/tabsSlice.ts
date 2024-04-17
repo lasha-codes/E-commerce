@@ -126,6 +126,12 @@ const tabsSlice = createSlice({
     closeWatchList: (state: any) => {
       state.watchListOpen = false
     },
+    removeFromWatchList: (state: any, { payload }) => {
+      state.watchList = state.watchList.filter((liked: ProductType) => {
+        return liked.id !== payload.id
+      })
+      localStorage.setItem('watchList', JSON.stringify(state.watchList))
+    },
   },
 })
 
@@ -146,4 +152,5 @@ export const {
   renderWatchList,
   openWatchList,
   closeWatchList,
+  removeFromWatchList,
 } = tabsSlice.actions
