@@ -25,16 +25,23 @@ const Login = () => {
         return toast.error('email must contain at least 7 characters')
       }
 
-      e.preventDefault()
-      const response = await axios.post('/user/register', {
-        email,
-        username,
-        password,
-      })
+      setUsername('')
+      setPassword('')
+      setEmail('')
+
+      const response = await axios.post(
+        '/user/register',
+        {
+          email,
+          username,
+          password,
+        },
+        { withCredentials: true }
+      )
       toast.success(response.data.message)
       console.log(response.data)
     } catch (err) {
-      console.error(err)
+      toast.error('this account already exists')
     }
   }
 
