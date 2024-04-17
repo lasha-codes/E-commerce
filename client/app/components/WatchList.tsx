@@ -40,10 +40,10 @@ const WatchList = () => {
                 <svg
                   onClick={() => dispatch(removeFromWatchList(product))}
                   xmlns='http://www.w3.org/2000/svg'
-                  fill='#D2042D'
+                  fill='#FF474D'
                   viewBox='0 0 24 24'
                   strokeWidth={1.5}
-                  stroke='#D2042D'
+                  stroke='#FF474D'
                   className='absolute top-2 right-2 text-2xl 
                   text-sonicSilver
                    transition-all w-5 h-5 duration-500 hover:fill-white
@@ -66,7 +66,7 @@ const WatchList = () => {
                   </div>
                   <div className='flex flex-col gap-3 w-full'>
                     <div className='flex flex-col'>
-                      <h3 className='font-medium max-w-[270px] text-eerieBlack text-[15px]'>
+                      <h3 className='font-medium mt-4 max-w-[270px] text-eerieBlack text-[15px]'>
                         {product.title}
                       </h3>
                       <div className='flex items-center w-full justify-between'>

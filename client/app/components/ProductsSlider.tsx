@@ -15,10 +15,19 @@ import jacket from '../assets/jacket.svg'
 import watch from '../assets/watch.svg'
 import hat from '../assets/hat.svg'
 
+import Autoplay from 'embla-carousel-autoplay'
+
 const ProductsSlider = () => {
   return (
     <main className='px-28 mt-10'>
-      <Carousel className='max-w-[900px] w-full mx-auto border p-4 rounded-xl border-salmonPink'>
+      <Carousel
+        plugins={[
+          Autoplay({
+            delay: 4000,
+          }),
+        ]}
+        className='max-w-[900px] w-full mx-auto border p-4 rounded-xl border-salmonPink'
+      >
         <CarouselContent>
           <CarouselItem className='flex items-center justify-between flex-wrap gap-7 max-md:justify-center'>
             <Product image={dress} title={'DRESSES'} count={53} />
