@@ -30,10 +30,12 @@ export const authenticateToken = (req, res) => {
   try {
     const { token } = req.cookies
     if (!token) return
-    jwt.verify(token, process.env.JWT_SECRET, (err, token) => {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, token) => {
       if (err) throw err
-      const { email, username } = token
-      res.status(200).json({ email, username })
+      const { email } = token
+      const query = 'SELECT * FROM users WHERE email = $1'
+      const loggedQuery = await postgres.query(query, [email])
+      res.status(200).json(loggedQuery.rows[0])
     })
   } catch (err) {
     res.status(500).json({ message: 'Could not authenticate user' })
