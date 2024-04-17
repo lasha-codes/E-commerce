@@ -23,6 +23,22 @@ export const registerUser = async (req, res) => {
     res
       .cookie('token', token)
       .json({ message: 'User has successfully registered an account' })
-    console.log(token)
   })
+}
+
+export const authenticateToken = (req, res) => {
+  try {
+    const { token } = req.cookies
+    if (!token) return
+    const { email, name } = jwt.verify(
+      process.env.JWT_SECRET,
+      {},
+      (err, token) => {
+        if (err) throw err
+        res.status(200).json({ email, name })
+      }
+    )
+  } catch (err) {
+    res.status(500).json({ message: 'Could not authenticate user' })
+  }
 }
