@@ -10,7 +10,7 @@ import { openSideBar, openWatchList } from '../lib/features/tabs/tabsSlice'
 
 const FooterNav = () => {
   const dispatch = useDispatch()
-  const { cartProducts } = useSelector((state: any) => state.tabs)
+  const { cartProducts, watchList } = useSelector((state: any) => state.tabs)
 
   interface cartProductType {
     id: number
@@ -57,7 +57,7 @@ const FooterNav = () => {
             className='text-[32.5px] cursor-pointer icon-style'
           />
           <div className='absolute bg-salmonPink rounded-full w-[19px] h-[19px] flex items-center justify-center text-white text-sm -top-0.5 -right-1'>
-            0
+            {watchList.length}
           </div>
         </div>
         <div>

@@ -1,6 +1,6 @@
 import { HiArrowSmallRight } from 'react-icons/hi2'
 import { useSelector, useDispatch } from 'react-redux'
-import { closeWatchList } from '../lib/features/tabs/tabsSlice'
+import { clearWatchList, closeWatchList } from '../lib/features/tabs/tabsSlice'
 import { FiDollarSign } from 'react-icons/fi'
 import { removeFromWatchList } from '../lib/features/tabs/tabsSlice'
 
@@ -82,7 +82,10 @@ const WatchList = () => {
           })}
       </div>
       <div className='mt-auto pt-5'>
-        <button className='w-full rounded-[2px] py-2.5 hover:opacity-90 transition-all duration-300 bg-eerieBlack text-white'>
+        <button
+          onClick={() => dispatch(clearWatchList())}
+          className='w-full rounded-[2px] py-2.5 hover:opacity-90 transition-all duration-300 bg-eerieBlack text-white'
+        >
           Clear Watchlist
         </button>
       </div>

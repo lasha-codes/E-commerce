@@ -132,6 +132,10 @@ const tabsSlice = createSlice({
       })
       localStorage.setItem('watchList', JSON.stringify(state.watchList))
     },
+    clearWatchList: (state) => {
+      state.watchList = []
+      localStorage.setItem('watchList', JSON.stringify(state.watchList))
+    },
   },
 })
 
@@ -153,4 +157,5 @@ export const {
   openWatchList,
   closeWatchList,
   removeFromWatchList,
+  clearWatchList,
 } = tabsSlice.actions

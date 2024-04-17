@@ -20,7 +20,7 @@ const Header = () => {
     description: string
   }
 
-  const { cartProducts } = useSelector((state: any) => state.tabs)
+  const { cartProducts, watchList } = useSelector((state: any) => state.tabs)
 
   let cartCount = 0
   cartProducts &&
@@ -78,7 +78,7 @@ const Header = () => {
               className='text-[27px] icon-style'
             />
             <div className='bg-salmonPink absolute text-white w-[15px] h-[15px] text-[12px] flex items-center justify-center rounded-full -top-[1px] -right-1'>
-              0
+              {watchList.length}
             </div>
           </div>
           <div className='relative'>
