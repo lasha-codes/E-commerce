@@ -27,7 +27,6 @@ const Header = () => {
     cartProducts.forEach((product: cartProductType) => {
       cartCount += product.count
     })
-  console.log(cartCount)
 
   return (
     <header className='flex flex-col gap-2'>

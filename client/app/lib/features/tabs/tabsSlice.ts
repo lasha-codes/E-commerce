@@ -3,6 +3,7 @@ import { toast } from 'sonner'
 
 const initialState = {
   cartProducts: [],
+  watchList: [],
   cartOpen: false,
   sideBarOpen: false,
 }
@@ -97,6 +98,10 @@ const tabsSlice = createSlice({
       state.cartProducts = []
       localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
       toast.success('Cart cleared')
+    },
+    addToWatchList: (state: any, { payload }) => {
+      state.watchList.push(payload)
+      localStorage.setItem('watchList', JSON.stringify(state.watchList))
     },
   },
 })

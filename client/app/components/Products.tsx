@@ -8,7 +8,6 @@ import {
   IoBagAddOutline,
 } from 'react-icons/io5'
 import { addItemToCart } from '../lib/features/tabs/tabsSlice'
-import { toast } from 'sonner'
 import { Toaster } from 'sonner'
 
 const Products = () => {

@@ -46,8 +46,6 @@ const ShoppingCart = () => {
       totalPrice += product.count * product.price
     })
 
-  console.log(cartCount)
-
   return (
     <section
       onClick={(e) => e.stopPropagation()}
