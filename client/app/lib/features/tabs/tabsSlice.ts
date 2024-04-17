@@ -105,7 +105,6 @@ const tabsSlice = createSlice({
       } else {
         state.watchList = []
       }
-      console.log(state.watchList)
     },
     addToWatchList: (state: any, { payload }) => {
       const alreadyLiked = state.watchList.find((liked: ProductType) => {

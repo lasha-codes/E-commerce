@@ -44,6 +44,7 @@
 
 .side-icon:hover span svg {
   color: hsl(0, 0%, 100%);
+  stroke: white;
 }
 
 .side-icon-container:hover div {
