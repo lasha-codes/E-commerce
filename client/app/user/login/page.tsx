@@ -3,7 +3,7 @@ import { GiMoebiusStar } from 'react-icons/gi'
 
 const Login = () => {
   return (
-    <main className='w-full h-screen flex justify-between items-center'>
+    <main className='w-full h-screen max-md:flex-col-reverse overflow-y-scroll flex justify-between items-center'>
       <div className='bg-white flex flex-col items-center h-full w-full px-5 py-20'>
         <div className='flex items-center flex-col gap-8'>
           <div className='bg-eerieBlack rounded-full p-2 w-fit'>
@@ -63,7 +63,13 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <div className='h-full w-full bg-sonicSilver'></div>
+      <div className='h-full w-full'>
+        <img
+          src='https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmRsdGVzeWFsbHNjM284aGlwdWozZjRpdnI4dnhrZHJsM3czZHhmZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/f6qMGmXuOdkwU/giphy.gif'
+          className='h-full w-full object-cover'
+          alt='login/register side banner'
+        />
+      </div>
     </main>
   )
 }
