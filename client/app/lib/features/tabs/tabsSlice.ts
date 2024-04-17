@@ -115,8 +115,10 @@ const tabsSlice = createSlice({
         state.watchList = state.watchList.filter((liked: ProductType) => {
           return liked.id !== alreadyLiked.id
         })
+        toast.success(`${payload.title} removed from the watchlist`)
       } else {
         state.watchList.push(payload)
+        toast.success(`${payload.title} added to the watchlist`)
       }
       localStorage.setItem('watchList', JSON.stringify(state.watchList))
     },
@@ -131,10 +133,14 @@ const tabsSlice = createSlice({
         return liked.id !== payload.id
       })
       localStorage.setItem('watchList', JSON.stringify(state.watchList))
+      toast.success(`${payload.title} removed from the watchlist`)
     },
     clearWatchList: (state) => {
-      state.watchList = []
-      localStorage.setItem('watchList', JSON.stringify(state.watchList))
+      if (state.watchList.length !== 0) {
+        state.watchList = []
+        localStorage.setItem('watchList', JSON.stringify(state.watchList))
+        toast.success('Cleared cart')
+      }
     },
   },
 })

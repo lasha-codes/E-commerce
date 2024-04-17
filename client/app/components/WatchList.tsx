@@ -25,6 +25,11 @@ const WatchList = () => {
         />
       </div>
       <div>
+        {watchList && watchList.length === 0 && (
+          <p className='text-lg w-full text-center mt-5 tracking-wide text-sonicSilver'>
+            Watchlist empty.
+          </p>
+        )}
         {watchList &&
           watchList.map((product: any) => {
             return (
