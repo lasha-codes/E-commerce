@@ -100,7 +100,16 @@ const tabsSlice = createSlice({
       toast.success('Cart cleared')
     },
     addToWatchList: (state: any, { payload }) => {
-      state.watchList.push(payload)
+      const alreadyLiked = state.watchList.find((liked: ProductType) => {
+        return liked.id === payload.id
+      })
+      if (alreadyLiked) {
+        state.watchList = state.watchList.filter((liked: ProductType) => {
+          return liked.id !== alreadyLiked.id
+        })
+      } else {
+        state.watchList.push(payload)
+      }
       localStorage.setItem('watchList', JSON.stringify(state.watchList))
     },
   },
