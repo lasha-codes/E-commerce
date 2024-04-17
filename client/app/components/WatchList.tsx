@@ -11,7 +11,7 @@ const WatchList = () => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className={`fixed flex flex-col w-[450px] max-sm:w-full z-[99] bg-white drop-shadow-md h-screen p-10 right-0 top-0 transition-all duration-700 max-md:duration-1000 ${
+      className={`fixed flex flex-col w-[450px] max-sm:w-full z-[99] bg-white drop-shadow-md h-screen p-10 overflow-y-scroll cart right-0 top-0 transition-all duration-700 max-md:duration-1000 ${
         watchListOpen ? 'translate-x-0' : 'translate-x-[700px]'
       }`}
     >
@@ -75,7 +75,7 @@ const WatchList = () => {
                         </span>
                         <span className='flex items-center font-semibold  text-eerieBlack'>
                           <FiDollarSign />
-                          {product.price}
+                          {product.price.toFixed(2)}
                         </span>
                       </div>
                     </div>

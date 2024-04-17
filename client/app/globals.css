@@ -30,6 +30,10 @@
   border-bottom: none;
 }
 
+.cart::-webkit-scrollbar {
+  display: none;
+}
+
 .links:hover {
   color: hsl(353, 100%, 78%);
 }

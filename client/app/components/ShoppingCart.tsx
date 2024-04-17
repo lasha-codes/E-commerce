@@ -49,7 +49,7 @@ const ShoppingCart = () => {
   return (
     <section
       onClick={(e) => e.stopPropagation()}
-      className={`fixed h-screen max-lg:duration-1000 flex overflow-hidden max-xsm:overflow-y-scroll flex-col right-0 top-0 bg-white p-10 transition-all duration-700 ease-in-out w-[500px] max-sm:w-full z-[99]  ${
+      className={`fixed cart h-screen max-lg:duration-1000 flex overflow-y-scroll flex-col right-0 top-0 bg-white p-10 transition-all duration-700 ease-in-out w-[500px] max-sm:w-full z-[99]  ${
         cartOpen
           ? 'translate-x-0 pointer-events-auto'
           : 'translate-x-[550px] pointer-events-none max-lg:translate-x-[750px]'
