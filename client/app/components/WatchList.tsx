@@ -1,12 +1,12 @@
 import { HiArrowSmallRight } from 'react-icons/hi2'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeWatchList } from '../lib/features/tabs/tabsSlice'
+import { FiDollarSign } from 'react-icons/fi'
+import { IoIosClose } from 'react-icons/io'
 
 const WatchList = () => {
   const dispatch = useDispatch()
   const { watchList, watchListOpen } = useSelector((state: any) => state.tabs)
-
-  console.log(watchListOpen)
 
   return (
     <div
@@ -22,7 +22,48 @@ const WatchList = () => {
           className='icon-style'
         />
       </div>
-      <div>{/* watch list products */}</div>
+      <div>
+        {watchList &&
+          watchList.map((product: any) => {
+            return (
+              <div
+                key={product.id}
+                className='border-b cart-product pb-4 pt-6 relative'
+              >
+                <IoIosClose className='absolute top-2 right-2 text-2xl text-sonicSilver transition-all duration-500 hover:text-[#f55c5c] icon-style cursor-pointer' />
+                <div className='flex items-center gap-5'>
+                  <div
+                    className='min-w-[100px] max-w-[100px] h-[80px] 
+'
+                  >
+                    <img
+                      src={product.image[0]}
+                      className='w-full h-full object-contain'
+                      alt='cart-product'
+                    />
+                  </div>
+                  <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col'>
+                      <h3 className='font-medium max-w-[270px] text-eerieBlack text-[15px]'>
+                        {product.title}
+                      </h3>
+                      <div className='flex items-center justify-between'>
+                        <span className='uppercase py-[6px] text-[13px] text-salmonPink font-medium'>
+                          {product.type}
+                        </span>
+                        <span className='flex items-center font-semibold  text-eerieBlack'>
+                          <FiDollarSign />
+                          {product.price}
+                        </span>
+                      </div>
+                    </div>
+                    <div className='flex items-center gap-4'></div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+      </div>
       <div className='mt-auto pt-5'>
         <button className='w-full rounded-[2px] py-2.5 hover:opacity-90 transition-all duration-300 bg-eerieBlack text-white'>
           Clear Watchlist
