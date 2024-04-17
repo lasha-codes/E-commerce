@@ -30,15 +30,11 @@ export const authenticateToken = (req, res) => {
   try {
     const { token } = req.cookies
     if (!token) return
-    const { email, name } = jwt.verify(
-      process.env.JWT_SECRET,
-      {},
-      (err, token) => {
-        if (err) throw err
-        const { email, name } = token
-        res.status(200).json({ email, name })
-      }
-    )
+    jwt.verify(token, process.env.JWT_SECRET, (err, token) => {
+      if (err) throw err
+      const { email, username } = token
+      res.status(200).json({ email, username })
+    })
   } catch (err) {
     res.status(500).json({ message: 'Could not authenticate user' })
   }
