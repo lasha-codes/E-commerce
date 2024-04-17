@@ -99,6 +99,14 @@ const tabsSlice = createSlice({
       localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
       toast.success('Cart cleared')
     },
+    renderWatchList: (state) => {
+      if (localStorage.getItem('watchList')) {
+        state.watchList = JSON.parse(localStorage.getItem('watchList')!)
+      } else {
+        state.watchList = []
+      }
+      console.log(state.watchList)
+    },
     addToWatchList: (state: any, { payload }) => {
       const alreadyLiked = state.watchList.find((liked: ProductType) => {
         return liked.id === payload.id
@@ -129,4 +137,5 @@ export const {
   removeProductFromTheCart,
   clearCart,
   addToWatchList,
+  renderWatchList,
 } = tabsSlice.actions
