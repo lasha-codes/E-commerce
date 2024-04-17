@@ -152,10 +152,7 @@ const ShoppingCart = () => {
           </button>
         </div>
         <div className='flex flex-col gap-2.5'>
-          <button className='bg-cultured font-medium text-[16px] py-3 text-eerieBlack rounded-[2px]'>
-            View cart
-          </button>
-          <button className='text-white bg-eerieBlack text-[16px] py-3 rounded-[2px]'>
+          <button className='bg-cultured hover:opacity-80 transition-all duration-300 font-medium text-[16px] py-3 text-eerieBlack rounded-[2px]'>
             Checkout
           </button>
         </div>

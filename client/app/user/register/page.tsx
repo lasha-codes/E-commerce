@@ -1,7 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import { GiMoebiusStar } from 'react-icons/gi'
+import axios from 'axios'
+import { useState } from 'react'
 
 const Login = () => {
+  const [email, setEmail] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   return (
     <main className='w-full h-screen max-md:flex-col-reverse max-md:overflow-y-scroll flex justify-between items-center'>
       <div className='bg-white flex flex-col items-center h-full w-full px-5 py-20'>
@@ -34,6 +41,10 @@ const Login = () => {
                 Email
               </label>
               <input
+                value={email}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
                 type='text'
                 id='email'
                 className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
@@ -48,6 +59,10 @@ const Login = () => {
                 Username
               </label>
               <input
+                value={username}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setUsername(e.target.value)
+                }
                 type='text'
                 id='username'
                 className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
@@ -62,6 +77,10 @@ const Login = () => {
                 Password
               </label>
               <input
+                value={password}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPassword(e.target.value)
+                }
                 type='password'
                 id='password'
                 className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
