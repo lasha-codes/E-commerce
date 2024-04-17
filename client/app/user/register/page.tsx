@@ -4,11 +4,40 @@ import Link from 'next/link'
 import { GiMoebiusStar } from 'react-icons/gi'
 import axios from 'axios'
 import { useState } from 'react'
+import { toast } from 'sonner'
+import { Toaster } from 'sonner'
 
 const Login = () => {
   const [email, setEmail] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+
+  const register = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      if (!password || !email || !username) {
+        return toast.error('All of the fields are required')
+      } else if (password.length < 6) {
+        return toast.error('password must contain at least 6 characters')
+      } else if (username.length < 5) {
+        toast.error('username must contain at least 5 characters')
+      } else if (email.length < 7) {
+        return toast.error('email must contain at least 7 characters')
+      }
+
+      e.preventDefault()
+      const response = await axios.post('/user/register', {
+        email,
+        username,
+        password,
+      })
+      toast.success(response.data.message)
+      console.log(response.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (
     <main className='w-full h-screen max-md:flex-col-reverse max-md:overflow-y-scroll flex justify-between items-center'>
       <div className='bg-white flex flex-col items-center h-full w-full px-5 py-20'>
@@ -31,7 +60,7 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <form className='mt-10'>
+        <form onSubmit={register} className='mt-10'>
           <div className='flex flex-col items-center gap-6'>
             <div className='flex flex-col items-start gap-2'>
               <label
@@ -45,7 +74,7 @@ const Login = () => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setEmail(e.target.value)
                 }
-                type='text'
+                type='email'
                 id='email'
                 className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
                 placeholder='E.g. yourname@gmail.com'
@@ -102,6 +131,7 @@ const Login = () => {
           alt='login/register side banner'
         />
       </div>
+      <Toaster />
     </main>
   )
 }
