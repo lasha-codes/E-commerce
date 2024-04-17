@@ -10,14 +10,16 @@ const Login = () => {
             <GiMoebiusStar className='text-white text-5xl' />
           </div>
           <div className='flex flex-col gap-2 items-center'>
-            <h1 className='text-4xl font-semibold'>Welcome back!</h1>
+            <h1 className='text-3xl font-semibold text-eerieBlack'>
+              Welcome to Anon
+            </h1>
             <p className='text-[16px] flex items-center gap-2 text-sonicSilver'>
-              Don't have account yet?
+              Already have an account?
               <Link
-                href={'/user/register'}
-                className='border-eerieBlack border-b text-eerieBlack pb-0.5 font-semibold'
+                href={'/user/login'}
+                className='border-eerieBlack text-eerieBlack border-b pb-0.5 font-semibold'
               >
-                Register
+                Login
               </Link>
             </p>
           </div>
@@ -40,6 +42,20 @@ const Login = () => {
             </div>
             <div className='flex flex-col items-start gap-2'>
               <label
+                htmlFor='username'
+                className='font-semibold text-eerieBlack cursor-pointer'
+              >
+                Username
+              </label>
+              <input
+                type='text'
+                id='username'
+                className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
+                placeholder='E.g. John Doe'
+              />
+            </div>
+            <div className='flex flex-col items-start gap-2'>
+              <label
                 htmlFor='password'
                 className='font-semibold text-eerieBlack cursor-pointer'
               >
@@ -55,11 +71,8 @@ const Login = () => {
           </div>
           <div className='flex flex-col items-center gap-2'>
             <button className='w-full text-white bg-eerieBlack mt-12 py-2.5 hover:opacity-90 transition-all duration-300 rounded-full'>
-              Sign In
+              Register
             </button>
-            <span className='font-semibold border-b border-eerieBlack text-eerieBlack hover:opacity-90 transition-all cursor-pointer'>
-              Forgot password?
-            </span>
           </div>
         </form>
       </div>
