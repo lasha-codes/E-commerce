@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { getProductsFromDB } from '../lib/features/products/productSlice'
 import { renderCart, renderWatchList } from '../lib/features/tabs/tabsSlice'
 import axios from 'axios'
-import { getUser } from '../lib/features/user/userSlice'
+import { getUser, pageIsLoaded } from '../lib/features/user/userSlice'
 
 const GlobalContext = ({ children }: { children: React.ReactNode }) => {
   const dispatch: any = useDispatch()
@@ -17,6 +17,7 @@ const GlobalContext = ({ children }: { children: React.ReactNode }) => {
       .get('/user/authenticate', { withCredentials: true })
       .then((response) => {
         dispatch(getUser(response.data))
+        dispatch(pageIsLoaded())
       })
   }, [])
 
