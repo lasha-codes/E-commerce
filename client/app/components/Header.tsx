@@ -21,6 +21,9 @@ const Header = () => {
   }
 
   const { cartProducts, watchList } = useSelector((state: any) => state.tabs)
+  const { user } = useSelector((state: any) => state.user)
+
+  console.log(user)
 
   let cartCount = 0
   cartProducts &&

@@ -51,7 +51,7 @@ export const loginUser = async (req, res) => {
         {},
         (err, token) => {
           if (err) throw err
-          res.status(200).json({
+          res.cookie('token', token).json({
             message: 'User has successfully logged in',
             token: token,
           })

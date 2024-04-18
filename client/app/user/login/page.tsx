@@ -22,10 +22,14 @@ const Login = () => {
       } else if (password.length < 6) {
         return toast.error('password must be at least 6 characters long')
       }
-      const response = await axios.post('/user/login', {
-        email,
-        password,
-      })
+      const response = await axios.post(
+        '/user/login',
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      )
       if (response.status < 400) {
         router.push('/')
       }
