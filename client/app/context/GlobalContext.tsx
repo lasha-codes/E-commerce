@@ -17,8 +17,8 @@ const GlobalContext = ({ children }: { children: React.ReactNode }) => {
       .get('/user/authenticate', { withCredentials: true })
       .then((response) => {
         dispatch(getUser(response.data))
-        dispatch(pageIsLoaded())
       })
+    dispatch(pageIsLoaded())
   }, [])
 
   return <>{children}</>
