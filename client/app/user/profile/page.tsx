@@ -3,6 +3,8 @@
 import { useSelector } from 'react-redux'
 import defaultAvatar from '../../assets/default-avatar.jpg'
 import Image from 'next/image'
+import { FaArrowLeft } from 'react-icons/fa6'
+import Link from 'next/link'
 
 const Profile = () => {
   const { user } = useSelector((state: any) => state.user)
@@ -16,7 +18,7 @@ const Profile = () => {
   }
 
   return (
-    <main className='w-full p-12 flex justify-center'>
+    <main className='w-full p-12 flex justify-center relative'>
       <div className='flex flex-col items-center gap-5'>
         <div className='h-[100px] w-[100px] rounded-full overflow-hidden'>
           <Image
@@ -36,6 +38,9 @@ const Profile = () => {
           Logout
         </button>
       </div>
+      <Link href='/'>
+        <FaArrowLeft className='absolute top-5 left-5 text-xl icon-style' />
+      </Link>
     </main>
   )
 }
