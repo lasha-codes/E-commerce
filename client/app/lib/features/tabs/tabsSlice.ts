@@ -141,7 +141,7 @@ const tabsSlice = createSlice({
       if (state.watchList.length !== 0) {
         state.watchList = []
         localStorage.setItem('watchList', JSON.stringify(state.watchList))
-        toast.success('Cleared cart')
+        toast.success('Cleared watchlist')
       }
     },
   },
