@@ -32,9 +32,28 @@ export const loginUser = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({ message: 'both fields are required' })
     }
-    const query = 'SELECT password FROM users WHERE email = $1'
-    const userPassword = await postgres.query(query, [email])
-    res.json({ password, userPassword: userPassword.rows[0].password })
+    const query = 'SELECT * FROM users WHERE email = $1'
+    const user = await postgres.query(query, [email])
+    if (user.rows.length === 0) {
+      return res.status(400).json({
+        message: 'This account does not exist',
+      })
+    }
+    const passwordMatch = await bcrypt.compare(password, user.rows[0].password)
+
+    if (passwordMatch) {
+      jwt.sign({
+        email: user.rows[0].email,
+        username: user.rows[0].username,
+      })
+      res.status(200).json({
+        message: 'User has successfully logged in',
+      })
+    } else {
+      res.status(400).json({
+        message: 'Wrong credentials',
+      })
+    }
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
