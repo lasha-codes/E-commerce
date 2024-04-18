@@ -17,14 +17,24 @@ const Profile = () => {
 
   return (
     <main className='w-full p-12 flex justify-center'>
-      <div className='flex flex-col justify-center'>
-        <p>{user.username}</p>
-        <Image
-          src={defaultAvatar}
-          priority
-          className='h-[500px] w-[500px]'
-          alt=''
-        />
+      <div className='flex flex-col items-center gap-5'>
+        <div className='h-[100px] w-[100px] rounded-full overflow-hidden'>
+          <Image
+            src={defaultAvatar}
+            priority
+            className='h-full w-full'
+            alt=''
+          />
+        </div>
+        <div className='flex flex-col gap-1 items-center'>
+          <h2 className='text-2xl font-semibold text-center text-eerieBlack'>
+            {user.username}
+          </h2>
+          <p className='text-lg text-spanishGray'>{user.email}</p>
+        </div>
+        <button className='bg-salmonPink text-white px-10 py-2 rounded-full hover:opacity-80 transition-all duration-300'>
+          Logout
+        </button>
       </div>
     </main>
   )
