@@ -21,15 +21,25 @@ const Header = () => {
   }
 
   const { cartProducts, watchList } = useSelector((state: any) => state.tabs)
-  const { user } = useSelector((state: any) => state.user)
-
-  console.log(user)
+  const { user, isLoaded } = useSelector((state: any) => state.user)
 
   let cartCount = 0
   cartProducts &&
     cartProducts.forEach((product: cartProductType) => {
       cartCount += product.count
     })
+
+  const returnRoute = () => {
+    if (isLoaded) {
+      if (user.email) {
+        return 'user/profile'
+      } else {
+        return '/user/login'
+      }
+    } else {
+      return ''
+    }
+  }
 
   return (
     <header className='flex flex-col gap-2'>
@@ -69,7 +79,7 @@ const Header = () => {
         </form>
 
         <div className='flex items-center gap-4 max-lg:hidden'>
-          <Link href={'/user/login'}>
+          <Link href={returnRoute()}>
             <CiUser className='text-3xl cursor-pointer icon-style' />
           </Link>
           <div className='relative'>
