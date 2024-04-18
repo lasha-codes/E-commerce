@@ -42,13 +42,21 @@ export const loginUser = async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.rows[0].password)
 
     if (passwordMatch) {
-      jwt.sign({
-        email: user.rows[0].email,
-        username: user.rows[0].username,
-      })
-      res.status(200).json({
-        message: 'User has successfully logged in',
-      })
+      jwt.sign(
+        {
+          email: user.rows[0].email,
+          username: user.rows[0].username,
+        },
+        process.env.JWT_SECRET,
+        {},
+        (err, token) => {
+          if (err) throw err
+          res.status(200).json({
+            message: 'User has successfully logged in',
+            token: token,
+          })
+        }
+      )
     } else {
       res.status(400).json({
         message: 'Wrong credentials',
