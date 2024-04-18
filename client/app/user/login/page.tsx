@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { GiMoebiusStar } from 'react-icons/gi'
 import axios from 'axios'
 import { useState } from 'react'
-import { toast } from 'sonner'
+import { Toaster, toast } from 'sonner'
 
 const Login = () => {
   const [password, setPassword] = useState<string>('')
@@ -13,12 +13,17 @@ const Login = () => {
   const login = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email || !password) {
-      return toast.error('')
+      return toast.error('Both fields are required')
+    } else if (email.length < 8) {
+      return toast.error('email must be at least 8 characters long')
+    } else if (password.length < 6) {
+      return toast.error('password must be at least 6 characters long')
     }
     const response = await axios.post('/user/login', {
       email,
       password,
     })
+    console.log(response.data)
   }
 
   return (
@@ -51,7 +56,11 @@ const Login = () => {
                 Email
               </label>
               <input
-                type='text'
+                value={email}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
+                type='email'
                 id='email'
                 className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
                 placeholder='E.g. yourname@gmail.com'
@@ -65,6 +74,10 @@ const Login = () => {
                 Password
               </label>
               <input
+                value={password}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPassword(e.target.value)
+                }
                 type='password'
                 id='password'
                 className='rounded-full bg-cultured min-h-[30px] py-2 px-10 placeholder:opacity-40'
@@ -89,6 +102,7 @@ const Login = () => {
           alt='login/register side banner'
         />
       </div>
+      <Toaster />
     </main>
   )
 }
