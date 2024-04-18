@@ -66,9 +66,9 @@ const Header = () => {
         </form>
 
         <div className='flex items-center gap-4 max-lg:hidden'>
-          <div>
+          <Link href={'/user/login'}>
             <CiUser className='text-3xl cursor-pointer icon-style' />
-          </div>
+          </Link>
           <div className='relative'>
             <IoIosHeartEmpty
               onClick={(e) => {

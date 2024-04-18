@@ -1,7 +1,26 @@
+'use client'
+
 import Link from 'next/link'
 import { GiMoebiusStar } from 'react-icons/gi'
+import axios from 'axios'
+import { useState } from 'react'
+import { toast } from 'sonner'
 
 const Login = () => {
+  const [password, setPassword] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+
+  const login = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email || !password) {
+      return toast.error('')
+    }
+    const response = await axios.post('/user/login', {
+      email,
+      password,
+    })
+  }
+
   return (
     <main className='w-full h-screen max-md:flex-col-reverse max-md:overflow-y-scroll flex justify-between items-center'>
       <div className='bg-white flex flex-col items-center h-full w-full px-5 py-20'>
@@ -22,7 +41,7 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <form className='mt-10'>
+        <form onSubmit={login} className='mt-10'>
           <div className='flex flex-col items-center gap-6'>
             <div className='flex flex-col items-start gap-2'>
               <label
