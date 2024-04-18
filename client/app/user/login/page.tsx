@@ -5,25 +5,35 @@ import { GiMoebiusStar } from 'react-icons/gi'
 import axios from 'axios'
 import { useState } from 'react'
 import { Toaster, toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
+  const router = useRouter()
   const [password, setPassword] = useState<string>('')
   const [email, setEmail] = useState<string>('')
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email || !password) {
-      return toast.error('Both fields are required')
-    } else if (email.length < 8) {
-      return toast.error('email must be at least 8 characters long')
-    } else if (password.length < 6) {
-      return toast.error('password must be at least 6 characters long')
+    try {
+      if (!email || !password) {
+        return toast.error('Both fields are required')
+      } else if (email.length < 8) {
+        return toast.error('email must be at least 8 characters long')
+      } else if (password.length < 6) {
+        return toast.error('password must be at least 6 characters long')
+      }
+      const response = await axios.post('/user/login', {
+        email,
+        password,
+      })
+      if (response.status < 400) {
+        router.push('/')
+      }
+      setPassword('')
+      setEmail('')
+    } catch (err: any) {
+      toast.error('Wrong credentials')
     }
-    const response = await axios.post('/user/login', {
-      email,
-      password,
-    })
-    console.log(response.data)
   }
 
   return (
