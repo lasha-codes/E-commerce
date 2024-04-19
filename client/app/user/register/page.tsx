@@ -48,8 +48,13 @@ const Login = () => {
         },
         { withCredentials: true }
       )
+      if (response.status < 400) {
+        router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 300)
+      }
       toast.success(response.data.message)
-      console.log(response.data)
     } catch (err) {
       toast.error('this account already exists')
     }
