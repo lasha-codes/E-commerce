@@ -1,4 +1,7 @@
 import pool from '../database/postgres.js'
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const addProduct = async (req, res) => {
   const { images, title, description, type, price, gender } = req.body
@@ -29,5 +32,20 @@ export const getProducts = async (req, res) => {
     res.status(500).json({
       message: 'Something went wrong with the server please try again',
     })
+  }
+}
+
+export const addProductReview = async (req, res) => {
+  const { token } = req.cookies
+  if (!token) {
+    return res.status(400).json({ message: 'Unauthorized request.' })
+  }
+  try {
+    const { email } = jwt.verify(token, process.env.JWT_SECRET)
+    const query = 'SELECT * FROM users WHERE email = $1'
+    const author = await postgres.query(query, [email])
+    res.json(author.rows)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
   }
 }

@@ -12,7 +12,9 @@ ALTER TABLE products ADD COLUMN sold INT NOT NULL DEFAULT 0;
 
 ALTER TABLE products ADD COLUMN gender VARCHAR(15);
 UPDATE products SET gender = 'men';
+UPDATE products SET gender = 'Men' WHERE gender = 'men';
 ALTER TABLE products ALTER COLUMN gender SET NOT NULL;
+
 
 CREATE TABLE users (
    id SERIAL PRIMARY KEY,
@@ -20,6 +22,14 @@ CREATE TABLE users (
    email VARCHAR(100) NOT NULL,
    username VARCHAR(50) NOT NULL,
    password VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE reviews (
+   id SERIAL PRIMARY KEY,
+   product_id INT NOT NULL REFERENCES products (id),
+   comment TEXT NOT NULL,
+   author VARCHAR(50) NOT NULL,
+   review INT NOT NULL
 );
 
 ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE(email);
