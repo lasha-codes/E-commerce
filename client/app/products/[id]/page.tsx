@@ -8,6 +8,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { IoBagHandleOutline } from 'react-icons/io5'
+import { addToWatchList } from '@/app/lib/features/tabs/tabsSlice'
+import { addItemToCart } from '@/app/lib/features/tabs/tabsSlice'
 
 interface ParamsType {
   params: {
@@ -32,6 +35,9 @@ interface selectTypes {
 
 const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const { products }: selectTypes = useSelector((state: any) => state.product)
+  const { watchList }: { watchList: [productType] } = useSelector(
+    (state: any) => state.tabs
+  )
 
   const productById = products.find((product: productType) => {
     return product.id === parseInt(params.id)
@@ -40,6 +46,12 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   if (!productById) {
     return <p>Loading...</p>
   }
+
+  const productLiked = watchList.find((product: productType) => {
+    return product.id === productById.id
+  })
+
+  console.log(productLiked)
 
   return (
     <main className='w-full p-12 bg-white h-screen overflow-y-scroll'>
@@ -76,6 +88,29 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
             {productById.description}
           </p>
         </div>
+      </div>
+      <div className='mt-3 flex w-full justify-center items-center gap-10'>
+        <button className='flex items-center gap-2.5 text-white bg-eerieBlack px-5 py-2 rounded-[2px] hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95'>
+          <span>Add to cart</span>
+          <IoBagHandleOutline className='text-[21px]' />
+        </button>
+        <button className='flex items-center gap-2.5 text-white bg-cultured px-5 py-2 rounded-[2px] hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95'>
+          <span className='text-eerieBlack'>Add to wishlist</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill={productLiked ? '#200' : 'none'}
+            viewBox='0 0 24 24'
+            strokeWidth={1.5}
+            stroke='#200'
+            className='w-5 h-5 transition-all duration-500'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z'
+            />
+          </svg>
+        </button>
       </div>
     </main>
   )
