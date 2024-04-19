@@ -1,6 +1,13 @@
 'use client'
 
 import { useSelector } from 'react-redux'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 
 interface ParamsType {
   params: {
@@ -36,13 +43,26 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
 
   return (
     <main className='w-full p-12 bg-white h-screen overflow-y-scroll'>
-      <div className='w-full flex items-start drop-shadow-md bg-white rounded-xl p-8 justify-around gap-10'>
-        <div className='w-[400px] h-[300px] rounded-2xl overflow-hidden'>
-          <img
-            src={productById.image[0]}
-            className='w-full h-full object-contain'
-          />
-        </div>
+      <div className='w-full flex items-start max-lg:flex-col max-lg:items-center drop-shadow-md bg-white rounded-xl p-8 justify-around gap-10'>
+        <Carousel className='max-w-[420px]'>
+          <CarouselContent>
+            <CarouselItem className='w-[500px] p-16 h-[350px] rounded-2xl overflow-hidden'>
+              <img
+                src={productById.image[0]}
+                className='w-full h-full object-contain'
+              />
+            </CarouselItem>
+            <CarouselItem className='w-[500px] p-16 h-[350px] rounded-2xl overflow-hidden'>
+              <img
+                src={productById.image[1]}
+                className='w-full h-full object-contain'
+              />
+            </CarouselItem>
+          </CarouselContent>
+          <CarouselNext className='absolute right-5' />
+          <CarouselPrevious className='absolute left-5' />
+        </Carousel>
+
         <div className='flex flex-col items-start gap-16'>
           <div className='flex flex-col gap-3'>
             <h2 className='text-2xl text-eerieBlack font-medium'>

@@ -59,6 +59,16 @@ main::-webkit-scrollbar {
   stroke: white;
 }
 
+.side-icon:hover span svg {
+  color: hsl(0, 0%, 100%);
+  stroke: white;
+}
+
+.side-icon:hover a svg {
+  color: hsl(0, 0%, 100%);
+  stroke: white;
+}
+
 .side-icon-container:hover div {
   opacity: 1;
 }
