@@ -43,36 +43,36 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
 
   return (
     <main className='w-full p-12 bg-white h-screen overflow-y-scroll'>
-      <div className='w-full flex items-start max-lg:flex-col max-lg:items-center drop-shadow-md bg-white rounded-xl p-8 justify-around gap-10'>
-        <Carousel className='max-w-[420px]'>
+      <div className='w-full flex items-center max-lg:flex-col drop-shadow-md bg-white rounded-xl p-8 justify-around gap-10'>
+        <Carousel className='max-w-[500px] max-md:max-w-[400px]'>
           <CarouselContent>
-            <CarouselItem className='w-[500px] p-16 h-[350px] rounded-2xl overflow-hidden'>
+            <CarouselItem className='w-[500px] p-16 h-[450px] max-md:p-5 rounded-2xl overflow-hidden'>
               <img
                 src={productById.image[0]}
                 className='w-full h-full object-contain'
               />
             </CarouselItem>
-            <CarouselItem className='w-[500px] p-16 h-[350px] rounded-2xl overflow-hidden'>
+            <CarouselItem className='w-[500px] p-16 h-[450px] max-md:p-5 rounded-2xl overflow-hidden'>
               <img
                 src={productById.image[1]}
                 className='w-full h-full object-contain'
               />
             </CarouselItem>
           </CarouselContent>
-          <CarouselNext className='absolute right-5' />
-          <CarouselPrevious className='absolute left-5' />
+          <CarouselNext className='absolute right-5 max-md:hidden' />
+          <CarouselPrevious className='absolute left-5 max-md:hidden' />
         </Carousel>
 
-        <div className='flex flex-col items-start gap-16'>
+        <div className='flex flex-col items-start gap-10'>
           <div className='flex flex-col gap-3'>
-            <h2 className='text-2xl text-eerieBlack font-medium'>
+            <h2 className='text-3xl text-eerieBlack font-semibold max-md:text-2xl max-sm:text-xl'>
               {productById.title}
             </h2>
-            <span className='text-salmonPink text-lg uppercase font-medium'>
+            <span className='text-salmonPink text-xl max-md:text-lg max-sm:text-[16.5px] uppercase font-medium'>
               {productById.type}
             </span>
           </div>
-          <p className='max-w-[500px] text-spanishGray opacity-90 text-[15px]'>
+          <p className='max-w-[500px] text-spanishGray opacity-90 text-[17px] max-md:text-sm'>
             {productById.description}
           </p>
         </div>
