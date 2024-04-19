@@ -24,6 +24,7 @@ interface productTypes {
   price: number | string
   type: string
   addedImages: [string] | any
+  gender: string
 }
 
 axios.defaults.baseURL = 'http://localhost:4000'
@@ -31,13 +32,14 @@ axios.defaults.baseURL = 'http://localhost:4000'
 export const addProductToDB = createAsyncThunk(
   'product/fetchData',
   async (product: productTypes): Promise<any> => {
-    const { name, description, price, type, addedImages } = product
+    const { name, description, price, type, addedImages, gender } = product
     const response: AxiosResponse<any> = await axios.post('/products/add', {
       title: name,
       description,
       price,
       type,
       images: addedImages,
+      gender,
     })
     return response.data
   }

@@ -10,6 +10,10 @@ CREATE TABLE products (
 
 ALTER TABLE products ADD COLUMN sold INT NOT NULL DEFAULT 0;
 
+ALTER TABLE products ADD COLUMN gender VARCHAR(15);
+UPDATE products SET gender = 'men';
+ALTER TABLE products ALTER COLUMN gender SET NOT NULL;
+
 CREATE TABLE users (
    id SERIAL PRIMARY KEY,
    picture TEXT,

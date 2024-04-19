@@ -1,16 +1,17 @@
 import pool from '../database/postgres.js'
 
 export const addProduct = async (req, res) => {
-  const { images, title, description, type, price } = req.body
+  const { images, title, description, type, price, gender } = req.body
   try {
     const query =
-      'INSERT INTO products (image, title, description, type, price) VALUES ($1, $2, $3, $4, $5)'
+      'INSERT INTO products (image, title, description, type, price, gender) VALUES ($1, $2, $3, $4, $5, $6)'
     const data = await pool.query(query, [
       images,
       title,
       description,
       type,
       parseInt(price),
+      gender,
     ])
     res.status(200).json(data.rows)
   } catch (err) {

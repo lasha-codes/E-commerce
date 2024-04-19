@@ -44,12 +44,14 @@ const AddProduct = () => {
   const [description, setDescription] = useState<string>('')
   const [price, setPrice] = useState<number | string>('')
   const [type, setType] = useState<string>('')
+  const [gender, setGender] = useState<string>('')
 
   const continuePost = () => {
     if (
       description.length === 0 ||
       name.length === 0 ||
       price.toString().length === 0 ||
+      gender.length === 0 ||
       type.length === 0
     ) {
       return toast.error('All of the fields are required')
@@ -150,10 +152,10 @@ const AddProduct = () => {
               </span>
             </span>
           </div>
-          <div className='flex flex-col gap-10 md:w-[600px] max-md:w-full max-lg:mx-auto h-screen'>
+          <div className='flex flex-col gap-10 md:w-[600px] max-md:w-[400px] h-screen'>
             <h1 className='text-3xl font-medium'>Product Information</h1>
             <form className='w-full'>
-              <div className='border gap-3 flex items-center rounded-xl p-2'>
+              <div className='border gap-3 flex items-center w-full rounded-xl p-2'>
                 <div
                   onClick={(e) => {
                     e.stopPropagation()
@@ -175,7 +177,7 @@ const AddProduct = () => {
                     )
                   })}
               </div>
-              <div className='flex flex-col gap-4 mt-5 border-b pb-5'>
+              <div className='flex flex-col gap-4 mt-5 border-b pb-5 max-md:w-full'>
                 <div className='flex flex-col gap-1'>
                   <label
                     htmlFor='name'
@@ -190,7 +192,7 @@ const AddProduct = () => {
                     }
                     type='text'
                     id='name'
-                    className='border rounded px-4 py-0.5 placeholder:text-sm placeholder:opacity-60 placeholder:font-light cursor-pointer'
+                    className='border rounded px-4 w-full py-0.5 placeholder:text-sm placeholder:opacity-60 placeholder:font-light cursor-pointer'
                     placeholder='Name'
                   />
                 </div>
@@ -214,36 +216,23 @@ const AddProduct = () => {
                   </div>
                 </div>
               </div>
-              <div className='mt-5'>
+              <div className='mt-5 flex flex-col items-start'>
                 <h2 className='text-xl mb-5 text-oceanGreen'>
                   Additional info
                 </h2>
-                <div className='flex items-center gap-4'>
-                  <div className='flex flex-col gap-1'>
-                    <input
-                      value={price}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setPrice(Number(e.target.value))
-                      }
-                      type='number'
-                      id='price'
-                      className='border rounded w-[200px] min-h-[36px] py-0.5 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
-                      placeholder='0$'
-                    />
-                  </div>
-                  <div>
+                <div className='flex items-center flex-row-reverse justify-start gap-4'>
+                  <div className='flex items-center gap-2 w-full justify-start'>
                     <Select
                       value={type}
                       onValueChange={(value) => setType(value)}
                     >
-                      <SelectTrigger className='w-[200px] rounded'>
+                      <SelectTrigger className='w-[200px] rounded max-lg:w-[150px]'>
                         <SelectValue placeholder='Product type' />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem className='cursor-pointer' value='T-shirt'>
                           T-shirt
                         </SelectItem>
-
                         <SelectItem className='cursor-pointer' value='jacket'>
                           Jacket
                         </SelectItem>
@@ -279,10 +268,39 @@ const AddProduct = () => {
                         </SelectItem>
                       </SelectContent>
                     </Select>
+                    <Select
+                      value={gender}
+                      onValueChange={(value) => setGender(value)}
+                    >
+                      <SelectTrigger className='w-[150px] rounded'>
+                        <SelectValue placeholder='Select gender' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem className='cursor-pointer' value='Men'>
+                          Men
+                        </SelectItem>
+                        <SelectItem className='cursor-pointer' value='Woman'>
+                          Women
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className='flex  w-full justify-end gap-1'>
+                    <input
+                      value={price}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setPrice(Number(e.target.value))
+                      }
+                      type='number'
+                      id='price'
+                      className='border rounded max-md:w-[130px] w-[200px] min-h-[36px] py-0.5 px-4 placeholder:text-sm placeholder:opacity-60 resize-none placeholder:font-light cursor-pointer'
+                      placeholder='0$'
+                    />
                   </div>
                 </div>
               </div>
-              <div className='w-full justify-between flex items-end cursor-pointer'>
+
+              <div className='w-full justify-between flex items-end cursor-pointer mt-16'>
                 <span
                   onClick={() => {
                     dispatch(handleSubmitProduct())
@@ -440,6 +458,7 @@ const AddProduct = () => {
                         price,
                         type,
                         addedImages,
+                        gender,
                       })
                     )
                   }}
