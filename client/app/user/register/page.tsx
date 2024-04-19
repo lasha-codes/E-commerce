@@ -3,14 +3,24 @@
 import Link from 'next/link'
 import { GiMoebiusStar } from 'react-icons/gi'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { Toaster } from 'sonner'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
   const [email, setEmail] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const { user } = useSelector((state: { user: any }) => state.user)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (user.email) {
+      router.push('/')
+    }
+  }, [user])
 
   const register = async (e: React.FormEvent) => {
     e.preventDefault()

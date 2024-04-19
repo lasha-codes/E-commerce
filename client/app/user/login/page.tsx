@@ -3,14 +3,24 @@
 import Link from 'next/link'
 import { GiMoebiusStar } from 'react-icons/gi'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Toaster, toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
 
 const Login = () => {
   const router = useRouter()
   const [password, setPassword] = useState<string>('')
   const [email, setEmail] = useState<string>('')
+
+  const { user } = useSelector((state: { user: any }) => state.user)
+
+  useEffect(() => {
+    if (user.email) {
+      router.push('/')
+      console.log('...')
+    }
+  }, [user])
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -103,9 +113,6 @@ const Login = () => {
             <button className='w-full text-white bg-eerieBlack mt-12 py-2.5 hover:opacity-90 transition-all duration-300 rounded-full'>
               Sign In
             </button>
-            <span className='font-semibold border-b border-eerieBlack text-eerieBlack hover:opacity-90 transition-all cursor-pointer'>
-              Forgot password?
-            </span>
           </div>
         </form>
       </div>
