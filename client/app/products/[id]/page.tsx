@@ -1,6 +1,6 @@
 'use client'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   Carousel,
   CarouselContent,
@@ -34,6 +34,7 @@ interface selectTypes {
 }
 
 const SingleProduct: React.FC<ParamsType> = ({ params }) => {
+  const dispatch = useDispatch()
   const { products }: selectTypes = useSelector((state: any) => state.product)
   const { watchList }: { watchList: [productType] } = useSelector(
     (state: any) => state.tabs
@@ -50,8 +51,6 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const productLiked = watchList.find((product: productType) => {
     return product.id === productById.id
   })
-
-  console.log(productLiked)
 
   return (
     <main className='w-full p-12 bg-white h-screen overflow-y-scroll'>
@@ -94,15 +93,31 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
           <span>Add to cart</span>
           <IoBagHandleOutline className='text-[21px]' />
         </button>
-        <button className='flex items-center gap-2.5 text-white bg-cultured px-5 py-2 rounded-[2px] hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95'>
-          <span className='text-eerieBlack'>Add to wishlist</span>
+        <button
+          onClick={() => dispatch(addToWatchList(productById))}
+          className='flex overflow-hidden items-center w-[170px] justify-center gap-2.5 relative h-[40px] text-white bg-cultured px-5 py-2 rounded-[2px] hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95'
+        >
+          <span
+            className={`text-eerieBlack absolute left-4 transition-all duration-300 ease-in-out ${
+              productLiked ? 'translate-y-[30px]' : 'translate-y-[0]'
+            }`}
+          >
+            Add to wishlist
+          </span>
+          <span
+            className={`text-eerieBlack absolute left-4 transition-all duration-300 ease-in-out ${
+              !productLiked ? 'translate-y-[30px]' : 'translate-y-[0]'
+            }`}
+          >
+            Unlike item
+          </span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill={productLiked ? '#200' : 'none'}
             viewBox='0 0 24 24'
             strokeWidth={1.5}
             stroke='#200'
-            className='w-5 h-5 transition-all duration-500'
+            className='w-5 h-5 absolute right-4 transition-all duration-500'
           >
             <path
               strokeLinecap='round'
