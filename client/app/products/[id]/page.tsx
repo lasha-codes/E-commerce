@@ -11,6 +11,7 @@ import {
 import { IoBagHandleOutline } from 'react-icons/io5'
 import { addToWatchList } from '@/app/lib/features/tabs/tabsSlice'
 import { addItemToCart } from '@/app/lib/features/tabs/tabsSlice'
+import { Toaster } from 'sonner'
 
 interface ParamsType {
   params: {
@@ -40,9 +41,11 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
     (state: any) => state.tabs
   )
 
-  const productById = products.find((product: productType) => {
-    return product.id === parseInt(params.id)
-  })
+  const productById: productType | any = products.find(
+    (product: productType) => {
+      return product.id === parseInt(params.id)
+    }
+  )
 
   if (!productById) {
     return <p>Loading...</p>
@@ -88,8 +91,11 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
           </p>
         </div>
       </div>
-      <div className='mt-3 flex w-full justify-center items-center gap-10'>
-        <button className='flex items-center gap-2.5 text-white bg-eerieBlack px-5 py-2 rounded-[2px] hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95'>
+      <div className='mt-6 flex w-full justify-center items-center gap-10'>
+        <button
+          onClick={() => dispatch(addItemToCart(productById))}
+          className='flex items-center gap-2.5 text-white bg-eerieBlack px-5 py-2 rounded-[2px] hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95'
+        >
           <span>Add to cart</span>
           <IoBagHandleOutline className='text-[21px]' />
         </button>
@@ -109,7 +115,7 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
               !productLiked ? 'translate-y-[30px]' : 'translate-y-[0]'
             }`}
           >
-            Unlike item
+            Unlike product
           </span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -127,6 +133,7 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
           </svg>
         </button>
       </div>
+      <Toaster />
     </main>
   )
 }
