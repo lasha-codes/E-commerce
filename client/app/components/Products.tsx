@@ -9,6 +9,7 @@ import {
 } from 'react-icons/io5'
 import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
+import Link from 'next/link'
 
 interface ProductType {
   id: number
@@ -85,12 +86,12 @@ const Products = () => {
                   </div>
                   <div className='relative z-[10] side-icon-container overflow-hidden'>
                     <div className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10]'>
-                      <span className='z-[10]'>
+                      <Link href={`/products/${product.id}`} className='z-[10]'>
                         <IoEyeOutline
                           className='text-[19px] text-sonicSilver cursor-pointer icon-style z-[10]
 '
                         />
-                      </span>
+                      </Link>
                     </div>
                     <div className='absolute transition-all duration-500 top-0 left-0 rounded-[6px] w-full h-full opacity-0 bg-eerieBlack z-[1]' />
                   </div>
