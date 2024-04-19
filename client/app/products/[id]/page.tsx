@@ -63,16 +63,16 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   return (
     <main className='w-full p-12 bg-[#fafafa] h-screen overflow-y-scroll'>
       <div className='flex flex-col items-center'>
-        <div className='w-full flex items-center max-lg:flex-col drop-shadow-md bg-white rounded-xl p-8 justify-around gap-10'>
-          <Carousel className='max-w-[500px] max-md:max-w-[400px]'>
+        <div className='w-[80%] flex items-center max-xl:flex-col drop-shadow-md bg-white rounded-xl p-8 justify-around gap-10'>
+          <Carousel className='max-w-[500px] max-md:max-w-[300px]'>
             <CarouselContent>
-              <CarouselItem className='w-[500px] p-16 h-[450px] max-md:p-5 rounded-2xl overflow-hidden'>
+              <CarouselItem className='w-[500px] max-md:w-[300px] max-md:h-[350px] p-16 h-[450px] max-md:p-5 rounded-2xl overflow-hidden'>
                 <img
                   src={productById.image[0]}
                   className='w-full h-full object-contain'
                 />
               </CarouselItem>
-              <CarouselItem className='w-[500px] p-16 h-[450px] max-md:p-5 rounded-2xl overflow-hidden'>
+              <CarouselItem className='w-[500px] max-md:w-[300px] max-md:h-[350px] p-16 h-[450px] max-md:p-5 rounded-2xl overflow-hidden'>
                 <img
                   src={productById.image[1]}
                   className='w-full h-full object-contain'
@@ -93,7 +93,10 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
               </span>
             </div>
             <p className='max-w-[500px] text-spanishGray opacity-90 text-[17px] max-md:text-sm'>
-              {productById.description}
+              {productById.description.length > 250
+                ? productById.description.slice(0, 250)
+                : productById.description}{' '}
+              {productById.description.length > 250 && '...'}
             </p>
           </div>
         </div>
@@ -139,10 +142,10 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
             </svg>
           </button>
         </div>
-        <div className='w-full flex mt-6 items-center justify-between'>
+        <div className='w-[80%] flex mt-6 items-end max-2xl:flex-col max-2xl:justify-center max-2xl:items-center gap-10 justify-between'>
           <div className='flex flex-col gap-5 items-start'>
             <h2 className='text-eerieBlack text-2xl font-medium'>Reviews</h2>
-            <div className='bg-white w-[400px] h-[290px] py-6 px-10 drop-shadow-sm rounded-xl'>
+            <div className='bg-white w-[600px] max-lg:w-[680px] max-md:w-[500px] max-sm:w-[430px] max-2xl:w-[800px] h-[300px] py-6 px-10 drop-shadow-sm rounded-xl'>
               <h3 className='text-xl font-medium mb-3'>Add a review</h3>
               <div className='flex items-center mb-4'>
                 {reviews.map((star: number) => {
@@ -158,6 +161,7 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
                       className='w-8 h-8 cursor-pointer icon-style transition-all duration-300'
                     >
                       <path
+                        className='transition-all duration-300'
                         strokeLinecap='round'
                         strokeLinejoin='round'
                         d='M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z'
@@ -167,13 +171,13 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
                 })}
               </div>
               <form className='w-full items-start flex flex-col gap-4'>
-                <div className='flex flex-col items-start gap-3'>
+                <div className='flex flex-col w-full items-start gap-3'>
                   <input
-                    className='rounded-[5px] border w-[300px] placeholder:opacity-80 py-1 px-3 text-eerieBlack capitalize'
+                    className='rounded-[5px] border w-full placeholder:opacity-80 py-1 px-3 text-eerieBlack capitalize'
                     placeholder='Title'
                   />
                   <textarea
-                    className='rounded-[5px] border w-[300px] placeholder:opacity-80 py-1 px-3 resize-none'
+                    className='rounded-[5px] border w-full placeholder:opacity-80 py-1 px-3 resize-none'
                     placeholder='Product Review'
                   />
                 </div>
@@ -183,7 +187,11 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
               </form>
             </div>
           </div>
-          <div></div>
+          <div className='w-[600px] h-[300px] bg-white max-2xl:w-[800px] rounded-xl text-xl p-5 px-10 max-lg:w-[680px] max-md:w-[500px] max-sm:w-[430px]'>
+            <h3 className='border-b pb-3 text-xl font-medium text-eerieBlack'>
+              All reviews
+            </h3>
+          </div>
         </div>
       </div>
       <Toaster />
