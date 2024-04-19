@@ -82,3 +82,13 @@ export const authenticateToken = (req, res) => {
     res.status(500).json({ message: 'Could not authenticate user' })
   }
 }
+
+export const logoutUser = (req, res) => {
+  try {
+    res.cookie('token', '').json({
+      message: 'User has successfully logged out',
+    })
+  } catch (err) {
+    res.status(400).json({ message: 'something went wrong' })
+  }
+}
