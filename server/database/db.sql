@@ -32,4 +32,5 @@ CREATE TABLE reviews (
    review INT NOT NULL
 );
 
+ALTER TABLE reviews ADD COLUMN title VARCHAR(100) NOT NULL,
 ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE(email);
