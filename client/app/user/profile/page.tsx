@@ -5,10 +5,12 @@ import defaultAvatar from '../../assets/default-avatar.jpg'
 import Image from 'next/image'
 import { FaArrowLeft } from 'react-icons/fa6'
 import Link from 'next/link'
+import axios from 'axios'
+import { toast } from 'sonner'
+import { Toaster } from 'sonner'
 
 const Profile = () => {
   const { user } = useSelector((state: any) => state.user)
-
   const returnUserImage = () => {
     if (user.picture) {
       return user.picture
@@ -17,12 +19,21 @@ const Profile = () => {
     }
   }
 
+  const logout = async () => {
+    try {
+      await axios.post('/user/logout', {}, { withCredentials: true })
+      window.location.href = '/user/login'
+    } catch (err) {
+      toast.error('Something went wrong.')
+    }
+  }
+
   return (
     <main className='w-full p-12 flex justify-center relative'>
       <div className='flex flex-col items-center gap-5'>
         <div className='h-[100px] w-[100px] rounded-full overflow-hidden'>
           <Image
-            src={defaultAvatar}
+            src={returnUserImage()}
             priority
             className='h-full w-full'
             alt=''
@@ -34,13 +45,17 @@ const Profile = () => {
           </h2>
           <p className='text-lg text-spanishGray'>{user.email}</p>
         </div>
-        <button className='bg-salmonPink text-white px-10 py-2 rounded-full hover:opacity-80 transition-all duration-300'>
+        <button
+          onClick={logout}
+          className='bg-salmonPink text-white px-10 py-2 rounded-full hover:opacity-80 transition-all duration-300'
+        >
           Logout
         </button>
       </div>
       <Link href='/'>
         <FaArrowLeft className='absolute top-5 left-5 text-xl icon-style' />
       </Link>
+      <Toaster />
     </main>
   )
 }
