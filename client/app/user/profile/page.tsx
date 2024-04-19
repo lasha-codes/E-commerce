@@ -28,6 +28,10 @@ const Profile = () => {
     }
   }
 
+  if (!user.email) {
+    return <div>No access.</div>
+  }
+
   return (
     <main className='w-full p-12 flex justify-center relative'>
       <div className='flex flex-col items-center gap-5'>

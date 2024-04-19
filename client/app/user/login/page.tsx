@@ -18,7 +18,6 @@ const Login = () => {
   useEffect(() => {
     if (user.email) {
       router.push('/')
-      console.log('...')
     }
   }, [user])
 
@@ -42,6 +41,9 @@ const Login = () => {
       )
       if (response.status < 400) {
         router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 300)
       }
       setPassword('')
       setEmail('')
