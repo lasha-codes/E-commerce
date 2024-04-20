@@ -13,6 +13,7 @@ import { IoBagHandleOutline } from 'react-icons/io5'
 import { addToWatchList } from '@/app/lib/features/tabs/tabsSlice'
 import { addItemToCart } from '@/app/lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
+import { toast } from 'sonner'
 
 interface ParamsType {
   params: {
@@ -37,6 +38,8 @@ interface selectTypes {
 
 const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const [rating, setRating] = useState<number>(1)
+  const [title, setTitle] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
   const dispatch = useDispatch()
   const { products }: selectTypes = useSelector((state: any) => state.product)
   const { watchList }: { watchList: [productType] } = useSelector(
@@ -59,6 +62,14 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const productLiked = watchList.find((product: productType) => {
     return product.id === productById.id
   })
+
+  const submitReview = (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+    } catch (err: any) {
+      toast.error(err.message)
+    }
+  }
 
   return (
     <main className='w-full p-12 bg-[#fafafa] h-screen overflow-y-scroll'>
@@ -173,10 +184,19 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
               <form className='w-full items-start flex flex-col gap-4'>
                 <div className='flex flex-col w-full items-start gap-3'>
                   <input
+                    value={title}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setTitle(e.target.value)
+                    }
                     className='rounded-[5px] border w-full placeholder:opacity-80 py-1 px-3 text-eerieBlack capitalize'
                     placeholder='Title'
                   />
+
                   <textarea
+                    value={description}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      setDescription(e.target.value)
+                    }
                     className='rounded-[5px] border w-full placeholder:opacity-80 py-1 px-3 resize-none'
                     placeholder='Product Review'
                   />
