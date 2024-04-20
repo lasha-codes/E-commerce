@@ -43,8 +43,9 @@ export const addProductReview = async (req, res) => {
   try {
     const { email } = jwt.verify(token, process.env.JWT_SECRET)
     const query = 'SELECT * FROM users WHERE email = $1'
-    const author = await postgres.query(query, [email])
-    res.json(author.rows)
+    const author = await pool.query(query, [email])
+    const addProductQuery =
+      'INSERT INTO reviews (product_id, comment, author, review)'
   } catch (err) {
     res.status(500).json({ message: err.message })
   }

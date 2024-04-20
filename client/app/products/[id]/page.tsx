@@ -14,6 +14,7 @@ import { addToWatchList } from '@/app/lib/features/tabs/tabsSlice'
 import { addItemToCart } from '@/app/lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
 import { toast } from 'sonner'
+import axios from 'axios'
 
 interface ParamsType {
   params: {
@@ -47,8 +48,6 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   )
   const reviews = [1, 2, 3, 4, 5]
 
-  console.log(rating)
-
   const productById: productType | any = products.find(
     (product: productType) => {
       return product.id === parseInt(params.id)
@@ -63,9 +62,20 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
     return product.id === productById.id
   })
 
-  const submitReview = (e: React.FormEvent) => {
+  const submitReview = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
+      if (!title || !description) {
+        return toast.error('Both fields are required.')
+      }
+      const response = await axios.post(
+        '/products/add-review',
+        {
+          id: params.id,
+        },
+        { withCredentials: true }
+      )
+      console.log(response)
     } catch (err: any) {
       toast.error(err.message)
     }
@@ -181,7 +191,10 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
                   )
                 })}
               </div>
-              <form className='w-full items-start flex flex-col gap-4'>
+              <form
+                onSubmit={submitReview}
+                className='w-full items-start flex flex-col gap-4'
+              >
                 <div className='flex flex-col w-full items-start gap-3'>
                   <input
                     value={title}

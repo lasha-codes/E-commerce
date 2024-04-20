@@ -76,7 +76,7 @@ export const authenticateToken = (req, res) => {
       const { email } = token
       const query = 'SELECT * FROM users WHERE email = $1'
       const loggedQuery = await postgres.query(query, [email])
-      res.status(200).json(loggedQuery.rows[0])
+      res.status(200).json(loggedQuery.rows[0].username)
     })
   } catch (err) {
     res.status(500).json({ message: 'Could not authenticate user' })
