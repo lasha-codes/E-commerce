@@ -37,6 +37,7 @@ export const getProducts = async (req, res) => {
 
 export const addProductReview = async (req, res) => {
   const { token } = req.cookies
+  const { id, comment, review, title } = req.body
   if (!token) {
     return res.status(400).json({ message: 'Unauthorized request.' })
   }
@@ -45,7 +46,15 @@ export const addProductReview = async (req, res) => {
     const query = 'SELECT * FROM users WHERE email = $1'
     const author = await pool.query(query, [email])
     const addProductQuery =
-      'INSERT INTO reviews (product_id, comment, author, review)'
+      'INSERT INTO reviews (product_id, title, comment, author, review) VALUES ($1, $2, $3, $4, $5)'
+    await pool.query(addProductQuery, [
+      id,
+      title,
+      comment,
+      author.rows[0].username,
+      review,
+    ])
+    res.status(200).json({ message: 'Added a review.' })
   } catch (err) {
     res.status(500).json({ message: err.message })
   }

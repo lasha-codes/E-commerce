@@ -72,6 +72,9 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
         '/products/add-review',
         {
           id: params.id,
+          comment: description,
+          title,
+          review: rating,
         },
         { withCredentials: true }
       )
