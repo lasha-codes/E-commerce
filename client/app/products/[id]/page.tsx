@@ -16,6 +16,7 @@ import { Toaster } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import axios from 'axios'
+import { format } from 'date-fns'
 
 interface ParamsType {
   params: {
@@ -41,6 +42,7 @@ interface reviewType {
   review: number
   author: string
   title: string
+  date: string
 }
 
 interface selectTypes {
@@ -258,7 +260,33 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
               {productReviews &&
                 productReviews.map((review: reviewType) => {
                   return (
-                    <div key={review.product_id}>
+                    <div key={review.product_id} className='border-b pb-5'>
+                      <div className='flex items-center justify-between mb-3'>
+                        <div className='flex items-center'>
+                          {reviews.map((star: number) => {
+                            return (
+                              <svg
+                                key={star}
+                                xmlns='http://www.w3.org/2000/svg'
+                                fill={star <= review.review ? 'black' : 'none'}
+                                viewBox='0 0 24 24'
+                                strokeWidth={1.5}
+                                stroke='currentColor'
+                                className='w-7 h-7'
+                              >
+                                <path
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                  d='M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z'
+                                />
+                              </svg>
+                            )
+                          })}
+                        </div>
+                        <span className='text-spanishGray text-[17px]'>
+                          {format(review.date, 'yyyy-MM-dd')}
+                        </span>
+                      </div>
                       <div className='flex flex-col gap-1'>
                         <h2 className='text-eerieBlack text-[19px] font-medium'>
                           {review.title}
