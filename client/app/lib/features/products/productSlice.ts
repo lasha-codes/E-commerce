@@ -4,17 +4,21 @@ import axios, { AxiosResponse } from 'axios'
 
 const initialState: {
   products: object[]
+  productReviews: []
   toggle: boolean
   continued: boolean
   addedImages: string[] | any
   isLoading: string | 'pending' | 'rejected' | 'idle'
+  reviewsLoading: string | 'pending' | 'rejected' | 'idle'
   toReview: boolean
 } = {
   products: [],
+  productReviews: [],
   toggle: false,
   continued: false,
   toReview: false,
   isLoading: 'idle',
+  reviewsLoading: 'idle',
   addedImages: [],
 }
 
@@ -50,6 +54,18 @@ export const getProductsFromDB = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get('/products/get')
+      return response.data
+    } catch (err) {
+      console.error(err)
+    }
+  }
+)
+
+export const getProductReviewsFromDB = createAsyncThunk(
+  '/products/getReviews',
+  async () => {
+    try {
+      const response = await axios.get('/products/reviews')
       return response.data
     } catch (err) {
       console.error(err)
@@ -109,6 +125,16 @@ const productSlice = createSlice({
     })
     builder.addCase(getProductsFromDB.rejected, (state) => {
       state.products = []
+    })
+    builder.addCase(getProductReviewsFromDB.pending, (state) => {
+      state.reviewsLoading = 'pending'
+    })
+    builder.addCase(getProductReviewsFromDB.rejected, (state) => {
+      state.reviewsLoading = 'rejected'
+    })
+    builder.addCase(getProductReviewsFromDB.fulfilled, (state, action) => {
+      state.reviewsLoading = 'idle'
+      state.productReviews = action.payload
     })
   },
 })
