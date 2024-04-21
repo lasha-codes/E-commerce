@@ -2,7 +2,6 @@
 
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  IoHeartOutline,
   IoEyeOutline,
   IoGitCompareOutline,
   IoBagAddOutline,
@@ -41,7 +40,7 @@ const Products = () => {
       <div>
         <div className='flex flex-col items-center justify-center flex-wrap gap-5'>
           <h1 className='w-full text-start text-eerieBlack text-[19px] font-medium border-b pb-3'>
-            Best Sellers
+            Top Sellers
           </h1>
           {mostSoldProducts &&
             mostSoldProducts.map((product: any) => {
