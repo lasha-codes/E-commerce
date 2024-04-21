@@ -45,14 +45,17 @@ export const addProductReview = async (req, res) => {
     const { email } = jwt.verify(token, process.env.JWT_SECRET)
     const query = 'SELECT * FROM users WHERE email = $1'
     const author = await pool.query(query, [email])
+    const date = new Date()
+
     const addProductQuery =
-      'INSERT INTO reviews (product_id, title, comment, author, review) VALUES ($1, $2, $3, $4, $5)'
+      'INSERT INTO reviews (product_id, title, comment, author, review, date) VALUES ($1, $2, $3, $4, $5, $6)'
     await pool.query(addProductQuery, [
       id,
       title,
       comment,
       author.rows[0].username,
       review,
+      date,
     ])
     res.status(200).json({ message: 'Added a review.' })
   } catch (err) {

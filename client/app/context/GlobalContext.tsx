@@ -2,7 +2,10 @@
 
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getProductsFromDB } from '../lib/features/products/productSlice'
+import {
+  getProductReviewsFromDB,
+  getProductsFromDB,
+} from '../lib/features/products/productSlice'
 import { renderCart, renderWatchList } from '../lib/features/tabs/tabsSlice'
 import axios from 'axios'
 import { getUser, pageIsLoaded } from '../lib/features/user/userSlice'
@@ -18,6 +21,7 @@ const GlobalContext = ({ children }: { children: React.ReactNode }) => {
       .then((response) => {
         dispatch(getUser(response.data))
       })
+    dispatch(getProductReviewsFromDB())
     dispatch(pageIsLoaded())
   }, [])
 

@@ -34,8 +34,18 @@ interface productType {
   type: string
 }
 
+interface reviewType {
+  id: number
+  product_id: number
+  comment: string
+  review: number
+  author: string
+  title: string
+}
+
 interface selectTypes {
   products: productType[]
+  productReviews: reviewType[]
 }
 
 const SingleProduct: React.FC<ParamsType> = ({ params }) => {
@@ -44,7 +54,9 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const dispatch = useDispatch()
-  const { products }: selectTypes = useSelector((state: any) => state.product)
+  const { products, productReviews }: selectTypes = useSelector(
+    (state: any) => state.product
+  )
   const { user } = useSelector((state: any) => state.user)
   const { watchList }: { watchList: [productType] } = useSelector(
     (state: any) => state.tabs
@@ -64,6 +76,12 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const productLiked = watchList.find((product: productType) => {
     return product.id === productById.id
   })
+
+  const currentProductReviews = productReviews.filter((review) => {
+    return review.product_id === parseInt(params.id)
+  })
+
+  console.log(currentProductReviews)
 
   const submitReview = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -236,6 +254,23 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
             <h3 className='border-b pb-3 text-xl font-medium text-eerieBlack'>
               All reviews
             </h3>
+            <div className='flex flex-col items-start px-2 py-5 gap-5'>
+              {productReviews &&
+                productReviews.map((review: reviewType) => {
+                  return (
+                    <div key={review.product_id}>
+                      <div className='flex flex-col gap-1'>
+                        <h2 className='text-eerieBlack text-[19px] font-medium'>
+                          {review.title}
+                        </h2>
+                        <p className='text-[16px] text-sonicSilver'>
+                          {review.comment}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })}
+            </div>
           </div>
         </div>
       </div>

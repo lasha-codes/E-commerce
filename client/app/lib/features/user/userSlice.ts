@@ -11,11 +11,9 @@ const userSlice = createSlice({
   reducers: {
     pageIsLoaded: (state) => {
       state.isLoaded = true
-      console.log(state.isLoaded)
     },
     getUser: (state, { payload }) => {
       state.user = payload
-      console.log(state.user)
     },
   },
 })

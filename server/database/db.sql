@@ -33,4 +33,8 @@ CREATE TABLE reviews (
 );
 
 ALTER TABLE reviews ADD COLUMN title VARCHAR(100) NOT NULL,
+ALTER TABLE reviews ADD COLUMN date DATE;
+UPDATE reviews SET date = NOW();
+ALTER TABLE reviews ALTER COLUMN date SET NOT NULL;
+
 ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE(email);
