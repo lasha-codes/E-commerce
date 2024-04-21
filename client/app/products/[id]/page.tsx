@@ -84,13 +84,14 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
         },
         { withCredentials: true }
       )
-      console.log(response)
+      setDescription('')
+      setRating(1)
+      setTitle('')
+      toast.success('Thanks for the review!')
     } catch (err: any) {
       toast.error(err.message)
     }
   }
-
-  console.log(user)
 
   return (
     <main className='w-full p-12 bg-[#fafafa] h-screen overflow-y-scroll'>

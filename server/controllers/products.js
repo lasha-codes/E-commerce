@@ -59,3 +59,13 @@ export const addProductReview = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
+
+export const getProductReviews = async (req, res) => {
+  try {
+    const query = 'SELECT * FROM reviews'
+    const reviews = await pool.query(query)
+    res.status(200).json(reviews.rows)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
