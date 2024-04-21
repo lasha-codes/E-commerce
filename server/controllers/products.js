@@ -47,8 +47,11 @@ export const addProductReview = async (req, res) => {
     const author = await pool.query(query, [email])
     const date = new Date()
 
+    const getRatingQuery = 'SELECT rating FROM products WHERE id = $1'
+
     const addProductQuery =
       'INSERT INTO reviews (product_id, title, comment, author, review, date) VALUES ($1, $2, $3, $4, $5, $6)'
+
     await pool.query(addProductQuery, [
       id,
       title,
@@ -57,6 +60,10 @@ export const addProductReview = async (req, res) => {
       review,
       date,
     ])
+    const ratingArray = await pool.query(getRatingQuery, [id])
+    const newArray = ratingArray.rows[0].rating
+    newArray.push(review)
+    console.log(newArray)
     res.status(200).json({ message: 'Added a review.' })
   } catch (err) {
     res.status(500).json({ message: err.message })

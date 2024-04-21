@@ -1,8 +1,7 @@
 'use client'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Toaster } from 'sonner'
-import Link from 'next/link'
 import RecommendProducts from './RecommendProducts'
 
 interface ProductType {
@@ -17,7 +16,6 @@ interface ProductType {
 }
 
 const Products = () => {
-  const dispatch = useDispatch()
   const { products } = useSelector((state: any) => state.product)
 
   const mostSoldProducts: any =

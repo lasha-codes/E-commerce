@@ -277,9 +277,9 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
             )}
             <div className='flex flex-col items-start px-2 py-5 gap-5'>
               {currentProductReviews &&
-                currentProductReviews.map((review: reviewType) => {
+                currentProductReviews.map((review: reviewType, idx: number) => {
                   return (
-                    <div key={review.product_id} className='border-b pb-5'>
+                    <div key={idx} className='border-b pb-5'>
                       <div className='flex items-center justify-between mb-3'>
                         <div className='flex items-center'>
                           {reviews.map((star: number) => {
