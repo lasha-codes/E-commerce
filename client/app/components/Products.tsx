@@ -34,9 +34,13 @@ const Products = () => {
   const sortedByReviews: any =
     products.length > 0 && [...products].sort(compareByReviews).slice(0, 4)
 
+  const newProducts: any =
+    products.length > 1 &&
+    [...products].sort((a, b) => b.date - a.date).slice(0, 4)
+
   return (
     <div className='mt-16'>
-      <div className='flex items-center gap-10'>
+      <div className='flex items-center gap-10 flex-wrap justify-center'>
         <RecommendProducts
           title={'Top Sellers'}
           filteredProducts={mostSoldProducts}
@@ -44,6 +48,10 @@ const Products = () => {
         <RecommendProducts
           title={'By Rating'}
           filteredProducts={sortedByReviews}
+        />
+        <RecommendProducts
+          title={'New Products'}
+          filteredProducts={newProducts}
         />
       </div>
       <Toaster />
