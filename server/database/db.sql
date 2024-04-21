@@ -9,6 +9,7 @@ CREATE TABLE products (
 );
 
 ALTER TABLE products ADD COLUMN sold INT NOT NULL DEFAULT 0;
+UPDATE products SET sold = sold + 1 WHERE id < 15;
 
 ALTER TABLE products ADD COLUMN gender VARCHAR(15);
 UPDATE products SET gender = 'men';

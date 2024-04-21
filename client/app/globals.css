@@ -73,6 +73,10 @@ main::-webkit-scrollbar {
   opacity: 1;
 }
 
+.reviews::-webkit-scrollbar {
+  display: none;
+}
+
 .loader {
   width: 30px;
   height: 15px;

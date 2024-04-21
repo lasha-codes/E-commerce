@@ -61,6 +61,7 @@ const Home = () => {
 
       <Header />
       <Swiper />
+
       <ProductsSlider />
       <div className='flex items-start justify-center'>
         <div className='max-lg:hidden'>
@@ -69,6 +70,7 @@ const Home = () => {
 
         <Products />
       </div>
+
       <Link href='/add-product'>Add product</Link>
       <FooterNav />
       <ShoppingCart />

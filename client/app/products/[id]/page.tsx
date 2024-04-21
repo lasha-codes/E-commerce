@@ -307,7 +307,7 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
                         </span>
                       </div>
                       <div className='flex flex-col gap-1'>
-                        <h2 className='text-eerieBlack text-[19px] font-medium'>
+                        <h2 className='text-eerieBlack capitalize text-[19px] font-medium'>
                           {review.title}
                         </h2>
                         <p className='text-[16px] text-sonicSilver'>
