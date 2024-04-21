@@ -10,7 +10,7 @@ import { toast } from 'sonner'
 import { Toaster } from 'sonner'
 
 const Profile = () => {
-  const { user } = useSelector((state: any) => state.user)
+  const { user, isLoaded } = useSelector((state: any) => state.user)
   const returnUserImage = () => {
     if (user.picture) {
       return user.picture
@@ -28,7 +28,7 @@ const Profile = () => {
     }
   }
 
-  if (!user.email) {
+  if (!user.email && isLoaded) {
     return <div>No access.</div>
   }
 

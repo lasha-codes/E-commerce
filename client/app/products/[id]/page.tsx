@@ -13,6 +13,7 @@ import { IoBagHandleOutline } from 'react-icons/io5'
 import { addToWatchList } from '@/app/lib/features/tabs/tabsSlice'
 import { addItemToCart } from '@/app/lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
+import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import axios from 'axios'
 
@@ -38,11 +39,13 @@ interface selectTypes {
 }
 
 const SingleProduct: React.FC<ParamsType> = ({ params }) => {
+  const router = useRouter()
   const [rating, setRating] = useState<number>(1)
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const dispatch = useDispatch()
   const { products }: selectTypes = useSelector((state: any) => state.product)
+  const { user } = useSelector((state: any) => state.user)
   const { watchList }: { watchList: [productType] } = useSelector(
     (state: any) => state.tabs
   )
@@ -65,6 +68,9 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const submitReview = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
+      if (!user.email) {
+        return router.push('/user/login')
+      }
       if (!title || !description) {
         return toast.error('Both fields are required.')
       }
@@ -83,6 +89,8 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
       toast.error(err.message)
     }
   }
+
+  console.log(user)
 
   return (
     <main className='w-full p-12 bg-[#fafafa] h-screen overflow-y-scroll'>
