@@ -70,8 +70,9 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
     const currentReviews = productReviews.filter((review) => {
       return review.product_id === parseInt(params.id)
     })
+    console.log(currentReviews)
     setCurrentProductReviews(currentReviews)
-  }, [])
+  }, [params.id, productReviews])
 
   const productById: productType | any = products.find(
     (product: productType) => {
@@ -96,7 +97,7 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
       if (!title || !description) {
         return toast.error('Both fields are required.')
       }
-      const response = await axios.post(
+      await axios.post(
         '/products/add-review',
         {
           id: params.id,
@@ -106,6 +107,17 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
         },
         { withCredentials: true }
       )
+      setCurrentProductReviews((prev: any) => [
+        ...prev,
+        {
+          title,
+          comment: description,
+          product_id: params.id,
+          review: rating,
+          author: user.username,
+          date: new Date(),
+        },
+      ])
       setDescription('')
       setRating(1)
       setTitle('')
@@ -254,13 +266,18 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
               </form>
             </div>
           </div>
-          <div className='w-[600px] h-[300px] bg-white max-2xl:w-[800px] rounded-xl text-xl p-5 px-10 max-lg:w-[680px] max-md:w-[500px] max-sm:w-[430px]'>
+          <div className='w-[600px] h-[300px] overflow-y-scroll reviews bg-white max-2xl:w-[800px] rounded-xl text-xl p-5 px-10 max-lg:w-[680px] max-md:w-[500px] max-sm:w-[430px]'>
             <h3 className='border-b pb-3 text-xl font-medium text-eerieBlack'>
               All reviews
             </h3>
+            {currentProductReviews.length === 0 && (
+              <p className='w-full text-center mt-3 text-sonicSilver text-lg'>
+                No Reviews.
+              </p>
+            )}
             <div className='flex flex-col items-start px-2 py-5 gap-5'>
-              {productReviews &&
-                productReviews.map((review: reviewType) => {
+              {currentProductReviews &&
+                currentProductReviews.map((review: reviewType) => {
                   return (
                     <div key={review.product_id} className='border-b pb-5'>
                       <div className='flex items-center justify-between mb-3'>
@@ -296,6 +313,9 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
                         <p className='text-[16px] text-sonicSilver'>
                           {review.comment}
                         </p>
+                        <span className='text-[16px] font-medium'>
+                          by @{review.author}
+                        </span>
                       </div>
                     </div>
                   )
