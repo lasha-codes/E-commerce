@@ -63,7 +63,10 @@ export const addProductReview = async (req, res) => {
     const ratingArray = await pool.query(getRatingQuery, [id])
     const newArray = ratingArray.rows[0].rating
     newArray.push(review)
-    console.log(newArray)
+    await pool.query('UPDATE products SET rating = $1 WHERE id = $2', [
+      newArray,
+      id,
+    ])
     res.status(200).json({ message: 'Added a review.' })
   } catch (err) {
     res.status(500).json({ message: err.message })
