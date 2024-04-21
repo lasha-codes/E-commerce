@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   Carousel,
@@ -54,6 +54,7 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const router = useRouter()
   const [rating, setRating] = useState<number>(1)
   const [title, setTitle] = useState<string>('')
+  const [currentProductReviews, setCurrentProductReviews] = useState<any>([])
   const [description, setDescription] = useState<string>('')
   const dispatch = useDispatch()
   const { products, productReviews }: selectTypes = useSelector(
@@ -64,6 +65,13 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
     (state: any) => state.tabs
   )
   const reviews = [1, 2, 3, 4, 5]
+
+  useEffect(() => {
+    const currentReviews = productReviews.filter((review) => {
+      return review.product_id === parseInt(params.id)
+    })
+    setCurrentProductReviews(currentReviews)
+  }, [])
 
   const productById: productType | any = products.find(
     (product: productType) => {
@@ -78,12 +86,6 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
   const productLiked = watchList.find((product: productType) => {
     return product.id === productById.id
   })
-
-  const currentProductReviews = productReviews.filter((review) => {
-    return review.product_id === parseInt(params.id)
-  })
-
-  console.log(currentProductReviews)
 
   const submitReview = async (e: React.FormEvent) => {
     e.preventDefault()
