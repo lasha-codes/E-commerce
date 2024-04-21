@@ -5,6 +5,7 @@ import {
   IoBagAddOutline,
 } from 'react-icons/io5'
 import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
+import Link from 'next/link'
 
 interface ProductType {
   id: number
@@ -16,31 +17,26 @@ interface ProductType {
   description: string
   count: number
 }
-import Link from 'next/link'
 
-const dispatch = useDispatch()
-const { products } = useSelector((state: any) => state.product)
-const { watchList } = useSelector((state: any) => state.tabs)
-const addToCart = (product: any) => {
-  dispatch(addItemToCart(product))
+interface propTypes {
+  filteredProducts: ProductType[]
+  title: string
 }
-const mostSoldProducts =
-  products.length > 0 &&
-  [...products]
-    .sort((a: ProductType, b: ProductType) => b.sold - a.sold)
-    .slice(0, 4)
 
-const RecommendProducts = () => {
+const RecommendProducts = ({ filteredProducts, title }: propTypes) => {
+  const dispatch = useDispatch()
+  const { watchList } = useSelector((state: any) => state.tabs)
+  const addToCart = (product: any) => {
+    dispatch(addItemToCart(product))
+  }
+
   return (
     <div className='flex flex-col items-center justify-center flex-wrap gap-5'>
-      <h1
-        className='w-full text-start text-eerieBlack text-[19px] font-medium 
-border-b pb-3'
-      >
-        Top Sellers
+      <h1 className='w-full text-start text-eerieBlack text-[19px] font-medium border-b pb-3'>
+        {title}
       </h1>
-      {mostSoldProducts &&
-        mostSoldProducts.map((product: any) => {
+      {filteredProducts &&
+        filteredProducts.map((product: any) => {
           const productLiked = watchList.find((liked: ProductType) => {
             return product.id === liked.id
           })
