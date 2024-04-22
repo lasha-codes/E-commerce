@@ -1,12 +1,18 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { LuDollarSign } from 'react-icons/lu'
 import {
   IoEyeOutline,
   IoGitCompareOutline,
   IoBagAddOutline,
 } from 'react-icons/io5'
+import { addItemToCart } from '../lib/features/tabs/tabsSlice'
+import { Toaster } from 'sonner'
 
 const NewProducts = () => {
+  const dispatch = useDispatch()
+  const { products } = useSelector((state: any) => state.product)
+  const { wishList } = useSelector((state: any) => state.tabs)
+
   interface ProductType {
     id: number
     sold: number
@@ -31,13 +37,13 @@ const NewProducts = () => {
     }
   }
 
-  const { products } = useSelector((state: any) => state.product)
-
   const newProducts =
     products &&
-    [...products].sort((a: ProductType, b: ProductType) => {
-      return b.date - a.date
-    })
+    [...products]
+      .sort((a: ProductType, b: ProductType) => {
+        return b.date - a.date
+      })
+      .slice(0, 10)
 
   const starsArray = [1, 2, 3, 4, 5]
 
@@ -127,7 +133,10 @@ const NewProducts = () => {
                   <div className='border rounded icon-style p-1.5'>
                     <IoGitCompareOutline className='text-xl text-sonicSilver' />
                   </div>
-                  <div className='p-1.5 border rounded icon-style'>
+                  <div
+                    onClick={() => dispatch(addItemToCart(product))}
+                    className='p-1.5 border rounded icon-style'
+                  >
                     <IoBagAddOutline className='text-sonicSilver text-xl' />
                   </div>
                 </div>
@@ -135,6 +144,7 @@ const NewProducts = () => {
             )
           })}
       </div>
+      <Toaster />
     </div>
   )
 }
