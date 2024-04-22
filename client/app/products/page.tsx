@@ -9,6 +9,7 @@ import {
   IoGitCompareOutline,
 } from 'react-icons/io5'
 import Link from 'next/link'
+import { addItemToCart } from '../lib/features/tabs/tabsSlice'
 
 interface ProductType {
   id: number
@@ -137,7 +138,10 @@ const ProductsPage = () => {
                   <div className='icon-style p-1 border rounded'>
                     <IoGitCompareOutline className='text-xl text-sonicSilver' />
                   </div>
-                  <div className='icon-style p-1 border rounded'>
+                  <div
+                    onClick={() => dispatch(addItemToCart(product as any))}
+                    className='icon-style p-1 border rounded'
+                  >
                     <IoBagAddOutline className='text-xl text-sonicSilver' />
                   </div>
                 </div>
