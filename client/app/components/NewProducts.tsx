@@ -5,13 +5,13 @@ import {
   IoGitCompareOutline,
   IoBagAddOutline,
 } from 'react-icons/io5'
-import { addItemToCart } from '../lib/features/tabs/tabsSlice'
+import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
 
 const NewProducts = () => {
   const dispatch = useDispatch()
   const { products } = useSelector((state: any) => state.product)
-  const { wishList } = useSelector((state: any) => state.tabs)
+  const { watchList } = useSelector((state: any) => state.tabs)
 
   interface ProductType {
     id: number
@@ -52,6 +52,12 @@ const NewProducts = () => {
       <div className='flex items-start justify-center flex-wrap gap-12'>
         {newProducts &&
           newProducts.map((product: ProductType) => {
+            const inWatchList =
+              watchList &&
+              watchList.find((liked: ProductType) => {
+                return product.id === liked.id
+              })
+
             return (
               <div
                 key={product.id}
@@ -111,10 +117,13 @@ const NewProducts = () => {
                   </span>
                 </div>
                 <div className='absolute right-3 translate-x-[55px] top-3 flex flex-col items-center gap-2 group-hover:translate-x-0 transition-all duration-300'>
-                  <div className='p-1.5 border rounded icon-style'>
+                  <div
+                    onClick={() => dispatch(addToWatchList(product))}
+                    className='p-1.5 border rounded icon-style'
+                  >
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
+                      fill={inWatchList ? 'hsl(0, 0%, 47%)' : 'none'}
                       viewBox='0 0 24 24'
                       strokeWidth={1.5}
                       stroke='hsl(0, 0%, 47%)'
