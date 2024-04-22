@@ -13,6 +13,7 @@ const NewProducts = () => {
     count: number
     rating: number[]
     type: string
+    date: number
   }
 
   const getRating = (ratingArr: number[]) => {
@@ -27,13 +28,19 @@ const NewProducts = () => {
 
   const { products } = useSelector((state: any) => state.product)
 
+  const newProducts =
+    products &&
+    [...products].sort((a: ProductType, b: ProductType) => {
+      return b.date - a.date
+    })
+
   const starsArray = [1, 2, 3, 4, 5]
 
   return (
     <div className='w-full p-10'>
       <div className='flex items-start justify-center flex-wrap gap-12'>
-        {products &&
-          products.map((product: ProductType) => {
+        {newProducts &&
+          newProducts.map((product: ProductType) => {
             return (
               <div
                 key={product.id}
