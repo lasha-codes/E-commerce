@@ -44,13 +44,18 @@ const NewProducts = () => {
             return (
               <div
                 key={product.id}
-                className='bg-white border w-[380px] flex justify-center flex-col items-start h-[480px] group rounded-[10px] py-10 px-7'
+                className='bg-white border w-[380px] flex justify-end flex-col items-start h-[480px] group rounded-[10px] py-10 px-7 relative'
               >
                 <div className='p-3 w-full flex justify-center'>
                   <img
                     alt='product image'
                     src={product.image[0]}
-                    className='h-[240px] w-[240px] object-contain'
+                    className='h-[240px] w-[240px] object-contain absolute top-6 group-hover:opacity-0 transition-all duration-300 ease'
+                  />
+                  <img
+                    alt='product image'
+                    src={product.image[1]}
+                    className='h-[240px] w-[240px] object-contain absolute opacity-0 group-hover:opacity-100 transition-all top-5 duration-300 ease'
                   />
                 </div>
                 <div className='flex flex-col gap-3'>
