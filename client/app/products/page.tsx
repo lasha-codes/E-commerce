@@ -1,6 +1,7 @@
 'use client'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { LuDollarSign } from 'react-icons/lu'
 
 interface ProductType {
   id: number
@@ -41,12 +42,19 @@ const ProductsPage = () => {
             return (
               <div
                 key={product.id}
-                className='bg-white border rounded-[8px] p-8 w-[400px] flex flex-col justify-center items-start'
+                className='bg-white border rounded-[8px] relative p-8 w-[400px] h-[420px] group flex flex-col justify-end items-start'
               >
-                <div className='p-3 flex justify-center w-full h-[250px]'>
+                <div className='p-3 flex justify-center w-full h-[250px] absolute top-1 right-[10px] opacity-100 transition-all duration-300 group-hover:opacity-0'>
                   <img
                     className='w-[300px] h-full object-contain'
                     src={product.image[0]}
+                    alt={`product image/${product.id}`}
+                  />
+                </div>
+                <div className='p-3 flex justify-center w-full h-[250px] absolute top-1 right-[10px] opacity-0 transition-all duration-300 group-hover:opacity-100'>
+                  <img
+                    className='w-[300px] h-full object-contain'
+                    src={product.image[1]}
                     alt={`product image/${product.id}`}
                   />
                 </div>
@@ -87,6 +95,10 @@ const ProductsPage = () => {
                         Not Rated
                       </span>
                     )}
+                  </div>
+                  <div className='flex items-center font-semibold'>
+                    <LuDollarSign />
+                    <span>{product.price}</span>
                   </div>
                 </div>
               </div>
