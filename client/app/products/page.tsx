@@ -10,6 +10,7 @@ import {
 } from 'react-icons/io5'
 import Link from 'next/link'
 import { addItemToCart } from '../lib/features/tabs/tabsSlice'
+import { addToWatchList } from '../lib/features/tabs/tabsSlice'
 
 interface ProductType {
   id: number
@@ -27,6 +28,9 @@ const ProductsPage = () => {
   const dispatch = useDispatch()
   const { products }: { products: ProductType[] } = useSelector(
     (state: any) => state.product
+  )
+  const { watchList }: { watchList: ProductType[] } = useSelector(
+    (state: any) => state.tabs
   )
 
   const getRating = (ratingArr: number[]) => {
@@ -52,6 +56,11 @@ const ProductsPage = () => {
       <div className='flex items-start justify-center gap-5 flex-wrap'>
         {products &&
           products.map((product: ProductType) => {
+            const inWatchList =
+              watchList &&
+              watchList.find((liked: ProductType) => {
+                return liked.id === product.id
+              })
             return (
               <div
                 key={product.id}
@@ -116,10 +125,13 @@ const ProductsPage = () => {
                   </div>
                 </div>
                 <div className='absolute group-hover:translate-x-0 transition-all duration-300 top-3 right-3 flex flex-col items-center gap-2 translate-x-[50px]'>
-                  <div className='icon-style border rounded p-1'>
+                  <div
+                    onClick={() => dispatch(addToWatchList(product))}
+                    className='icon-style border rounded p-1'
+                  >
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
+                      fill={inWatchList ? 'hsl(0, 0%, 47%)' : 'none'}
                       viewBox='0 0 24 24'
                       strokeWidth={1.5}
                       stroke='hsl(0, 0%, 47%)'
