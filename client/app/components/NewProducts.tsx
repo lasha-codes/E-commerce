@@ -50,6 +50,9 @@ const NewProducts = () => {
 
   return (
     <div className='w-full p-10'>
+      <h1 className='mb-6 text-xl text-eerieBlack font-medium w-full ml-3 max-md:text-center max-md:ml-0'>
+        New Products
+      </h1>
       <div className='flex items-start justify-center flex-wrap gap-12'>
         {newProducts &&
           newProducts.map((product: ProductType) => {

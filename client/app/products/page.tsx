@@ -8,6 +8,7 @@ import {
   IoBagAddOutline,
   IoGitCompareOutline,
 } from 'react-icons/io5'
+import Link from 'next/link'
 
 interface ProductType {
   id: number
@@ -40,7 +41,12 @@ const ProductsPage = () => {
   const starsArr = [1, 2, 3, 4, 5]
 
   return (
-    <main className='w-full p-10'>
+    <main className='w-full px-10 py-16'>
+      <header className='fixed top-3'>
+        <Link href='/' className='text-2xl font-medium text-eerieBlack'>
+          Anon
+        </Link>
+      </header>
       <div className=''></div>
       <div className='flex items-start justify-center gap-5 flex-wrap'>
         {products &&
@@ -48,7 +54,7 @@ const ProductsPage = () => {
             return (
               <div
                 key={product.id}
-                className='bg-white border rounded-[8px] relative p-8 w-[380px] h-[380px] group flex flex-col justify-end items-start'
+                className='bg-white overflow-hidden border rounded-[8px] relative p-8 w-[380px] h-[380px] group flex flex-col justify-end items-start'
               >
                 <div className='p-3 flex justify-center w-full h-[200px] absolute top-2 right-[10px] opacity-100 transition-all duration-300 group-hover:opacity-0'>
                   <img
@@ -108,7 +114,7 @@ const ProductsPage = () => {
                     <span>{product.price}</span>
                   </div>
                 </div>
-                <div className='absolute top-3 right-3 flex flex-col items-center gap-2'>
+                <div className='absolute group-hover:translate-x-0 transition-all duration-300 top-3 right-3 flex flex-col items-center gap-2 translate-x-[50px]'>
                   <div className='icon-style border rounded p-1'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
