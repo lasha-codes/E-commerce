@@ -65,10 +65,6 @@ const Home = () => {
 
       <ProductsSlider />
       <div className='flex items-start justify-center'>
-        <div className='max-lg:hidden'>
-          <Category extraClass={''} closeIcon={false} />
-        </div>
-
         <div className='flex flex-col gap-10'>
           <Products />
           <NewProducts />
