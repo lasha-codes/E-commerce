@@ -43,3 +43,4 @@ UPDATE reviews SET date = NOW();
 ALTER TABLE reviews ALTER COLUMN date SET NOT NULL;
 
 ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE(email);
+DELETE FROM reviews WHERE product_id = 18;
