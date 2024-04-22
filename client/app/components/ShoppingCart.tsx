@@ -10,6 +10,7 @@ import {
 } from '../lib/features/tabs/tabsSlice'
 import { FaPlus, FaMinus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
+import { CgDollar } from 'react-icons/cg'
 
 interface cartProductType {
   id: number
@@ -125,10 +126,12 @@ const ShoppingCart = () => {
                       </div>
                       <div className='flex items-center gap-5'>
                         <span className='flex items-center text-sonicSilver'>
-                          ${product.price.toFixed(2)}
+                          <CgDollar className='text-lg' />
+                          {product.price.toFixed(2)}
                         </span>
-                        <span className='font-medium text-eerieBlack'>
-                          ${(product.price * product.count).toFixed(2)}
+                        <span className='font-medium flex items-center text-eerieBlack'>
+                          <CgDollar className='text-lg' />
+                          {(product.price * product.count).toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -142,7 +145,9 @@ const ShoppingCart = () => {
         <div className='flex justify-between items-center'>
           <span className='flex items-center gap-2 font-medium'>
             <span className='text-[16px]'>TOTAL: </span>
-            <span className='text-[18px]'>$ {totalPrice.toFixed(2)}</span>
+            <span className='text-[18px] flex items-center gap-1'>
+              <CgDollar className='text-xl' /> {totalPrice.toFixed(2)}
+            </span>
           </span>
           <button
             onClick={() => dispatch(clearCart())}

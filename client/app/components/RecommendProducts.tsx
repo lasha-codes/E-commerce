@@ -6,6 +6,7 @@ import {
 } from 'react-icons/io5'
 import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
 import Link from 'next/link'
+import { CgDollar } from 'react-icons/cg'
 
 interface ProductType {
   id: number
@@ -55,8 +56,9 @@ const RecommendProducts = ({ filteredProducts, title }: propTypes) => {
                   <span className='text-sm capitalize text-sonicSilver'>
                     {product.type}
                   </span>
-                  <span className='font-semibold text-salmonPink'>
-                    ${product.price.toFixed(2)}
+                  <span className='font-semibold flex items-center text-salmonPink'>
+                    <CgDollar className='text-lg' />
+                    {product.price.toFixed(2)}
                   </span>
                 </div>
               </div>

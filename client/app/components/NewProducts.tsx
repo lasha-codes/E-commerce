@@ -7,6 +7,7 @@ import {
 } from 'react-icons/io5'
 import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
+import Link from 'next/link'
 
 const NewProducts = () => {
   const dispatch = useDispatch()
@@ -136,9 +137,12 @@ const NewProducts = () => {
                       />
                     </svg>
                   </div>
-                  <div className='p-1.5 rounded border icon-style'>
+                  <Link
+                    href={`/products/${product.id}`}
+                    className='p-1.5 rounded border icon-style'
+                  >
                     <IoEyeOutline className='text-sonicSilver text-xl' />
-                  </div>
+                  </Link>
                   <div className='border rounded icon-style p-1.5'>
                     <IoGitCompareOutline className='text-xl text-sonicSilver' />
                   </div>
