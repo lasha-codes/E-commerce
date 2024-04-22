@@ -1,5 +1,10 @@
 import { useSelector } from 'react-redux'
 import { LuDollarSign } from 'react-icons/lu'
+import {
+  IoEyeOutline,
+  IoGitCompareOutline,
+  IoBagAddOutline,
+} from 'react-icons/io5'
 
 const NewProducts = () => {
   interface ProductType {
@@ -44,7 +49,7 @@ const NewProducts = () => {
             return (
               <div
                 key={product.id}
-                className='bg-white border w-[300px] flex justify-end flex-col items-start h-[420px] group rounded-[10px] py-10 px-7 relative'
+                className='bg-white overflow-hidden border w-[300px] flex justify-end flex-col items-start h-[420px] group rounded-[10px] py-10 px-7 relative'
               >
                 <div className='p-3 w-full flex justify-center'>
                   <img
@@ -93,12 +98,38 @@ const NewProducts = () => {
                     ) : (
                       <span className='text-eerieBlack filter'>Not Rated</span>
                     )}
-                    <div className='absolute right-0 flex flex-col items-center gap-4'></div>
                   </div>
                   <span className='flex items-center font-bold'>
                     <LuDollarSign />
                     {product.price}
                   </span>
+                </div>
+                <div className='absolute right-3 translate-x-[55px] top-3 flex flex-col items-center gap-2 group-hover:translate-x-0 transition-all duration-300'>
+                  <div className='p-1.5 border rounded icon-style'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth={1.5}
+                      stroke='hsl(0, 0%, 47%)'
+                      className='w-[21px] h-[21px]'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z'
+                      />
+                    </svg>
+                  </div>
+                  <div className='p-1.5 rounded border icon-style'>
+                    <IoEyeOutline className='text-sonicSilver text-xl' />
+                  </div>
+                  <div className='border rounded icon-style p-1.5'>
+                    <IoGitCompareOutline className='text-xl text-sonicSilver' />
+                  </div>
+                  <div className='p-1.5 border rounded icon-style'>
+                    <IoBagAddOutline className='text-sonicSilver text-xl' />
+                  </div>
                 </div>
               </div>
             )
