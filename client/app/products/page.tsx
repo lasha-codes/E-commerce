@@ -2,6 +2,12 @@
 
 import { useDispatch, useSelector } from 'react-redux'
 import { LuDollarSign } from 'react-icons/lu'
+import { Toaster } from 'sonner'
+import {
+  IoEyeOutline,
+  IoBagAddOutline,
+  IoGitCompareOutline,
+} from 'react-icons/io5'
 
 interface ProductType {
   id: number
@@ -42,16 +48,16 @@ const ProductsPage = () => {
             return (
               <div
                 key={product.id}
-                className='bg-white border rounded-[8px] relative p-8 w-[400px] h-[420px] group flex flex-col justify-end items-start'
+                className='bg-white border rounded-[8px] relative p-8 w-[380px] h-[380px] group flex flex-col justify-end items-start'
               >
-                <div className='p-3 flex justify-center w-full h-[250px] absolute top-1 right-[10px] opacity-100 transition-all duration-300 group-hover:opacity-0'>
+                <div className='p-3 flex justify-center w-full h-[200px] absolute top-2 right-[10px] opacity-100 transition-all duration-300 group-hover:opacity-0'>
                   <img
                     className='w-[300px] h-full object-contain'
                     src={product.image[0]}
                     alt={`product image/${product.id}`}
                   />
                 </div>
-                <div className='p-3 flex justify-center w-full h-[250px] absolute top-1 right-[10px] opacity-0 transition-all duration-300 group-hover:opacity-100'>
+                <div className='p-3 flex justify-center w-full h-[200px] absolute top-2 right-[10px] opacity-0 transition-all duration-300 group-hover:opacity-100'>
                   <img
                     className='w-[300px] h-full object-contain'
                     src={product.image[1]}
@@ -70,6 +76,7 @@ const ProductsPage = () => {
                       starsArr.map((star: any) => {
                         return (
                           <svg
+                            key={star}
                             xmlns='http://www.w3.org/2000/svg'
                             fill={
                               Number(getRating(product.rating)) &&
@@ -80,7 +87,7 @@ const ProductsPage = () => {
                             viewBox='0 0 24 24'
                             strokeWidth={1.5}
                             stroke='currentColor'
-                            className='w-6 h-6'
+                            className='w-[21px] h-[21px]'
                           >
                             <path
                               strokeLinecap='round'
@@ -101,10 +108,38 @@ const ProductsPage = () => {
                     <span>{product.price}</span>
                   </div>
                 </div>
+                <div className='absolute top-3 right-3 flex flex-col items-center gap-2'>
+                  <div className='icon-style border rounded p-1'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth={1.5}
+                      stroke='hsl(0, 0%, 47%)'
+                      className='w-[21px] h-[21px]'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z'
+                      />
+                    </svg>
+                  </div>
+                  <div className='icon-style border p-1 rounded'>
+                    <IoEyeOutline className='text-xl text-sonicSilver' />
+                  </div>
+                  <div className='icon-style p-1 border rounded'>
+                    <IoGitCompareOutline className='text-xl text-sonicSilver' />
+                  </div>
+                  <div className='icon-style p-1 border rounded'>
+                    <IoBagAddOutline className='text-xl text-sonicSilver' />
+                  </div>
+                </div>
               </div>
             )
           })}
       </div>
+      <Toaster />
     </main>
   )
 }
