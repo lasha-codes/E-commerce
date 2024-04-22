@@ -17,6 +17,7 @@ import {
 } from './lib/features/tabs/tabsSlice'
 import SideBar from './components/SideBar'
 import WatchList from './components/WatchList'
+import NewProducts from './components/NewProducts'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -68,7 +69,10 @@ const Home = () => {
           <Category extraClass={''} closeIcon={false} />
         </div>
 
-        <Products />
+        <div className='flex flex-col gap-10'>
+          <Products />
+          <NewProducts />
+        </div>
       </div>
 
       <Link href='/add-product'>Add product</Link>
