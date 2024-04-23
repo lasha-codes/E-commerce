@@ -53,18 +53,30 @@ const ProductsPage = () => {
           Anon
         </Link>
       </header>
-      <div className='flex flex-col gap-1.5'>
-        {itemFilterData.map((item, idx: number) => {
-          return (
-            <div key={idx} className='relative w-[18px] h-[18px]'>
-              <input
-                type='checkbox'
-                className='h-full w-full filter-checkbox'
-              />
-              <span className='checked-span'></span>
-            </div>
-          )
-        })}
+      <div className='flex flex-col gap-3'>
+        <h2 className='whitespace-nowrap text-lg font-medium text-eerieBlack'>
+          Filter by Type
+        </h2>
+        <div className='flex flex-col gap-1.5'>
+          {itemFilterData.map((item, idx: number) => {
+            return (
+              <div key={idx} className='relative flex gap-10 w-[18px] h-[18px]'>
+                <div>
+                  <input
+                    type='checkbox'
+                    className='h-full w-full filter-checkbox'
+                    value={item.title}
+                    onChange={(e) => console.log(e.target.value)}
+                  />
+                  <span className='checked-span'></span>
+                </div>
+                <span className='z-[100] min-w-[110px whitespace-nowrap'>
+                  {item.title}
+                </span>
+              </div>
+            )
+          })}
+        </div>
       </div>
       <div className='flex items-start justify-center gap-5 flex-wrap'>
         {products &&
@@ -81,14 +93,14 @@ const ProductsPage = () => {
               >
                 <div className='p-3 flex justify-center w-full h-[140px] absolute top-2 right-[10px] opacity-100 transition-all duration-300 group-hover:opacity-0'>
                   <img
-                    className='w-[300px] h-full object-contain'
+                    className='w-[200px] h-full object-contain'
                     src={product.image[0]}
                     alt={`product image/${product.id}`}
                   />
                 </div>
                 <div className='p-3 flex justify-center w-full h-[140px] absolute top-2 right-[10px] opacity-0 transition-all duration-300 group-hover:opacity-100'>
                   <img
-                    className='w-[300px] h-full object-contain'
+                    className='w-[200px] h-full object-contain'
                     src={product.image[1]}
                     alt={`product image/${product.id}`}
                   />
