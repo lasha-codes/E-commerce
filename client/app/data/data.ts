@@ -93,3 +93,15 @@ export const categories = [
     ],
   },
 ]
+
+export const itemFilterData = [
+  { title: 'Foot Wear' },
+  { title: 'Dress' },
+  { title: 'Jacket' },
+  { title: 'Short & Jeans' },
+  { title: 'Hats and Caps' },
+  { title: 'Glasses' },
+  { title: 'Perfume' },
+  { title: 'Watch' },
+  { title: 'T-shirt' },
+]

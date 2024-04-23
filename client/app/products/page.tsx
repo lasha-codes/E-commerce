@@ -11,6 +11,7 @@ import {
 import Link from 'next/link'
 import { addItemToCart } from '../lib/features/tabs/tabsSlice'
 import { addToWatchList } from '../lib/features/tabs/tabsSlice'
+import { itemFilterData } from '../data/data'
 
 interface ProductType {
   id: number
@@ -46,13 +47,24 @@ const ProductsPage = () => {
   const starsArr = [1, 2, 3, 4, 5]
 
   return (
-    <main className='w-full px-10 py-16'>
+    <main className='w-full flex items-center justify-between px-10 py-16'>
       <header className='fixed top-3'>
         <Link href='/' className='text-2xl font-medium text-eerieBlack'>
           Anon
         </Link>
       </header>
-      <div className=''></div>
+      <div className=''>
+        {itemFilterData.map((item, idx: number) => {
+          return (
+            <div key={idx}>
+              <input
+                type='checkbox'
+                className='h-[10px] w-[10px] rounded-full text-black'
+              />
+            </div>
+          )
+        })}
+      </div>
       <div className='flex items-start justify-center gap-5 flex-wrap'>
         {products &&
           products.map((product: ProductType) => {
@@ -64,16 +76,16 @@ const ProductsPage = () => {
             return (
               <div
                 key={product.id}
-                className='bg-white overflow-hidden border rounded-[8px] relative p-8 w-[380px] h-[380px] group flex flex-col justify-end items-start'
+                className='bg-white overflow-hidden border rounded-[8px] relative p-8 w-[300px] h-[330px] group flex flex-col justify-end items-start'
               >
-                <div className='p-3 flex justify-center w-full h-[200px] absolute top-2 right-[10px] opacity-100 transition-all duration-300 group-hover:opacity-0'>
+                <div className='p-3 flex justify-center w-full h-[140px] absolute top-2 right-[10px] opacity-100 transition-all duration-300 group-hover:opacity-0'>
                   <img
                     className='w-[300px] h-full object-contain'
                     src={product.image[0]}
                     alt={`product image/${product.id}`}
                   />
                 </div>
-                <div className='p-3 flex justify-center w-full h-[200px] absolute top-2 right-[10px] opacity-0 transition-all duration-300 group-hover:opacity-100'>
+                <div className='p-3 flex justify-center w-full h-[140px] absolute top-2 right-[10px] opacity-0 transition-all duration-300 group-hover:opacity-100'>
                   <img
                     className='w-[300px] h-full object-contain'
                     src={product.image[1]}
@@ -144,9 +156,12 @@ const ProductsPage = () => {
                       />
                     </svg>
                   </div>
-                  <div className='icon-style border p-1 rounded'>
+                  <Link
+                    href={`/products/${product.id}`}
+                    className='icon-style border p-1 rounded'
+                  >
                     <IoEyeOutline className='text-xl text-sonicSilver' />
-                  </div>
+                  </Link>
                   <div className='icon-style p-1 border rounded'>
                     <IoGitCompareOutline className='text-xl text-sonicSilver' />
                   </div>
