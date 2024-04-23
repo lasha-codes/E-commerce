@@ -47,7 +47,7 @@ const ProductsPage = () => {
   const starsArr = [1, 2, 3, 4, 5]
 
   return (
-    <main className='w-full flex items-center justify-between px-10 py-16'>
+    <main className='w-full flex items-start justify-between px-10 py-16'>
       <header className='fixed top-3'>
         <Link href='/' className='text-2xl font-medium text-eerieBlack'>
           Anon
@@ -56,11 +56,12 @@ const ProductsPage = () => {
       <div className=''>
         {itemFilterData.map((item, idx: number) => {
           return (
-            <div key={idx}>
+            <div key={idx} className='relative w-[18px] h-[18px]'>
               <input
                 type='checkbox'
-                className='h-[10px] w-[10px] rounded-full text-black'
+                className='h-full w-full filter-checkbox'
               />
+              <span className='checked-span'></span>
             </div>
           )
         })}
