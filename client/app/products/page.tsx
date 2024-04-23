@@ -42,17 +42,27 @@ const ProductsPage = () => {
   }, [products])
 
   const filterProductsByType = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!checkedTypeList.includes(e.target.value)) {
-      setCheckedTypeList((prev) => [...prev, e.target.value])
+    const typeValue = e.target.value
+    let updatedCheckedTypeList
+
+    if (!checkedTypeList.includes(typeValue)) {
+      updatedCheckedTypeList = [...checkedTypeList, typeValue]
     } else {
-      const poppedArr = checkedTypeList.filter((type: string) => {
-        return type !== e.target.value
-      })
-      setCheckedTypeList(poppedArr)
+      updatedCheckedTypeList = checkedTypeList.filter(
+        (type) => type !== typeValue
+      )
     }
+
+    setCheckedTypeList(updatedCheckedTypeList)
+
+    const filterArr = products.filter((product) =>
+      updatedCheckedTypeList.includes(product.type)
+    )
+    setProductsCopy(filterArr)
   }
 
   console.log(checkedTypeList)
+  console.log(productsCopy)
 
   const getRating = (ratingArr: number[]) => {
     if (ratingArr.length === 0) {
