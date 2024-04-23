@@ -53,7 +53,7 @@ const ProductsPage = () => {
           Anon
         </Link>
       </header>
-      <div className=''>
+      <div className='flex flex-col gap-1.5'>
         {itemFilterData.map((item, idx: number) => {
           return (
             <div key={idx} className='relative w-[18px] h-[18px]'>
