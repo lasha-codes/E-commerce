@@ -1,6 +1,7 @@
 'use client'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import { LuDollarSign } from 'react-icons/lu'
 import { Toaster } from 'sonner'
 import {
@@ -27,12 +28,31 @@ interface ProductType {
 
 const ProductsPage = () => {
   const dispatch = useDispatch()
+  const [productsCopy, setProductsCopy] = useState<ProductType[]>([])
+  const [checkedTypeList, setCheckedTypeList] = useState<string[]>([])
   const { products }: { products: ProductType[] } = useSelector(
     (state: any) => state.product
   )
   const { watchList }: { watchList: ProductType[] } = useSelector(
     (state: any) => state.tabs
   )
+
+  useEffect(() => {
+    products && setProductsCopy(products)
+  }, [products])
+
+  const filterProductsByType = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!checkedTypeList.includes(e.target.value)) {
+      setCheckedTypeList((prev) => [...prev, e.target.value])
+    } else {
+      const poppedArr = checkedTypeList.filter((type: string) => {
+        return type !== e.target.value
+      })
+      setCheckedTypeList(poppedArr)
+    }
+  }
+
+  console.log(checkedTypeList)
 
   const getRating = (ratingArr: number[]) => {
     if (ratingArr.length === 0) {
@@ -66,7 +86,7 @@ const ProductsPage = () => {
                     type='checkbox'
                     className='h-full w-full filter-checkbox'
                     value={item.title}
-                    onChange={(e) => console.log(e.target.value)}
+                    onChange={filterProductsByType}
                   />
                   <span className='checked-span'></span>
                 </div>
@@ -79,8 +99,8 @@ const ProductsPage = () => {
         </div>
       </div>
       <div className='flex items-start justify-center gap-5 flex-wrap'>
-        {products &&
-          products.map((product: ProductType) => {
+        {productsCopy &&
+          productsCopy.map((product: ProductType) => {
             const inWatchList =
               watchList &&
               watchList.find((liked: ProductType) => {

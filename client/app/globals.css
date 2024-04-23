@@ -126,7 +126,7 @@ main::-webkit-scrollbar {
 .checked-span::after {
   content: '';
   position: absolute;
-  top: -10px;
+  top: -7px;
   left: 7px;
   bottom: 10px;
   width: 0;
