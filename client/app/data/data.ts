@@ -105,3 +105,5 @@ export const itemFilterData = [
   { title: 'Watch' },
   { title: 'T-shirt' },
 ]
+
+export const FilterGenderData = [{ title: 'Man' }, { title: 'Woman' }]

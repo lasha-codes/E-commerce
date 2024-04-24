@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { addItemToCart } from '../lib/features/tabs/tabsSlice'
 import { addToWatchList } from '../lib/features/tabs/tabsSlice'
 import { itemFilterData } from '../data/data'
+import { FilterGenderData } from '../data/data'
 
 interface ProductType {
   id: number
@@ -112,12 +113,38 @@ const ProductsPage = () => {
                   />
                   <span className='checked-span'></span>
                 </div>
-                <span className='z-[100] min-w-[110px whitespace-nowrap'>
+                <span className='z-[100] min-w-[110px] whitespace-nowrap'>
                   {item.title}
                 </span>
               </div>
             )
           })}
+          <div className='flex flex-col mt-8'>
+            <h2 className='text-lg text-eerieBlack whitespace-nowrap font-medium mb-5'>
+              Select Gender
+            </h2>
+            {FilterGenderData.map((gender: { title: string }, idx: number) => {
+              return (
+                <div
+                  key={idx}
+                  className='relative flex gap-10 w-[18px] h-
+              [18px]'
+                >
+                  <div>
+                    <input
+                      type='checkbox'
+                      className='h-full w-full filter-checkbox'
+                      value={gender.title}
+                    />
+                    <span className='checked-span !w-[18px] !h-[18px]'></span>
+                  </div>
+                  <span className='z-[100] min-w-[110px] whitespace-nowrap'>
+                    {gender.title}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
 
