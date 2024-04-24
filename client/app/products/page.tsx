@@ -31,6 +31,7 @@ const ProductsPage = () => {
   const dispatch = useDispatch()
   const [productsCopy, setProductsCopy] = useState<ProductType[]>([])
   const [checkedTypeList, setCheckedTypeList] = useState<string[]>([])
+  const [genderCheckedList, setGenderCheckedList] = useState<string[]>([])
   const [notProductFound, setNoProductFound] = useState<boolean>(false)
   const { products }: { products: ProductType[] } = useSelector(
     (state: any) => state.product
@@ -75,8 +76,6 @@ const ProductsPage = () => {
     setProductsCopy(filterArr)
   }
 
-  console.log(notProductFound)
-
   const getRating = (ratingArr: number[]) => {
     if (ratingArr.length === 0) {
       return <span className='uppercase'>Not Rated</span>
@@ -88,6 +87,21 @@ const ProductsPage = () => {
   }
 
   const starsArr = [1, 2, 3, 4, 5]
+
+  const filterProductsByGender = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const gender = e.target.value.toLowerCase()
+    let updatedGenderList: string[] = [...genderCheckedList]
+    if (!genderCheckedList.includes(gender)) {
+      updatedGenderList = [...genderCheckedList, gender]
+    } else {
+      updatedGenderList = updatedGenderList.filter((value) => {
+        return value !== gender
+      })
+    }
+    setGenderCheckedList(updatedGenderList)
+  }
+
+  console.log(genderCheckedList)
 
   return (
     <main className='w-full flex items-start justify-between gap-20 px-10 py-16'>
@@ -134,6 +148,7 @@ const ProductsPage = () => {
                     <input
                       type='checkbox'
                       className='h-full w-full filter-checkbox'
+                      onChange={filterProductsByGender}
                       value={gender.title}
                     />
                     <span className='checked-span !w-[18px] !h-[18px]'></span>
