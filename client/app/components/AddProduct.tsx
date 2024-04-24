@@ -253,7 +253,7 @@ const AddProduct = () => {
                         </SelectItem>
                         <SelectItem
                           className='cursor-pointer'
-                          value='Shirts & Jeans'
+                          value='Shorts & Jeans'
                         >
                           Shorts & Jeans
                         </SelectItem>

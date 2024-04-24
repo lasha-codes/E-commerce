@@ -12,6 +12,7 @@ ALTER TABLE products ADD COLUMN sold INT NOT NULL DEFAULT 0;
 ALTER TABLE products ADD COLUMN rating INT[];   
 
 UPDATE products SET sold = sold + 1 WHERE id < 15;
+UPDATE products SET type = 'Shorts & Jeans' WHERE type = 'Shirts & Jeans';
 ALTER TABLE products ADD COLUMN date DATE DEFAULT NOW();
 
 ALTER TABLE products ADD COLUMN gender VARCHAR(15);

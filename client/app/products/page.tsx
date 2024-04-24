@@ -43,14 +43,14 @@ const ProductsPage = () => {
   }, [products])
 
   const filterProductsByType = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const typeValue = e.target.value
+    const typeValue = e.target.value.toLowerCase()
     let updatedCheckedTypeList
 
     if (!checkedTypeList.includes(typeValue)) {
       updatedCheckedTypeList = [...checkedTypeList, typeValue]
     } else {
       updatedCheckedTypeList = checkedTypeList.filter(
-        (type) => type !== typeValue
+        (type) => type.toLowerCase() !== typeValue
       )
     }
 
@@ -64,7 +64,7 @@ const ProductsPage = () => {
     }
 
     const filterArr = products.filter((product) =>
-      updatedCheckedTypeList.includes(product.type)
+      updatedCheckedTypeList.includes(product.type.toLowerCase())
     )
     if (filterArr.length === 0) {
       setNoProductFound(true)
@@ -89,7 +89,7 @@ const ProductsPage = () => {
   const starsArr = [1, 2, 3, 4, 5]
 
   return (
-    <main className='w-full flex items-start justify-between px-10 py-16'>
+    <main className='w-full flex items-start justify-between gap-20 px-10 py-16'>
       <header className='fixed top-3'>
         <Link href='/' className='text-2xl font-medium text-eerieBlack'>
           Anon
@@ -120,10 +120,11 @@ const ProductsPage = () => {
           })}
         </div>
       </div>
-      {notProductFound && (
-        <h2 className='text-xl text-sonicSilver'>Couldn't find product.</h2>
-      )}
-      <div className='flex items-start justify-center gap-5 flex-wrap'>
+
+      <div className='flex items-start w-full justify-center gap-5 flex-wrap'>
+        {notProductFound && (
+          <h2 className='text-xl text-sonicSilver'>Couldn't find product.</h2>
+        )}
         {productsCopy &&
           productsCopy.map((product: ProductType) => {
             const inWatchList =
