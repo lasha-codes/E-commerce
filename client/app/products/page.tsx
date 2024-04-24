@@ -115,6 +115,11 @@ const ProductsPage = () => {
           return [...checkedTypeList].includes(product.type.toLowerCase())
         })
 
+        if (filterOnlyByType.length === 0) {
+          setNoProductFound(true)
+        } else {
+          setNoProductFound(false)
+        }
         setProductsCopy(filterOnlyByType)
       }
       return
@@ -138,6 +143,9 @@ const ProductsPage = () => {
 
   return (
     <main className='w-full flex items-start justify-between gap-20 px-10 py-16'>
+      <div className='absolute'>
+        <Toaster />
+      </div>
       <header className='fixed top-3'>
         <Link href='/' className='text-2xl font-medium text-eerieBlack'>
           Anon
@@ -310,7 +318,6 @@ const ProductsPage = () => {
             )
           })}
       </div>
-      <Toaster />
     </main>
   )
 }
