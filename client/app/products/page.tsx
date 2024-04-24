@@ -59,8 +59,6 @@ const ProductsPage = () => {
 
     setCheckedTypeList(updatedCheckedTypeList)
 
-    console.log(checkedTypeList, products)
-
     if (updatedCheckedTypeList.length === 0) {
       setNoProductFound(false)
       return setProductsCopy(products)
@@ -101,7 +99,15 @@ const ProductsPage = () => {
     }
     let filteredByGender
     setGenderCheckedList(updatedGenderList)
-    console.log(updatedGenderList)
+    if (updatedGenderList.length === 0) {
+      console.log(checkedTypeList, updatedGenderList)
+      const filterOnlyByType = products.filter((product: ProductType) => {
+        return [...checkedTypeList].includes(product.type.toLowerCase())
+      })
+      console.log(filterOnlyByType)
+      return setProductsCopy(filterOnlyByType)
+    }
+
     if (checkedTypeList.length === 0) {
       filteredByGender = products.filter((product: ProductType) => {
         return updatedGenderList.includes(product.gender.toLowerCase())
