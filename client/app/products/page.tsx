@@ -24,6 +24,7 @@ interface ProductType {
   count: number
   description: string
   type: string
+  gender: string
   rating: number[]
 }
 
@@ -98,10 +99,24 @@ const ProductsPage = () => {
         return value !== gender
       })
     }
+    let filteredByGender
     setGenderCheckedList(updatedGenderList)
+    console.log(updatedGenderList)
+    if (checkedTypeList.length === 0) {
+      filteredByGender = products.filter((product: ProductType) => {
+        return updatedGenderList.includes(product.gender.toLowerCase())
+      })
+      setProductsCopy(filteredByGender)
+    } else {
+      filteredByGender = products.filter((product: ProductType) => {
+        return (
+          checkedTypeList.includes(product.type.toLowerCase()) &&
+          updatedGenderList.includes(product.gender.toLowerCase())
+        )
+      })
+      setProductsCopy(filteredByGender)
+    }
   }
-
-  console.log(genderCheckedList)
 
   return (
     <main className='w-full flex items-start justify-between gap-20 px-10 py-16'>
