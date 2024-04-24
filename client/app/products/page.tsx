@@ -33,7 +33,7 @@ const ProductsPage = () => {
   const [productsCopy, setProductsCopy] = useState<ProductType[]>([])
   const [checkedTypeList, setCheckedTypeList] = useState<string[]>([])
   const [genderCheckedList, setGenderCheckedList] = useState<string[]>([])
-  const [notProductFound, setNoProductFound] = useState<boolean>(false)
+
   const { products }: { products: ProductType[] } = useSelector(
     (state: any) => state.product
   )
@@ -60,7 +60,6 @@ const ProductsPage = () => {
     setCheckedTypeList(updatedCheckedTypeList)
 
     if (updatedCheckedTypeList.length === 0) {
-      setNoProductFound(false)
       return setProductsCopy(products)
     }
     if (genderCheckedList.length === 0) {
@@ -75,11 +74,7 @@ const ProductsPage = () => {
         )
       })
     }
-    if (filterArr.length === 0) {
-      setNoProductFound(true)
-    } else {
-      setNoProductFound(false)
-    }
+
     setProductsCopy(filterArr)
   }
 
@@ -115,11 +110,6 @@ const ProductsPage = () => {
           return [...checkedTypeList].includes(product.type.toLowerCase())
         })
 
-        if (filterOnlyByType.length === 0) {
-          setNoProductFound(true)
-        } else {
-          setNoProductFound(false)
-        }
         setProductsCopy(filterOnlyByType)
       }
       return
@@ -129,7 +119,6 @@ const ProductsPage = () => {
       filteredByGender = products.filter((product: ProductType) => {
         return updatedGenderList.includes(product.gender.toLowerCase())
       })
-      setProductsCopy(filteredByGender)
     } else {
       filteredByGender = products.filter((product: ProductType) => {
         return (
@@ -137,8 +126,9 @@ const ProductsPage = () => {
           updatedGenderList.includes(product.gender.toLowerCase())
         )
       })
-      setProductsCopy(filteredByGender)
     }
+
+    setProductsCopy(filteredByGender)
   }
 
   return (
@@ -205,7 +195,7 @@ const ProductsPage = () => {
       </div>
 
       <div className='flex items-start w-full justify-center gap-5 flex-wrap'>
-        {notProductFound && (
+        {productsCopy.length === 0 && (
           <h2 className='text-xl text-sonicSilver'>Couldn't find product.</h2>
         )}
         {productsCopy &&
