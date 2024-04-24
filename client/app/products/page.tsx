@@ -56,17 +56,25 @@ const ProductsPage = () => {
         (type) => type.toLowerCase() !== typeValue
       )
     }
-
+    let filterArr: any[] = []
     setCheckedTypeList(updatedCheckedTypeList)
 
     if (updatedCheckedTypeList.length === 0) {
       setNoProductFound(false)
       return setProductsCopy(products)
     }
-
-    const filterArr = products.filter((product) =>
-      updatedCheckedTypeList.includes(product.type.toLowerCase())
-    )
+    if (genderCheckedList.length === 0) {
+      filterArr = products.filter((product) =>
+        updatedCheckedTypeList.includes(product.type.toLowerCase())
+      )
+    } else {
+      filterArr = products.filter((product: ProductType) => {
+        return (
+          updatedCheckedTypeList.includes(product.type.toLowerCase()) &&
+          genderCheckedList.includes(product.gender.toLowerCase())
+        )
+      })
+    }
     if (filterArr.length === 0) {
       setNoProductFound(true)
     } else {
@@ -100,12 +108,16 @@ const ProductsPage = () => {
     let filteredByGender
     setGenderCheckedList(updatedGenderList)
     if (updatedGenderList.length === 0) {
-      console.log(checkedTypeList, updatedGenderList)
-      const filterOnlyByType = products.filter((product: ProductType) => {
-        return [...checkedTypeList].includes(product.type.toLowerCase())
-      })
-      console.log(filterOnlyByType)
-      return setProductsCopy(filterOnlyByType)
+      if (checkedTypeList.length === 0) {
+        setProductsCopy(products)
+      } else {
+        const filterOnlyByType = products.filter((product: ProductType) => {
+          return [...checkedTypeList].includes(product.type.toLowerCase())
+        })
+
+        setProductsCopy(filterOnlyByType)
+      }
+      return
     }
 
     if (checkedTypeList.length === 0) {
