@@ -30,6 +30,7 @@ const ProductsPage = () => {
   const dispatch = useDispatch()
   const [productsCopy, setProductsCopy] = useState<ProductType[]>([])
   const [checkedTypeList, setCheckedTypeList] = useState<string[]>([])
+  const [notProductFound, setNoProductFound] = useState<boolean>(false)
   const { products }: { products: ProductType[] } = useSelector(
     (state: any) => state.product
   )
@@ -58,14 +59,22 @@ const ProductsPage = () => {
     console.log(checkedTypeList, products)
 
     if (updatedCheckedTypeList.length === 0) {
+      setNoProductFound(false)
       return setProductsCopy(products)
     }
 
     const filterArr = products.filter((product) =>
       updatedCheckedTypeList.includes(product.type)
     )
+    if (filterArr.length === 0) {
+      setNoProductFound(true)
+    } else {
+      setNoProductFound(false)
+    }
     setProductsCopy(filterArr)
   }
+
+  console.log(notProductFound)
 
   const getRating = (ratingArr: number[]) => {
     if (ratingArr.length === 0) {
@@ -111,6 +120,9 @@ const ProductsPage = () => {
           })}
         </div>
       </div>
+      {notProductFound && (
+        <h2 className='text-xl text-sonicSilver'>Couldn't find product.</h2>
+      )}
       <div className='flex items-start justify-center gap-5 flex-wrap'>
         {productsCopy &&
           productsCopy.map((product: ProductType) => {
