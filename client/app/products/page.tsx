@@ -55,14 +55,17 @@ const ProductsPage = () => {
 
     setCheckedTypeList(updatedCheckedTypeList)
 
+    console.log(checkedTypeList, products)
+
+    if (updatedCheckedTypeList.length === 0) {
+      return setProductsCopy(products)
+    }
+
     const filterArr = products.filter((product) =>
       updatedCheckedTypeList.includes(product.type)
     )
     setProductsCopy(filterArr)
   }
-
-  console.log(checkedTypeList)
-  console.log(productsCopy)
 
   const getRating = (ratingArr: number[]) => {
     if (ratingArr.length === 0) {
