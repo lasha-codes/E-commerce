@@ -134,6 +134,9 @@ const ProductsPage = () => {
   }
 
   const filterByMinPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value) {
+      return setMinPrice('')
+    }
     setMinPrice(parseInt(e.target.value))
     let filteredArr
     if (checkedTypeList.length === 0 && genderCheckedList.length === 0) {
@@ -146,8 +149,23 @@ const ProductsPage = () => {
       filteredArr = [...products].filter((product: ProductType) => {
         return checkedTypeList.includes(product.type.toLowerCase())
       })
+    } else {
+      filteredArr = [...products].filter((product: ProductType) => {
+        return (
+          genderCheckedList.includes(product.gender.toLowerCase()) &&
+          checkedTypeList.includes(product.type.toLowerCase())
+        )
+      })
     }
-    console.log(filteredArr)
+    if (!maxPrice) {
+      if (!e.target.value) {
+        return (filteredArr = products)
+      }
+      filteredArr = filteredArr.filter((product: ProductType) => {
+        return product.price > Number(e.target.value)
+      })
+    }
+    setProductsCopy(filteredArr)
   }
 
   const filterByMaxPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
