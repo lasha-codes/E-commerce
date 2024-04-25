@@ -1,7 +1,7 @@
 'use client'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LuDollarSign } from 'react-icons/lu'
 import { Toaster } from 'sonner'
 import {
@@ -33,6 +33,8 @@ const ProductsPage = () => {
   const [productsCopy, setProductsCopy] = useState<ProductType[]>([])
   const [checkedTypeList, setCheckedTypeList] = useState<string[]>([])
   const [genderCheckedList, setGenderCheckedList] = useState<string[]>([])
+  const [minPrice, setMinPrice] = useState<number | string>('')
+  const [maxPrice, setMaxPrice] = useState<number | string>('')
 
   const { products }: { products: ProductType[] } = useSelector(
     (state: any) => state.product
@@ -131,6 +133,19 @@ const ProductsPage = () => {
     setProductsCopy(filteredByGender)
   }
 
+  const filterByMinPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMinPrice(parseInt(e.target.value))
+    let filteredArr
+    if (checkedTypeList.length === 0 && genderCheckedList.length === 0) {
+      filteredArr = [...products]
+    }
+  }
+
+  const filterByMaxPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMaxPrice(parseInt(e.target.value))
+    console.log(maxPrice)
+  }
+
   return (
     <main className='w-full flex items-start justify-between gap-20 px-10 py-16'>
       <div className='absolute'>
@@ -199,11 +214,15 @@ const ProductsPage = () => {
             <div className='flex items-center gap-3 w-[200px]'>
               <input
                 type='number'
+                value={minPrice}
+                onChange={filterByMinPrice}
                 placeholder='min'
                 className='border w-[100px] price-filter-inp outline-none rounded px-2 py-0.5'
               />
               <input
                 type='number'
+                value={maxPrice}
+                onChange={filterByMaxPrice}
                 placeholder='max'
                 className='border w-[100px] price-filter-inp outline-none px-2 py-0.5 rounded'
               />
