@@ -176,8 +176,29 @@ const ProductsPage = () => {
   }
 
   const filterByMaxPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value) {
+      return setMinPrice('')
+    }
     setMaxPrice(parseInt(e.target.value))
-    console.log(maxPrice)
+    let filteredArr
+    if (checkedTypeList.length === 0 && genderCheckedList.length === 0) {
+      filteredArr = [...products]
+    } else if (checkedTypeList.length === 0 && genderCheckedList.length > 0) {
+      filteredArr = [...products].filter((product: ProductType) => {
+        return genderCheckedList.includes(product.gender.toLowerCase())
+      })
+    } else if (checkedTypeList.length > 0 && genderCheckedList.length === 0) {
+      filteredArr = [...products].filter((product: ProductType) => {
+        return checkedTypeList.includes(product.type.toLowerCase())
+      })
+    } else {
+      filteredArr = [...products].filter((product: ProductType) => {
+        return (
+          genderCheckedList.includes(product.gender.toLowerCase()) &&
+          checkedTypeList.includes(product.type.toLowerCase())
+        )
+      })
+    }
   }
 
   return (
