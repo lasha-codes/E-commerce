@@ -162,7 +162,14 @@ const ProductsPage = () => {
         return (filteredArr = products)
       }
       filteredArr = filteredArr.filter((product: ProductType) => {
-        return product.price > Number(e.target.value)
+        return product.price >= Number(e.target.value)
+      })
+    } else {
+      filteredArr = filteredArr.filter((product: ProductType) => {
+        return (
+          product.price >= Number(e.target.value) &&
+          product.price <= Number(maxPrice)
+        )
       })
     }
     setProductsCopy(filteredArr)
