@@ -138,7 +138,16 @@ const ProductsPage = () => {
     let filteredArr
     if (checkedTypeList.length === 0 && genderCheckedList.length === 0) {
       filteredArr = [...products]
+    } else if (checkedTypeList.length === 0 && genderCheckedList.length > 0) {
+      filteredArr = [...products].filter((product: ProductType) => {
+        return genderCheckedList.includes(product.gender.toLowerCase())
+      })
+    } else if (checkedTypeList.length > 0 && genderCheckedList.length === 0) {
+      filteredArr = [...products].filter((product: ProductType) => {
+        return checkedTypeList.includes(product.type.toLowerCase())
+      })
     }
+    console.log(filteredArr)
   }
 
   const filterByMaxPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
