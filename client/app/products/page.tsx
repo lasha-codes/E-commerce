@@ -157,10 +157,12 @@ const ProductsPage = () => {
         )
       })
     }
+
     if (!maxPrice) {
       if (!e.target.value) {
         return (filteredArr = products)
       }
+
       filteredArr = filteredArr.filter((product: ProductType) => {
         return product.price >= Number(e.target.value)
       })
@@ -176,11 +178,18 @@ const ProductsPage = () => {
   }
 
   const filterByMaxPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let filteredArr = [...products]
+    if (minPrice && !e.target.value) {
+      console.log('dd')
+      filteredArr = filteredArr.filter((product: ProductType) => {
+        return product.price >= Number(minPrice)
+      })
+      setProductsCopy(filteredArr)
+    }
     if (!e.target.value) {
       return setMaxPrice('')
     }
     setMaxPrice(parseInt(e.target.value))
-    let filteredArr = [...products]
     if (checkedTypeList.length === 0 && genderCheckedList.length === 0) {
       filteredArr = [...products]
     } else if (checkedTypeList.length === 0 && genderCheckedList.length > 0) {
@@ -199,6 +208,7 @@ const ProductsPage = () => {
         )
       })
     }
+
     if (!minPrice) {
       if (!e.target.value) {
         return (filteredArr = products)
@@ -210,7 +220,7 @@ const ProductsPage = () => {
       filteredArr = filteredArr.filter((product: ProductType) => {
         return (
           product.price <= Number(e.target.value) &&
-          product.price >= Number(maxPrice)
+          product.price >= Number(minPrice)
         )
       })
     }
