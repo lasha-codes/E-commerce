@@ -163,22 +163,6 @@ const ProductsPage = () => {
       })
     }
 
-    if (maxPrice && minPrice) {
-      filteredByGender = filteredByGender.filter((product: ProductType) => {
-        return (
-          product.price >= Number(minPrice) && product.price <= Number(maxPrice)
-        )
-      })
-    } else if (maxPrice && !minPrice) {
-      filteredByGender = filteredByGender.filter((product: ProductType) => {
-        return product.price <= Number(maxPrice)
-      })
-    } else if (minPrice && !maxPrice) {
-      filteredByGender = filteredByGender.filter((product: ProductType) => {
-        return product.price >= Number(minPrice)
-      })
-    }
-
     setProductsCopy(filteredByGender)
   }
 
