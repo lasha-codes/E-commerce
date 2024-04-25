@@ -128,6 +128,23 @@ const ProductsPage = () => {
           return [...checkedTypeList].includes(product.type.toLowerCase())
         })
 
+        if (maxPrice && minPrice) {
+          filteredByGender = filterOnlyByType.filter((product: ProductType) => {
+            return (
+              product.price >= Number(minPrice) &&
+              product.price <= Number(maxPrice)
+            )
+          })
+        } else if (maxPrice && !minPrice) {
+          filteredByGender = filterOnlyByType.filter((product: ProductType) => {
+            return product.price <= Number(maxPrice)
+          })
+        } else if (minPrice && !maxPrice) {
+          filteredByGender = filterOnlyByType.filter((product: ProductType) => {
+            return product.price >= Number(minPrice)
+          })
+        }
+
         setProductsCopy(filterOnlyByType)
       }
       return
