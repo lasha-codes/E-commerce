@@ -138,7 +138,7 @@ const ProductsPage = () => {
       return setMinPrice('')
     }
     setMinPrice(parseInt(e.target.value))
-    let filteredArr
+    let filteredArr = [...products]
     if (checkedTypeList.length === 0 && genderCheckedList.length === 0) {
       filteredArr = [...products]
     } else if (checkedTypeList.length === 0 && genderCheckedList.length > 0) {
@@ -177,10 +177,10 @@ const ProductsPage = () => {
 
   const filterByMaxPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.value) {
-      return setMinPrice('')
+      return setMaxPrice('')
     }
     setMaxPrice(parseInt(e.target.value))
-    let filteredArr
+    let filteredArr = [...products]
     if (checkedTypeList.length === 0 && genderCheckedList.length === 0) {
       filteredArr = [...products]
     } else if (checkedTypeList.length === 0 && genderCheckedList.length > 0) {
@@ -199,6 +199,22 @@ const ProductsPage = () => {
         )
       })
     }
+    if (!minPrice) {
+      if (!e.target.value) {
+        return (filteredArr = products)
+      }
+      filteredArr = filteredArr.filter((product: ProductType) => {
+        return product.price <= Number(e.target.value)
+      })
+    } else {
+      filteredArr = filteredArr.filter((product: ProductType) => {
+        return (
+          product.price <= Number(e.target.value) &&
+          product.price >= Number(maxPrice)
+        )
+      })
+    }
+    setProductsCopy(filteredArr)
   }
 
   return (
