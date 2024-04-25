@@ -276,6 +276,26 @@ const ProductsPage = () => {
     setProductsCopy(filteredArr)
   }
 
+  const returnFilteredByPriceProducts = () => {
+    let filterArr = [...productsCopy]
+    if (maxPrice && minPrice) {
+      filterArr = filterArr.filter((product: ProductType) => {
+        return (
+          product.price >= Number(minPrice) && product.price <= Number(maxPrice)
+        )
+      })
+    } else if (maxPrice && !minPrice) {
+      filterArr = filterArr.filter((product: ProductType) => {
+        return product.price <= Number(maxPrice)
+      })
+    } else if (minPrice && !maxPrice) {
+      filterArr = filterArr.filter((product: ProductType) => {
+        return product.price >= Number(minPrice)
+      })
+    }
+    return filterArr
+  }
+
   return (
     <main className='w-full flex items-start justify-between gap-20 px-10 py-16'>
       <div className='absolute'>
