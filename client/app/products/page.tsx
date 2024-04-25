@@ -296,6 +296,8 @@ const ProductsPage = () => {
     return filterArr
   }
 
+  const finalProductsResult = returnFilteredByPriceProducts()
+
   return (
     <main className='w-full flex items-start justify-between gap-20 px-10 py-16'>
       <div className='absolute'>
@@ -385,8 +387,8 @@ const ProductsPage = () => {
         {productsCopy.length === 0 && (
           <h2 className='text-xl text-sonicSilver'>Couldn't find product.</h2>
         )}
-        {productsCopy &&
-          productsCopy.map((product: ProductType) => {
+        {finalProductsResult &&
+          finalProductsResult.map((product: ProductType) => {
             const inWatchList =
               watchList &&
               watchList.find((liked: ProductType) => {
