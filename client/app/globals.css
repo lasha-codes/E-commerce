@@ -18,6 +18,11 @@ main::-webkit-scrollbar {
   display: none;
 }
 
+.price-filter-inp::-webkit-inner-spin-button,
+.price-filter-inp::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
 .links::after {
   content: '';
   position: absolute;

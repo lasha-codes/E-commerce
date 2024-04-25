@@ -164,6 +164,7 @@ const ProductsPage = () => {
               </div>
             )
           })}
+
           <div className='flex flex-col mt-8'>
             <h2 className='text-lg text-eerieBlack whitespace-nowrap font-medium mb-5'>
               Select Gender
@@ -190,6 +191,23 @@ const ProductsPage = () => {
                 </div>
               )
             })}
+          </div>
+          <div className='mt-5 flex flex-col items-start gap-3'>
+            <h2 className='text-lg text-eerieBlack font-medium'>
+              Filter By Price
+            </h2>
+            <div className='flex items-center gap-3 w-[200px]'>
+              <input
+                type='number'
+                placeholder='min'
+                className='border w-[100px] price-filter-inp outline-none rounded px-2 py-0.5'
+              />
+              <input
+                type='number'
+                placeholder='max'
+                className='border w-[100px] price-filter-inp outline-none px-2 py-0.5 rounded'
+              />
+            </div>
           </div>
         </div>
       </div>
