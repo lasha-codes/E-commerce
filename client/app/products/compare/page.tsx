@@ -32,7 +32,7 @@ const ProductCompare = () => {
           </span>
         </div>
       </header>
-      <section className='w-full px-20 flex justify-center flex-wrap items-center gap-10 mt-28'>
+      <section className='w-full px-20 flex justify-center flex-wrap items-center gap-10 mt-28 mb-5'>
         <div className='min-w-[500px] cursor-pointer h-[400px] max-md:min-w-full border rounded max-md:h-[350px] max-sm:h-[290px] flex items-center justify-center'>
           <IoAddOutline className='text-[80px]' />
         </div>
