@@ -20,6 +20,9 @@ interface ProductType {
 
 const ProductCompare = () => {
   const dispatch = useDispatch()
+  const { compareProducts }: { compareProducts: ProductType[] } = useSelector(
+    (state: any) => state.product
+  )
   return (
     <main className='w-full py-5'>
       <header className='px-8'>
@@ -35,7 +38,14 @@ const ProductCompare = () => {
       </header>
       <section className='w-full px-20 flex justify-center flex-wrap items-center gap-10 mt-28 mb-5'>
         <div className='min-w-[500px] cursor-pointer h-[400px] max-md:min-w-full border rounded max-md:h-[350px] max-sm:h-[290px] flex items-center justify-center'>
-          <IoAddOutline className='text-[80px]' />
+          {!compareProducts[0] ? (
+            <IoAddOutline className='text-[80px]' />
+          ) : (
+            <img
+              src={compareProducts[0].image[0]}
+              className='max-w-full max-h-full object-contain'
+            />
+          )}
           <SelectCompareProduct addIndex={0} position='top-0 left-0' />
         </div>
 

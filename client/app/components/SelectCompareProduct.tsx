@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { FiDollarSign } from 'react-icons/fi'
 import { FiPlus } from 'react-icons/fi'
+import { addToCompareProducts } from '../lib/features/products/productSlice'
 
 interface ProductType {
   id: number
@@ -37,7 +38,7 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
   }
 
   return (
-    <div className='absolute'>
+    <div className='absolute left-[-100px]'>
       <div className='flex flex-col w-[400px] compare-product items-start gap-8 justify-start h-[400px] overflow-y-scroll px-4 py-5 bg-white border-eerieBlack border rounded-[5px]'>
         {products &&
           products.map((product: ProductType) => {
@@ -67,7 +68,12 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
                   </span>
                 </div>
 
-                <div className='w-full h-full flex items-center justify-center absolute z-[20] bg-cultured opacity-0 rounded group-hover:opacity-70 transition-all duration-300 ease-linear'>
+                <div
+                  onClick={() =>
+                    dispatch(addToCompareProducts({ idx: addIndex, product }))
+                  }
+                  className='w-full h-full flex items-center justify-center absolute z-[20] bg-cultured opacity-0 rounded group-hover:opacity-70 transition-all duration-300 ease-linear'
+                >
                   <FiPlus className='text-4xl text-black' />
                 </div>
               </div>
