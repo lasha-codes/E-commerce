@@ -132,6 +132,10 @@ const productSlice = createSlice({
       state.firstCompareOpened = true
       state.secondCompareOpened = false
     },
+    openSecondTab: (state) => {
+      state.secondCompareOpened = true
+      state.firstCompareOpened = false
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
@@ -178,4 +182,5 @@ export const {
   getCompareProducts,
   addToCompareProducts,
   openFirstTab,
+  openSecondTab,
 } = productSlice.actions
