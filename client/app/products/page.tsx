@@ -287,7 +287,7 @@ const ProductsPage = () => {
       <div className='absolute'>
         <Toaster />
       </div>
-      <header className='fixed top-3'>
+      <header className='absolute top-3'>
         <Link href='/' className='text-2xl font-medium text-eerieBlack'>
           Anon
         </Link>
