@@ -136,6 +136,14 @@ const productSlice = createSlice({
       state.secondCompareOpened = true
       state.firstCompareOpened = false
     },
+    removeProductFromComparison: (state, { payload }) => {
+      const { idx } = payload
+      state.compareProducts[idx] = ''
+      localStorage.setItem(
+        'compareProducts',
+        JSON.stringify(state.compareProducts)
+      )
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {

@@ -73,10 +73,12 @@ const ProductCompare = () => {
               className='text-[80px]'
             />
           ) : (
-            <img
-              src={compareProducts[1].image[1]}
-              className='w-[350px] h-[330px] object-contain'
-            />
+            <div>
+              <img
+                src={compareProducts[1].image[1]}
+                className='w-[350px] h-[330px] object-contain'
+              />
+            </div>
           )}
           <SelectCompareProduct
             opened={secondCompareOpened}
