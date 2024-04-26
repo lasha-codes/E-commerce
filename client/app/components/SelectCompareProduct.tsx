@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { FiDollarSign } from 'react-icons/fi'
+import { FiPlus } from 'react-icons/fi'
 
 interface ProductType {
   id: number
@@ -44,7 +45,7 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
             return (
               <div
                 key={product.id}
-                className='flex items-center justify-between w-[250px] rounded-xl'
+                className='flex items-center group relative w-full justify-between rounded-xl gap-2'
               >
                 <div className='min-w-[110px] max-w-[110px] max-h-[70px] min-h-[70px] flex justify-start items-center'>
                   <img
@@ -65,6 +66,10 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
                     <FiDollarSign />
                     {product.price}
                   </span>
+                </div>
+
+                <div className='w-full h-full flex items-center justify-center absolute z-[20] bg-cultured opacity-0 rounded group-hover:opacity-70 transition-all duration-300 ease-linear'>
+                  <FiPlus className='text-4xl text-black' />
                 </div>
               </div>
             )
