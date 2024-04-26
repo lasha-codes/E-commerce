@@ -23,6 +23,10 @@ main::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 
+.compare-product::-webkit-scrollbar {
+  display: none;
+}
+
 .links::after {
   content: '';
   position: absolute;

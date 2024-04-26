@@ -38,7 +38,7 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
 
   return (
     <div className='absolute'>
-      <div className='flex flex-col w-[400px] items-start gap-8 justify-start h-[400px] overflow-y-scroll px-4 py-5 bg-white border-eerieBlack border-2 rounded-[5px]'>
+      <div className='flex flex-col w-[400px] compare-product items-start gap-8 justify-start h-[400px] overflow-y-scroll px-4 py-5 bg-white border-eerieBlack border rounded-[5px]'>
         {products &&
           products.map((product: ProductType) => {
             return (
@@ -54,10 +54,14 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
                   />
                 </div>
 
-                <div className='w-full'>
-                  <h3 className='w-[240px]'>{truncateTitle(product.title)}</h3>
-                  <span>{product.type}</span>
-                  <span className='flex items-center'>
+                <div className='w-full flex flex-col gap-2'>
+                  <h3 className='w-[240px] text-sonicSilver text-[13.5px]'>
+                    {truncateTitle(product.title)}
+                  </h3>
+                  <span className='text-[12px] uppercase font-medium text-salmonPink'>
+                    {product.type}
+                  </span>
+                  <span className='flex items-center font-semibold'>
                     <FiDollarSign />
                     {product.price}
                   </span>
