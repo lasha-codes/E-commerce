@@ -191,4 +191,5 @@ export const {
   addToCompareProducts,
   openFirstTab,
   openSecondTab,
+  removeProductFromComparison,
 } = productSlice.actions

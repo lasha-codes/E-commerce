@@ -42,7 +42,7 @@ const SelectCompareProduct = ({ position, addIndex, opened }: PropTypes) => {
     <div
       className={`absolute ${position} ${
         opened
-          ? 'opacity-100 pointer-events-none'
+          ? 'opacity-100 pointer-events-auto'
           : 'opacity-0 pointer-events-none'
       } transition-all duration-300`}
     >

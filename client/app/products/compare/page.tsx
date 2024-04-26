@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { IoAddOutline } from 'react-icons/io5'
+import { IoAddOutline, IoCloseOutline } from 'react-icons/io5'
 import SelectCompareProduct from '@/app/components/SelectCompareProduct'
 import {
   openFirstTab,
   openSecondTab,
+  removeProductFromComparison,
 } from '@/app/lib/features/products/productSlice'
 
 interface ProductType {
@@ -54,10 +55,18 @@ const ProductCompare = () => {
               className='text-[80px]'
             />
           ) : (
-            <img
-              src={compareProducts[0].image[0]}
-              className='w-[350px] h-[330px] object-contain'
-            />
+            <div className='relative'>
+              <img
+                src={compareProducts[0].image[0]}
+                className='w-[350px] h-[330px] object-contain'
+              />
+              <IoCloseOutline
+                onClick={() =>
+                  dispatch(removeProductFromComparison({ idx: 0 }))
+                }
+                className='absolute top-0 right-0 text-lg hover:text-red-700 transition-all duration-300'
+              />
+            </div>
           )}
           <SelectCompareProduct
             opened={firstCompareOpened}
@@ -67,16 +76,22 @@ const ProductCompare = () => {
         </div>
 
         <div className='min-w-[500px] relative cursor-pointer h-[400px] max-md:min-w-full border max-md:h-[350px] max-sm:h-[290px] rounded flex items-center justify-center'>
-          {!compareProducts[0] ? (
+          {!compareProducts[1] ? (
             <IoAddOutline
               onClick={() => dispatch(openSecondTab())}
               className='text-[80px]'
             />
           ) : (
-            <div>
+            <div className='relative'>
               <img
                 src={compareProducts[1].image[1]}
                 className='w-[350px] h-[330px] object-contain'
+              />
+              <IoCloseOutline
+                onClick={() =>
+                  dispatch(removeProductFromComparison({ idx: 1 }))
+                }
+                className='absolute top-0 right-0 text-lg hover:text-red-700 transition-all duration-300'
               />
             </div>
           )}
