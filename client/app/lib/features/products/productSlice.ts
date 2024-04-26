@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import {
+  combineReducers,
+  createAsyncThunk,
+  createSlice,
+} from '@reduxjs/toolkit'
 import { toast } from 'sonner'
 import axios, { AxiosResponse } from 'axios'
 
@@ -114,6 +118,15 @@ const productSlice = createSlice({
       ) || ['', '']
       console.log(state.compareProducts)
     },
+    addToCompareProducts: (state, { payload }) => {
+      const { idx } = payload
+      state.compareProducts[idx] = payload.product
+      localStorage.setItem(
+        'compareProducts',
+        JSON.stringify(state.compareProducts)
+      )
+      toast.success(`${payload.product.title} Added for comparison.`)
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
@@ -158,4 +171,5 @@ export const {
   submitProduct,
   handleSubmitProduct,
   getCompareProducts,
+  addToCompareProducts,
 } = productSlice.actions
