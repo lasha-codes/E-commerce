@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { FiDollarSign } from 'react-icons/fi'
 import { FiPlus } from 'react-icons/fi'
-import { addToCompareProducts } from '../lib/features/products/productSlice'
+import {
+  addToCompareProducts,
+  closeTab,
+} from '../lib/features/products/productSlice'
 
 interface ProductType {
   id: number
@@ -76,9 +79,10 @@ const SelectCompareProduct = ({ position, addIndex, opened }: PropTypes) => {
                 </div>
 
                 <div
-                  onClick={() =>
+                  onClick={() => {
                     dispatch(addToCompareProducts({ idx: addIndex, product }))
-                  }
+                    dispatch(closeTab({ id: addIndex }))
+                  }}
                   className='w-full h-full flex items-center justify-center absolute z-[20] bg-cultured opacity-0 rounded group-hover:opacity-70 transition-all duration-300 ease-linear'
                 >
                   <FiPlus className='text-4xl text-black' />

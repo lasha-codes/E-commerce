@@ -8,6 +8,7 @@ import {
   openFirstTab,
   openSecondTab,
   removeProductFromComparison,
+  closeTab,
 } from '@/app/lib/features/products/productSlice'
 
 interface ProductType {

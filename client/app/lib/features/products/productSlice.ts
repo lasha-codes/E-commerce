@@ -144,6 +144,13 @@ const productSlice = createSlice({
         JSON.stringify(state.compareProducts)
       )
     },
+    closeTab: (state, { payload }) => {
+      if (payload.id === 0) {
+        state.firstCompareOpened = false
+      } else {
+        state.secondCompareOpened = false
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
@@ -192,4 +199,5 @@ export const {
   openFirstTab,
   openSecondTab,
   removeProductFromComparison,
+  closeTab,
 } = productSlice.actions
