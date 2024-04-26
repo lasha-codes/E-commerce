@@ -25,9 +25,20 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
     (state: any) => state.product
   )
 
+  const truncateTitle = (title: string) => {
+    console.log(title.length)
+    let truncated = ''
+    if (title.length > 40) {
+      truncated = `${title.slice(0, 40)}...`
+    } else {
+      truncated = title
+    }
+    return truncated
+  }
+
   return (
     <div className='absolute'>
-      <div>
+      <div className='flex flex-col w-[400px] items-start gap-8 justify-start h-[400px] overflow-y-scroll px-4 py-5 bg-white border-eerieBlack border-2 rounded-[5px]'>
         {products &&
           products.map((product: ProductType) => {
             return (
@@ -35,13 +46,16 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
                 key={product.id}
                 className='flex items-center justify-between w-[250px] rounded-xl'
               >
-                <img
-                  src={product.image[0]}
-                  alt={`select product image/${product.title}`}
-                  className='h-[70px] w-[100px] object-contain'
-                />
-                <div>
-                  <h3>{product.title}</h3>
+                <div className='min-w-[110px] max-w-[110px] max-h-[70px] min-h-[70px] flex justify-start items-center'>
+                  <img
+                    src={product.image[0]}
+                    alt={`select product image/${product.title}`}
+                    className='h-[70px] w-[100px] object-contain'
+                  />
+                </div>
+
+                <div className='w-full'>
+                  <h3 className='w-[240px]'>{truncateTitle(product.title)}</h3>
                   <span>{product.type}</span>
                   <span className='flex items-center'>
                     <FiDollarSign />
