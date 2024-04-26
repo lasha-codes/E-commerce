@@ -37,20 +37,31 @@ const ProductCompare = () => {
         </div>
       </header>
       <section className='w-full px-20 flex justify-center flex-wrap items-center gap-10 mt-28 mb-5'>
-        <div className='min-w-[500px] cursor-pointer h-[400px] max-md:min-w-full border rounded max-md:h-[350px] max-sm:h-[290px] flex items-center justify-center'>
+        <div className='min-w-[500px] cursor-pointer h-[400px] max-md:min-w-full border rounded max-md:h-[350px] relative max-sm:h-[290px] flex items-center justify-center'>
           {!compareProducts[0] ? (
             <IoAddOutline className='text-[80px]' />
           ) : (
             <img
               src={compareProducts[0].image[0]}
-              className='max-w-full max-h-full object-contain'
+              className='w-[350px] h-[330px] object-contain'
             />
           )}
-          <SelectCompareProduct addIndex={0} position='top-0 left-0' />
         </div>
 
-        <div className='min-w-[500px] cursor-pointer h-[400px] max-md:min-w-full border max-md:h-[350px] max-sm:h-[290px] rounded flex items-center justify-center'>
-          <IoAddOutline className='text-[80px]' />
+        <div className='min-w-[500px] relative cursor-pointer h-[400px] max-md:min-w-full border max-md:h-[350px] max-sm:h-[290px] rounded flex items-center justify-center'>
+          {!compareProducts[0] ? (
+            <IoAddOutline className='text-[80px]' />
+          ) : (
+            <img
+              src={compareProducts[1].image[1]}
+              className='w-[350px] h-[330px] object-contain'
+            />
+          )}
+          <SelectCompareProduct
+            opened={false}
+            addIndex={1}
+            position='left-12'
+          />
         </div>
       </section>
     </main>

@@ -1,10 +1,7 @@
-import {
-  combineReducers,
-  createAsyncThunk,
-  createSlice,
-} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'sonner'
 import axios, { AxiosResponse } from 'axios'
+import { Galada } from 'next/font/google'
 
 const initialState: {
   products: object[]
@@ -16,6 +13,8 @@ const initialState: {
   reviewsLoading: string | 'pending' | 'rejected' | 'idle'
   toReview: boolean
   compareProducts: string[]
+  firstCompareOpened: boolean
+  secondCompareOpened: boolean
 } = {
   products: [],
   productReviews: [],
@@ -26,6 +25,8 @@ const initialState: {
   reviewsLoading: 'idle',
   addedImages: [],
   compareProducts: ['', ''],
+  firstCompareOpened: false,
+  secondCompareOpened: false,
 }
 
 interface productTypes {
@@ -127,6 +128,10 @@ const productSlice = createSlice({
       )
       toast.success(`${payload.product.title} Added for comparison.`)
     },
+    openFirstTab: (state) => {
+      state.firstCompareOpened = true
+      state.secondCompareOpened = false
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
@@ -172,4 +177,5 @@ export const {
   handleSubmitProduct,
   getCompareProducts,
   addToCompareProducts,
+  openFirstTab,
 } = productSlice.actions

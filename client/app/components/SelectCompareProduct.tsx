@@ -19,9 +19,10 @@ interface ProductType {
 interface PropTypes {
   position: string
   addIndex: number
+  opened: boolean
 }
 
-const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
+const SelectCompareProduct = ({ position, addIndex, opened }: PropTypes) => {
   const dispatch = useDispatch()
   const { products }: { products: ProductType[] } = useSelector(
     (state: any) => state.product
@@ -38,7 +39,13 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
   }
 
   return (
-    <div className='absolute left-[-100px]'>
+    <div
+      className={`absolute ${position} ${
+        opened
+          ? 'opacity-100 pointer-events-none'
+          : 'opacity-0 pointer-events-none'
+      } transition-all duration-300`}
+    >
       <div className='flex flex-col w-[400px] compare-product items-start gap-8 justify-start h-[400px] overflow-y-scroll px-4 py-5 bg-white border-eerieBlack border rounded-[5px]'>
         {products &&
           products.map((product: ProductType) => {
