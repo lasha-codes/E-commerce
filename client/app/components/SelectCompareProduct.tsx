@@ -27,7 +27,6 @@ const SelectCompareProduct = ({ position, addIndex }: PropTypes) => {
   )
 
   const truncateTitle = (title: string) => {
-    console.log(title.length)
     let truncated = ''
     if (title.length > 40) {
       truncated = `${title.slice(0, 40)}...`

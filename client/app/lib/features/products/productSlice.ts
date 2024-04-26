@@ -11,6 +11,7 @@ const initialState: {
   isLoading: string | 'pending' | 'rejected' | 'idle'
   reviewsLoading: string | 'pending' | 'rejected' | 'idle'
   toReview: boolean
+  compareProducts: string[]
 } = {
   products: [],
   productReviews: [],
@@ -20,6 +21,7 @@ const initialState: {
   isLoading: 'idle',
   reviewsLoading: 'idle',
   addedImages: [],
+  compareProducts: ['', ''],
 }
 
 interface productTypes {
@@ -106,6 +108,12 @@ const productSlice = createSlice({
       state.continued = false
       state.addedImages = []
     },
+    getCompareProducts: (state) => {
+      state.compareProducts = JSON.parse(
+        localStorage.getItem('compareProducts')!
+      ) || ['', '']
+      console.log(state.compareProducts)
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
@@ -149,4 +157,5 @@ export const {
   backToProduct,
   submitProduct,
   handleSubmitProduct,
+  getCompareProducts,
 } = productSlice.actions

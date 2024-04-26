@@ -9,6 +9,7 @@ import {
 import { renderCart, renderWatchList } from '../lib/features/tabs/tabsSlice'
 import axios from 'axios'
 import { getUser, pageIsLoaded } from '../lib/features/user/userSlice'
+import { getCompareProducts } from '../lib/features/products/productSlice'
 
 const GlobalContext = ({ children }: { children: React.ReactNode }) => {
   const dispatch: any = useDispatch()
@@ -16,6 +17,7 @@ const GlobalContext = ({ children }: { children: React.ReactNode }) => {
     dispatch(getProductsFromDB())
     dispatch(renderCart())
     dispatch(renderWatchList())
+    dispatch(getCompareProducts())
     axios
       .get('/user/authenticate', { withCredentials: true })
       .then((response) => {
