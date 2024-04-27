@@ -26,6 +26,7 @@ interface ProductType {
 
 const ProductCompare = () => {
   const dispatch = useDispatch()
+  console.log('dasd')
   const {
     compareProducts,
     firstCompareOpened,
@@ -96,6 +97,7 @@ const ProductCompare = () => {
               />
             </div>
           )}
+
           <SelectCompareProduct
             opened={secondCompareOpened}
             addIndex={1}
