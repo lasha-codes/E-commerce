@@ -98,6 +98,20 @@ const ProductCompare = () => {
     }
   }
 
+  const compareProductsRatingSecond = () => {
+    if (Number(firstProductRating)) {
+      if (secondProductRating > firstProductRating) {
+        return 'text-green-500'
+      } else if (secondProductRating === firstProductRating) {
+        return 'text-yellow-400'
+      } else {
+        return 'text-red-500'
+      }
+    } else {
+      return 'text-eerieBlack'
+    }
+  }
+
   return (
     <main className='w-full py-5'>
       <header className='px-8'>
