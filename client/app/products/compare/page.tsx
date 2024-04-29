@@ -260,7 +260,7 @@ const ProductCompare = () => {
               </p>
               <p className='flex items-center gap-1.5'>
                 <span>Rating:</span>
-                <span>
+                <span className={`${compareProductsRatingSecond()}`}>
                   {Number(secondProductRating)
                     ? (
                         secondProductRating / compareProducts[1].rating.length
