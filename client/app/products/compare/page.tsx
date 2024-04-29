@@ -52,6 +52,22 @@ const ProductCompare = () => {
         }, 0)
       : 'Not Rated'
 
+  const compareProductsPrice = (idx: number, compareToIdx: number) => {
+    if (compareProducts[compareToIdx]) {
+      if (compareProducts[idx].price > compareProducts[compareToIdx].price) {
+        return 'text-green-800'
+      } else if (
+        compareProducts[idx].price === compareProducts[compareToIdx].price
+      ) {
+        return 'text-yellow-700'
+      } else {
+        return 'text-red-600'
+      }
+    } else {
+      return 'text-eerieBlack'
+    }
+  }
+
   return (
     <main className='w-full py-5'>
       <header className='px-8'>
