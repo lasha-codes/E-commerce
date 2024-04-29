@@ -85,7 +85,7 @@ const ProductCompare = () => {
   }
 
   const compareProductsRatingFirst = () => {
-    if (compareProducts[1]) {
+    if (Number(secondProductRating)) {
       if (firstProductRating > secondProductRating) {
         return 'text-green-500'
       } else if (firstProductRating === secondProductRating) {
@@ -173,7 +173,7 @@ const ProductCompare = () => {
               </p>
               <p className='flex items-center gap-1.5'>
                 <span>Rating:</span>
-                <span>
+                <span className={`${compareProductsRatingFirst()}`}>
                   {Number(firstProductRating)
                     ? (
                         firstProductRating / compareProducts[0].rating.length
