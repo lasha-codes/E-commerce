@@ -55,13 +55,13 @@ const ProductCompare = () => {
   const compareProductsPrice = (idx: number, compareToIdx: number) => {
     if (compareProducts[compareToIdx]) {
       if (compareProducts[idx].price > compareProducts[compareToIdx].price) {
-        return 'text-green-800'
+        return 'text-green-500'
       } else if (
         compareProducts[idx].price === compareProducts[compareToIdx].price
       ) {
-        return 'text-yellow-700'
+        return 'text-yellow-600'
       } else {
-        return 'text-red-600'
+        return 'text-red-500'
       }
     } else {
       return 'text-eerieBlack'
@@ -125,7 +125,12 @@ const ProductCompare = () => {
               </p>
               <p className='flex items-center gap-1.5'>
                 <span>Price:</span>
-                <span className='flex items-center font-semibold'>
+                <span
+                  className={`flex items-center font-semibold ${compareProductsPrice(
+                    0,
+                    1
+                  )}`}
+                >
                   <FiDollarSign />
                   {compareProducts[0].price}
                 </span>
@@ -191,7 +196,12 @@ const ProductCompare = () => {
               </p>
               <p className='flex items-center gap-1.5'>
                 <span>Price:</span>
-                <span className='flex items-center font-semibold'>
+                <span
+                  className={`flex items-center font-semibold ${compareProductsPrice(
+                    1,
+                    0
+                  )}`}
+                >
                   <FiDollarSign />
                   {compareProducts[1].price}
                 </span>
