@@ -3,6 +3,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import { LuDollarSign } from 'react-icons/lu'
+import { CiUser } from 'react-icons/ci'
 import { Toaster } from 'sonner'
 import {
   IoEyeOutline,
@@ -284,11 +285,11 @@ const ProductsPage = () => {
   const finalProductsResult = returnFilteredByPriceProducts()
 
   return (
-    <main className='w-full flex items-start justify-between gap-20 px-10 py-16'>
+    <main className='w-full flex items-start max-md:flex-col max-md:justify-center max-md:items-center justify-between gap-20 px-10 py-16'>
       <div className='absolute'>
         <Toaster />
       </div>
-      <header className='absolute top-3'>
+      <header className='absolute top-3 left-10'>
         <Link href='/' className='text-2xl font-medium text-eerieBlack'>
           Anon
         </Link>
@@ -462,6 +463,7 @@ const ProductsPage = () => {
                       />
                     </svg>
                   </div>
+
                   <Link
                     href={`/products/${product.id}`}
                     className='icon-style border p-1 rounded'
