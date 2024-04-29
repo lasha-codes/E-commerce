@@ -59,7 +59,7 @@ const ProductCompare = () => {
       } else if (
         compareProducts[idx].price === compareProducts[compareToIdx].price
       ) {
-        return 'text-yellow-600'
+        return 'text-yellow-400'
       } else {
         return 'text-red-500'
       }
@@ -75,7 +75,7 @@ const ProductCompare = () => {
       } else if (
         compareProducts[idx].sold === compareProducts[compareToIdx].sold
       ) {
-        return 'text-yellow-600'
+        return 'text-yellow-400'
       } else {
         return 'text-red-500'
       }
@@ -153,7 +153,9 @@ const ProductCompare = () => {
               </p>
               <p className='flex items-center gap-1.5'>
                 <span>Sales:</span>
-                <span>{compareProducts[0].sold}</span>
+                <span className={`${compareProductsSales(0, 1)}`}>
+                  {compareProducts[0].sold}
+                </span>
               </p>
               <p className='flex items-center gap-1.5'>
                 <span>Rating:</span>
@@ -224,7 +226,9 @@ const ProductCompare = () => {
               </p>
               <p className='flex items-center gap-1.5'>
                 <span>Sales:</span>
-                <span>{compareProducts[0].sold}</span>
+                <span className={`${compareProductsSales(1, 0)}`}>
+                  {compareProducts[1].sold}
+                </span>
               </p>
               <p className='flex items-center gap-1.5'>
                 <span>Rating:</span>
