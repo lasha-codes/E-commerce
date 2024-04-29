@@ -151,6 +151,24 @@ const productSlice = createSlice({
         state.secondCompareOpened = false
       }
     },
+    addProductToCompare: (state, { payload }) => {
+      if (!state.compareProducts[0] && state.compareProducts[1]) {
+        state.compareProducts[0] = payload
+        toast.success(`${payload.title} added to the compare list`)
+      } else if (state.compareProducts[0] && !state.compareProducts[1]) {
+        state.compareProducts[1] = payload
+        toast.success(`${payload.title} added to the compare list`)
+      } else if (!state.compareProducts[0] && !state.compareProducts[1]) {
+        state.compareProducts[0] = payload
+        toast.success(`${payload.title} added to the compare list`)
+      } else {
+        toast.error(`Compare List is full`)
+      }
+      localStorage.setItem(
+        'compareProducts',
+        JSON.stringify(state.compareProducts)
+      )
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
