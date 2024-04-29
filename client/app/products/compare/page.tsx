@@ -71,7 +71,7 @@ const ProductCompare = () => {
   const compareProductsSales = (idx: number, compareToIdx: number) => {
     if (compareProducts[compareToIdx]) {
       if (compareProducts[idx].sold > compareProducts[compareToIdx].sold) {
-        return 'text-green-500'
+        return 'text-oceanGreen'
       } else if (
         compareProducts[idx].sold === compareProducts[compareToIdx].sold
       ) {
@@ -87,7 +87,7 @@ const ProductCompare = () => {
   const compareProductsRatingFirst = () => {
     if (Number(secondProductRating)) {
       if (firstProductRating > secondProductRating) {
-        return 'text-green-500'
+        return 'text-oceanGreen'
       } else if (firstProductRating === secondProductRating) {
         return 'text-yellow-400'
       } else {
@@ -101,7 +101,7 @@ const ProductCompare = () => {
   const compareProductsRatingSecond = () => {
     if (Number(firstProductRating)) {
       if (secondProductRating > firstProductRating) {
-        return 'text-green-500'
+        return 'text-oceanGreen'
       } else if (secondProductRating === firstProductRating) {
         return 'text-yellow-400'
       } else {
@@ -170,7 +170,7 @@ const ProductCompare = () => {
               <p className='flex items-center gap-1.5'>
                 <span>Price:</span>
                 <span
-                  className={`flex items-center font-semibold ${compareProductsPrice(
+                  className={`flex items-center font-medium ${compareProductsPrice(
                     0,
                     1
                   )}`}
@@ -243,7 +243,7 @@ const ProductCompare = () => {
               <p className='flex items-center gap-1.5'>
                 <span>Price:</span>
                 <span
-                  className={`flex items-center font-semibold ${compareProductsPrice(
+                  className={`flex items-center font-medium ${compareProductsPrice(
                     1,
                     0
                   )}`}
