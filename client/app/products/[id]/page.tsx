@@ -70,7 +70,6 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
     const currentReviews = productReviews.filter((review) => {
       return review.product_id === parseInt(params.id)
     })
-    console.log(currentReviews)
     setCurrentProductReviews(currentReviews)
   }, [params.id, productReviews])
 

@@ -12,6 +12,7 @@ import {
 import Link from 'next/link'
 import { addItemToCart } from '../lib/features/tabs/tabsSlice'
 import { addToWatchList } from '../lib/features/tabs/tabsSlice'
+import { addProductToCompare } from '../lib/features/products/productSlice'
 import { itemFilterData } from '../data/data'
 import { FilterGenderData } from '../data/data'
 
@@ -468,7 +469,10 @@ const ProductsPage = () => {
                     <IoEyeOutline className='text-xl text-sonicSilver' />
                   </Link>
                   <div className='icon-style p-1 border rounded'>
-                    <IoGitCompareOutline className='text-xl text-sonicSilver' />
+                    <IoGitCompareOutline
+                      onClick={() => dispatch(addProductToCompare(product))}
+                      className='text-xl text-sonicSilver'
+                    />
                   </div>
                   <div
                     onClick={() => dispatch(addItemToCart(product as any))}

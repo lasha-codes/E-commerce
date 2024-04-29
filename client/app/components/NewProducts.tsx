@@ -8,7 +8,7 @@ import {
 import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
 import Link from 'next/link'
-import { addToCompareProducts } from '../lib/features/products/productSlice'
+import { addProductToCompare } from '../lib/features/products/productSlice'
 
 const NewProducts = () => {
   const dispatch = useDispatch()
@@ -149,7 +149,7 @@ const NewProducts = () => {
                   </Link>
                   <div className='border rounded icon-style p-1.5'>
                     <IoGitCompareOutline
-                      onClick={() => dispatch(addToCompareProducts(product))}
+                      onClick={() => dispatch(addProductToCompare(product))}
                       className='text-xl text-sonicSilver'
                     />
                   </div>
