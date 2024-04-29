@@ -5,6 +5,7 @@ import {
   IoBagAddOutline,
 } from 'react-icons/io5'
 import { addItemToCart, addToWatchList } from '../lib/features/tabs/tabsSlice'
+import { addProductToCompare } from '../lib/features/products/productSlice'
 import Link from 'next/link'
 import { CgDollar } from 'react-icons/cg'
 
@@ -104,6 +105,7 @@ const RecommendProducts = ({ filteredProducts, title }: propTypes) => {
                   <div className='p-1 rounded-[4px] border transition-all duration-500 side-icon group relative z-[10]'>
                     <span className='z-[10]'>
                       <IoGitCompareOutline
+                        onClick={() => dispatch(addProductToCompare(product))}
                         className='text-[19px] text-sonicSilver cursor-pointer icon-style z-[10]
                   '
                       />

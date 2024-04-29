@@ -16,8 +16,7 @@ export const socialLinks = [
 
 export const navigation = [
   { link: 'HOME', href: '' },
-  { link: "MEN'S", href: '' },
-  { link: "WOMEN'S", href: '' },
+  { link: 'COMPARE PRODUCTS', href: '/products/compare' },
   { link: 'JEWELRY', href: '' },
   { link: 'PERFUME', href: '' },
   { link: 'BLOG', href: '' },

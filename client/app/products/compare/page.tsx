@@ -208,7 +208,7 @@ const ProductCompare = () => {
             ) : (
               <div className='relative'>
                 <img
-                  src={compareProducts[1].image[1]}
+                  src={compareProducts[1].image[0]}
                   className='w-[350px] h-[330px] object-contain'
                 />
                 <IoCloseOutline
