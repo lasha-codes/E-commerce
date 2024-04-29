@@ -37,6 +37,14 @@ const ProductCompare = () => {
     firstCompareOpened: boolean
     secondCompareOpened: boolean
   } = useSelector((state: any) => state.product)
+
+  const firstProductRating: any =
+    compareProducts[0].rating?.length > 0
+      ? compareProducts[0].rating.reduce((num, acc) => {
+          return num + acc
+        }, 0)
+      : 'Not Rated'
+
   return (
     <main className='w-full py-5'>
       <header className='px-8'>
@@ -79,29 +87,35 @@ const ProductCompare = () => {
             />
           </div>
           {compareProducts[0] && (
-            <div className='flex flex-col gap-1.5'>
-              <p className='flex items-center gap-1'>
+            <div className='flex flex-col gap-3'>
+              <p className='flex items-start gap-1.5 max-w-[500px]'>
                 <span>Title:</span>
-                {compareProducts[0].title}
+                <span>{compareProducts[0].title}</span>
               </p>
-              <p className='flex items-center gap-1'>
+              <p className='flex items-center gap-1.5'>
                 <span>Type:</span>
-                {compareProducts[0].type}
+                <span>{compareProducts[0].type}</span>
               </p>
-              <p className='flex items-center gap-1'>
+              <p className='flex items-center gap-1.5'>
                 <span>Price:</span>
                 <span className='flex items-center'>
                   <FiDollarSign />
                   {compareProducts[0].price}
                 </span>
               </p>
-              <p className='flex items-center gap-1'>
+              <p className='flex items-center gap-1.5'>
                 <span>Sales:</span>
-                {compareProducts[0].sold}
+                <span>{compareProducts[0].sold}</span>
               </p>
-              <p className='flex items-center gap-1'>
-                <span>Description:</span>
-                {compareProducts[0].title}
+              <p className='flex items-center gap-1.5'>
+                <span>Rating:</span>
+                <span>
+                  {Number(firstProductRating)
+                    ? (
+                        firstProductRating / compareProducts[0].rating.length
+                      ).toFixed(1)
+                    : 'Not Rated'}
+                </span>
               </p>
             </div>
           )}
