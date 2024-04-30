@@ -31,6 +31,7 @@ CREATE TABLE users (
 );
 
 ALTER TABLE users ADD COLUMN role VARCHAR(30) NOT NULL DEFAULT 'user';
+UPDATE users SET role = 'vendor' WHERE email = 'lasha@gmail.com';
 
 CREATE TABLE reviews (
    id SERIAL PRIMARY KEY,

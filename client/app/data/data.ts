@@ -20,7 +20,7 @@ export const navigation = [
   { link: 'PRODUCTS', href: '/products' },
   { link: 'PERFUME', href: '' },
   { link: 'BLOG', href: '' },
-  { link: 'HOT OFFERS', href: '/add-product' },
+  { link: 'HOT OFFERS', href: '' },
 ]
 
 export const VendorNavigation = [
@@ -30,7 +30,7 @@ export const VendorNavigation = [
   { link: 'PERFUME', href: '' },
   { link: 'BLOG', href: '' },
   { link: 'HOT OFFERS', href: '' },
-  { link: 'ADD PRODUCT', href: '' },
+  { link: 'ADD PRODUCT', href: '/add-product' },
 ]
 
 export const categories = [
