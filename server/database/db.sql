@@ -30,6 +30,8 @@ CREATE TABLE users (
    password VARCHAR(60) NOT NULL
 );
 
+ALTER TABLE users ADD COLUMN role VARCHAR(30) NOT NULL DEFAULT 'user';
+
 CREATE TABLE reviews (
    id SERIAL PRIMARY KEY,
    product_id INT NOT NULL REFERENCES products (id),

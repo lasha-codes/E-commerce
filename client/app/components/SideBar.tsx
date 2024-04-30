@@ -1,8 +1,7 @@
-import Category from './Category'
-import { IoCloseOutline } from 'react-icons/io5'
 import { useSelector, useDispatch } from 'react-redux'
 import { BsCurrencyDollar } from 'react-icons/bs'
-import { closeSidebar } from '../lib/features/tabs/tabsSlice'
+import { socialLinks } from '../data/data'
+import Link from 'next/link'
 
 const SideBar = () => {
   const dispatch = useDispatch()
@@ -33,28 +32,36 @@ const SideBar = () => {
           : 'translate-x-[-500px] max-md:translate-x-[-700px]'
       }`}
     >
-      <Category
-        extraClass={
-          'border-none w-[390px] max-xsm:w-[400px] -mt-[5px] text-xl uppercase'
-        }
-        closeIcon={
-          <IoCloseOutline
-            onClick={() => dispatch(closeSidebar())}
-            className='text-[25px] absolute top-6 -right-5 icon-style'
-          />
-        }
-      ></Category>
+      <div className='flex items-center gap-3 self-start pb-10 pt-5'>
+        {socialLinks.map((icon: any, idx: number) => {
+          return (
+            <Link
+              href={icon.href}
+              target='_blank'
+              className='icon-style bg-cultured rounded-[5px] p-[5px]'
+            >
+              {<icon.icon className='text-sonicSilver text-lg' />}
+            </Link>
+          )
+        })}
+      </div>
       <div className='self-start'>
-        <h2 className='ml-9 text-xl font-semibold text-eerieBlack opacity-95'>
+        <h2 className='ml-9 text-xl w-full text-left font-semibold text-eerieBlack opacity-95'>
           BEST SELLERS
         </h2>
-        <div className='flex items-center flex-wrap gap-7 mt-7 ml-5'>
+        <div className='flex items-center flex-wrap gap-10 mt-7 ml-5'>
           {products &&
             products.slice(0, 4).map((product: productType) => {
               return (
-                <div className='flex items-center gap-8' key={product.id}>
-                  <div>
-                    <img className='w-[65px]' src={product.image[0]} />
+                <div
+                  className='flex justify-start items-end gap-8'
+                  key={product.id}
+                >
+                  <div className='min-w-[80px] min-h-[80px] max-w-[80px]'>
+                    <img
+                      className='w-full h-full object-contain'
+                      src={product.image[0]}
+                    />
                   </div>
                   <div>
                     <h3 className='text-eerieBlack font-medium'>
