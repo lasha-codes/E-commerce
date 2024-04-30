@@ -20,7 +20,17 @@ export const navigation = [
   { link: 'PRODUCTS', href: '/products' },
   { link: 'PERFUME', href: '' },
   { link: 'BLOG', href: '' },
+  { link: 'HOT OFFERS', href: '/add-product' },
+]
+
+export const VendorNavigation = [
+  { link: 'HOME', href: '' },
+  { link: 'COMPARE PRODUCTS', href: '/products/compare' },
+  { link: 'PRODUCTS', href: '/products' },
+  { link: 'PERFUME', href: '' },
+  { link: 'BLOG', href: '' },
   { link: 'HOT OFFERS', href: '' },
+  { link: 'ADD PRODUCT', href: '' },
 ]
 
 export const categories = [
