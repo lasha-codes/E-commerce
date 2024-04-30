@@ -26,7 +26,7 @@ const NewProducts = () => {
     count: number
     rating: number[]
     type: string
-    date: number
+    date: string
   }
 
   const getRating = (ratingArr: number[]) => {
@@ -43,7 +43,7 @@ const NewProducts = () => {
     products &&
     [...products]
       .sort((a: ProductType, b: ProductType) => {
-        return b.date - a.date
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
       })
       .slice(0, 10)
 
