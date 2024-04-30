@@ -50,11 +50,12 @@ const NewProducts = () => {
   const starsArray = [1, 2, 3, 4, 5]
 
   return (
-    <div className='w-full p-10'>
-      <h1 className='mb-6 text-xl text-eerieBlack font-medium w-full ml-3 max-md:text-center max-md:ml-0'>
-        Newest
-      </h1>
+    <div className='w-full p-10 flex flex-col items-start'>
       <div className='flex items-start justify-center flex-wrap gap-12'>
+        <h1 className='mb-6 text-xl text-eerieBlack font-medium w-full text-center'>
+          Newest
+        </h1>
+
         {newProducts &&
           newProducts.map((product: ProductType) => {
             const inWatchList =

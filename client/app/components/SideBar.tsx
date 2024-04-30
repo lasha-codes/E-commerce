@@ -4,7 +4,6 @@ import { socialLinks } from '../data/data'
 import Link from 'next/link'
 
 const SideBar = () => {
-  const dispatch = useDispatch()
   const { products }: { products: [productType] } = useSelector(
     (state: any) => state.product
   )
@@ -36,6 +35,7 @@ const SideBar = () => {
         {socialLinks.map((icon: any, idx: number) => {
           return (
             <Link
+              key={idx}
               href={icon.href}
               target='_blank'
               className='icon-style bg-cultured rounded-[5px] p-[5px]'

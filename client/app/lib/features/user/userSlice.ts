@@ -14,6 +14,7 @@ const userSlice = createSlice({
     },
     getUser: (state, { payload }) => {
       state.user = payload
+      console.log(state.user)
     },
   },
 })
