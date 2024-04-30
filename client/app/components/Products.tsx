@@ -36,7 +36,9 @@ const Products = () => {
 
   const newProducts: any =
     products.length > 1 &&
-    [...products].sort((a, b) => b.date - a.date).slice(0, 4)
+    [...products]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 4)
 
   return (
     <div className='mt-16'>
