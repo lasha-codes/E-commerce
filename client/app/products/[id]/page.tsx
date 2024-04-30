@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { IoBagHandleOutline } from 'react-icons/io5'
+import { IoBagHandleOutline, IoGitCompareOutline } from 'react-icons/io5'
 import { addToWatchList } from '@/app/lib/features/tabs/tabsSlice'
 import { addItemToCart } from '@/app/lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
@@ -17,6 +17,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import axios from 'axios'
 import { format } from 'date-fns'
+import { addProductToCompare } from '@/app/lib/features/products/productSlice'
 
 interface ParamsType {
   params: {
@@ -206,6 +207,13 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
                 d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z'
               />
             </svg>
+          </button>
+          <button
+            onClick={() => dispatch(addProductToCompare(productById))}
+            className='flex items-center gap-2.5 text-white bg-eerieBlack px-5 py-2 rounded-[2px] hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95'
+          >
+            Add compare list
+            <IoGitCompareOutline />
           </button>
         </div>
         <div className='w-[80%] flex mt-6 items-end max-2xl:flex-col max-2xl:justify-center max-2xl:items-center gap-10 justify-between'>
