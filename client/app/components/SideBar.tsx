@@ -27,12 +27,12 @@ const SideBar = () => {
     if (user.role === 'user') {
       return (
         <nav
-          className='flex items-center gap-7 w-full justify-center py-3 
+          className='flex flex-col items-center gap-7 w-full justify-center py-3 
   max-md:hidden'
         >
           {navigation.map((link: any, idx: number) => {
             return (
-              <Link href={link.href} key={idx} className='links'>
+              <Link href={link.href} key={idx} className=''>
                 {link.link}
               </Link>
             )
@@ -42,12 +42,12 @@ const SideBar = () => {
     } else if (user.role === 'admin') {
       return (
         <nav
-          className='flex items-center gap-7 w-full justify-center py-3 
+          className='flex flex-col items-center gap-7 w-full justify-center py-3 
   max-md:hidden'
         >
           {navigation.map((link: any, idx: number) => {
             return (
-              <Link href={link.href} key={idx} className='links'>
+              <Link href={link.href} key={idx} className=''>
                 {link.link}
               </Link>
             )
@@ -57,12 +57,16 @@ const SideBar = () => {
     } else if (!user.role) {
       return (
         <nav
-          className='flex items-center gap-7 w-full 
+          className='flex flex-col items-start gap-4 w-full 
         justify-center py-3 max-md:hidden'
         >
           {navigation.map((link: any, idx: number) => {
             return (
-              <Link href={link.href} key={idx} className='links'>
+              <Link
+                href={link.href}
+                key={idx}
+                className='font-medium hover:text-salmonPink transition-all duration-300 ease text-lg'
+              >
                 {link.link}
               </Link>
             )
@@ -71,13 +75,10 @@ const SideBar = () => {
       )
     } else {
       return (
-        <nav
-          className='flex items-center gap-7 w-full justify-center py-3 
-  max-md:hidden'
-        >
+        <nav className='flex items-center flex-col gap-7 w-full justify-center py-3 max-md:hidden'>
           {VendorNavigation.map((link: any, idx: number) => {
             return (
-              <Link href={link.href} key={idx} className='links'>
+              <Link href={link.href} key={idx} className=''>
                 {link.link}
               </Link>
             )
@@ -96,8 +97,7 @@ const SideBar = () => {
           : 'translate-x-[-500px] max-md:translate-x-[-700px]'
       }`}
     >
-      <nav>{returnNavigation()}</nav>
-      <div className='flex items-center gap-3 self-start pb-10 pt-5'>
+      <div className='flex items-center gap-3 self-start py-5 pb-4'>
         {socialLinks.map((icon: any, idx: number) => {
           return (
             <Link
@@ -111,11 +111,12 @@ const SideBar = () => {
           )
         })}
       </div>
-      <div className='self-start'>
-        <h2 className='ml-9 text-xl w-full text-left font-semibold text-eerieBlack opacity-95'>
+      <nav className='w-full pb-5'>{returnNavigation()}</nav>
+      <div className='flex items-start flex-col w-full'>
+        <h2 className='text-xl w-full text-left font-semibold text-eerieBlack opacity-95'>
           BEST SELLERS
         </h2>
-        <div className='flex items-center flex-wrap gap-10 mt-7 ml-5'>
+        <div className='flex items-center flex-wrap gap-10 mt-7'>
           {products &&
             products.slice(0, 4).map((product: productType) => {
               return (
