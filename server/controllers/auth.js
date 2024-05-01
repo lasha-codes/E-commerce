@@ -93,14 +93,16 @@ export const logoutUser = (req, res) => {
   }
 }
 
-export const becomeAdmin = (req, res) => {
+export const becomeAdmin = async (req, res) => {
   const { token } = req.cookies
   try {
     if (!token) {
       return res.status(400).json({ message: 'Unauthorized request.' })
     }
     const { email } = jwt.verify(token, process.env.JWT_SECRET)
-    console.log(email)
+    const query = 'SELECT * FROM users WHERE email = $1'
+    const loggedUser = await postgres.query(query, [email])
+    console.log(loggedUser.rows[0])
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
