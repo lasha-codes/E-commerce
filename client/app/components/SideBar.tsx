@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { BsCurrencyDollar } from 'react-icons/bs'
-import { socialLinks } from '../data/data'
+import { VendorNavigation, navigation, socialLinks } from '../data/data'
 import Link from 'next/link'
 
 const SideBar = () => {
@@ -10,6 +10,7 @@ const SideBar = () => {
   const { sideBarOpen }: { sideBarOpen: boolean } = useSelector(
     (state: any) => state.tabs
   )
+  const { user } = useSelector((state: any) => state.user)
 
   interface productType {
     id: number
@@ -22,6 +23,70 @@ const SideBar = () => {
     sold: number
   }
 
+  const returnNavigation = () => {
+    if (user.role === 'user') {
+      return (
+        <nav
+          className='flex items-center gap-7 w-full justify-center py-3 
+  max-md:hidden'
+        >
+          {navigation.map((link: any, idx: number) => {
+            return (
+              <Link href={link.href} key={idx} className='links'>
+                {link.link}
+              </Link>
+            )
+          })}
+        </nav>
+      )
+    } else if (user.role === 'admin') {
+      return (
+        <nav
+          className='flex items-center gap-7 w-full justify-center py-3 
+  max-md:hidden'
+        >
+          {navigation.map((link: any, idx: number) => {
+            return (
+              <Link href={link.href} key={idx} className='links'>
+                {link.link}
+              </Link>
+            )
+          })}
+        </nav>
+      )
+    } else if (!user.role) {
+      return (
+        <nav
+          className='flex items-center gap-7 w-full 
+        justify-center py-3 max-md:hidden'
+        >
+          {navigation.map((link: any, idx: number) => {
+            return (
+              <Link href={link.href} key={idx} className='links'>
+                {link.link}
+              </Link>
+            )
+          })}
+        </nav>
+      )
+    } else {
+      return (
+        <nav
+          className='flex items-center gap-7 w-full justify-center py-3 
+  max-md:hidden'
+        >
+          {VendorNavigation.map((link: any, idx: number) => {
+            return (
+              <Link href={link.href} key={idx} className='links'>
+                {link.link}
+              </Link>
+            )
+          })}
+        </nav>
+      )
+    }
+  }
+
   return (
     <main
       onClick={(e) => e.stopPropagation()}
@@ -31,6 +96,7 @@ const SideBar = () => {
           : 'translate-x-[-500px] max-md:translate-x-[-700px]'
       }`}
     >
+      <nav>{returnNavigation()}</nav>
       <div className='flex items-center gap-3 self-start pb-10 pt-5'>
         {socialLinks.map((icon: any, idx: number) => {
           return (

@@ -71,7 +71,6 @@ const Home = () => {
         </div>
       </div>
 
-      <Link href='/add-product'>Add product</Link>
       <FooterNav />
       <ShoppingCart />
       <WatchList />
