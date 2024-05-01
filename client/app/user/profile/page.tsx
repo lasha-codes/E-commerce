@@ -32,8 +32,34 @@ const Profile = () => {
     if (user.role === 'vendor') {
       return (
         <div className='flex items-center gap-3'>
-          <button>Quit Vendor</button>
-          <button>Become Admin</button>
+          <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
+            Quit Vendor
+          </button>
+          <button className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'>
+            Become Admin
+          </button>
+        </div>
+      )
+    } else if (user.role === 'admin') {
+      return (
+        <div className='flex items-center gap-3'>
+          <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
+            Quit Admin
+          </button>
+          <button className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'>
+            Become Vendor
+          </button>
+        </div>
+      )
+    } else {
+      return (
+        <div className='flex items-center gap-3'>
+          <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
+            Become Vendor
+          </button>
+          <button className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'>
+            Become Admin
+          </button>
         </div>
       )
     }
@@ -66,7 +92,7 @@ const Profile = () => {
         </div>
         <button
           onClick={logout}
-          className='bg-salmonPink text-white px-10 py-2 rounded-full hover:opacity-80 transition-all duration-300'
+          className='bg-salmonPink text-white px-6 py-1 hover:opacity-80 transition-all duration-300'
         >
           Logout
         </button>
