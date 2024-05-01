@@ -92,3 +92,12 @@ export const logoutUser = (req, res) => {
     res.status(400).json({ message: 'something went wrong' })
   }
 }
+
+export const becomeAdmin = (req, res) => {
+  const { token } = req.body
+  if (!token) {
+    return res.status(400).json({ message: 'Unauthorized request.' })
+  }
+  const { email } = jwt.verify(process.env.JWT_SECRET, token)
+  console.log(email)
+}
