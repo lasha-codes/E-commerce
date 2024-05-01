@@ -94,10 +94,14 @@ export const logoutUser = (req, res) => {
 }
 
 export const becomeAdmin = (req, res) => {
-  const { token } = req.body
-  if (!token) {
-    return res.status(400).json({ message: 'Unauthorized request.' })
+  const { token } = req.cookies
+  try {
+    if (!token) {
+      return res.status(400).json({ message: 'Unauthorized request.' })
+    }
+    const { email } = jwt.verify(token, process.env.JWT_SECRET)
+    console.log(email)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
   }
-  const { email } = jwt.verify(process.env.JWT_SECRET, token)
-  console.log(email)
 }
