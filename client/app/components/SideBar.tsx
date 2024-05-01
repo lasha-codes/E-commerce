@@ -2,8 +2,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { BsCurrencyDollar } from 'react-icons/bs'
 import { VendorNavigation, navigation, socialLinks } from '../data/data'
 import Link from 'next/link'
+import { GoArrowRight } from 'react-icons/go'
+import { closeSidebar } from '../lib/features/tabs/tabsSlice'
 
 const SideBar = () => {
+  const dispatch = useDispatch()
   const { products }: { products: [productType] } = useSelector(
     (state: any) => state.product
   )
@@ -112,19 +115,25 @@ const SideBar = () => {
           : 'translate-x-[-500px] max-md:translate-x-[-700px]'
       }`}
     >
-      <div className='flex items-center gap-3 self-start py-5 pb-4'>
-        {socialLinks.map((icon: any, idx: number) => {
-          return (
-            <Link
-              key={idx}
-              href={icon.href}
-              target='_blank'
-              className='icon-style bg-cultured rounded-[5px] p-[5px]'
-            >
-              {<icon.icon className='text-sonicSilver text-lg' />}
-            </Link>
-          )
-        })}
+      <div className='w-full flex items-center justify-between'>
+        <div className='flex items-center gap-3 self-start py-5 pb-4'>
+          {socialLinks.map((icon: any, idx: number) => {
+            return (
+              <Link
+                key={idx}
+                href={icon.href}
+                target='_blank'
+                className='icon-style bg-cultured rounded-[5px] p-[5px]'
+              >
+                {<icon.icon className='text-sonicSilver text-lg' />}
+              </Link>
+            )
+          })}
+        </div>
+        <GoArrowRight
+          onClick={() => dispatch(closeSidebar())}
+          className='text-[21px] icon-style cursor-pointer'
+        />
       </div>
       <nav className='w-full pb-5'>{returnNavigation()}</nav>
       <div className='flex items-start flex-col w-full'>
