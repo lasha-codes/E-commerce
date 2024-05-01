@@ -28,6 +28,17 @@ const Profile = () => {
     }
   }
 
+  const returnButtons = () => {
+    if (user.role === 'vendor') {
+      return (
+        <div className='flex items-center gap-3'>
+          <button>Quit Vendor</button>
+          <button>Become Admin</button>
+        </div>
+      )
+    }
+  }
+
   if (!user.email && isLoaded) {
     return <div>No access.</div>
   }
@@ -59,6 +70,7 @@ const Profile = () => {
         >
           Logout
         </button>
+        <>{user.role && returnButtons()}</>
       </div>
       <Link
         href='/'
