@@ -89,19 +89,25 @@ export const logoutUser = (req, res) => {
       message: 'User has successfully logged out',
     })
   } catch (err) {
-    res.status(400).json({ message: 'something went wrong' })
+    res.status(500).json({ message: 'something went wrong' })
   }
 }
 
 export const becomeAdmin = async (req, res) => {
   const { token } = req.cookies
+  const { adminKey } = req.body
   try {
     if (!token) {
-      return res.status(400).json({ message: 'Unauthorized request.' })
+      return res.status(401).json({ message: 'Unauthorized request.' })
     }
     const { email } = jwt.verify(token, process.env.JWT_SECRET)
-    const query = 'UPDATE users SET role = $1 WHERE email = $2'
-    await postgres.query(query, ['admin', email])
+    if (adminKey === process.env.ADMIN_KEY) {
+      const query = 'UPDATE users SET role = $1 WHERE email = $2'
+      await postgres.query(query, ['admin', email])
+      res.status(200).json({ message: 'U are now admin.' })
+    } else {
+      res.status(400).json({ message: 'Wrong key.' })
+    }
   } catch (err) {
     res.status(500).json({ message: err.message })
   }

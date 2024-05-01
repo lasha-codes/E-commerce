@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import axios from 'axios'
+import { toast } from 'sonner'
+import { Toaster } from 'sonner'
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.withCredentials = true
@@ -11,8 +13,10 @@ const BecomeAdmin = () => {
 
   const becomeAdmin = async () => {
     try {
+      if (adminKey.length === 0) {
+        return toast.error('Key must be provided.')
+      }
       const response = await axios.post('/user/become-admin')
-      console.log(response)
     } catch (err) {
       console.error(err)
     }
@@ -36,6 +40,7 @@ const BecomeAdmin = () => {
           Submit
         </button>
       </div>
+      <Toaster />
     </main>
   )
 }
