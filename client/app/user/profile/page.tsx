@@ -3,7 +3,7 @@
 import { useSelector } from 'react-redux'
 import defaultAvatar from '../../assets/default-avatar.jpg'
 import Image from 'next/image'
-import { FaArrowLeft } from 'react-icons/fa6'
+import { SlArrowLeft } from 'react-icons/sl'
 import Link from 'next/link'
 import axios from 'axios'
 import { toast } from 'sonner'
@@ -48,6 +48,10 @@ const Profile = () => {
             {user.username}
           </h2>
           <p className='text-lg text-spanishGray'>{user.email}</p>
+          <p className='flex items-center gap-1'>
+            <span className='text-eerieBlack'>role:</span>
+            <span className='text-eerieBlack font-medium'>{user.role}</span>
+          </p>
         </div>
         <button
           onClick={logout}
@@ -56,8 +60,11 @@ const Profile = () => {
           Logout
         </button>
       </div>
-      <Link href='/'>
-        <FaArrowLeft className='absolute top-5 left-5 text-xl icon-style' />
+      <Link
+        href='/'
+        className='bg-cultured absolute top-5 left-5 flex items-center justify-center icon-style p-1.5 rounded-full'
+      >
+        <SlArrowLeft className='text-[18.5px]' />
       </Link>
       <Toaster />
     </main>

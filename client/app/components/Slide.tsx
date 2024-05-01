@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 interface PropTypes {
@@ -35,13 +36,14 @@ const Slide: React.FC<PropTypes> = ({ banner, desc, price, type }) => {
           </span>
           .00
         </p>
-        <button
+        <Link
+          href='/products'
           className='bg-salmonPink w-fit text-sm
            hover:bg-eerieBlack transition-all duration-500 ease
          py-2 px-5 rounded font-semibold text-white mt-2 max-md:text-[12px] max-md:px-4 max-md:py-1.5 max-xsm:text-[10px] max-xsm:py-1 max-xsm:px-3'
         >
           SHOP NOW
-        </button>
+        </Link>
       </div>
     </div>
   )
