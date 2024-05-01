@@ -27,12 +27,16 @@ const SideBar = () => {
     if (user.role === 'user') {
       return (
         <nav
-          className='flex flex-col items-center gap-7 w-full justify-center py-3 
-  max-md:hidden'
+          className='flex flex-col items-start gap-4 w-full 
+        justify-center py-3 max-md:hidden text-sonicSilver'
         >
           {navigation.map((link: any, idx: number) => {
             return (
-              <Link href={link.href} key={idx} className=''>
+              <Link
+                href={link.href}
+                key={idx}
+                className='font-medium icon-style text-lg text-sonicSilver'
+              >
                 {link.link}
               </Link>
             )
@@ -42,12 +46,16 @@ const SideBar = () => {
     } else if (user.role === 'admin') {
       return (
         <nav
-          className='flex flex-col items-center gap-7 w-full justify-center py-3 
-  max-md:hidden'
+          className='flex flex-col items-start gap-4 w-full 
+        justify-center py-3 max-md:hidden'
         >
           {navigation.map((link: any, idx: number) => {
             return (
-              <Link href={link.href} key={idx} className=''>
+              <Link
+                href={link.href}
+                key={idx}
+                className='font-medium icon-style text-lg text-sonicSilver'
+              >
                 {link.link}
               </Link>
             )
@@ -65,7 +73,7 @@ const SideBar = () => {
               <Link
                 href={link.href}
                 key={idx}
-                className='font-medium hover:text-salmonPink transition-all duration-300 ease text-lg'
+                className='font-medium icon-style text-lg text-sonicSilver'
               >
                 {link.link}
               </Link>
@@ -75,10 +83,17 @@ const SideBar = () => {
       )
     } else {
       return (
-        <nav className='flex items-center flex-col gap-7 w-full justify-center py-3 max-md:hidden'>
+        <nav
+          className='flex flex-col items-start gap-4 w-full 
+        justify-center py-3 max-md:hidden'
+        >
           {VendorNavigation.map((link: any, idx: number) => {
             return (
-              <Link href={link.href} key={idx} className=''>
+              <Link
+                href={link.href}
+                key={idx}
+                className='font-medium icon-style text-lg text-sonicSilver'
+              >
                 {link.link}
               </Link>
             )
@@ -134,7 +149,7 @@ const SideBar = () => {
                     <h3 className='text-eerieBlack font-medium'>
                       {product.title}
                     </h3>
-                    <span className='text-sm text-salmonPink'>
+                    <span className='text-[13px] text-salmonPink uppercase'>
                       {product.type}
                     </span>
                     <span className='flex items-center font-semibold'>
