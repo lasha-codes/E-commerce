@@ -140,8 +140,8 @@ export const quitBeingAdmin = async (req, res) => {
       return res.status(401).json({ message: 'Unauthorized request' })
     }
     const { email } = jwt.verify(token, process.env.JWT_SECRET)
-    const query = 'SELECT * FROM users WHERE email = $1'
-    await postgres.query(query, email)
+    const query = 'UPDATE users SET role = $1 WHERE email = $2'
+    await postgres.query(query, ['user', email])
     res.status(200).json({ message: 'U have quit being admin.' })
   } catch (err) {
     res.status(500).json({ message: err.message })

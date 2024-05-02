@@ -28,6 +28,15 @@ const Profile = () => {
     }
   }
 
+  const quitAdmin = async () => {
+    try {
+      await axios.post('/user/quit-admin', {}, { withCredentials: true })
+      window.location.reload()
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   const returnButtons = () => {
     if (user.role === 'vendor') {
       return (
@@ -46,7 +55,10 @@ const Profile = () => {
     } else if (user.role === 'admin') {
       return (
         <div className='flex items-center gap-3'>
-          <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
+          <button
+            onClick={quitAdmin}
+            className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'
+          >
             Quit Admin
           </button>
           <Link
