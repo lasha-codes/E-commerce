@@ -112,3 +112,15 @@ export const becomeAdmin = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
+
+export const becomeVendor = async (req, res) => {
+  const { token } = req.cookies
+  const { vendorKey } = req.body
+  try {
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized request.' })
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
