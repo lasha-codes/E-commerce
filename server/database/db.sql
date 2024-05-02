@@ -21,7 +21,6 @@ UPDATE products SET gender = 'Men' WHERE gender = 'men';
 UPDATE products SET rating = '{}'::INT[];
 ALTER TABLE products ALTER COLUMN gender SET NOT NULL;
 
-
 CREATE TABLE users (
    id SERIAL PRIMARY KEY,
    picture TEXT,

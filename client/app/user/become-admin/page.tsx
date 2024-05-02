@@ -16,9 +16,13 @@ const BecomeAdmin = () => {
       if (adminKey.length === 0) {
         return toast.error('Key must be provided.')
       } else if (adminKey !== 'lashas_admin_key') {
-        return toast.error('incorrect key.')
+        return toast.error('Incorrect key.')
       }
-      const response = await axios.post('/user/become-admin', { adminKey })
+      await axios.post('/user/become-admin', { adminKey })
+      window.location.href = '/'
+      setTimeout(() => {
+        window.location.reload()
+      }, 300)
     } catch (err) {
       console.error(err)
     }

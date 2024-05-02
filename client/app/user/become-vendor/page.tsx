@@ -13,7 +13,7 @@ const BecomeVendor = () => {
   const becomeVendor = async () => {
     try {
       if (vendorKey.length === 0) {
-        return toast.error('Ket must be provided.')
+        return toast.error('Key must be provided.')
       } else if (vendorKey !== 'lashas_vendor_key') {
         return toast.error('Incorrect Key.')
       }
