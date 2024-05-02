@@ -1,15 +1,23 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'sonner'
 import { Toaster } from 'sonner'
+import { useSelector } from 'react-redux'
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.withCredentials = true
 
 const BecomeAdmin = () => {
   const [adminKey, setAdminKey] = useState<string>('')
+  const { user } = useSelector((state: any) => state.user)
+
+  useEffect(() => {
+    if (user.role === 'admin') {
+      window.location.href = '/'
+    }
+  }, [user])
 
   const becomeAdmin = async () => {
     try {
