@@ -1,14 +1,22 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Toaster, toast } from 'sonner'
+import { useSelector } from 'react-redux'
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.withCredentials = true
 
 const BecomeVendor = () => {
   const [vendorKey, setVendorKey] = useState<string>('')
+  const { user } = useSelector((state: any) => state.user)
+
+  useEffect(() => {
+    if (user.role === 'vendor') {
+      window.location.href = '/'
+    }
+  }, [user])
 
   const becomeVendor = async () => {
     try {
