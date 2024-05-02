@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import axios from 'axios'
+import { Toaster, toast } from 'sonner'
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.withCredentials = true
@@ -11,7 +12,16 @@ const BecomeVendor = () => {
 
   const becomeVendor = async () => {
     try {
-      const response = await axios.post('/user/become-vendor', { vendorKey })
+      if (vendorKey.length === 0) {
+        return toast.error('Ket must be provided.')
+      } else if (vendorKey !== 'lashas_vendor_key') {
+        return toast.error('Incorrect Key.')
+      }
+      await axios.post('/user/become-vendor', { vendorKey })
+      window.location.href = '/'
+      setTimeout(() => {
+        window.location.reload()
+      }, 300)
     } catch (err) {
       console.error(err)
     }
@@ -34,6 +44,7 @@ const BecomeVendor = () => {
           Submit
         </button>
       </div>
+      <Toaster />
     </main>
   )
 }
