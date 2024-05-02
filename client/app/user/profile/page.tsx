@@ -49,17 +49,23 @@ const Profile = () => {
           <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
             Quit Admin
           </button>
-          <button className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'>
+          <Link
+            href='/user/become-vendor'
+            className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'
+          >
             Become Vendor
-          </button>
+          </Link>
         </div>
       )
     } else {
       return (
         <div className='flex items-center gap-3'>
-          <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
+          <Link
+            href='/user/become-vendor'
+            className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'
+          >
             Become Vendor
-          </button>
+          </Link>
           <Link
             href='/user/become-admin'
             className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'

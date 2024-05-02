@@ -121,7 +121,7 @@ export const becomeVendor = async (req, res) => {
       return res.status(401).json({ message: 'Unauthorized request.' })
     }
     const { email } = jwt.verify(token, process.env.JWT_SECRET)
-    if (vendorKey === process.env.ADMIN_KEY) {
+    if (vendorKey === process.env.VENDOR_KEY) {
       const query = 'UPDATE users SET role = $1 WHERE email = $2'
       await postgres.query(query, ['vendor', email])
       res.status(200).json({ message: 'U are now Vendor.' })
