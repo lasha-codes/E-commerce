@@ -35,9 +35,12 @@ const Profile = () => {
           <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
             Quit Vendor
           </button>
-          <button className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'>
+          <Link
+            href='/user/become-admin'
+            className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'
+          >
             Become Admin
-          </button>
+          </Link>
         </div>
       )
     } else if (user.role === 'admin') {
@@ -57,9 +60,12 @@ const Profile = () => {
           <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
             Become Vendor
           </button>
-          <button className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'>
+          <Link
+            href='/user/become-admin'
+            className='px-3 py-0.5 border border-eerieBlack bg-eerieBlack text-white hover:bg-white hover:text-eerieBlack transition-all duration-300 icon-style'
+          >
             Become Admin
-          </button>
+          </Link>
         </div>
       )
     }

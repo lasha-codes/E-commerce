@@ -120,6 +120,8 @@ export const becomeVendor = async (req, res) => {
     if (!token) {
       return res.status(401).json({ message: 'Unauthorized request.' })
     }
+    const { email } = jwt.verify(token, process.env.JWT_SECRET)
+    console.log(email)
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
