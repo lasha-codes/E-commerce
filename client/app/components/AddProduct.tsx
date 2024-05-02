@@ -40,6 +40,7 @@ const AddProduct = () => {
   const router = useRouter()
   const { addedImages, toggle, continued, toReview, isLoading }: ProductState =
     useSelector((state: any) => state.product)
+  const { user } = useSelector((state: any) => state.user)
   const [name, setName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [price, setPrice] = useState<number | string>('')
@@ -79,11 +80,13 @@ const AddProduct = () => {
 
   useEffect(() => {
     window.addEventListener('click', handleCloseAddImage)
-
+    if (user.email && user.role !== 'vendor') {
+      window.location.href = '/'
+    }
     return () => {
       window.removeEventListener('click', handleCloseAddImage)
     }
-  }, [])
+  }, [user])
 
   return (
     <main className='w-full flex flex-col overflow-hidden justify-start h-screen items-center gap-10  relative'>
