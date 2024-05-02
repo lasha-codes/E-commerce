@@ -132,3 +132,18 @@ export const becomeVendor = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
+
+export const quitBeingAdmin = async (req, res) => {
+  const { token } = req.cookies
+  try {
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized request' })
+    }
+    const { email } = jwt.verify(token, process.env.JWT_SECRET)
+    const query = 'SELECT * FROM users WHERE email = $1'
+    await postgres.query(query, email)
+    res.status(200).json({ message: 'U have quit being admin.' })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
