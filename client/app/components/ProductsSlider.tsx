@@ -2,22 +2,42 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from '@/components/ui/carousel'
 import Product from './Product'
 import dress from '../assets/dress.svg'
-import coat from '../assets/coat.svg'
+import perfume from '../assets/perfume.svg'
 import glasses from '../assets/glasses.svg'
 import shorts from '../assets/shorts.svg'
 import tee from '../assets/tee.svg'
 import jacket from '../assets/jacket.svg'
 import watch from '../assets/watch.svg'
 import hat from '../assets/hat.svg'
+import shoes from '../assets/shoes.svg'
+import { useSelector } from 'react-redux'
 
 import Autoplay from 'embla-carousel-autoplay'
 
+interface productTypes {
+  name: string
+  description: string
+  price: number | string
+  type: string
+  addedImages: [string] | any
+  gender: string
+}
+
 const ProductsSlider = () => {
+  const { products } = useSelector((state: any) => state.product)
+
+  const calculateQuantity = (category: string) => {
+    const filteredByCategory =
+      products &&
+      products.filter((product: productTypes) => {
+        return product.type.toLowerCase() === category.toLowerCase()
+      })
+    return filteredByCategory.length
+  }
+
   return (
     <main className='px-28 mt-10'>
       <Carousel
@@ -30,9 +50,13 @@ const ProductsSlider = () => {
       >
         <CarouselContent>
           <CarouselItem className='flex items-center justify-between flex-wrap gap-7 max-md:justify-center'>
-            <Product image={dress} title={'DRESSES'} count={53} />
-            <Product image={coat} title={'WINTER WEAR'} count={58} />
+            <Product
+              image={dress}
+              title={'DRESSES'}
+              count={calculateQuantity('DRESS')}
+            />
             <Product image={glasses} title={'GLASSES'} count={23} />
+            <Product image={perfume} title={'PERFUME'} count={0} />
           </CarouselItem>
           <CarouselItem className='flex items-center justify-between flex-wrap gap-7 max-md:justify-center'>
             <Product image={shorts} title={'SHORTS & JEANS'} count={84} />
@@ -42,6 +66,7 @@ const ProductsSlider = () => {
           <CarouselItem className='flex items-center justify-around flex-wrap gap-7 max-md:justify-center'>
             <Product image={watch} title={'WATCH'} count={27} />
             <Product image={hat} title={'HAT AND CAPS'} count={39} />
+            <Product image={shoes} title={'Foot Wear'} count={11} />
           </CarouselItem>
         </CarouselContent>
       </Carousel>
