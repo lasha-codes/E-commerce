@@ -31,7 +31,7 @@ const ProductsSlider = () => {
 
   const calculateQuantity = (category: string) => {
     const filteredByCategory =
-      products &&
+      products.length > 0 &&
       products.filter((product: productTypes) => {
         return product.type.toLowerCase() === category.toLowerCase()
       })
@@ -53,20 +53,58 @@ const ProductsSlider = () => {
             <Product
               image={dress}
               title={'DRESSES'}
-              count={calculateQuantity('DRESS')}
+              count={products.length > 0 ? calculateQuantity('DRESS') : '..'}
             />
-            <Product image={glasses} title={'GLASSES'} count={23} />
-            <Product image={perfume} title={'PERFUME'} count={0} />
+            <Product
+              image={glasses}
+              title={'GLASSES'}
+              count={products.length > 0 ? calculateQuantity('GLASSES') : '..'}
+            />
+            <Product
+              image={perfume}
+              title={'PERFUME'}
+              count={products.length > 0 ? calculateQuantity('PERFUME') : '..'}
+            />
           </CarouselItem>
           <CarouselItem className='flex items-center justify-between flex-wrap gap-7 max-md:justify-center'>
-            <Product image={shorts} title={'SHORTS & JEANS'} count={84} />
-            <Product image={tee} title={'T-SHIRTS'} count={35} />
-            <Product image={jacket} title={'JACKET'} count={16} />
+            <Product
+              image={shorts}
+              title={'SHORTS & JEANS'}
+              count={
+                products.length > 0 ? calculateQuantity('SHORT & JEANS') : '..'
+              }
+            />
+            <Product
+              image={tee}
+              title={'T-SHIRTS'}
+              count={products.length > 0 ? calculateQuantity('T-SHIRT') : '..'}
+            />
+            <Product
+              image={jacket}
+              title={'JACKET'}
+              count={products.length > 0 ? calculateQuantity('JACKET') : '..'}
+            />
           </CarouselItem>
           <CarouselItem className='flex items-center justify-around flex-wrap gap-7 max-md:justify-center'>
-            <Product image={watch} title={'WATCH'} count={27} />
-            <Product image={hat} title={'HAT AND CAPS'} count={39} />
-            <Product image={shoes} title={'Foot Wear'} count={11} />
+            <Product
+              image={watch}
+              title={'WATCH'}
+              count={products.length > 0 ? calculateQuantity('WATCH') : '..'}
+            />
+            <Product
+              image={hat}
+              title={'HATS AND CAPS'}
+              count={
+                products.length > 0 ? calculateQuantity('HATS & CAPS') : '..'
+              }
+            />
+            <Product
+              image={shoes}
+              title={'Foot Wear'}
+              count={
+                products.length > 0 ? calculateQuantity('FOOT WEAR') : '..'
+              }
+            />
           </CarouselItem>
         </CarouselContent>
       </Carousel>

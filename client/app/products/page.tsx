@@ -3,7 +3,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import { LuDollarSign } from 'react-icons/lu'
-import { CiUser } from 'react-icons/ci'
 import { Toaster } from 'sonner'
 import {
   IoEyeOutline,

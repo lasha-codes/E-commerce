@@ -108,7 +108,7 @@ export const itemFilterData = [
   { title: 'Dress' },
   { title: 'Jacket' },
   { title: 'Short & Jeans' },
-  { title: 'Hats and Caps' },
+  { title: 'Hats & Caps' },
   { title: 'Glasses' },
   { title: 'Perfume' },
   { title: 'Watch' },

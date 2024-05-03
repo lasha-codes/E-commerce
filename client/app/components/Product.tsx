@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 type ProductPropTypes = {
   image: any
@@ -23,7 +24,12 @@ const Product: React.FC<ProductPropTypes> = ({ image, title, count }) => {
             <h2 className='text-[12px] font-semibold'>{title}</h2>
             <span className='text-[10px] text-sonicSilver'>({count})</span>
           </div>
-          <button className='text-salmonPink text-[12px]'>Show All</button>
+          <Link
+            href='/products'
+            className='text-salmonPink text-[12px] hover:opacity-70 transition-all duration-200 ease'
+          >
+            Show All
+          </Link>
         </div>
       </div>
     </div>
