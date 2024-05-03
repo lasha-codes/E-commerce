@@ -56,6 +56,10 @@ const ShoppingCart = () => {
   )
 
   const makePayment = async () => {
+    const response = await axios.post('/products/calculate-sales', {
+      products: cartProducts,
+    })
+    console.log(response.data)
     const stripe = await stripePromise
     const body = {
       products: cartProducts,
