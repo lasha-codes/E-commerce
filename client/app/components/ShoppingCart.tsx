@@ -11,6 +11,8 @@ import {
 import { FaPlus, FaMinus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
 import { CgDollar } from 'react-icons/cg'
+import { loadStripe } from '@stripe/stripe-js'
+import axios from 'axios'
 
 interface cartProductType {
   id: number
@@ -46,6 +48,20 @@ const ShoppingCart = () => {
     cartProducts.forEach((product: cartProductType) => {
       totalPrice += product.count * product.price
     })
+
+  const makePayment = async () => {
+    const stripe = await loadStripe(
+      'pk_test_51P9CwBBtg1XsJ82ROoaCOLL6YAOHEZbXosFEAig2JS1TqnWmRYhw3CNilePSSaSmu9D4EkHd5KskJ0iVBu9u4bMB00TBUnf57k'
+    )
+    const body = {
+      products: cartProducts,
+    }
+
+    const response: any = await axios.post('/create-checkout', {
+      body,
+    })
+    const session = await response.json()
+  }
 
   return (
     <section
@@ -157,7 +173,10 @@ const ShoppingCart = () => {
           </button>
         </div>
         <div className='flex flex-col gap-2.5'>
-          <button className='bg-cultured hover:opacity-80 transition-all duration-300 font-medium text-[16px] py-3 text-eerieBlack rounded-[2px]'>
+          <button
+            onClick={makePayment}
+            className='bg-cultured hover:opacity-80 transition-all duration-300 font-medium text-[16px] py-3 text-eerieBlack rounded-[2px]'
+          >
             Checkout
           </button>
         </div>
