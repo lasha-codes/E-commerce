@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 import stripe from 'stripe'
 dotenv.config()
 
-stripe(process.env.STRIPE_SECRET)
+const stripeClient = new stripe(process.env.STRIPE_SECRET)
 
 export const registerUser = async (req, res) => {
   const { email, username, password } = req.body
@@ -165,12 +165,12 @@ export const checkoutStripe = async (req, res) => {
     },
     quantity: product.count,
   }))
-  const session = await stripe.checkout.sessions.create({
+  const session = await stripeClient.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: lineItems,
     mode: 'payment',
-    success_url: '',
-    cancel_url: '',
+    success_url: 'http://localhost:3000',
+    cancel_url: 'http://localhost:3000',
   })
 
   res.json({ id: session.id })

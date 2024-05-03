@@ -49,18 +49,28 @@ const ShoppingCart = () => {
       totalPrice += product.count * product.price
     })
 
+  const stripePromise = loadStripe(
+    'pk_test_51P9CwBBtg1XsJ82ROoaCOLL6YAOHEZbXosFEAig2JS1TqnWmRYhw3CNilePSSaSmu9D4EkHd5KskJ0iVBu9u4bMB00TBUnf57k'
+  )
+
   const makePayment = async () => {
-    const stripe = await loadStripe(
-      'pk_test_51P9CwBBtg1XsJ82ROoaCOLL6YAOHEZbXosFEAig2JS1TqnWmRYhw3CNilePSSaSmu9D4EkHd5KskJ0iVBu9u4bMB00TBUnf57k'
-    )
+    const stripe = await stripePromise
     const body = {
       products: cartProducts,
     }
+    try {
+      const response = await axios.post('/user/create-checkout', body)
+      const session = response.data
 
-    const response: any = await axios.post('/create-checkout', {
-      body,
-    })
-    const session = await response.json()
+      const { error } = await stripe!.redirectToCheckout({
+        sessionId: session.id,
+      })
+      if (error) {
+        console.error('Error redirecting to checkout:', error)
+      }
+    } catch (error) {
+      console.error('Error making payment:', error)
+    }
   }
 
   return (
