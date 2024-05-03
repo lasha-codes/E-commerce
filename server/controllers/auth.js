@@ -2,7 +2,10 @@ import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import postgres from '../database/postgres.js'
 import bcrypt from 'bcryptjs'
+import stripe from 'stripe'
 dotenv.config()
+
+stripe(process.env.STRIPE_SECRET)
 
 export const registerUser = async (req, res) => {
   const { email, username, password } = req.body
@@ -146,4 +149,29 @@ export const quitBeingAdmin = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
+}
+
+export const checkoutStripe = async (req, res) => {
+  const { products } = req.body
+
+  const lineItems = products.map((product) => ({
+    price_data: {
+      currency: 'usd',
+      product_data: {
+        name: product.title,
+        images: [product.image[0]],
+      },
+      unit_amount: product.price * 100,
+    },
+    quantity: product.count,
+  }))
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: lineItems,
+    mode: 'payment',
+    success_url: '',
+    cancel_url: '',
+  })
+
+  res.json({ id: session.id })
 }
