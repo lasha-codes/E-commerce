@@ -13,6 +13,8 @@ import { IoIosClose } from 'react-icons/io'
 import { CgDollar } from 'react-icons/cg'
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
+import { toast } from 'sonner'
+import { Toaster } from 'sonner'
 
 interface cartProductType {
   id: number
@@ -59,6 +61,9 @@ const ShoppingCart = () => {
       products: cartProducts,
     }
     try {
+      if (cartProducts.length === 0) {
+        return toast.error('Cart is empty.')
+      }
       const response = await axios.post('/user/create-checkout', body)
       const session = response.data
 
@@ -191,6 +196,7 @@ const ShoppingCart = () => {
           </button>
         </div>
       </div>
+      <Toaster />
     </section>
   )
 }
