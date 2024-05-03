@@ -3,6 +3,7 @@ import {
   authenticateToken,
   becomeAdmin,
   becomeVendor,
+  checkoutStripe,
   loginUser,
   logoutUser,
   quitBeingAdmin,
@@ -16,6 +17,7 @@ router.post('/logout', logoutUser)
 router.post('/become-admin', becomeAdmin)
 router.post('/become-vendor', becomeVendor)
 router.post('/quit-admin', quitBeingAdmin)
+router.post('/create-checkout', checkoutStripe)
 router.get('/authenticate', authenticateToken)
 
 export default router
