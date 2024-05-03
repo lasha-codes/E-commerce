@@ -83,3 +83,22 @@ export const getProductReviews = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
+
+export const calculateProductSalesOnCheckout = (req, res) => {
+  const { products } = req.body
+  try {
+    products &&
+      products.forEach(async (product) => {
+        const query = 'UPDATE products SET sold = sold + $1 WHERE id = $2'
+        await pool.query(query, [product.count, product.id])
+      })
+    res
+      .status(200)
+      .json({
+        message:
+          'U have just increased sales for the each product in your cart.',
+      })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
