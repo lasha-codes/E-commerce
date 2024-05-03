@@ -41,7 +41,10 @@ const Profile = () => {
     if (user.role === 'vendor') {
       return (
         <div className='flex items-center gap-3'>
-          <button className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'>
+          <button
+            onClick={quitAdmin}
+            className='px-3 border py-0.5 border-eerieBlack icon-style hover:bg-eerieBlack hover:text-white transition-all duration-300'
+          >
             Quit Vendor
           </button>
           <Link
