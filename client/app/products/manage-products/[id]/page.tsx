@@ -5,13 +5,14 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useEffect, useState } from 'react'
 import { FiDollarSign } from 'react-icons/fi'
 import axios from 'axios'
+import { Toaster, toast } from 'sonner'
 
 interface productType {
   id: number
   title: string
   price: number
   image: string[]
-  discountedPrice: number | null
+  discountedprice: number | null
   count: number
   description: string
   type: string
@@ -20,7 +21,7 @@ interface productType {
 const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
   const [newTitle, setNewTitle] = useState<string>('')
   const [newDesc, setNewDesc] = useState<string>('')
-  const [discountedPrice, setDiscountedPrice] = useState<number | string>('')
+  const [discountedPrice, setDiscountedPrice] = useState<number>(0)
   const { products }: { products: productType[] } = useSelector(
     (state: any) => state.product
   )
@@ -48,12 +49,20 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
   const updateProduct = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
+      if (updateByIdProduct && discountedPrice >= updateByIdProduct.price) {
+        return toast.error(
+          'Discount price must be less then the starting price'
+        )
+      } else if (!newTitle || !newDesc) {
+        return toast.error('Please fill in all of the fields')
+      }
       await axios.put('/products/update-product', {
         newTitle,
         newDesc,
         discountedPrice,
         productId: parseInt(params.id),
       })
+      window.location.reload()
     } catch (err) {
       console.error(err)
     }
@@ -63,7 +72,7 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
     if (updateByIdProduct) {
       setNewTitle(updateByIdProduct.title)
       setNewDesc(updateByIdProduct.description)
-      setDiscountedPrice(updateByIdProduct.price)
+      setDiscountedPrice(updateByIdProduct.price - 1)
     }
   }, [updateByIdProduct])
 
@@ -130,13 +139,27 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
                         <span>Current price: </span>
                         <div className='flex items-center font-medium'>
                           <FiDollarSign />
-                          {updateByIdProduct.price}
+                          <div
+                            className={`relative ${
+                              updateByIdProduct.discountedprice &&
+                              'text-sonicSilver'
+                            }`}
+                          >
+                            {updateByIdProduct.price}
+                            <span
+                              className={`${
+                                updateByIdProduct.discountedprice
+                                  ? 'opacity-100 bg-sonicSilver'
+                                  : 'opacity-0'
+                              } absolute w-[25px] h-[2px] top-[11px] left-[1.5px] bg-black`}
+                            ></span>
+                          </div>
                         </div>
                       </div>
                       <input
                         value={discountedPrice}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          setDiscountedPrice(e.target.value)
+                          setDiscountedPrice(parseInt(e.target.value))
                         }
                         type='number'
                         id='price'
@@ -149,8 +172,7 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
                 <button
                   type='submit'
                   disabled={buttonDisabled()}
-                  className='mt-3 px-5 py-1 bg-oceanGreen transition-all duration-300 
-ease-linear disabled:opacity-40 text-white rounded'
+                  className='mt-3 px-5 py-1 bg-oceanGreen transition-all duration-300 ease-linear disabled:opacity-40 text-white rounded'
                 >
                   Confirm Edit
                 </button>
@@ -161,6 +183,7 @@ ease-linear disabled:opacity-40 text-white rounded'
           <Skeleton className='w-[500px] h-[400px] bg-slate-600' />
         )}
       </div>
+      <Toaster />
     </main>
   )
 }
