@@ -30,6 +30,20 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
       return product.id === parseInt(params.id)
     })
 
+  const buttonDisabled = () => {
+    if (updateByIdProduct) {
+      if (
+        updateByIdProduct.title !== newTitle ||
+        updateByIdProduct.description !== newDesc ||
+        Number(updateByIdProduct.price) !== Number(discountedPrice)
+      ) {
+        return false
+      } else {
+        return true
+      }
+    }
+  }
+
   useEffect(() => {
     if (updateByIdProduct) {
       setNewTitle(updateByIdProduct.title)
@@ -50,7 +64,7 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
                 alt='Updating Product Image'
               />
             </div>
-            <div>
+            <div className='flex flex-col items-center'>
               <form>
                 <div className='flex flex-col gap-3'>
                   <div className='flex flex-col items-start gap-1'>
@@ -115,6 +129,12 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
                   </div>
                 </div>
               </form>
+              <button
+                disabled={buttonDisabled()}
+                className='mt-3 px-5 py-1 bg-oceanGreen transition-all duration-300 ease-linear disabled:opacity-40 text-white rounded'
+              >
+                Confirm Edit
+              </button>
             </div>
           </div>
         ) : (
