@@ -3,6 +3,7 @@
 import { useSelector } from 'react-redux'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useEffect, useState } from 'react'
+import { FiDollarSign } from 'react-icons/fi'
 
 interface productType {
   id: number
@@ -18,6 +19,7 @@ interface productType {
 const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
   const [newTitle, setNewTitle] = useState<string>('')
   const [newDesc, setNewDesc] = useState<string>('')
+  const [discountedPrice, setDiscountedPrice] = useState<number | string>('')
   const { products }: { products: productType[] } = useSelector(
     (state: any) => state.product
   )
@@ -42,36 +44,68 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
             </div>
             <div>
               <form>
-                <div className='flex flex-col items-start gap-1'>
-                  <label htmlFor='title' className='font-medium cursor-pointer'>
-                    Title
-                  </label>
-                  <input
-                    value={newTitle}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setNewTitle(e.target.value)
-                    }
-                    type='text'
-                    id='title'
-                    className='border px-4 py-1 rounded w-[300px]'
-                    placeholder='New Product Title'
-                  />
+                <div className='flex flex-col gap-3'>
+                  <div className='flex flex-col items-start gap-1'>
+                    <label
+                      htmlFor='title'
+                      className='font-medium cursor-pointer'
+                    >
+                      Title
+                    </label>
+                    <input
+                      value={newTitle}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setNewTitle(e.target.value)
+                      }
+                      type='text'
+                      id='title'
+                      className='border px-4 py-1 rounded w-[300px]'
+                      placeholder='New Product Title'
+                    />
+                  </div>
+                  <div className='flex flex-col items-start gap-1'>
+                    <label
+                      htmlFor='desc'
+                      className='font-medium cursor-pointer'
+                    >
+                      Description
+                    </label>
+                    <textarea
+                      value={newDesc}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                        setNewDesc(e.target.value)
+                      }
+                      id='desc'
+                      className='border px-4 py-1 rounded w-[300px] resize-none'
+                      placeholder='New Product Description'
+                    />
+                  </div>
+                  <div>
+                    <div className='flex flex-col items-start gap-1'>
+                      <label
+                        htmlFor='price'
+                        className='font-medium cursor-pointer'
+                      >
+                        Price
+                      </label>
+
+                      <div className='flex items-center font-medium'>
+                        <FiDollarSign />
+                        {updateByIdProduct.price}
+                      </div>
+                      <input
+                        value={discountedPrice}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          setDiscountedPrice(e.target.value)
+                        }
+                        type='number'
+                        id='price'
+                        className='border px-4 py-1 rounded w-[300px]'
+                        placeholder='Discount price'
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className='flex flex-col items-start gap-1'>
-                  <label htmlFor='title' className='font-medium cursor-pointer'>
-                    Description
-                  </label>
-                  <textarea
-                    value={newDesc}
-                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                      setNewDesc(e.target.value)
-                    }
-                    id='title'
-                    className='border px-4 py-1 rounded w-[300px]'
-                    placeholder='New Product Title'
-                  />
-                </div>
-                <div></div>
               </form>
             </div>
           </div>
