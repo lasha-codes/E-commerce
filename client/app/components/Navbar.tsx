@@ -1,5 +1,5 @@
 import Link from 'next/link.js'
-import { navigation, VendorNavigation } from '../data/data'
+import { AdminNavigation, navigation, VendorNavigation } from '../data/data'
 import { useSelector } from 'react-redux'
 
 const Navbar = () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
     } else if (user.role === 'admin') {
       return (
         <nav className='flex items-center gap-7 w-full justify-center py-3 max-md:hidden'>
-          {navigation.map((link: any, idx: number) => {
+          {AdminNavigation.map((link: any, idx: number) => {
             return (
               <Link href={link.href} key={idx} className='links'>
                 {link.link}

@@ -1,6 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { BsCurrencyDollar } from 'react-icons/bs'
-import { VendorNavigation, navigation, socialLinks } from '../data/data'
+import {
+  AdminNavigation,
+  VendorNavigation,
+  navigation,
+  socialLinks,
+} from '../data/data'
 import Link from 'next/link'
 import { GoArrowRight } from 'react-icons/go'
 import { closeSidebar } from '../lib/features/tabs/tabsSlice'
@@ -52,7 +57,7 @@ const SideBar = () => {
           className='flex flex-col items-start gap-4 w-full 
         justify-center py-3 max-md:hidden'
         >
-          {navigation.map((link: any, idx: number) => {
+          {AdminNavigation.map((link: any, idx: number) => {
             return (
               <Link
                 href={link.href}

@@ -18,16 +18,23 @@ export const navigation = [
   { link: 'HOME', href: '' },
   { link: 'COMPARE PRODUCTS', href: '/products/compare' },
   { link: 'PRODUCTS', href: '/products' },
-  { link: 'PERFUME', href: '' },
   { link: 'BLOG', href: '' },
   { link: 'HOT OFFERS', href: '' },
+]
+
+export const AdminNavigation = [
+  { link: 'HOME', href: '' },
+  { link: 'COMPARE PRODUCTS', href: '/products/compare' },
+  { link: 'PRODUCTS', href: '/products' },
+  { link: 'BLOG', href: '' },
+  { link: 'HOT OFFERS', href: '' },
+  { link: 'MANAGE PRODUCTS', href: '/products/manage-products' },
 ]
 
 export const VendorNavigation = [
   { link: 'HOME', href: '' },
   { link: 'COMPARE PRODUCTS', href: '/products/compare' },
   { link: 'PRODUCTS', href: '/products' },
-  { link: 'PERFUME', href: '' },
   { link: 'BLOG', href: '' },
   { link: 'HOT OFFERS', href: '' },
   { link: 'ADD PRODUCT', href: '/add-product' },
