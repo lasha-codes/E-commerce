@@ -61,7 +61,9 @@ const ManageProducts = () => {
                     </div>
                   </div>
                   <div className='absolute flex flex-col bottom-7 right-0 items-start gap-2'>
-                    <MdOutlineEdit className='text-sonicSilver text-[19px] icon-style' />
+                    <Link href={`/products/manage-products/${product.id}`}>
+                      <MdOutlineEdit className='text-sonicSilver text-[19px] icon-style' />
+                    </Link>
                     <GoTrash className='text-red-500 text-lg icon-style' />
                   </div>
                 </div>
