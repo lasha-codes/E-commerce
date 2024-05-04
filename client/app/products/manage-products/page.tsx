@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { FiDollarSign } from 'react-icons/fi'
+import { GoTrash } from 'react-icons/go'
+import { MdOutlineEdit } from 'react-icons/md'
 
 interface productType {
   id: number
@@ -37,7 +39,7 @@ const ManageProducts = () => {
               return (
                 <div
                   key={product.id}
-                  className='flex items-center justify-center rounded h-[150px] w-[350px] gap-5'
+                  className='flex items-center relative justify-center rounded h-[150px] w-[350px] gap-5'
                 >
                   <div className='h-[100px] w-[180px]'>
                     <img
@@ -57,6 +59,10 @@ const ManageProducts = () => {
                       <FiDollarSign />
                       <span className=''>{product.price}</span>
                     </div>
+                  </div>
+                  <div className='absolute flex flex-col bottom-7 right-0 items-start gap-2'>
+                    <MdOutlineEdit className='text-sonicSilver text-[19px] icon-style' />
+                    <GoTrash className='text-red-500 text-lg icon-style' />
                   </div>
                 </div>
               )
