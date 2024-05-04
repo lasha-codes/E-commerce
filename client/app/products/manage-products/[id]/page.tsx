@@ -30,6 +30,14 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
       return product.id === parseInt(params.id)
     })
 
+  useEffect(() => {
+    if (updateByIdProduct) {
+      setNewTitle(updateByIdProduct.title)
+      setNewDesc(updateByIdProduct.description)
+      setDiscountedPrice(updateByIdProduct.price)
+    }
+  }, [updateByIdProduct])
+
   return (
     <main className='w-full p-10'>
       <div className='w-full flex justify-center'>
@@ -76,7 +84,7 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
                         setNewDesc(e.target.value)
                       }
                       id='desc'
-                      className='border px-4 py-1 rounded w-[300px] resize-none'
+                      className='border px-4 py-1 rounded h-[90px] w-[300px] resize-none'
                       placeholder='New Product Description'
                     />
                   </div>
