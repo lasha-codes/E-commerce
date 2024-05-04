@@ -108,12 +108,15 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
                         htmlFor='price'
                         className='font-medium cursor-pointer'
                       >
-                        Price
+                        Discount Price
                       </label>
 
-                      <div className='flex items-center font-medium'>
-                        <FiDollarSign />
-                        {updateByIdProduct.price}
+                      <div className='flex items-center gap-2'>
+                        <span>Current price: </span>
+                        <div className='flex items-center font-medium'>
+                          <FiDollarSign />
+                          {updateByIdProduct.price}
+                        </div>
                       </div>
                       <input
                         value={discountedPrice}
