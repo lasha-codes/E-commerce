@@ -137,22 +137,29 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
 
                       <div className='flex items-center gap-2'>
                         <span>Current price: </span>
-                        <div className='flex items-center font-medium'>
-                          <FiDollarSign />
-                          <div
-                            className={`relative ${
-                              updateByIdProduct.discountedprice &&
-                              'text-sonicSilver'
-                            }`}
-                          >
-                            {updateByIdProduct.price}
-                            <span
-                              className={`${
-                                updateByIdProduct.discountedprice
-                                  ? 'opacity-100 bg-sonicSilver'
-                                  : 'opacity-0'
-                              } absolute w-[25px] h-[2px] top-[11px] left-[1.5px] bg-black`}
-                            ></span>
+                        <div className='flex items-center'>
+                          <div className='flex items-center font-medium'>
+                            <FiDollarSign />
+                            <div
+                              className={`relative ${
+                                updateByIdProduct.discountedprice &&
+                                'text-sonicSilver'
+                              }`}
+                            >
+                              {updateByIdProduct.price}
+                              <span
+                                className={`${
+                                  updateByIdProduct.discountedprice
+                                    ? 'opacity-100 bg-sonicSilver'
+                                    : 'opacity-0'
+                                } absolute w-[25px] h-[2px] top-[11px] left-[1.5px] bg-black`}
+                              ></span>
+                            </div>
+                            {updateByIdProduct.discountedprice && (
+                              <span className='ml-[8px]'>
+                                {updateByIdProduct.discountedprice}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
