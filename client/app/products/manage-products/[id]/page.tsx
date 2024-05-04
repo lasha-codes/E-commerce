@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useEffect, useState } from 'react'
 import { FiDollarSign } from 'react-icons/fi'
+import axios from 'axios'
 
 interface productType {
   id: number
@@ -44,6 +45,18 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
     }
   }
 
+  const updateProduct = async () => {
+    try {
+      await axios.put('/products/update-product', {
+        newTitle,
+        newDesc,
+        discountedPrice,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   useEffect(() => {
     if (updateByIdProduct) {
       setNewTitle(updateByIdProduct.title)
@@ -65,7 +78,7 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
               />
             </div>
             <div className='flex flex-col items-center'>
-              <form>
+              <form onSubmit={updateProduct}>
                 <div className='flex flex-col gap-3'>
                   <div className='flex flex-col items-start gap-1'>
                     <label

@@ -101,12 +101,12 @@ export const calculateProductSalesOnCheckout = (req, res) => {
 }
 
 export const updateProduct = async (req, res) => {
-  const { newTitle, newDesc, DiscountPrice, productId } = req.body
+  const { newTitle, newDesc, discountedPrice, productId } = req.body
   try {
     const query =
       'UPDATE products SET title = $1 description = $2 discountedPrice = $3 WHERE id = $4'
 
-    await pool.query(query, [newTitle, newDesc, DiscountPrice, productId])
+    await pool.query(query, [newTitle, newDesc, discountedPrice, productId])
     res.status(200).json({ message: 'Successfully updated the product' })
   } catch (err) {
     res.status(500).json({ message: err.message })

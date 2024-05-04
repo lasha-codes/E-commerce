@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'sonner'
 import axios, { AxiosResponse } from 'axios'
-import { Galada } from 'next/font/google'
 
 const initialState: {
   products: object[]
