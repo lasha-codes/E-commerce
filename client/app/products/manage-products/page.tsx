@@ -15,7 +15,9 @@ interface productType {
 }
 
 const ManageProducts = () => {
-  const { products } = useSelector((state: any) => state.product)
+  const { products }: { products: productType[] } = useSelector(
+    (state: any) => state.product
+  )
   return (
     <main className='w-full p-10'>
       <header className='absolute top-5'>
@@ -27,7 +29,32 @@ const ManageProducts = () => {
           <span className='text-sonicSilver text-sm'>Product Management</span>
         </div>
       </header>
-      <section className=''></section>
+      <section className='mt-[100px]'>
+        <div className='flex items-center flex-wrap justify-center gap-5'>
+          {products &&
+            products.map((product: productType) => {
+              return (
+                <div
+                  key={product.id}
+                  className='flex items-start justify-start w-[350px] gap-5'
+                >
+                  <div className='h-[100px] w-[180px]'>
+                    <img
+                      src={product.image[0]}
+                      alt='Product Image'
+                      className='w-full h-full object-contain'
+                    />
+                  </div>
+                  <div>
+                    <h2 className='text-[15px] text-sonicSilver w-[230px]'>
+                      {product.title}
+                    </h2>
+                  </div>
+                </div>
+              )
+            })}
+        </div>
+      </section>
     </main>
   )
 }
