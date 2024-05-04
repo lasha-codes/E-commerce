@@ -45,12 +45,14 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
     }
   }
 
-  const updateProduct = async () => {
+  const updateProduct = async (e: React.FormEvent) => {
+    e.preventDefault()
     try {
       await axios.put('/products/update-product', {
         newTitle,
         newDesc,
         discountedPrice,
+        productId: parseInt(params.id),
       })
     } catch (err) {
       console.error(err)
@@ -144,13 +146,15 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
                     </div>
                   </div>
                 </div>
+                <button
+                  type='submit'
+                  disabled={buttonDisabled()}
+                  className='mt-3 px-5 py-1 bg-oceanGreen transition-all duration-300 
+ease-linear disabled:opacity-40 text-white rounded'
+                >
+                  Confirm Edit
+                </button>
               </form>
-              <button
-                disabled={buttonDisabled()}
-                className='mt-3 px-5 py-1 bg-oceanGreen transition-all duration-300 ease-linear disabled:opacity-40 text-white rounded'
-              >
-                Confirm Edit
-              </button>
             </div>
           </div>
         ) : (
