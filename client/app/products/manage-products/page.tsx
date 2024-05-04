@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
+import { FiDollarSign } from 'react-icons/fi'
 
 interface productType {
   id: number
@@ -30,13 +31,13 @@ const ManageProducts = () => {
         </div>
       </header>
       <section className='mt-[100px]'>
-        <div className='flex items-center flex-wrap justify-center gap-5'>
+        <div className='flex items-center flex-wrap justify-center gap-12'>
           {products &&
             products.map((product: productType) => {
               return (
                 <div
                   key={product.id}
-                  className='flex items-start justify-start w-[350px] gap-5'
+                  className='flex items-center justify-center rounded h-[150px] w-[350px] gap-5'
                 >
                   <div className='h-[100px] w-[180px]'>
                     <img
@@ -45,10 +46,17 @@ const ManageProducts = () => {
                       className='w-full h-full object-contain'
                     />
                   </div>
-                  <div>
+                  <div className='flex flex-col gap-1'>
                     <h2 className='text-[15px] text-sonicSilver w-[230px]'>
                       {product.title}
                     </h2>
+                    <span className='text-salmonPink uppercase font-medium text-[13.5px]'>
+                      {product.type}
+                    </span>
+                    <div className='flex items-center font-semibold text-eerieBlack'>
+                      <FiDollarSign />
+                      <span className=''>{product.price}</span>
+                    </div>
                   </div>
                 </div>
               )
