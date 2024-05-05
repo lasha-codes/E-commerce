@@ -118,6 +118,16 @@ const ManageProducts = () => {
             <span className='font-medium'>{`"${productName}"`}</span>
           </div>
         </h2>
+        <div className='w-full flex gap-4 flex-col items-center justify-center mt-16'>
+          <input
+            type='text'
+            className='border rounded px-3 py-1'
+            placeholder={`${productName}`}
+          />
+          <button className='px-3 py-1 rounded bg-red-600 text-white hover:bg-bitterSweet transition-all duration-500 ease-in-out'>
+            DELETE
+          </button>
+        </div>
       </div>
     </main>
   )
