@@ -27,8 +27,13 @@ const ManageProducts = () => {
   )
 
   return (
-    <main className='w-full p-10 relative'>
-      <header className='absolute top-5'>
+    <main className='w-full  relative overflow-y-scroll'>
+      <div
+        className={`absolute w-full h-full bg-gray-500 opacity-0 pointer-events-none z-[30] ${
+          toggleDelete && '!opacity-40 !pointer-events-auto'
+        }`}
+      />
+      <header className='absolute top-5 px-10 py-1'>
         <div className='flex items-center gap-2'>
           <Link href='/' className='text-2xl font-medium'>
             Anon
@@ -37,7 +42,7 @@ const ManageProducts = () => {
           <span className='text-sonicSilver text-sm'>Product Management</span>
         </div>
       </header>
-      <section className='mt-[100px]'>
+      <section className='mt-[100px] p-5'>
         <div className='flex items-center flex-wrap justify-center gap-12'>
           {products &&
             products.map((product: productType) => {
@@ -83,7 +88,8 @@ const ManageProducts = () => {
         </div>
       </section>
       <div
-        className={`fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] border h-[370px] w-[450px] bg-white z-[10] flex flex-col items-center p-4 transition-all duration-500 ease-in-out ${
+        onClick={(e) => e.preventDefault()}
+        className={`fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] border h-[370px] w-[450px] bg-white z-[50] flex flex-col items-center p-4 transition-all duration-500 ease-in-out ${
           toggleDelete
             ? 'opacity-100 pointer-events-auto translate-y-0'
             : 'opacity-0 pointer-events-none -translate-y-10'
