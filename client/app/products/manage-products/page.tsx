@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { FiDollarSign } from 'react-icons/fi'
 import { GoTrash } from 'react-icons/go'
 import { MdOutlineEdit } from 'react-icons/md'
+import { useState } from 'react'
 
 interface productType {
   id: number
@@ -18,11 +19,14 @@ interface productType {
 }
 
 const ManageProducts = () => {
+  const [productName, setProductName] = useState<string>('')
+  const [toggleDelete, setToggleDelete] = useState<boolean>(false)
   const { products }: { products: productType[] } = useSelector(
     (state: any) => state.product
   )
+
   return (
-    <main className='w-full p-10'>
+    <main className='w-full p-10 relative'>
       <header className='absolute top-5'>
         <div className='flex items-center gap-2'>
           <Link href='/' className='text-2xl font-medium'>
@@ -64,13 +68,29 @@ const ManageProducts = () => {
                     <Link href={`/products/manage-products/${product.id}`}>
                       <MdOutlineEdit className='text-sonicSilver text-[19px] icon-style' />
                     </Link>
-                    <GoTrash className='text-red-500 text-lg icon-style' />
+                    <GoTrash
+                      onClick={() => {
+                        setProductName(product.title)
+                        setToggleDelete(true)
+                      }}
+                      className='text-red-500 text-lg icon-style'
+                    />
                   </div>
                 </div>
               )
             })}
         </div>
       </section>
+      <div
+        className={`fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] border h-[370px] w-[450px] bg-white z-[10] flex flex-col items-center p-4`}
+      >
+        <h2 className='flex flex-wrap justify-center gap-2 w-full'>
+          <div className='flex flex-col items-start gap-2 w-[300px]'>
+            <span className='min-w-[300px]'>{`ENTER product name to confirm`}</span>
+            <span className='font-medium'>{`"${productName}"`}</span>
+          </div>
+        </h2>
+      </div>
     </main>
   )
 }
