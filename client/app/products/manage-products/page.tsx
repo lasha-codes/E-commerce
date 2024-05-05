@@ -7,6 +7,7 @@ import { GoTrash } from 'react-icons/go'
 import { MdOutlineEdit } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 import { IoIosClose } from 'react-icons/io'
+import axios from 'axios'
 
 interface productType {
   id: number
@@ -46,6 +47,17 @@ const ManageProducts = () => {
       return false
     } else {
       return true
+    }
+  }
+
+  const deleteProduct = async () => {
+    try {
+      await axios.post('/products/delete-product', {
+        deleteProductId,
+      })
+      window.location.reload()
+    } catch (err) {
+      console.error(err)
     }
   }
 
@@ -144,6 +156,7 @@ const ManageProducts = () => {
             placeholder={`${productName}`}
           />
           <button
+            onClick={deleteProduct}
             disabled={deleteButtonDisabled()}
             className='px-3 py-1 rounded bg-red-600 text-white hover:bg-bitterSweet transition-all duration-500 ease-in-out disabled:opacity-25'
           >
