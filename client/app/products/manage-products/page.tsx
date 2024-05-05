@@ -6,6 +6,7 @@ import { FiDollarSign } from 'react-icons/fi'
 import { GoTrash } from 'react-icons/go'
 import { MdOutlineEdit } from 'react-icons/md'
 import { useState } from 'react'
+import { IoIosClose } from 'react-icons/io'
 
 interface productType {
   id: number
@@ -82,11 +83,19 @@ const ManageProducts = () => {
         </div>
       </section>
       <div
-        className={`fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] border h-[370px] w-[450px] bg-white z-[10] flex flex-col items-center p-4`}
+        className={`fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] border h-[370px] w-[450px] bg-white z-[10] flex flex-col items-center p-4 transition-all duration-500 ease-in-out ${
+          toggleDelete
+            ? 'opacity-100 pointer-events-auto translate-y-0'
+            : 'opacity-0 pointer-events-none -translate-y-10'
+        }`}
       >
-        <h2 className='flex flex-wrap justify-center gap-2 w-full'>
+        <h2 className='flex flex-wrap justify-center relative gap-2 w-full'>
+          <IoIosClose
+            onClick={() => setToggleDelete(false)}
+            className='absolute -top-1 -right-1 text-2xl icon-style cursor-pointer text-red-500 hover:text-red-600 transition-all duration-300 ease-out'
+          />
           <div className='flex flex-col items-start gap-2 w-[300px]'>
-            <span className='min-w-[300px]'>{`ENTER product name to confirm`}</span>
+            <span className='min-w-[300px]'>Please confirm product name</span>
             <span className='font-medium'>{`"${productName}"`}</span>
           </div>
         </h2>
