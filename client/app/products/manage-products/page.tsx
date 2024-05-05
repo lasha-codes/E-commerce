@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { FiDollarSign } from 'react-icons/fi'
 import { GoTrash } from 'react-icons/go'
 import { MdOutlineEdit } from 'react-icons/md'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IoIosClose } from 'react-icons/io'
 
 interface productType {
@@ -25,6 +25,18 @@ const ManageProducts = () => {
   const { products }: { products: productType[] } = useSelector(
     (state: any) => state.product
   )
+
+  useEffect(() => {
+    const handleWindowClick = () => {
+      setToggleDelete(false)
+    }
+
+    window.addEventListener('click', handleWindowClick)
+
+    return () => {
+      window.removeEventListener('click', handleWindowClick)
+    }
+  }, [])
 
   return (
     <main className='w-full  relative overflow-y-scroll'>
@@ -48,6 +60,7 @@ const ManageProducts = () => {
             products.map((product: productType) => {
               return (
                 <div
+                  onClick={(e) => e.stopPropagation()}
                   key={product.id}
                   className='flex items-center relative justify-center rounded h-[150px] w-[350px] gap-5'
                 >
@@ -88,7 +101,7 @@ const ManageProducts = () => {
         </div>
       </section>
       <div
-        onClick={(e) => e.preventDefault()}
+        onClick={(e) => e.stopPropagation()}
         className={`fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] border h-[370px] w-[450px] bg-white z-[50] flex flex-col items-center p-4 transition-all duration-500 ease-in-out ${
           toggleDelete
             ? 'opacity-100 pointer-events-auto translate-y-0'
