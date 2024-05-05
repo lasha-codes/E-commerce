@@ -22,6 +22,7 @@ interface productType {
 const ManageProducts = () => {
   const [productName, setProductName] = useState<string>('')
   const [toggleDelete, setToggleDelete] = useState<boolean>(false)
+  const [confirmValue, setConfirmValue] = useState<string>('')
   const { products }: { products: productType[] } = useSelector(
     (state: any) => state.product
   )
@@ -29,6 +30,7 @@ const ManageProducts = () => {
   useEffect(() => {
     const handleWindowClick = () => {
       setToggleDelete(false)
+      setConfirmValue('')
     }
 
     window.addEventListener('click', handleWindowClick)
@@ -37,6 +39,14 @@ const ManageProducts = () => {
       window.removeEventListener('click', handleWindowClick)
     }
   }, [])
+
+  const deleteButtonDisabled = () => {
+    if (productName === confirmValue) {
+      return false
+    } else {
+      return true
+    }
+  }
 
   return (
     <main className='w-full  relative overflow-y-scroll'>
@@ -110,7 +120,10 @@ const ManageProducts = () => {
       >
         <h2 className='flex flex-wrap justify-center relative gap-2 w-full'>
           <IoIosClose
-            onClick={() => setToggleDelete(false)}
+            onClick={() => {
+              setToggleDelete(false)
+              setConfirmValue('')
+            }}
             className='absolute -top-1 -right-1 text-2xl icon-style cursor-pointer text-red-500 hover:text-red-600 transition-all duration-300 ease-out'
           />
           <div className='flex flex-col items-start gap-2 w-[300px]'>
@@ -120,11 +133,18 @@ const ManageProducts = () => {
         </h2>
         <div className='w-full flex gap-4 flex-col items-center justify-center mt-16'>
           <input
+            value={confirmValue}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setConfirmValue(e.target.value)
+            }
             type='text'
             className='border rounded px-3 py-1'
             placeholder={`${productName}`}
           />
-          <button className='px-3 py-1 rounded bg-red-600 text-white hover:bg-bitterSweet transition-all duration-500 ease-in-out'>
+          <button
+            disabled={deleteButtonDisabled()}
+            className='px-3 py-1 rounded bg-red-600 text-white hover:bg-bitterSweet transition-all duration-500 ease-in-out disabled:opacity-25'
+          >
             DELETE
           </button>
         </div>
