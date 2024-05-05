@@ -23,6 +23,7 @@ const ManageProducts = () => {
   const [productName, setProductName] = useState<string>('')
   const [toggleDelete, setToggleDelete] = useState<boolean>(false)
   const [confirmValue, setConfirmValue] = useState<string>('')
+  const [deleteProductId, setDeleteProductId] = useState<null | number>(null)
   const { products }: { products: productType[] } = useSelector(
     (state: any) => state.product
   )
@@ -101,6 +102,7 @@ const ManageProducts = () => {
                       onClick={() => {
                         setProductName(product.title)
                         setToggleDelete(true)
+                        setDeleteProductId(product.id)
                       }}
                       className='text-red-500 text-lg icon-style'
                     />

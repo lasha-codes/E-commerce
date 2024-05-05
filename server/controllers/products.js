@@ -112,3 +112,14 @@ export const updateProduct = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
+
+export const deleteProduct = async (req, res) => {
+  const { deleteProductId } = req.body
+  try {
+    const query = 'DELETE FROM products WHERE id = $1'
+    await pool.query(query, [deleteProductId])
+    res.status(200).json({ message: 'Product Deleted' })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
