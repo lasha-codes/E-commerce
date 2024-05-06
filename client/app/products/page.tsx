@@ -21,7 +21,7 @@ interface ProductType {
   title: string
   price: number
   image: string[]
-  discountedPrice: number | null
+  discountedprice: number | null
   count: number
   description: string
   type: string
@@ -437,9 +437,18 @@ const ProductsPage = () => {
                       </span>
                     )}
                   </div>
-                  <div className='flex items-center font-semibold'>
-                    <LuDollarSign />
-                    <span>{product.price}</span>
+                  <div className='flex items-center gap-3'>
+                    <div className='flex items-center font-semibold'>
+                      <LuDollarSign />
+                      <span>{product.discountedprice || product.price}</span>
+                    </div>
+                    {product.discountedprice && (
+                      <div className='flex items-center relative text-[14px] text-sonicSilver'>
+                        <LuDollarSign className='text-[13px]' />
+                        <span>{product.price}</span>
+                        <div className='absolute top-[11px] h-[1px] w-full left-[1px] bg-sonicSilver' />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className='absolute group-hover:translate-x-0 transition-all duration-300 top-3 right-3 flex flex-col items-center gap-2 translate-x-[50px]'>
