@@ -48,3 +48,12 @@ ALTER TABLE reviews ALTER COLUMN date SET NOT NULL;
 
 ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE(email);
 DELETE FROM reviews WHERE product_id = 18;
+
+CREATE TABLE articles (
+   id SERIAL PRIMARY KEY,
+   image TEXT NOT NULL,
+   title VARCHAR(400) NOT NULL,
+   summary TEXT NOT NULL,
+   author VARCHAR(50) NOT NULL,
+   date TIMESTAMP DEFAULT NOW()
+);
