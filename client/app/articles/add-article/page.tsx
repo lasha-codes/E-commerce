@@ -7,10 +7,15 @@ import { IoIosClose } from 'react-icons/io'
 import axios from 'axios'
 
 const AddArticle = () => {
-  const [toggleLink, setToggleImage] = useState<boolean>(false)
+  const [toggleLink, setToggleLink] = useState<boolean>(false)
+  const [imageAddress, setImageAddress] = useState<string>('')
   return (
     <main className='relative'>
-      <div className={`fixed w-full h-full bg-sonicSilver z-[99] opacity-40`} />
+      <div
+        className={`fixed w-full h-full bg-sonicSilver z-[99] pointer-events-none opacity-0 ${
+          toggleLink && 'opacity-40 pointer-events-auto'
+        }`}
+      />
       <header className='flex items-center gap-3 px-10 border-b pt-5 pb-4'>
         <Link href='/' className='text-eerieBlack text-2xl font-medium'>
           Anon
@@ -23,20 +28,34 @@ const AddArticle = () => {
           <h1 className='text-left w-full text-3xl text-eerieBlack font-medium mb-5'>
             Write Your Article
           </h1>
-          <div className='w-full cursor-pointer h-[500px] border rounded-xl flex justify-center items-center'>
+          <div
+            onClick={() => setToggleLink(true)}
+            className='w-full cursor-pointer h-[500px] border rounded-xl flex justify-center items-center'
+          >
             <FaCirclePlus className='text-[80px] icon-style' />
           </div>
         </div>
       </section>
       <div
-        className={`w-[350px] h-[160px] border absolute top-1/2 left-1/2 -translate-x-1/2 flex items-center justify-start py-5 flex-col -translate-y-1/2 bg-white z-[999] rounded-xl gap-5`}
+        className={`w-[350px] h-[160px] border absolute top-1/2 left-1/2 -translate-x-1/2 flex items-center justify-start py-5 flex-col transition-all duration-500 ease -translate-y-1/2 bg-white z-[999] rounded-xl gap-5 ${
+          toggleLink
+            ? 'opacity-100 transform-y-0 pointer-events-auto'
+            : 'translate-y-5 opacity-0 pointer-events-none'
+        }`}
       >
         <h2 className='text-lg text-eerieBlack font-medium relative'>
           Enter Image Address
-          <IoIosClose className='absolute top-[-10px] right-[-75px] icon-style text-2xl hover:text-red-600 transition-all duration-500 ease' />
+          <IoIosClose
+            onClick={() => setToggleLink(false)}
+            className='absolute top-[-10px] right-[-75px] icon-style text-2xl hover:text-red-600 transition-all duration-700 ease'
+          />
         </h2>
         <div className='flex flex-col gap-3 items-center'>
           <input
+            value={imageAddress}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setImageAddress(e.target.value)
+            }
             type='text'
             placeholder='Image Address'
             className='py-0.5 border rounded-xl px-4 placeholder:opacity-70'
