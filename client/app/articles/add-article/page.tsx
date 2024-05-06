@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
@@ -9,6 +9,18 @@ import axios from 'axios'
 const AddArticle = () => {
   const [toggleLink, setToggleLink] = useState<boolean>(false)
   const [imageAddress, setImageAddress] = useState<string>('')
+
+  useEffect(() => {
+    const handleCloseBox = () => {
+      setToggleLink(false)
+    }
+    window.addEventListener('click', handleCloseBox)
+
+    return () => {
+      window.removeEventListener('click', handleCloseBox)
+    }
+  }, [])
+
   return (
     <main className='relative'>
       <div
@@ -29,7 +41,10 @@ const AddArticle = () => {
             Write Your Article
           </h1>
           <div
-            onClick={() => setToggleLink(true)}
+            onClick={(e) => {
+              e.stopPropagation()
+              setToggleLink(true)
+            }}
             className='w-full cursor-pointer h-[500px] border rounded-xl flex justify-center items-center'
           >
             <FaCirclePlus className='text-[80px] icon-style' />
@@ -37,6 +52,7 @@ const AddArticle = () => {
         </div>
       </section>
       <div
+        onClick={(e) => e.stopPropagation()}
         className={`w-[350px] h-[160px] border absolute top-1/2 left-1/2 -translate-x-1/2 flex items-center justify-start py-5 flex-col transition-all duration-500 ease -translate-y-1/2 bg-white z-[999] rounded-xl gap-5 ${
           toggleLink
             ? 'opacity-100 transform-y-0 pointer-events-auto'
