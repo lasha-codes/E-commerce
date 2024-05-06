@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
+import { Toaster, toast } from 'sonner'
 import axios from 'axios'
 
 const AddArticle = () => {
@@ -21,6 +22,17 @@ const AddArticle = () => {
       window.removeEventListener('click', handleCloseBox)
     }
   }, [])
+
+  const addImage = () => {
+    if (imageAddress.length === 0) {
+      return toast.error('Address Cant be empty.')
+    } else if (imageAddress.length >= 300) {
+      return toast.error('Big Urls Are not allowed!')
+    }
+    setDisplayImage(imageAddress)
+    setToggleLink(false)
+    setImageAddress('')
+  }
 
   return (
     <main className='relative'>
@@ -88,16 +100,14 @@ const AddArticle = () => {
             className='py-0.5 border rounded-xl px-4 placeholder:opacity-70'
           />
           <button
-            onClick={() => {
-              setDisplayImage(imageAddress)
-              setToggleLink(false)
-            }}
+            onClick={addImage}
             className='bg-oceanGreen text-white h-[30px] flex items-center justify-center w-[100px] rounded-xl hover:opacity-80 transition-all duration-300 ease'
           >
             Add
           </button>
         </div>
       </div>
+      <Toaster />
     </main>
   )
 }
