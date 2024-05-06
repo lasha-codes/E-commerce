@@ -21,7 +21,7 @@ interface cartProductType {
   title: string
   price: number
   image: string[]
-  discountedPrice: number | null
+  discountedprice: number | null
   count: number
   description: string
   type: string
@@ -48,7 +48,9 @@ const ShoppingCart = () => {
 
   cartProducts &&
     cartProducts.forEach((product: cartProductType) => {
-      totalPrice += product.count * product.price
+      totalPrice +=
+        product.count *
+        (product.discountedprice ? product.discountedprice : product.price)
     })
 
   const stripePromise = loadStripe(
@@ -162,11 +164,16 @@ const ShoppingCart = () => {
                       <div className='flex items-center gap-5'>
                         <span className='flex items-center text-sonicSilver'>
                           <CgDollar className='text-lg' />
-                          {product.price.toFixed(2)}
+                          {product.discountedprice?.toFixed(2) ||
+                            product.price.toFixed(2)}
                         </span>
                         <span className='font-medium flex items-center text-eerieBlack'>
                           <CgDollar className='text-lg' />
-                          {(product.price * product.count).toFixed(2)}
+                          {(
+                            (product.discountedprice
+                              ? product.discountedprice
+                              : product.price) * product.count
+                          ).toFixed(2)}
                         </span>
                       </div>
                     </div>
