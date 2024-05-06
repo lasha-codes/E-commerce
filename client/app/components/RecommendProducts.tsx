@@ -14,7 +14,7 @@ interface ProductType {
   sold: number
   price: number
   image: string[]
-  discountedPrice: null | number
+  discountedprice: null | number
   title: string
   description: string
   count: number
@@ -59,7 +59,19 @@ const RecommendProducts = ({ filteredProducts, title }: propTypes) => {
                   </span>
                   <span className='font-semibold flex items-center text-salmonPink'>
                     <CgDollar className='text-lg' />
-                    {product.price.toFixed(2)}
+                    <div className='flex items-center gap-2'>
+                      {product.discountedprice
+                        ? product.discountedprice.toFixed(2)
+                        : product.price.toFixed(2)}
+
+                      {product.discountedprice && (
+                        <span className='relative flex items-center w-fit text-[12px] font-light text-sonicSilver'>
+                          <CgDollar className='text-[13px]' />
+                          {product.price.toFixed(2)}
+                          <div className='w-full absolute top-2 h-[1px] bg-spanishGray' />
+                        </span>
+                      )}
+                    </div>
                   </span>
                 </div>
               </div>

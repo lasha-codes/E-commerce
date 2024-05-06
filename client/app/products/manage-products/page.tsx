@@ -134,7 +134,7 @@ const ManageProducts = () => {
         className={`fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] border h-[370px] w-[450px] bg-white z-[50] flex flex-col items-center p-4 transition-all duration-500 ease-in-out ${
           toggleDelete
             ? 'opacity-100 pointer-events-auto translate-y-0'
-            : 'opacity-0 pointer-events-none -translate-y-10'
+            : 'opacity-0 pointer-events-none translate-y-10'
         }`}
       >
         <h2 className='flex flex-wrap justify-center relative gap-2 w-full'>
