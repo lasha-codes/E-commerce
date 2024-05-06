@@ -28,6 +28,7 @@ const ManageProducts = () => {
   const { products }: { products: productType[] } = useSelector(
     (state: any) => state.product
   )
+  const { user } = useSelector((state: any) => state.user)
 
   useEffect(() => {
     const handleWindowClick = () => {
@@ -35,12 +36,16 @@ const ManageProducts = () => {
       setConfirmValue('')
     }
 
+    if (user.email && user.role !== 'admin') {
+      window.location.href = '/'
+    }
+
     window.addEventListener('click', handleWindowClick)
 
     return () => {
       window.removeEventListener('click', handleWindowClick)
     }
-  }, [])
+  }, [user])
 
   const deleteButtonDisabled = () => {
     if (productName === confirmValue) {
