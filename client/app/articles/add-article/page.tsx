@@ -9,6 +9,7 @@ import axios from 'axios'
 const AddArticle = () => {
   const [toggleLink, setToggleLink] = useState<boolean>(false)
   const [imageAddress, setImageAddress] = useState<string>('')
+  const [displayImage, setDisplayImage] = useState<string>('')
 
   useEffect(() => {
     const handleCloseBox = () => {
@@ -43,11 +44,21 @@ const AddArticle = () => {
           <div
             onClick={(e) => {
               e.stopPropagation()
-              setToggleLink(true)
             }}
-            className='w-full cursor-pointer h-[500px] border rounded-xl flex justify-center items-center'
+            className='w-full cursor-pointer h-[500px] border rounded-xl flex justify-center items-center overflow-hidden'
           >
-            <FaCirclePlus className='text-[80px] icon-style' />
+            {displayImage ? (
+              <img
+                src={displayImage}
+                alt='Display image for the article'
+                className='w-full h-full object-cover'
+              />
+            ) : (
+              <FaCirclePlus
+                className='text-[80px] icon-style'
+                onClick={() => setToggleLink(true)}
+              />
+            )}
           </div>
         </div>
       </section>
@@ -76,7 +87,13 @@ const AddArticle = () => {
             placeholder='Image Address'
             className='py-0.5 border rounded-xl px-4 placeholder:opacity-70'
           />
-          <button className='bg-oceanGreen text-white h-[30px] flex items-center justify-center w-[100px] rounded-xl hover:opacity-80 transition-all duration-300 ease'>
+          <button
+            onClick={() => {
+              setDisplayImage(imageAddress)
+              setToggleLink(false)
+            }}
+            className='bg-oceanGreen text-white h-[30px] flex items-center justify-center w-[100px] rounded-xl hover:opacity-80 transition-all duration-300 ease'
+          >
             Add
           </button>
         </div>
