@@ -161,7 +161,9 @@ export const checkoutStripe = async (req, res) => {
         name: product.title,
         images: [product.image[0]],
       },
-      unit_amount: Math.round(product.price * 100),
+      unit_amount: Math.round(
+        product.discountedprice * 100 || product.price * 100
+      ),
     },
     quantity: product.count,
   }))
