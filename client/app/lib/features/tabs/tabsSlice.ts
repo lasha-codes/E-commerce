@@ -14,7 +14,7 @@ interface ProductType {
   sold: number
   price: number
   image: string[]
-  discountedPrice: null | number
+  discountedprice: null | number
   title: string
   description: string
   count: number

@@ -65,10 +65,12 @@ const RecommendProducts = ({ filteredProducts, title }: propTypes) => {
                         : product.price.toFixed(2)}
 
                       {product.discountedprice && (
-                        <span className='relative flex items-center w-fit text-[12px] font-light text-sonicSilver'>
+                        <span className='relative flex items-center w-fit text-[12px] font-light text-[hsl(0,0%,43%)]'>
                           <CgDollar className='text-[13px]' />
-                          {product.price.toFixed(2)}
-                          <div className='w-full absolute top-2 h-[1px] bg-spanishGray' />
+                          <span className='!text-[hsl(0,0%,28%)]'>
+                            {product.price.toFixed(2)}
+                          </span>
+                          <div className='w-full absolute left-[1px] top-2 h-[1px] bg-sonicSilver' />
                         </span>
                       )}
                     </div>

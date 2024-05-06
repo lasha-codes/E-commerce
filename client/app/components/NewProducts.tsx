@@ -20,7 +20,7 @@ const NewProducts = () => {
     sold: number
     price: number
     image: string[]
-    discountedPrice: null | number
+    discountedprice: null | number
     title: string
     description: string
     count: number
@@ -117,10 +117,21 @@ const NewProducts = () => {
                       <span className='text-eerieBlack filter'>Not Rated</span>
                     )}
                   </div>
-                  <span className='flex items-center font-bold'>
-                    <LuDollarSign />
-                    {product.price}
-                  </span>
+                  <div className='flex items-center gap-2'>
+                    <span className='flex items-center font-bold'>
+                      <LuDollarSign />
+                      {product.discountedprice
+                        ? product.discountedprice
+                        : product.price}
+                    </span>
+                    {product.discountedprice && (
+                      <span className='flex text-[15px] items-center relative text-sonicSilver'>
+                        <LuDollarSign />
+                        {product.price}
+                        <div className='absolute top-[11px] left-[1px] w-full h-[1px] bg-sonicSilver' />
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className='absolute right-3 translate-x-[55px] top-3 flex flex-col items-center gap-2 group-hover:translate-x-0 transition-all duration-300'>
                   <div
