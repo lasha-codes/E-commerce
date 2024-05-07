@@ -26,6 +26,8 @@ const AddArticle = () => {
     'POLITICS',
   ]
 
+  console.log(selectedTypes)
+
   useEffect(() => {
     const handleCloseBox = () => {
       setToggleLink(false)
@@ -46,6 +48,13 @@ const AddArticle = () => {
     setDisplayImage(imageAddress)
     setToggleLink(false)
     setImageAddress('')
+  }
+
+  const selectType = (type: string) => {
+    if (selectedTypes.includes(type)) {
+      return
+    }
+    setSelectedTypes((prev) => [...prev, type])
   }
 
   return (
@@ -140,6 +149,7 @@ const AddArticle = () => {
                   {typesArr.map((type: string, idx: number) => {
                     return (
                       <div
+                        onClick={() => selectType(type)}
                         key={idx}
                         className='bg-oceanGreen icon-style text-white rounded-full px-3 py-1'
                       >
