@@ -14,6 +14,7 @@ const AddArticle = () => {
   const [displayImage, setDisplayImage] = useState<string>('')
   const [postTitle, setPostTitle] = useState<string>('')
   const [summary, setSummary] = useState<string>('')
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([])
 
   const typesArr = [
     'UI/UX',
@@ -61,7 +62,7 @@ const AddArticle = () => {
         <div className='h-[22px] w-[1px] bg-sonicSilver' />
         <span className='text-[16px] text-spanishGray'>Add Article</span>
       </header>
-      <section className='w-full flex flex-col items-center justify-center mt-20'>
+      <section className='w-full flex flex-col items-center justify-center mt-8'>
         <div className='w-[500px] flex flex-col items-start justify-center gap-5'>
           <h1 className='text-left w-full text-3xl text-eerieBlack font-medium mb-5'>
             Write Your Article
@@ -131,7 +132,24 @@ const AddArticle = () => {
                   placeholder='Summary for your article'
                 />
               </div>
-              <div className='flex items-center gap-2 flex-wrap w-full'></div>
+              <div className='flex flex-col items-start gap-4'>
+                <h3 className='text-[16.5px] font-medium text-eerieBlack'>
+                  Select Type
+                </h3>
+                <div className='flex items-center gap-2 flex-wrap w-full'>
+                  {typesArr.map((type: string, idx: number) => {
+                    return (
+                      <div
+                        key={idx}
+                        className='bg-oceanGreen icon-style text-white rounded-full px-3 py-1'
+                      >
+                        {type}
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className=''></div>
+              </div>
             </form>
           </div>
         </div>
