@@ -70,7 +70,19 @@ const AddArticle = () => {
   const addArticle = async (e: React.FormEvent) => {
     try {
       e.preventDefault()
-      await axios.post('/articles/add-article')
+      if (!postTitle || !summary) {
+        return toast.error('title & summary fields are required')
+      } else if (!displayImage) {
+        return toast.error('Image is required')
+      } else if (selectedTypes.length === 0) {
+        return toast.error('At least 1 type must be included')
+      }
+      await axios.post('/articles/add-article', {
+        image: displayImage,
+        title: postTitle,
+        summary,
+        types: selectedTypes,
+      })
     } catch (err) {
       console.log(err)
     }
