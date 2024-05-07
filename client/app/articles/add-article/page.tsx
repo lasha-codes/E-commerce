@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { FaCirclePlus, FaLeaf } from 'react-icons/fa6'
+import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
 import { Toaster, toast } from 'sonner'
 import { IoCloseOutline } from 'react-icons/io5'
@@ -25,8 +25,6 @@ const AddArticle = () => {
     'NATURE',
     'POLITICS',
   ]
-
-  console.log(selectedTypes)
 
   useEffect(() => {
     const handleCloseBox = () => {
@@ -66,6 +64,15 @@ const AddArticle = () => {
       return true
     } else {
       return false
+    }
+  }
+
+  const addArticle = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault()
+      await axios.post('/articles/add-article')
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -116,7 +123,10 @@ const AddArticle = () => {
             </div>
           </div>
           <div className='w-full mt-6'>
-            <form className='w-full flex flex-col items-start gap-6'>
+            <form
+              onSubmit={addArticle}
+              className='w-full flex flex-col items-start gap-6'
+            >
               <div className='flex flex-col items-start gap-1 w-full'>
                 <label
                   htmlFor='postTitle'
@@ -187,6 +197,9 @@ const AddArticle = () => {
                   })}
                 </div>
               </div>
+              <button className='mx-auto bg-black text-white px-5 py-1 rounded hover:bg-eerieBlack transition-all duration-300'>
+                Submit
+              </button>
             </form>
           </div>
         </div>
