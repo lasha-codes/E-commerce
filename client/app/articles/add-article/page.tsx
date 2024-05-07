@@ -58,7 +58,7 @@ const AddArticle = () => {
   }
 
   return (
-    <main className='relative'>
+    <main className='relative pb-10'>
       <div
         className={`fixed w-full h-full bg-sonicSilver z-[99] pointer-events-none opacity-0 ${
           toggleLink && 'opacity-40 pointer-events-auto'
@@ -158,7 +158,18 @@ const AddArticle = () => {
                     )
                   })}
                 </div>
-                <div className=''></div>
+                <div className='flex gap-2 items-center w-full flex-wrap border-b py-5'>
+                  {selectedTypes.map((type: string, idx: number) => {
+                    return (
+                      <div
+                        key={idx}
+                        className='bg-oceanGreen text-white px-3 py-1 rounded-full'
+                      >
+                        {type}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </form>
           </div>
