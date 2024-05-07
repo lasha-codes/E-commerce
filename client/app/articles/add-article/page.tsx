@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { FaCirclePlus } from 'react-icons/fa6'
+import { FaCirclePlus, FaLeaf } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
 import { Toaster, toast } from 'sonner'
 import { IoCloseOutline } from 'react-icons/io5'
@@ -55,6 +55,14 @@ const AddArticle = () => {
       return
     }
     setSelectedTypes((prev) => [...prev, type])
+  }
+
+  const checkTypeSelected = (type: string) => {
+    if (selectedTypes.includes(type)) {
+      return true
+    } else {
+      return false
+    }
   }
 
   return (
@@ -151,7 +159,11 @@ const AddArticle = () => {
                       <div
                         onClick={() => selectType(type)}
                         key={idx}
-                        className='bg-oceanGreen icon-style text-white rounded-full px-3 py-1'
+                        className={`icon-style rounded-full px-3 py-1 ${
+                          checkTypeSelected(type)
+                            ? 'border-oceanGreen border text-oceanGreen'
+                            : 'bg-oceanGreen text-white'
+                        }`}
                       >
                         {type}
                       </div>
