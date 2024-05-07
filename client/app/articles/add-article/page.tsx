@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
 import { Toaster, toast } from 'sonner'
+import { IoCloseOutline } from 'react-icons/io5'
 import axios from 'axios'
 
 const AddArticle = () => {
@@ -24,7 +25,7 @@ const AddArticle = () => {
   }, [])
 
   const addImage = () => {
-    if (imageAddress.length === 0) {
+    if (imageAddress.trim().length === 0) {
       return toast.error('Address Cant be empty.')
     } else if (imageAddress.length >= 300) {
       return toast.error('Big Urls Are not allowed!')
@@ -49,7 +50,7 @@ const AddArticle = () => {
         <span className='text-[16px] text-spanishGray'>Add Article</span>
       </header>
       <section className='w-full flex justify-center mt-20'>
-        <div className='w-[700px] flex flex-col items-start justify-center gap-5'>
+        <div className='w-[500px] flex flex-col items-start justify-center gap-5'>
           <h1 className='text-left w-full text-3xl text-eerieBlack font-medium mb-5'>
             Write Your Article
           </h1>
@@ -57,14 +58,20 @@ const AddArticle = () => {
             onClick={(e) => {
               e.stopPropagation()
             }}
-            className='w-full cursor-pointer h-[500px] border rounded-xl flex justify-center items-center overflow-hidden'
+            className='w-full cursor-pointer h-[370px] relative border rounded-xl flex justify-center items-center overflow-hidden'
           >
             {displayImage ? (
-              <img
-                src={displayImage}
-                alt='Display image for the article'
-                className='w-full h-full object-cover'
-              />
+              <>
+                <img
+                  src={displayImage}
+                  alt='Display image for the article'
+                  className='w-full h-full object-cover'
+                />
+                <IoCloseOutline
+                  onClick={() => setDisplayImage('')}
+                  className='z-[50] absolute top-2 right-3 text-2xl icon-style icon-style text-red-500 hover:text-oceanGreen transition-all duration-500 ease'
+                />
+              </>
             ) : (
               <FaCirclePlus
                 className='text-[80px] icon-style'
