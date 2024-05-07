@@ -52,6 +52,10 @@ const AddArticle = () => {
 
   const selectType = (type: string) => {
     if (selectedTypes.includes(type)) {
+      const filteredTypes = selectedTypes.filter((selected) => {
+        return type !== selected
+      })
+      setSelectedTypes(filteredTypes)
       return
     }
     setSelectedTypes((prev) => [...prev, type])
@@ -175,7 +179,7 @@ const AddArticle = () => {
                     return (
                       <div
                         key={idx}
-                        className='bg-oceanGreen text-white px-3 py-1 rounded-full'
+                        className='bg-oceanGreen selected-type text-white px-3 py-1 rounded-full'
                       >
                         {type}
                       </div>
