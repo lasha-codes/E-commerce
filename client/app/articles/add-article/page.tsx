@@ -77,12 +77,22 @@ const AddArticle = () => {
       } else if (selectedTypes.length === 0) {
         return toast.error('At least 1 type must be included')
       }
-      await axios.post('/articles/add-article', {
-        image: displayImage,
-        title: postTitle,
-        summary,
-        types: selectedTypes,
-      })
+      await axios.post(
+        '/articles/add-article',
+        {
+          image: displayImage,
+          title: postTitle,
+          summary,
+          types: selectedTypes,
+        },
+        { withCredentials: true }
+      )
+      setPostTitle('')
+      setSelectedTypes([])
+      setSummary('')
+      setDisplayImage('')
+      setImageAddress('')
+      toast.success('Successfully added the article')
     } catch (err) {
       console.log(err)
     }

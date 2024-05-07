@@ -14,6 +14,7 @@ export const addArticle = async (req, res) => {
     const query =
       'INSERT INTO articles (image, title, summary, author, types) VALUES ($1, $2, $3, $4, $5)'
     await pool.query(query, [image, title, summary, username, types])
+    res.status(200).json({ message: 'Added the article' })
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
