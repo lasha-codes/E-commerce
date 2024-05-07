@@ -57,4 +57,5 @@ CREATE TABLE articles (
    author VARCHAR(50) NOT NULL,
    date TIMESTAMP DEFAULT NOW()
 );
-ALTER TABLE articles ADD COLUMN types INT[] NOT NULL;
+ALTER TABLE articles DROP COLUMN types;
+ALTER TABLE articles ADD COLUMN types TEXT[] NOT NULL;

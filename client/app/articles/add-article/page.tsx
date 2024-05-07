@@ -15,6 +15,16 @@ const AddArticle = () => {
   const [postTitle, setPostTitle] = useState<string>('')
   const [summary, setSummary] = useState<string>('')
 
+  const typesArr = [
+    'UI/UX',
+    'GLOBAL',
+    'SPORTS',
+    'CLOTHING',
+    'LIFE',
+    'NATURE',
+    'POLITICS',
+  ]
+
   useEffect(() => {
     const handleCloseBox = () => {
       setToggleLink(false)
@@ -83,18 +93,45 @@ const AddArticle = () => {
               )}
             </div>
           </div>
-          <div className=''>
-            <form className=''>
-              <div>
+          <div className='w-full mt-6'>
+            <form className='w-full flex flex-col items-start gap-6'>
+              <div className='flex flex-col items-start gap-1 w-full'>
+                <label
+                  htmlFor='postTitle'
+                  className='text-[16.5px] font-medium text-eerieBlack cursor-pointer'
+                >
+                  Title
+                </label>
                 <input
+                  id='postTitle'
                   type='text'
                   value={postTitle}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setPostTitle(e.target.value)
                   }
-                  className='border rounded'
+                  className='border rounded w-full px-5 py-1 placeholder:text-spanishGray placeholder:opacity-60'
+                  placeholder='Title for your article'
                 />
               </div>
+              <div className='flex flex-col items-start gap-1 w-full'>
+                <label
+                  htmlFor='postDesc'
+                  className='text-[16.5px] font-medium text-eerieBlack cursor-pointer'
+                >
+                  Summary
+                </label>
+                <input
+                  id='postDesc'
+                  type='text'
+                  value={summary}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setSummary(e.target.value)
+                  }
+                  className='border rounded w-full px-5 py-1 placeholder:text-spanishGray placeholder:opacity-60'
+                  placeholder='Summary for your article'
+                />
+              </div>
+              <div className='flex items-center gap-2 flex-wrap w-full'></div>
             </form>
           </div>
         </div>
