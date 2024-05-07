@@ -12,6 +12,8 @@ const AddArticle = () => {
   const [toggleLink, setToggleLink] = useState<boolean>(false)
   const [imageAddress, setImageAddress] = useState<string>('')
   const [displayImage, setDisplayImage] = useState<string>('')
+  const [postTitle, setPostTitle] = useState<string>('')
+  const [summary, setSummary] = useState<string>('')
 
   useEffect(() => {
     const handleCloseBox = () => {
@@ -49,35 +51,51 @@ const AddArticle = () => {
         <div className='h-[22px] w-[1px] bg-sonicSilver' />
         <span className='text-[16px] text-spanishGray'>Add Article</span>
       </header>
-      <section className='w-full flex justify-center mt-20'>
+      <section className='w-full flex flex-col items-center justify-center mt-20'>
         <div className='w-[500px] flex flex-col items-start justify-center gap-5'>
           <h1 className='text-left w-full text-3xl text-eerieBlack font-medium mb-5'>
             Write Your Article
           </h1>
-          <div
-            onClick={(e) => {
-              e.stopPropagation()
-            }}
-            className='w-full cursor-pointer h-[370px] relative border rounded-xl flex justify-center items-center overflow-hidden'
-          >
-            {displayImage ? (
-              <>
-                <img
-                  src={displayImage}
-                  alt='Display image for the article'
-                  className='w-full h-full object-cover'
+          <div className='w-full'>
+            <div
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+              className='w-full cursor-pointer h-[370px] relative border rounded-xl flex justify-center items-center overflow-hidden'
+            >
+              {displayImage ? (
+                <>
+                  <img
+                    src={displayImage}
+                    alt='Display image for the article'
+                    className='w-full h-full object-cover'
+                  />
+                  <IoCloseOutline
+                    onClick={() => setDisplayImage('')}
+                    className='z-[50] absolute top-2 right-3 text-2xl icon-style icon-style text-red-500 hover:text-oceanGreen transition-all duration-500 ease'
+                  />
+                </>
+              ) : (
+                <FaCirclePlus
+                  className='text-[80px] icon-style'
+                  onClick={() => setToggleLink(true)}
                 />
-                <IoCloseOutline
-                  onClick={() => setDisplayImage('')}
-                  className='z-[50] absolute top-2 right-3 text-2xl icon-style icon-style text-red-500 hover:text-oceanGreen transition-all duration-500 ease'
+              )}
+            </div>
+          </div>
+          <div className=''>
+            <form className=''>
+              <div>
+                <input
+                  type='text'
+                  value={postTitle}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setPostTitle(e.target.value)
+                  }
+                  className='border rounded'
                 />
-              </>
-            ) : (
-              <FaCirclePlus
-                className='text-[80px] icon-style'
-                onClick={() => setToggleLink(true)}
-              />
-            )}
+              </div>
+            </form>
           </div>
         </div>
       </section>

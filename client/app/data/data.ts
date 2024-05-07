@@ -20,6 +20,7 @@ export const navigation = [
   { link: 'PRODUCTS', href: '/products' },
   { link: 'BLOG', href: '' },
   { link: 'HOT OFFERS', href: '' },
+  { link: 'ADD ARTICLE', href: '/articles/add-article' },
 ]
 
 export const AdminNavigation = [
@@ -29,6 +30,7 @@ export const AdminNavigation = [
   { link: 'BLOG', href: '' },
   { link: 'HOT OFFERS', href: '' },
   { link: 'MANAGE PRODUCTS', href: '/products/manage-products' },
+  { link: 'ADD ARTICLE', href: '/articles/add-article' },
 ]
 
 export const VendorNavigation = [
@@ -38,6 +40,7 @@ export const VendorNavigation = [
   { link: 'BLOG', href: '' },
   { link: 'HOT OFFERS', href: '' },
   { link: 'ADD PRODUCT', href: '/add-product' },
+  { link: 'ADD ARTICLE', href: '/articles/add-article' },
 ]
 
 export const categories = [
