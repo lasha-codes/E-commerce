@@ -14,6 +14,14 @@ interface articleType {
   date: string
 }
 
+const truncateSummary = (summary: string) => {
+  if (summary.length >= 160) {
+    return `${summary.slice(0, 160)}...`
+  } else {
+    return summary
+  }
+}
+
 const Articles = () => {
   const { articles }: { articles: articleType[] } = useSelector(
     (state: any) => state.user
@@ -33,7 +41,7 @@ const Articles = () => {
               return (
                 <div
                   key={article.id}
-                  className='w-[350px] border h-[470px] rounded-xl overflow-hidden flex flex-col items-center gap-3'
+                  className='w-[350px] border h-[460px] pb-5 rounded-xl overflow-hidden flex flex-col items-center gap-3'
                 >
                   <div className='w-full h-[170px] bg-black'>
                     <img
@@ -64,7 +72,7 @@ const Articles = () => {
                   </div>
                   <div className='w-full px-7 flex justify-center h-full place-items-center mt-1'>
                     <p className='w-full text-sonicSilver font-[400] opacity-80 text-sm text-left'>
-                      {article.summary}
+                      {truncateSummary(article.summary)}
                     </p>
                   </div>
                 </div>
