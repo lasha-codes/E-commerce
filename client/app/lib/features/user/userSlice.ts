@@ -29,14 +29,14 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getArticlesFromDb.pending, (state: any, action) => {
+    builder.addCase(getArticlesFromDb.pending, (state: any) => {
       state.articles = []
     }),
       builder.addCase(getArticlesFromDb.fulfilled, (state: any, action) => {
         state.articles = action.payload
         console.log(state.articles)
       }),
-      builder.addCase(getArticlesFromDb.rejected, (state: any, payload) => {
+      builder.addCase(getArticlesFromDb.rejected, (state: any) => {
         state.articles = []
       })
   },
