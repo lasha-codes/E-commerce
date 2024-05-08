@@ -19,3 +19,13 @@ export const addArticle = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
+
+export const getArticles = async (req, res) => {
+  try {
+    const query = 'SELECT * FROM articles'
+    const articles = await pool.query(query)
+    res.status(200).json(articles.rows)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
