@@ -35,7 +35,7 @@ const Articles = () => {
         <div className='w-[2px] h-[22px] bg-sonicSilver' />
         <span className='text-[15px] text-sonicSilver'>Articles</span>
       </header>
-      <section className='mt-20 w-full flex items-center justify-start flex-wrap gap-5'>
+      <section className='mt-20 w-full flex items-center justify-center flex-wrap gap-5'>
         {articles.length > 0
           ? articles.map((article: articleType) => {
               return (
@@ -43,7 +43,7 @@ const Articles = () => {
                   key={article.id}
                   className='w-[350px] border h-[460px] pb-5 rounded-xl overflow-hidden flex flex-col items-center gap-3'
                 >
-                  <div className='w-full h-[170px] bg-black'>
+                  <div className='w-full h-[170px]'>
                     <img
                       src={article.image}
                       className='w-full h-full object-cover'
@@ -52,7 +52,7 @@ const Articles = () => {
                   <h2 className='font-medium capitalize text-lg'>
                     {article.title}
                   </h2>
-                  <div className='w-full flex justify-center items-center gap-3 flex-wrap px-5'>
+                  <div className='w-full min-h-[70px] flex justify-center items-center gap-3 flex-wrap px-5'>
                     {article.types.map((type: string, idx: number) => {
                       return (
                         <div

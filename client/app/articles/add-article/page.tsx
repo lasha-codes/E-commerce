@@ -76,6 +76,8 @@ const AddArticle = () => {
         return toast.error('Image is required')
       } else if (selectedTypes.length === 0) {
         return toast.error('At least 1 type must be included')
+      } else if (selectedTypes.length > 5) {
+        return toast.error('Maximum 5 types can be selected.')
       }
       await axios.post(
         '/articles/add-article',
