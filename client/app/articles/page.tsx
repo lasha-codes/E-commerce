@@ -30,7 +30,34 @@ const Articles = () => {
       <section className='mt-20 w-full flex items-center justify-center flex-wrap gap-5'>
         {articles.length > 0
           ? articles.map((article: articleType) => {
-              return <div key={article.id}>{article.title}</div>
+              return (
+                <div
+                  key={article.id}
+                  className='w-[300px] border  h-[400px] rounded-xl overflow-hidden flex flex-col items-center gap-3'
+                >
+                  <div className='w-full h-[170px] bg-black'>
+                    <img
+                      src={article.image}
+                      className='w-full h-full object-cover'
+                    />
+                  </div>
+                  <h2 className='font-medium capitalize text-lg'>
+                    {article.title}
+                  </h2>
+                  <div className='w-full flex justify-center items-center gap-3 flex-wrap'>
+                    {article.types.map((type: string, idx: number) => {
+                      return (
+                        <div
+                          key={idx}
+                          className='bg-eerieBlack px-3 py-1 text-sm text-white rounded-full'
+                        >
+                          {type}
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )
             })
           : ''}
       </section>
