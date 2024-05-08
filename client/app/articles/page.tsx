@@ -27,13 +27,13 @@ const Articles = () => {
         <div className='w-[2px] h-[22px] bg-sonicSilver' />
         <span className='text-[15px] text-sonicSilver'>Articles</span>
       </header>
-      <section className='mt-20 w-full flex items-center justify-center flex-wrap gap-5'>
+      <section className='mt-20 w-full flex items-center justify-start flex-wrap gap-5'>
         {articles.length > 0
           ? articles.map((article: articleType) => {
               return (
                 <div
                   key={article.id}
-                  className='w-[300px] border  h-[400px] rounded-xl overflow-hidden flex flex-col items-center gap-3'
+                  className='w-[350px] border h-[470px] rounded-xl overflow-hidden flex flex-col items-center gap-3'
                 >
                   <div className='w-full h-[170px] bg-black'>
                     <img
@@ -44,7 +44,7 @@ const Articles = () => {
                   <h2 className='font-medium capitalize text-lg'>
                     {article.title}
                   </h2>
-                  <div className='w-full flex justify-center items-center gap-3 flex-wrap'>
+                  <div className='w-full flex justify-center items-center gap-3 flex-wrap px-5'>
                     {article.types.map((type: string, idx: number) => {
                       return (
                         <div
@@ -55,6 +55,17 @@ const Articles = () => {
                         </div>
                       )
                     })}
+                  </div>
+                  <div className='w-full flex items-start px-7 gap-2'>
+                    <span>author:</span>
+                    <span className='text-eerieBlack font-medium'>
+                      @{article.author}
+                    </span>
+                  </div>
+                  <div className='w-full px-7 flex justify-center h-full place-items-center mt-1'>
+                    <p className='w-full text-sonicSilver font-[400] opacity-80 text-sm text-left'>
+                      {article.summary}
+                    </p>
                   </div>
                 </div>
               )

@@ -174,14 +174,13 @@ const AddArticle = () => {
                 >
                   Summary
                 </label>
-                <input
+                <textarea
                   id='postDesc'
-                  type='text'
                   value={summary}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                     setSummary(e.target.value)
                   }
-                  className='border rounded w-full px-5 py-1 placeholder:text-spanishGray placeholder:opacity-60'
+                  className='border rounded w-full px-5 py-1 resize-none placeholder:text-spanishGray placeholder:opacity-60'
                   placeholder='Summary for your article'
                 />
               </div>
