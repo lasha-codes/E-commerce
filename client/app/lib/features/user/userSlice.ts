@@ -34,6 +34,7 @@ const userSlice = createSlice({
     }),
       builder.addCase(getArticlesFromDb.fulfilled, (state: any, action) => {
         state.articles = action.payload
+        console.log(state.articles)
       }),
       builder.addCase(getArticlesFromDb.rejected, (state: any, payload) => {
         state.articles = []

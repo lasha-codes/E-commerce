@@ -10,6 +10,7 @@ import { renderCart, renderWatchList } from '../lib/features/tabs/tabsSlice'
 import axios from 'axios'
 import { getUser, pageIsLoaded } from '../lib/features/user/userSlice'
 import { getCompareProducts } from '../lib/features/products/productSlice'
+import { getArticlesFromDb } from '../lib/features/user/userSlice'
 
 const GlobalContext = ({ children }: { children: React.ReactNode }) => {
   const dispatch: any = useDispatch()
@@ -24,6 +25,7 @@ const GlobalContext = ({ children }: { children: React.ReactNode }) => {
         dispatch(getUser(response.data))
       })
     dispatch(getProductReviewsFromDB())
+    dispatch(getArticlesFromDb())
     dispatch(pageIsLoaded())
   }, [])
 
