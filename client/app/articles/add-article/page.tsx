@@ -19,6 +19,9 @@ const AddArticle = () => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
   const { user } = useSelector((state: any) => state.user)
   const dispatch = useDispatch()
+  const currentYear = new Date().getFullYear()
+  const currentDate = new Date().getDate()
+  const currentDay = new Date().getDay()
 
   const typesArr = [
     'UI/UX',
@@ -90,6 +93,7 @@ const AddArticle = () => {
           summary,
           author: user.username,
           types: selectedTypes,
+          date: `${currentDay + 1}/${currentDate}/${currentYear}`,
         })
       )
       await axios.post(

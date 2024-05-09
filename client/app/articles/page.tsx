@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { Skeleton } from '@/components/ui/skeleton'
+import { format } from 'date-fns'
 
 interface articleType {
   image: string
@@ -15,8 +16,8 @@ interface articleType {
 }
 
 const truncateSummary = (summary: string) => {
-  if (summary.length >= 160) {
-    return `${summary.slice(0, 160)}...`
+  if (summary.length >= 110) {
+    return `${summary.slice(0, 110)}...`
   } else {
     return summary
   }
@@ -49,6 +50,9 @@ const Articles = () => {
                       className='w-full h-full object-cover'
                     />
                   </div>
+                  <p className='w-full text-left px-[33.5px] text-spanishGray'>
+                    {format(article.date, 'dd / MM / yyyy')}
+                  </p>
                   <h2 className='font-medium capitalize text-lg'>
                     {article.title}
                   </h2>
