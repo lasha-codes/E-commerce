@@ -6,6 +6,8 @@ import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
 import { Toaster, toast } from 'sonner'
 import { IoCloseOutline } from 'react-icons/io5'
+import { addToArticlesFront } from '@/app/lib/features/user/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 
 const AddArticle = () => {
@@ -15,6 +17,8 @@ const AddArticle = () => {
   const [postTitle, setPostTitle] = useState<string>('')
   const [summary, setSummary] = useState<string>('')
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
+  const { user } = useSelector((state: any) => state.user)
+  const dispatch = useDispatch()
 
   const typesArr = [
     'UI/UX',
@@ -79,6 +83,15 @@ const AddArticle = () => {
       } else if (selectedTypes.length > 5) {
         return toast.error('Maximum 5 types can be selected.')
       }
+      dispatch(
+        addToArticlesFront({
+          image: displayImage,
+          title: postTitle,
+          summary,
+          author: user.username,
+          types: selectedTypes,
+        })
+      )
       await axios.post(
         '/articles/add-article',
         {

@@ -27,6 +27,9 @@ const userSlice = createSlice({
       state.user = payload
       console.log(state.user)
     },
+    addToArticlesFront: (state: any, { payload }) => {
+      state.articles.push(payload)
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getArticlesFromDb.pending, (state: any) => {
@@ -44,4 +47,4 @@ const userSlice = createSlice({
 
 export default userSlice.reducer
 
-export const { pageIsLoaded, getUser } = userSlice.actions
+export const { pageIsLoaded, getUser, addToArticlesFront } = userSlice.actions
