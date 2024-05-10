@@ -2,13 +2,15 @@
 
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import { Skeleton } from '@/components/ui/skeleton'
 import { format } from 'date-fns'
 import { useState, useEffect } from 'react'
+import { GoTrash } from 'react-icons/go'
+import { MdOutlineEdit } from 'react-icons/md'
 
 interface articleType {
   image: string
   id: number
+  user_id: number
   title: string
   summary: string
   author: string
@@ -28,6 +30,7 @@ const Articles = () => {
   const { articles }: { articles: articleType[] } = useSelector(
     (state: any) => state.user
   )
+  const { user } = useSelector((state: any) => state.user)
   const [filteredArticles, setFilteredArticles] = useState<articleType[]>([])
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
 
@@ -105,7 +108,7 @@ const Articles = () => {
               return (
                 <div
                   key={article.id}
-                  className='w-[350px] border h-[460px] pb-5 rounded-xl overflow-hidden flex flex-col items-center gap-3'
+                  className='w-[350px] group relative border h-[460px] pb-5 rounded-xl overflow-hidden flex flex-col items-center gap-3'
                 >
                   <div className='w-full h-[170px]'>
                     <img
@@ -142,6 +145,12 @@ const Articles = () => {
                       {truncateSummary(article.summary)}
                     </p>
                   </div>
+                  {article.user_id === user.id && (
+                    <div className='absolute group-hover:translate-y-0 transition-all duration-500 ease translate-y-[65px] bottom-3 right-3 flex flex-col justify-center items-center gap-2'>
+                      <GoTrash className='text-lg icon-style text-red-500 hover:text-bitterSweet transition-all duration-300 ease' />
+                      <MdOutlineEdit className='text-[19px] icon-style hover:text-eerieBlack text-black transition-all duration-300 ease' />
+                    </div>
+                  )}
                 </div>
               )
             })
