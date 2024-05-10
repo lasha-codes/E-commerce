@@ -90,7 +90,10 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
           </h2>
           <div className='w-full h-[400px] overflow-hidden border rounded-xl mt-10 flex justify-center items-center'>
             {!newImage ? (
-              <FaCirclePlus className='text-[80px] icon-style' />
+              <FaCirclePlus
+                onClick={() => setToggleBox(true)}
+                className='text-[80px] icon-style'
+              />
             ) : (
               <div className='w-full h-full relative'>
                 <img src={newImage} className='w-full h-full object-cover' />
@@ -182,13 +185,20 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
         </div>
       </div>
       <div
-        className={`fixed w-[400px] bg-white -translate-x-1/2 h-[200px] rounded-xl z-[70] border top-1/3 left-1/2 flex flex-col items-center gap-1 p-5`}
+        className={`fixed w-[400px] bg-white -translate-x-1/2 h-[200px] rounded-xl z-[70] border top-1/3 left-1/2 flex flex-col items-center gap-1 p-5 transition-all duration-700 ease ${
+          !toggleBox
+            ? 'pointer-events-none opacity-0 translate-y-10'
+            : 'pointer-events-auto opacity-100 translate-y-0'
+        }`}
       >
         <div className='relative'>
           <h2 className='text-eerieBlack font-medium text-lg'>
             Enter your image address
           </h2>
-          <IoCloseOutline className='absolute -top-2 -right-20 text-lg icon-style hover:text-red-600 transition-all duration-300 ease' />
+          <IoCloseOutline
+            onClick={() => setToggleBox(false)}
+            className='absolute -top-2 -right-20 text-lg icon-style hover:text-red-600 transition-all duration-300 ease'
+          />
         </div>
         <input
           value={imageAddress}
