@@ -46,7 +46,14 @@ const Articles = () => {
   ]
 
   const filterPosts = (pushType: string) => {
-    const updatedTypes = [...selectedTypes, pushType]
+    let updatedTypes = [...selectedTypes]
+    if (updatedTypes.includes(pushType)) {
+      updatedTypes = updatedTypes.filter((type) => {
+        return type !== pushType
+      })
+    } else {
+      updatedTypes = [...selectedTypes, pushType]
+    }
     setSelectedTypes(updatedTypes)
     if (updatedTypes.length === 0) {
       return setFilteredArticles(articles)
