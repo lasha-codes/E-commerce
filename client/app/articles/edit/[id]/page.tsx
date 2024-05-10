@@ -6,6 +6,7 @@ import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosArrowBack } from 'react-icons/io'
 import { IoCloseOutline } from 'react-icons/io5'
 import { Toaster, toast } from 'sonner'
+import axios from 'axios'
 
 interface articleType {
   image: string
@@ -77,7 +78,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
     setNewSelectedTypes(updatedTypes)
   }
 
-  const confirmEdit = () => {
+  const confirmEdit = async () => {
     const firstTypes: any = instance && [...instance.types]
     const secondTypes = [...newSelectedTypes]
     let isSame = true
@@ -108,6 +109,21 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
     ) {
       return toast.error('Something must be changed to update the post.')
     }
+    if (newSelectedTypes.length > 5) {
+      return toast.error('Max 5 types can be selected.')
+    }
+    await axios.put('/articles/update-article', {
+      newTitle,
+      newSummary,
+      newTypes: newSelectedTypes,
+      newImage,
+    })
+    setNewTitle('')
+    setNewSummary('')
+    setNewImage('')
+    setNewSelectedTypes([])
+    setImageAddress('')
+    window.location.reload()
   }
 
   return (
