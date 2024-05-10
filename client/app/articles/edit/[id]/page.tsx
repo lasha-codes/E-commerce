@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosArrowBack } from 'react-icons/io'
+import { IoCloseOutline } from 'react-icons/io5'
 
 interface articleType {
   image: string
@@ -24,6 +25,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
   const { articles }: { articles: articleType[] } = useSelector(
     (state: any) => state.user
   )
+  let articleById
 
   const typesArr = [
     'UI/UX',
@@ -36,14 +38,14 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
   ]
 
   useEffect(() => {
-    const articleById =
+    articleById =
       articles &&
       articles.find((article: articleType) => {
         return article.id === parseInt(params.id)
       })
     if (articleById) {
       setNewImage(articleById.image)
-      setNewTitle(articleById.summary)
+      setNewTitle(articleById.title)
       setNewSummary(articleById.summary)
       setNewSelectedTypes(articleById.types)
     }
@@ -62,24 +64,35 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
       <div className='w-full flex items-center justify-center mt-10'>
         <div className='w-[500px] flex flex-col items-start justify-center'>
           <h2 className='text-eerieBlack text-3xl font-medium'>
-            Write Your Article
+            Update Your Article
           </h2>
-          <div className='w-full h-[400px] border rounded-xl mt-10 flex justify-center items-center'>
-            <FaCirclePlus className='text-[80px] icon-style' />
+          <div className='w-full h-[400px] overflow-hidden border rounded-xl mt-10 flex justify-center items-center'>
+            {!newImage ? (
+              <FaCirclePlus className='text-[80px] icon-style' />
+            ) : (
+              <div className='w-full h-full relative'>
+                <img src={newImage} className='w-full h-full object-cover' />
+                <IoCloseOutline className='absolute z-[15] top-3 right-3 icon-style text-lg text-red-500 hover:text-oceanGreen transition-all !duration-700 ease' />
+              </div>
+            )}
           </div>
           <div className='w-full mt-10'>
             <form className='flex flex-col gap-6 items-start'>
               <div className='w-full flex flex-col items-start gap-1'>
                 <label
                   htmlFor='title'
-                  className='text-eerieBlack text-lg font-medium'
+                  className='text-eerieBlack text-lg font-medium cursor-pointer'
                 >
                   New title
                 </label>
                 <input
+                  value={newTitle}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setNewTitle(e.target.value)
+                  }
                   type='text'
                   id='title'
-                  className='border rounded px-4 py-1 w-full cursor-pointer placeholder:opacity-80'
+                  className='border rounded px-4 py-1 w-full placeholder:opacity-80'
                   placeholder='New title for our article'
                 />
               </div>
@@ -91,6 +104,10 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
                   New summary
                 </label>
                 <textarea
+                  value={newSummary}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setNewSummary(e.target.value)
+                  }
                   id='summary'
                   className='border rounded px-4 py-1 w-full resize-none placeholder:opacity-80'
                   placeholder='New summary for our article'
@@ -107,14 +124,26 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
                 {typesArr.map((type: string, idx: number) => {
                   return (
                     <div
-                      className={`bg-oceanGreen icon-style text-white px-3 py-1 rounded-full`}
+                      key={idx}
+                      className={`bg-oceanGreen border border-oceanGreen icon-style text-white px-3 py-1 rounded-full`}
                     >
                       {type}
                     </div>
                   )
                 })}
               </div>
-              <div className='w-full flex items-center gap-3 border-b py-4 mt-4'></div>
+              <div className='w-full flex items-center gap-3 border-b py-4 mt-4'>
+                {newSelectedTypes.map((type: string, idx: number) => {
+                  return (
+                    <div
+                      key={idx}
+                      className='px-3 py-1 rounded-full bg-oceanGreen text-white'
+                    >
+                      {type}
+                    </div>
+                  )
+                })}
+              </div>
               <button className='mx-auto bg-black text-white px-5 py-1 rounded mt-3 hover:bg-eerieBlack transition-all duration-300 ease'>
                 Confirm
               </button>
