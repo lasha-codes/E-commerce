@@ -59,6 +59,18 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
     }
   }
 
+  const selectNewType = (type: string) => {
+    let updatedTypes = [...newSelectedTypes]
+    if (updatedTypes.includes(type)) {
+      updatedTypes = updatedTypes.filter((newType: string) => {
+        return type !== newType
+      })
+    } else {
+      updatedTypes = [...newSelectedTypes, type]
+    }
+    setNewSelectedTypes(updatedTypes)
+  }
+
   return (
     <main className='px-8 py-4 w-full relative'>
       <header className='w-full pb-4 flex justify-start items-center'>
@@ -131,10 +143,11 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
               <h3 className='text-lg mb-3 text-eerieBlack font-medium'>
                 Select Type
               </h3>
-              <div className='flex items-center w-full flex-wrap gap-3'>
+              <div className='flex items-center max-w-[500px] flex-wrap gap-3 w-full'>
                 {typesArr.map((type: string, idx: number) => {
                   return (
                     <div
+                      onClick={() => selectNewType(type)}
                       key={idx}
                       className={`border border-oceanGreen icon-style px-3 py-1 rounded-full ${
                         checkSelected(type)
@@ -147,7 +160,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
                   )
                 })}
               </div>
-              <div className='w-full flex items-center gap-3 border-b py-4 mt-4'>
+              <div className='w-full flex items-center flex-wrap gap-3 border-b py-4 mt-4'>
                 {newSelectedTypes.map((type: string, idx: number) => {
                   return (
                     <div
