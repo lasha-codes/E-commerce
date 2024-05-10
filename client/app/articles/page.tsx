@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { Skeleton } from '@/components/ui/skeleton'
 import { format } from 'date-fns'
+import { useState, useEffect } from 'react'
 
 interface articleType {
   image: string
@@ -27,6 +28,23 @@ const Articles = () => {
   const { articles }: { articles: articleType[] } = useSelector(
     (state: any) => state.user
   )
+  const [filteredArticles, setFilteredArticles] = useState<articleType[]>([])
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([])
+
+  useEffect(() => {
+    articles && setFilteredArticles(articles)
+  }, [articles])
+
+  const typesArr = [
+    'UI/UX',
+    'GLOBAL',
+    'SPORTS',
+    'CLOTHING',
+    'LIFE',
+    'NATURE',
+    'POLITICS',
+  ]
+
   return (
     <main className='py-5 px-10 relative'>
       <header className='flex items-center gap-2 absolute top-4 left-5'>
@@ -36,9 +54,21 @@ const Articles = () => {
         <div className='w-[2px] h-[22px] bg-sonicSilver' />
         <span className='text-[15px] text-sonicSilver'>Articles</span>
       </header>
+      <div className='flex items-center w-full justify-center gap-4 mt-12'>
+        {typesArr.map((type: string, idx: number) => {
+          return (
+            <div
+              key={idx}
+              className={`bg-black text-white px-4 py-1 rounded-full icon-style transition-all duration-300 ease`}
+            >
+              {type}
+            </div>
+          )
+        })}
+      </div>
       <section className='mt-20 w-full flex items-center justify-center flex-wrap gap-5'>
-        {articles.length > 0
-          ? articles.map((article: articleType) => {
+        {filteredArticles.length > 0
+          ? filteredArticles.map((article: articleType) => {
               return (
                 <div
                   key={article.id}
