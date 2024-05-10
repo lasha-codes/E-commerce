@@ -209,7 +209,14 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
           placeholder='Image address'
           className='border rounded px-4 py-1 w-[90%] mt-5'
         />
-        <button className='text-white bg-oceanGreen px-7 py-1 rounded  mt-5 hover:opacity-80 transition-all duration-300 ease'>
+        <button
+          onClick={() => {
+            setNewImage(imageAddress)
+            setToggleBox(false)
+            setImageAddress('')
+          }}
+          className='text-white bg-oceanGreen px-7 py-1 rounded  mt-5 hover:opacity-80 transition-all duration-300 ease'
+        >
           Add
         </button>
       </div>
