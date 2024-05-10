@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -26,9 +27,8 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
   const [newSelectedTypes, setNewSelectedTypes] = useState<string[]>([])
   const [toggleBox, setToggleBox] = useState<boolean>(false)
   const [imageAddress, setImageAddress] = useState<string>('')
-  const { articles }: { articles: articleType[] } = useSelector(
-    (state: any) => state.user
-  )
+  const { articles, user }: { articles: articleType[]; user: any } =
+    useSelector((state: any) => state.user)
   const [instance, setInstance] = useState<articleType>()
 
   let articleById: any
@@ -56,7 +56,12 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
       setNewSummary(articleById.summary)
       setNewSelectedTypes(articleById.types)
     }
-  }, [articles])
+    if (user && user.id !== parseInt(articleById?.user_id)) {
+      window.location.href = '/'
+    } else if (!user) {
+      window.location.href = '/'
+    }
+  }, [articles, user])
 
   const checkSelected = (type: string) => {
     if (newSelectedTypes.includes(type)) {
