@@ -67,6 +67,14 @@ const Articles = () => {
     setFilteredArticles(filteredArray)
   }
 
+  const isTypeSelected = (type: string) => {
+    if (selectedTypes.includes(type)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return (
     <main className='py-5 px-10 relative'>
       <header className='flex items-center gap-2 absolute top-4 left-5'>
@@ -82,7 +90,11 @@ const Articles = () => {
             <div
               onClick={() => filterPosts(type)}
               key={idx}
-              className={`bg-black text-white px-4 py-1 rounded-full icon-style transition-all duration-300 ease`}
+              className={`px-4 py-1 rounded-full border border-black icon-style transition-all duration-300 ease ${
+                isTypeSelected(type)
+                  ? 'bg-white text-black'
+                  : 'bg-black text-white'
+              }`}
             >
               {type}
             </div>
