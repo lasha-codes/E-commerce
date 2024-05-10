@@ -22,10 +22,12 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
   const [newTitle, setNewTitle] = useState<string>('')
   const [newSummary, setNewSummary] = useState<string>('')
   const [newSelectedTypes, setNewSelectedTypes] = useState<string[]>([])
+  const [toggleBox, setToggleBox] = useState<boolean>(false)
+  const [imageAddress, setImageAddress] = useState<string>('')
   const { articles }: { articles: articleType[] } = useSelector(
     (state: any) => state.user
   )
-  let articleById
+  let articleById: any
 
   const typesArr = [
     'UI/UX',
@@ -172,12 +174,34 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
                   )
                 })}
               </div>
-              <button className='mx-auto bg-black text-white px-5 py-1 rounded mt-3 hover:bg-eerieBlack transition-all duration-300 ease'>
+              <button className='mx-auto bg-black text-white px-5 py-1 rounded mt-3 hover:bg-eerieBlack disabled:opacity-30 transition-all duration-300 ease'>
                 Confirm
               </button>
             </div>
           </div>
         </div>
+      </div>
+      <div
+        className={`fixed w-[400px] bg-white -translate-x-1/2 h-[200px] rounded-xl z-[70] border top-1/3 left-1/2 flex flex-col items-center gap-1 p-5`}
+      >
+        <div className='relative'>
+          <h2 className='text-eerieBlack font-medium text-lg'>
+            Enter your image address
+          </h2>
+          <IoCloseOutline className='absolute -top-2 -right-20 text-lg icon-style hover:text-red-600 transition-all duration-300 ease' />
+        </div>
+        <input
+          value={imageAddress}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setImageAddress(e.target.value)
+          }
+          type='text'
+          placeholder='Image address'
+          className='border rounded px-4 py-1 w-[90%] mt-5'
+        />
+        <button className='text-white bg-oceanGreen px-7 py-1 rounded  mt-5 hover:opacity-80 transition-all duration-300 ease'>
+          Add
+        </button>
       </div>
     </main>
   )
