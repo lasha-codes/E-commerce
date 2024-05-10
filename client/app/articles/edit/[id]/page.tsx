@@ -51,6 +51,14 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
     }
   }, [articles])
 
+  const checkSelected = (type: string) => {
+    if (newSelectedTypes.includes(type)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return (
     <main className='px-8 py-4 w-full relative'>
       <header className='w-full pb-4 flex justify-start items-center'>
@@ -128,7 +136,11 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
                   return (
                     <div
                       key={idx}
-                      className={`bg-oceanGreen border border-oceanGreen icon-style text-white px-3 py-1 rounded-full`}
+                      className={`border border-oceanGreen icon-style px-3 py-1 rounded-full ${
+                        checkSelected(type)
+                          ? 'bg-white text-oceanGreen'
+                          : 'bg-oceanGreen text-white'
+                      }`}
                     >
                       {type}
                     </div>
