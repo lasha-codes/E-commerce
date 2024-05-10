@@ -31,11 +31,17 @@ export const getArticles = async (req, res) => {
 }
 
 export const updateArticle = async (req, res) => {
-  const { newTitle, newSummary, newTypes, newImage } = req.body
+  const { newTitle, newSummary, newTypes, newImage, article_id } = req.body
   try {
     const query =
-      'UPDATE articles SET title = $1, summary = $2, types = $3, image = $4, date = now()'
-    await pool.query(query, [newTitle, newSummary, newTypes, newImage])
+      'UPDATE articles SET title = $1, summary = $2, types = $3, image = $4, date = now() WHERE id = $5'
+    await pool.query(query, [
+      newTitle,
+      newSummary,
+      newTypes,
+      newImage,
+      article_id,
+    ])
     res.status(200).json({ message: 'Successfully updated the article.' })
   } catch (err) {
     res.status(500).json({ message: err.message })

@@ -122,6 +122,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
       newSummary,
       newTypes: newSelectedTypes,
       newImage,
+      article_id: instance?.id,
     })
     setNewTitle('')
     setNewSummary('')
