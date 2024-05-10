@@ -56,7 +56,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
       setNewSummary(articleById.summary)
       setNewSelectedTypes(articleById.types)
     }
-    if (user && user.id !== parseInt(articleById?.user_id)) {
+    if (user && articleById && user.id !== parseInt(articleById?.user_id)) {
       window.location.href = '/'
     } else if (!user) {
       window.location.href = '/'
