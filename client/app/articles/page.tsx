@@ -33,6 +33,8 @@ const Articles = () => {
   const { user } = useSelector((state: any) => state.user)
   const [filteredArticles, setFilteredArticles] = useState<articleType[]>([])
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
+  const [productName, setProductName] = useState<string>('')
+  const [deleteId, setDeleteId] = useState<number>()
 
   useEffect(() => {
     articles && setFilteredArticles(articles)
@@ -155,7 +157,10 @@ const Articles = () => {
                   </div>
                   {article.user_id === user.id && (
                     <div className='absolute group-hover:translate-y-0 transition-all duration-500 ease translate-y-[65px] bottom-3 right-3 flex flex-col justify-center items-center gap-2'>
-                      <GoTrash className='text-lg icon-style text-red-500 hover:text-bitterSweet transition-all duration-300 ease' />
+                      <GoTrash
+                        onClick={() => setProductName(article.title)}
+                        className='text-lg icon-style text-red-500 hover:text-bitterSweet transition-all duration-300 ease'
+                      />
                       <Link href={`/articles/edit/${article.id}`}>
                         <MdOutlineEdit className='text-[19px] icon-style hover:text-eerieBlack text-black transition-all duration-300 ease' />
                       </Link>
@@ -166,6 +171,22 @@ const Articles = () => {
             })
           : ''}
       </section>
+      <div
+        className={`w-[350px] h-[180px] p-5 border bg-white fixed top-1/3 left-1/2 -translate-x-1/2 rounded-xl flex flex-col items-center gap-5`}
+      >
+        <h2 className='w-full text-center'>
+          Delete{' '}
+          <span className='font-medium text-eerieBlack'>"{productName}"</span> ?
+        </h2>
+        <div className='flex items-center gap-4 justify-center'>
+          <button className='bg-black border transition-all duration-500 ease hover:bg-white hover:text-black border-black text-white px-4 py-1 rounded'>
+            CANCEL
+          </button>
+          <button className='text-red-600 border transition-all duration-500 ease hover:bg-red-600 hover:text-white border-red-600 rounded px-4 py-1'>
+            CONFIRM
+          </button>
+        </div>
+      </div>
     </main>
   )
 }
