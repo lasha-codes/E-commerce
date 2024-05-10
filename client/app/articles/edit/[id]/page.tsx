@@ -25,6 +25,16 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
     (state: any) => state.user
   )
 
+  const typesArr = [
+    'UI/UX',
+    'GLOBAL',
+    'SPORTS',
+    'CLOTHING',
+    'LIFE',
+    'NATURE',
+    'POLITICS',
+  ]
+
   useEffect(() => {
     const articleById =
       articles &&
@@ -89,7 +99,26 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
             </form>
           </div>
           <div className='mt-6'>
-            <h3 className='text-lg text-eerieBlack font-medium'>Select Type</h3>
+            <div className='flex flex-col items-start'>
+              <h3 className='text-lg mb-3 text-eerieBlack font-medium'>
+                Select Type
+              </h3>
+              <div className='flex items-center w-full flex-wrap gap-3'>
+                {typesArr.map((type: string, idx: number) => {
+                  return (
+                    <div
+                      className={`bg-oceanGreen icon-style text-white px-3 py-1 rounded-full`}
+                    >
+                      {type}
+                    </div>
+                  )
+                })}
+              </div>
+              <div className='w-full flex items-center gap-3 border-b py-4 mt-4'></div>
+              <button className='mx-auto bg-black text-white px-5 py-1 rounded mt-3 hover:bg-eerieBlack transition-all duration-300 ease'>
+                Confirm
+              </button>
+            </div>
           </div>
         </div>
       </div>
