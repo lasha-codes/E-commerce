@@ -25,7 +25,6 @@ const userSlice = createSlice({
     },
     getUser: (state, { payload }) => {
       state.user = payload
-      console.log(state.user)
     },
     addToArticlesFront: (state: any, { payload }) => {
       state.articles.push(payload)
@@ -37,7 +36,6 @@ const userSlice = createSlice({
     }),
       builder.addCase(getArticlesFromDb.fulfilled, (state: any, action) => {
         state.articles = action.payload
-        console.log(state.articles)
       }),
       builder.addCase(getArticlesFromDb.rejected, (state: any) => {
         state.articles = []

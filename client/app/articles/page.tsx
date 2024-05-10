@@ -148,7 +148,9 @@ const Articles = () => {
                   {article.user_id === user.id && (
                     <div className='absolute group-hover:translate-y-0 transition-all duration-500 ease translate-y-[65px] bottom-3 right-3 flex flex-col justify-center items-center gap-2'>
                       <GoTrash className='text-lg icon-style text-red-500 hover:text-bitterSweet transition-all duration-300 ease' />
-                      <MdOutlineEdit className='text-[19px] icon-style hover:text-eerieBlack text-black transition-all duration-300 ease' />
+                      <Link href={`/articles/edit/${article.id}`}>
+                        <MdOutlineEdit className='text-[19px] icon-style hover:text-eerieBlack text-black transition-all duration-300 ease' />
+                      </Link>
                     </div>
                   )}
                 </div>
