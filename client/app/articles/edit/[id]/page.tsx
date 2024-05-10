@@ -27,6 +27,8 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
   const { articles }: { articles: articleType[] } = useSelector(
     (state: any) => state.user
   )
+  const [instance, setInstance] = useState<articleType>()
+  const [areTypesSame, setAreTypesSame] = useState<boolean>(true)
   let articleById: any
 
   const typesArr = [
@@ -45,6 +47,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
       articles.find((article: articleType) => {
         return article.id === parseInt(params.id)
       })
+    setInstance(articleById)
     if (articleById) {
       setNewImage(articleById.image)
       setNewTitle(articleById.title)
@@ -71,6 +74,29 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
       updatedTypes = [...newSelectedTypes, type]
     }
     setNewSelectedTypes(updatedTypes)
+  }
+
+  const confirmEdit = () => {
+    const firstTypes: any = instance && [...instance.types]
+    const secondTypes = [...newSelectedTypes]
+    let isSame = true
+    if (firstTypes) {
+      if (firstTypes.length !== secondTypes.length) {
+        isSame = false
+      } else {
+        const sortedInstanceTypes = [...firstTypes].sort()
+        const sortedNewSelectedTypes = [...secondTypes].sort()
+        for (let i = 0; i < firstTypes.length; i++) {
+          if (sortedInstanceTypes[i] !== sortedNewSelectedTypes[i]) {
+            isSame = false
+            break
+          } else {
+            isSame = true
+          }
+        }
+      }
+    }
+    setAreTypesSame(isSame)
   }
 
   return (
@@ -177,7 +203,10 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
                   )
                 })}
               </div>
-              <button className='mx-auto bg-black text-white px-5 py-1 rounded mt-3 hover:bg-eerieBlack disabled:opacity-30 transition-all duration-300 ease'>
+              <button
+                onClick={confirmEdit}
+                className='mx-auto bg-black text-white px-5 py-1 rounded mt-3 hover:bg-eerieBlack disabled:opacity-30 transition-all duration-300 ease'
+              >
                 Confirm
               </button>
             </div>
