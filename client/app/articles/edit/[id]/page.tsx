@@ -72,7 +72,10 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
             ) : (
               <div className='w-full h-full relative'>
                 <img src={newImage} className='w-full h-full object-cover' />
-                <IoCloseOutline className='absolute z-[15] top-3 right-3 icon-style text-lg text-red-500 hover:text-oceanGreen transition-all !duration-700 ease' />
+                <IoCloseOutline
+                  onClick={() => setNewImage('')}
+                  className='absolute z-[15] top-3 right-3 icon-style text-lg text-red-500 hover:text-oceanGreen transition-all !duration-700 ease'
+                />
               </div>
             )}
           </div>
@@ -137,7 +140,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
                   return (
                     <div
                       key={idx}
-                      className='px-3 py-1 rounded-full bg-oceanGreen text-white'
+                      className='px-3 py-1 rounded-full selected-type bg-oceanGreen text-white'
                     >
                       {type}
                     </div>
