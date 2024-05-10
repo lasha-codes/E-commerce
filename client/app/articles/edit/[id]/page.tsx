@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosArrowBack } from 'react-icons/io'
 import { IoCloseOutline } from 'react-icons/io5'
+import { Toaster, toast } from 'sonner'
 
 interface articleType {
   image: string
@@ -28,7 +29,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
     (state: any) => state.user
   )
   const [instance, setInstance] = useState<articleType>()
-  const [areTypesSame, setAreTypesSame] = useState<boolean>(true)
+
   let articleById: any
 
   const typesArr = [
@@ -96,7 +97,17 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
         }
       }
     }
-    setAreTypesSame(isSame)
+    if (!newImage) {
+      return toast.error('Image is required')
+    }
+    if (
+      isSame &&
+      newSummary === instance?.summary &&
+      newTitle === instance?.title &&
+      newImage === instance?.image
+    ) {
+      return toast.error('Something must be changed to update the post.')
+    }
   }
 
   return (
@@ -249,6 +260,7 @@ const EditArticle = ({ params }: { params: { id: string } }) => {
           Add
         </button>
       </div>
+      <Toaster />
     </main>
   )
 }
