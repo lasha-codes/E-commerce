@@ -45,6 +45,21 @@ const Articles = () => {
     'POLITICS',
   ]
 
+  const filterPosts = (pushType: string) => {
+    const updatedTypes = [...selectedTypes, pushType]
+    setSelectedTypes(updatedTypes)
+    if (updatedTypes.length === 0) {
+      return setFilteredArticles(articles)
+    }
+    const filteredArray = [...filteredArticles].filter(
+      (article: articleType) => {
+        return article.types.some((type) => updatedTypes.includes(type))
+      }
+    )
+
+    setFilteredArticles(filteredArray)
+  }
+
   return (
     <main className='py-5 px-10 relative'>
       <header className='flex items-center gap-2 absolute top-4 left-5'>
@@ -58,6 +73,7 @@ const Articles = () => {
         {typesArr.map((type: string, idx: number) => {
           return (
             <div
+              onClick={() => filterPosts(type)}
               key={idx}
               className={`bg-black text-white px-4 py-1 rounded-full icon-style transition-all duration-300 ease`}
             >
