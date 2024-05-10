@@ -76,6 +76,14 @@ const Articles = () => {
     }
   }
 
+  const truncateTitle = (title: string) => {
+    if (title.length > 46) {
+      return `${title.slice(0, 46)}...`
+    } else {
+      return title
+    }
+  }
+
   return (
     <main className='py-5 px-10 relative'>
       <header className='flex items-center gap-2 absolute top-4 left-5'>
@@ -108,7 +116,7 @@ const Articles = () => {
               return (
                 <div
                   key={article.id}
-                  className='w-[350px] group relative border h-[460px] pb-5 rounded-xl overflow-hidden flex flex-col items-center gap-3'
+                  className='w-[370px] group relative border h-[500px] pb-5 rounded-xl overflow-hidden flex flex-col items-center gap-3'
                 >
                   <div className='w-full h-[170px]'>
                     <img
@@ -119,8 +127,8 @@ const Articles = () => {
                   <p className='w-full text-left px-[33.5px] text-spanishGray'>
                     {format(article.date, 'dd / MM / yyyy')}
                   </p>
-                  <h2 className='font-medium capitalize text-lg'>
-                    {article.title}
+                  <h2 className='font-medium capitalize text-[17px] h-[200px] px-5 text-center'>
+                    {truncateTitle(article.title)}
                   </h2>
                   <div className='w-full min-h-[70px] flex justify-center items-center gap-3 flex-wrap px-5'>
                     {article.types.map((type: string, idx: number) => {
