@@ -59,3 +59,4 @@ CREATE TABLE articles (
 );
 ALTER TABLE articles DROP COLUMN types;
 ALTER TABLE articles ADD COLUMN types TEXT[] NOT NULL;
+ALTER TABLE articles ADD COLUMN user_id INT REFERENCES users (id);

@@ -58,11 +58,9 @@ const Articles = () => {
     if (updatedTypes.length === 0) {
       return setFilteredArticles(articles)
     }
-    const filteredArray = [...filteredArticles].filter(
-      (article: articleType) => {
-        return article.types.some((type) => updatedTypes.includes(type))
-      }
-    )
+    const filteredArray = [...articles].filter((article: articleType) => {
+      return article.types.some((type) => updatedTypes.includes(type))
+    })
 
     setFilteredArticles(filteredArray)
   }

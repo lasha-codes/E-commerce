@@ -94,6 +94,7 @@ const AddArticle = () => {
           author: user.username,
           types: selectedTypes,
           date: `${currentDay + 1}/${currentDate}/${currentYear}`,
+          user_id: user.id,
         })
       )
       await axios.post(
@@ -103,6 +104,7 @@ const AddArticle = () => {
           title: postTitle,
           summary,
           types: selectedTypes,
+          user_id: user.id,
         },
         { withCredentials: true }
       )
