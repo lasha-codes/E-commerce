@@ -167,7 +167,7 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
             </p>
           </div>
         </div>
-        <div className='mt-6 flex w-full justify-center items-center gap-10'>
+        <div className='mt-6 flex w-full justify-center flex-wrap items-center gap-6'>
           <button
             onClick={() => dispatch(addItemToCart(productById))}
             className='flex items-center gap-2.5 text-white bg-eerieBlack px-5 py-2 rounded-[2px] hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95'

@@ -71,7 +71,7 @@ const ProductsSlider = () => {
               image={shorts}
               title={'SHORTS & JEANS'}
               count={
-                products.length > 0 ? calculateQuantity('SHORT & JEANS') : '..'
+                products.length > 0 ? calculateQuantity('SHORTS & JEANS') : '..'
               }
             />
             <Product
