@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import { useState, useEffect } from 'react'
 import { GoTrash } from 'react-icons/go'
 import { MdOutlineEdit } from 'react-icons/md'
+import { IoCloseOutline } from 'react-icons/io5'
 
 interface articleType {
   image: string
@@ -35,6 +36,7 @@ const Articles = () => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
   const [productName, setProductName] = useState<string>('')
   const [deleteId, setDeleteId] = useState<number>()
+  const [toggleBox, setToggleBox] = useState<boolean>(false)
 
   useEffect(() => {
     articles && setFilteredArticles(articles)
@@ -158,7 +160,11 @@ const Articles = () => {
                   {article.user_id === user.id && (
                     <div className='absolute group-hover:translate-y-0 transition-all duration-500 ease translate-y-[65px] bottom-3 right-3 flex flex-col justify-center items-center gap-2'>
                       <GoTrash
-                        onClick={() => setProductName(article.title)}
+                        onClick={() => {
+                          setProductName(article.title)
+                          setDeleteId(article.id)
+                          setToggleBox(true)
+                        }}
                         className='text-lg icon-style text-red-500 hover:text-bitterSweet transition-all duration-300 ease'
                       />
                       <Link href={`/articles/edit/${article.id}`}>
@@ -172,11 +178,19 @@ const Articles = () => {
           : ''}
       </section>
       <div
-        className={`w-[350px] h-[180px] p-5 border bg-white fixed top-1/3 left-1/2 -translate-x-1/2 rounded-xl flex flex-col items-center gap-5`}
+        className={`w-[350px] transition-all duration-500 ease h-[170px] p-5 border bg-white fixed top-1/3 left-1/2 -translate-x-1/2 rounded-xl flex flex-col items-center gap-5 ${
+          toggleBox
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 pointer-events-none translate-y-10'
+        }`}
       >
-        <h2 className='w-full text-center'>
+        <h2 className='w-full text-center relative'>
           Delete{' '}
           <span className='font-medium text-eerieBlack'>"{productName}"</span> ?
+          <IoCloseOutline
+            onClick={() => setToggleBox(false)}
+            className='absolute -top-2 -right-2 text-lg icon-style hover:text-red-600 transition-all duration-300 ease'
+          />
         </h2>
         <div className='flex items-center gap-4 justify-center'>
           <button className='bg-black border transition-all duration-500 ease hover:bg-white hover:text-black border-black text-white px-4 py-1 rounded'>
