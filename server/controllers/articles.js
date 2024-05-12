@@ -49,7 +49,7 @@ export const updateArticle = async (req, res) => {
 }
 
 export const deleteArticle = async (req, res) => {
-  const { deleteId } = req.body
+  const { deleteId } = req.params
   try {
     const query = 'DELETE FROM articles WHERE id = $1'
     await pool.query(query, [deleteId])

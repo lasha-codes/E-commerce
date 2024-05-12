@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { GoTrash } from 'react-icons/go'
 import { MdOutlineEdit } from 'react-icons/md'
 import { IoCloseOutline } from 'react-icons/io5'
+import axios from 'axios'
 
 interface articleType {
   image: string
@@ -93,6 +94,14 @@ const Articles = () => {
       return `${title.slice(0, 46)}...`
     } else {
       return title
+    }
+  }
+
+  const deleteArticle = async () => {
+    try {
+      await axios.delete(`/articles/delete-article/${deleteId}`)
+    } catch (err) {
+      console.error(err)
     }
   }
 
@@ -211,7 +220,10 @@ const Articles = () => {
           <button className='bg-black border transition-all duration-500 ease hover:bg-white hover:text-black border-black text-white px-4 py-1 rounded'>
             CANCEL
           </button>
-          <button className='text-red-600 border transition-all duration-500 ease hover:bg-red-600 hover:text-white border-red-600 rounded px-4 py-1'>
+          <button
+            onClick={deleteArticle}
+            className='text-red-600 border transition-all duration-500 ease hover:bg-red-600 hover:text-white border-red-600 rounded px-4 py-1'
+          >
             CONFIRM
           </button>
         </div>

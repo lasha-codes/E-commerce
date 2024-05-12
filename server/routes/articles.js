@@ -11,6 +11,6 @@ import {
 router.post('/add-article', addArticle)
 router.put('/update-article', updateArticle)
 router.get('/get-articles', getArticles)
-router.delete('/delete-article', deleteArticle)
+router.delete('/delete-article/:deleteId', deleteArticle)
 
 export default router
