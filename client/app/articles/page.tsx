@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 import { useState, useEffect } from 'react'
 import { GoTrash } from 'react-icons/go'
 import { MdOutlineEdit } from 'react-icons/md'
-import { IoCloseOutline } from 'react-icons/io5'
+import { IoCloseOutline, IoEyeOutline } from 'react-icons/io5'
 import { Toaster, toast } from 'sonner'
 import axios from 'axios'
 
@@ -197,22 +197,27 @@ const Articles = () => {
                       {truncateSummary(article.summary)}
                     </p>
                   </div>
-                  {article.user_id === user.id && (
-                    <div className='absolute group-hover:translate-y-0 transition-all duration-500 ease translate-y-[65px] bottom-3 right-3 flex flex-col justify-center items-center gap-2'>
-                      <GoTrash
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          setProductName(article.title)
-                          setDeleteId(article.id)
-                          setToggleBox(true)
-                        }}
-                        className='text-lg icon-style text-red-500 hover:text-bitterSweet transition-all duration-300 ease'
-                      />
-                      <Link href={`/articles/edit/${article.id}`}>
-                        <MdOutlineEdit className='text-[19px] icon-style hover:text-eerieBlack text-black transition-all duration-300 ease' />
-                      </Link>
-                    </div>
-                  )}
+                  <div className='absolute group-hover:translate-y-0 transition-all duration-700 ease translate-y-[80px] bottom-3 right-3 flex flex-col justify-center items-center gap-2'>
+                    <Link href={`/articles/${article.id}`}>
+                      <IoEyeOutline className='icon-style text-lg hover:text-sonicSilver transition-all duration-300 ease' />
+                    </Link>
+                    {article.user_id === user.id && (
+                      <>
+                        <GoTrash
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            setProductName(article.title)
+                            setDeleteId(article.id)
+                            setToggleBox(true)
+                          }}
+                          className='text-lg icon-style text-red-500 hover:text-bitterSweet transition-all duration-300 ease'
+                        />
+                        <Link href={`/articles/edit/${article.id}`}>
+                          <MdOutlineEdit className='text-lg icon-style hover:text-eerieBlack text-black transition-all duration-300 ease' />
+                        </Link>
+                      </>
+                    )}
+                  </div>
                 </div>
               )
             })
