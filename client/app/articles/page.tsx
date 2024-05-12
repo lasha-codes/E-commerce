@@ -40,6 +40,14 @@ const Articles = () => {
 
   useEffect(() => {
     articles && setFilteredArticles(articles)
+    if (articles.length > 0) {
+      const sortedArticles = [...articles].sort((a, b) => {
+        const dateA = new Date(a.date)
+        const dateB = new Date(b.date)
+        return dateB.getTime() - dateA.getTime()
+      })
+      setFilteredArticles(sortedArticles)
+    }
   }, [articles])
 
   const typesArr = [
@@ -191,12 +199,12 @@ const Articles = () => {
             : 'opacity-0 pointer-events-none translate-y-10'
         }`}
       >
-        <h2 className='w-full text-center relative'>
+        <h2 className='w-[90%] text-center relative'>
           Delete{' '}
           <span className='font-medium text-eerieBlack'>"{productName}"</span> ?
           <IoCloseOutline
             onClick={() => setToggleBox(false)}
-            className='absolute -top-2 -right-2 text-lg icon-style hover:text-red-600 transition-all duration-300 ease'
+            className='absolute -top-2 -right-5 text-lg icon-style hover:text-red-600 transition-all duration-300 ease'
           />
         </h2>
         <div className='flex items-center gap-4 justify-center'>
