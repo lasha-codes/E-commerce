@@ -50,6 +50,13 @@ const Articles = () => {
       })
       setFilteredArticles(sortedArticles)
     }
+    const closeToggleBox = () => {
+      setToggleBox(false)
+    }
+    window.addEventListener('click', closeToggleBox)
+    return () => {
+      window.removeEventListener('click', closeToggleBox)
+    }
   }, [articles])
 
   const typesArr = [
@@ -193,7 +200,8 @@ const Articles = () => {
                   {article.user_id === user.id && (
                     <div className='absolute group-hover:translate-y-0 transition-all duration-500 ease translate-y-[65px] bottom-3 right-3 flex flex-col justify-center items-center gap-2'>
                       <GoTrash
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation()
                           setProductName(article.title)
                           setDeleteId(article.id)
                           setToggleBox(true)
@@ -211,6 +219,7 @@ const Articles = () => {
           : ''}
       </section>
       <div
+        onClick={(e) => e.stopPropagation()}
         className={`w-[350px] z-[80] transition-all duration-500 ease h-[170px] p-5 border bg-white fixed top-1/3 left-1/2 -translate-x-1/2 rounded-xl flex flex-col items-center gap-5 ${
           toggleBox
             ? 'opacity-100 translate-y-0 pointer-events-auto'
@@ -226,7 +235,10 @@ const Articles = () => {
           />
         </h2>
         <div className='flex items-center gap-4 justify-center'>
-          <button className='bg-black border transition-all duration-500 ease hover:bg-white hover:text-black border-black text-white px-4 py-1 rounded'>
+          <button
+            onClick={() => setToggleBox(false)}
+            className='bg-black border transition-all duration-500 ease hover:bg-white hover:text-black border-black text-white px-4 py-1 rounded'
+          >
             CANCEL
           </button>
           <button
