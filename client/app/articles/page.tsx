@@ -90,6 +90,13 @@ const Articles = () => {
 
   return (
     <main className='py-5 px-10 relative'>
+      <div
+        className={`h-full w-screen fixed bg-spanishGray left-0 top-0 z-[30] ${
+          toggleBox
+            ? 'opacity-50 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
+        } transition-all ease`}
+      />
       <header className='flex items-center gap-2 absolute top-4 left-5'>
         <Link href='/' className='text-2xl text-eerieBlack font-medium'>
           Anon
@@ -178,7 +185,7 @@ const Articles = () => {
           : ''}
       </section>
       <div
-        className={`w-[350px] transition-all duration-500 ease h-[170px] p-5 border bg-white fixed top-1/3 left-1/2 -translate-x-1/2 rounded-xl flex flex-col items-center gap-5 ${
+        className={`w-[350px] z-[80] transition-all duration-500 ease h-[170px] p-5 border bg-white fixed top-1/3 left-1/2 -translate-x-1/2 rounded-xl flex flex-col items-center gap-5 ${
           toggleBox
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 pointer-events-none translate-y-10'
