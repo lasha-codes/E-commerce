@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { GoTrash } from 'react-icons/go'
 import { MdOutlineEdit } from 'react-icons/md'
 import { IoCloseOutline } from 'react-icons/io5'
+import { Toaster, toast } from 'sonner'
 import axios from 'axios'
 
 interface articleType {
@@ -100,6 +101,14 @@ const Articles = () => {
   const deleteArticle = async () => {
     try {
       await axios.delete(`/articles/delete-article/${deleteId}`)
+      const newFilteredArticles = [...filteredArticles].filter(
+        (article: articleType) => {
+          return article.id !== deleteId
+        }
+      )
+      setFilteredArticles(newFilteredArticles)
+      setToggleBox(false)
+      toast.success(`U have deleted the ${productName} article.`)
     } catch (err) {
       console.error(err)
     }
@@ -228,6 +237,7 @@ const Articles = () => {
           </button>
         </div>
       </div>
+      <Toaster />
     </main>
   )
 }
