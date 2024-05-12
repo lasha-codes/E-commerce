@@ -86,17 +86,7 @@ const AddArticle = () => {
       } else if (selectedTypes.length > 5) {
         return toast.error('Maximum 5 types can be selected.')
       }
-      dispatch(
-        addToArticlesFront({
-          image: displayImage,
-          title: postTitle,
-          summary,
-          author: user.username,
-          types: selectedTypes,
-          date: `${currentDay + 1}/${currentDate}/${currentYear}`,
-          user_id: user.id,
-        })
-      )
+
       await axios.post(
         '/articles/add-article',
         {
@@ -113,7 +103,7 @@ const AddArticle = () => {
       setSummary('')
       setDisplayImage('')
       setImageAddress('')
-      toast.success('Successfully added the article')
+      window.location.href = '/articles'
     } catch (err) {
       console.log(err)
     }

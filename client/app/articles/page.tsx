@@ -137,7 +137,7 @@ const Articles = () => {
         <div className='w-[2px] h-[22px] bg-sonicSilver' />
         <span className='text-[15px] text-sonicSilver'>Articles</span>
       </header>
-      <div className='flex items-center w-full justify-center gap-4 mt-12'>
+      <div className='flex items-center w-full justify-center flex-wrap gap-4 mt-12'>
         {typesArr.map((type: string, idx: number) => {
           return (
             <div
@@ -160,9 +160,9 @@ const Articles = () => {
               return (
                 <div
                   key={article.id}
-                  className='w-[370px] group relative border h-[500px] pb-5 rounded-xl overflow-hidden flex flex-col items-center gap-3'
+                  className='w-[370px] group relative border h-[550px] pb-5 rounded-xl overflow-hidden flex flex-col items-center gap-3'
                 >
-                  <div className='w-full h-[170px]'>
+                  <div className='w-full min-h-[230px] max-h-[230px]'>
                     <img
                       src={article.image}
                       className='w-full h-full object-cover'
