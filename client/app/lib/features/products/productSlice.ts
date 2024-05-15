@@ -37,7 +37,7 @@ interface productTypes {
   gender: string
 }
 
-axios.defaults.baseURL = 'https://e-commerce-five-dun.vercel.app'
+axios.defaults.baseURL = 'https://anon-api.onrender.com'
 
 export const addProductToDB = createAsyncThunk(
   'product/fetchData',
