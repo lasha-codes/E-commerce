@@ -63,20 +63,15 @@ const Header = () => {
         </div>
         <div className='max-md:hidden'></div>
       </div>
-      <div className='flex items-center px-28 justify-between border-b pt-3 pb-5 max-sm:flex-col max-sm:gap-2'>
+      <div className='flex items-center px-28 justify-between border-b pt-3 pb-5 max-lg:flex-col max-sm:gap-2'>
         <Link href='/'>
           <h1 className='text-[26px] font-bold'>Anon</h1>
         </Link>
-        <form className='w-[60%] max-sm:w-[100%] py-2 flex justify-start items-center px-5 border focus-within:border-sonicSilver rounded-xl'>
-          <input
-            id='search-inp'
-            placeholder='Enter your product name...'
-            className='w-full h-full outline-none text-[16px] max-md:placeholder:text-white'
-          />
-          <label htmlFor='search-inp' className='cursor-pointer'>
-            <CiSearch className='text-[20px] text-sonicSilver' />
-          </label>
-        </form>
+        <p className='text-xl flex items-center max-md:text-[18px] max-sm:text-sm flex-wrap justify-center gap-2 welcome-text'>
+          <span>Welcome to</span>
+          <span className='text-salmonPink font-medium'>Anon</span>
+          <span>ecommerce platform!</span>
+        </p>
 
         <div className='flex items-center gap-4 max-lg:hidden'>
           <Link href={returnRoute()}>
