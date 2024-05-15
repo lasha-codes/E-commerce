@@ -5,7 +5,7 @@ import axios from 'axios'
 import { Toaster, toast } from 'sonner'
 import { useSelector } from 'react-redux'
 
-axios.defaults.baseURL = 'https://anon-api.onrender.com'
+axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.withCredentials = true
 
 const BecomeVendor = () => {

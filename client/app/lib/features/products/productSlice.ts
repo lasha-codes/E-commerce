@@ -37,7 +37,7 @@ interface productTypes {
   gender: string
 }
 
-axios.defaults.baseURL = 'https://anon-api.onrender.com'
+axios.defaults.baseURL = 'http://localhost:4000'
 
 export const addProductToDB = createAsyncThunk(
   'product/fetchData',
