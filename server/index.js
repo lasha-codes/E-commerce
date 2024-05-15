@@ -13,7 +13,7 @@ app.use(express.json({ limit: '10mb' }))
 app.use(cookieParser())
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://e-commerce-d9ih.vercel.app',
     credentials: true,
   })
 )
