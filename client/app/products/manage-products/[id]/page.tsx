@@ -56,7 +56,7 @@ const UpdateSingleProduct = ({ params }: { params: { id: string } }) => {
       } else if (!newTitle || !newDesc) {
         return toast.error('Please fill in all of the fields')
       }
-      await axios.put('/products/update-product', {
+      await axios.put('https://anon-api.onrender.com/products/update-product', {
         newTitle,
         newDesc,
         discountedPrice,

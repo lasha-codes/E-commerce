@@ -98,7 +98,7 @@ const SingleProduct: React.FC<ParamsType> = ({ params }) => {
         return toast.error('Both fields are required.')
       }
       await axios.post(
-        '/products/add-review',
+        'https://anon-api.onrender.com/products/add-review',
         {
           id: params.id,
           comment: description,

@@ -20,7 +20,9 @@ const GlobalContext = ({ children }: { children: React.ReactNode }) => {
     dispatch(renderWatchList())
     dispatch(getCompareProducts())
     axios
-      .get('/user/authenticate', { withCredentials: true })
+      .get('https://anon-api.onrender.com/user/authenticate', {
+        withCredentials: true,
+      })
       .then((response) => {
         dispatch(getUser(response.data))
       })

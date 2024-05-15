@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-axios.defaults.baseURL = 'https://anon-api.onrender.com/'
+axios.defaults.baseURL = 'https://anon-api.onrender.com'
 
 const initialState = {
   isLoaded: false,

@@ -57,9 +57,12 @@ const ManageProducts = () => {
 
   const deleteProduct = async () => {
     try {
-      await axios.post('/products/delete-product', {
-        deleteProductId,
-      })
+      await axios.post(
+        'https://anon-api.onrender.com/products/delete-product',
+        {
+          deleteProductId,
+        }
+      )
       window.location.reload()
     } catch (err) {
       console.error(err)
