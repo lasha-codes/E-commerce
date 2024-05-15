@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:4000'
+axios.defaults.baseURL = 'https://e-commerce-five-dun.vercel.app'
 
 const initialState = {
   isLoaded: false,

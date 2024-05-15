@@ -37,7 +37,7 @@ interface productTypes {
   gender: string
 }
 
-axios.defaults.baseURL = 'http://localhost:4000'
+axios.defaults.baseURL = 'https://e-commerce-five-dun.vercel.app'
 
 export const addProductToDB = createAsyncThunk(
   'product/fetchData',

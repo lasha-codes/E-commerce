@@ -6,7 +6,6 @@ import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
 import { Toaster, toast } from 'sonner'
 import { IoCloseOutline } from 'react-icons/io5'
-import { addToArticlesFront } from '@/app/lib/features/user/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 
