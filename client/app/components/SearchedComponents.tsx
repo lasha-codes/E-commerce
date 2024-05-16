@@ -7,6 +7,8 @@ import {
 } from 'react-icons/io5'
 import { addToWatchList, addItemToCart } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
+import { addProductToCompare } from '../lib/features/products/productSlice'
+import Link from 'next/link'
 
 interface ProductType {
   id: number
@@ -104,11 +106,17 @@ const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
                     />
                   </svg>
                 </div>
-                <div className='border rounded p-1 icon-style'>
+                <Link
+                  href={`/products/${product.id}`}
+                  className='border rounded p-1 icon-style'
+                >
                   <IoEyeOutline className='text-[17px] text-sonicSilver' />
-                </div>
+                </Link>
                 <div className='border p-1 rounded icon-style'>
-                  <IoGitCompareOutline className='text-[17px] text-sonicSilver' />
+                  <IoGitCompareOutline
+                    onClick={() => dispatch(addProductToCompare(product))}
+                    className='text-[17px] text-sonicSilver'
+                  />
                 </div>
                 <div className='border p-1 rounded icon-style'>
                   <IoBagAddOutline
