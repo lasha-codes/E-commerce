@@ -5,7 +5,7 @@ import {
   IoGitCompareOutline,
   IoBagAddOutline,
 } from 'react-icons/io5'
-import { addToWatchList } from '../lib/features/tabs/tabsSlice'
+import { addToWatchList, addItemToCart } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
 
 interface ProductType {
@@ -111,7 +111,10 @@ const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
                   <IoGitCompareOutline className='text-[17px] text-sonicSilver' />
                 </div>
                 <div className='border p-1 rounded icon-style'>
-                  <IoBagAddOutline className='text-sonicSilver text-[17px]' />
+                  <IoBagAddOutline
+                    className='text-sonicSilver text-[17px]'
+                    onClick={() => dispatch(addItemToCart(product as any))}
+                  />
                 </div>
               </div>
             </div>
