@@ -5,6 +5,8 @@ import {
   IoGitCompareOutline,
   IoBagAddOutline,
 } from 'react-icons/io5'
+import { addToWatchList } from '../lib/features/tabs/tabsSlice'
+import { Toaster } from 'sonner'
 
 interface ProductType {
   id: number
@@ -20,6 +22,7 @@ interface ProductType {
 }
 
 const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
+  const dispatch = useDispatch()
   const { watchList }: { watchList: ProductType[] } = useSelector(
     (state: any) => state.tabs
   )
@@ -82,15 +85,16 @@ const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
                 </div>
               </div>
               <div className='absolute translate-x-10 group-hover:translate-x-0 transition-all duration-300 ease-out right-1 top-[10px] flex flex-col items-center gap-1.5'>
-                <div className='border p-1 rounded icon-style'>
+                <div
+                  className='border p-1 rounded icon-style'
+                  onClick={() => dispatch(addToWatchList(product))}
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    fill='none'
+                    stroke='gray'
                     viewBox='0 0 24 24'
                     strokeWidth={1.5}
-                    stroke={`${
-                      checkIsInWatchList(product.id) ? 'gray' : 'none'
-                    }`}
+                    fill={`${checkIsInWatchList(product.id) ? 'gray' : 'none'}`}
                     className='w-[17.5px] h-[17.5px]'
                   >
                     <path
@@ -113,6 +117,7 @@ const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
             </div>
           )
         })}
+      <Toaster />
     </section>
   )
 }
