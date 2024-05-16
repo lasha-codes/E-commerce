@@ -7,7 +7,11 @@ import {
 } from 'react-icons/io5'
 import { addToWatchList, addItemToCart } from '../lib/features/tabs/tabsSlice'
 import { Toaster } from 'sonner'
-import { addProductToCompare } from '../lib/features/products/productSlice'
+import {
+  addProductToCompare,
+  clearSearch,
+} from '../lib/features/products/productSlice'
+import { IoCloseOutline } from 'react-icons/io5'
 import Link from 'next/link'
 
 interface ProductType {
@@ -28,6 +32,7 @@ const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
   const { watchList }: { watchList: ProductType[] } = useSelector(
     (state: any) => state.tabs
   )
+  const { searchVal } = useSelector((state: any) => state.product)
 
   const truncateTitle = (title: string) => {
     if (title.length > 11) {
@@ -49,85 +54,97 @@ const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
   }
 
   return (
-    <section className='w-full p-10 flex items-center justify-center flex-wrap gap-10'>
-      {productsCopy &&
-        productsCopy.map((product: ProductType, idx: number) => {
-          return (
-            <div
-              key={idx}
-              className='relative group border overflow-hidden p-5 flex h-[150px] items-center justify-between w-[300px] rounded-xl'
-            >
-              <div className='w-[80px] h-[80px]'>
-                <img
-                  src={product.image[0]}
-                  className='w-full h-full object-contain'
-                />
-              </div>
-              <div className='flex flex-col items-start gap-2'>
-                <h2 className='text-lg text-eerieBlack w-[150px]'>
-                  {truncateTitle(product.title)}
-                </h2>
-                <span className='text-[13px] text-sonicSilver capitalize'>
-                  {product.type}
-                </span>
-                <div className='flex items-center gap-2'>
-                  <div className='flex items-center font-medium text-salmonPink'>
-                    <LuDollarSign />
-                    <span>{product.discountedprice || product.price}</span>
-                  </div>
-                  {product.discountedprice && (
-                    <div className='flex items-center relative text-sm'>
-                      <LuDollarSign className='text-[11px] text-sonicSilver' />
-                      <span className='text-[12px] text-sonicSilver'>
-                        {product.price}
-                      </span>
-                      <div className='w-full absolute top-[9px] h-[1px] left-[1px] bg-sonicSilver' />
+    <section className='w-full p-10 flex items-start flex-col justify-center flex-wrap gap-8'>
+      <div className='flex items-center bg-[#aaaaaa] h-auto flex-wrap gap-2 rounded-full px-4 py-2.5'>
+        <span className='text-white min-w-[90px]'>Results For</span>
+        <p className='font-medium'>"{searchVal}"</p>
+        <IoCloseOutline
+          onClick={() => dispatch(clearSearch())}
+          className='text-lg icon-style hover:opacity-80 text-white'
+        />
+      </div>
+      <div className='flex w-full flex-wrap items-center justify-center gap-10'>
+        {productsCopy &&
+          productsCopy.map((product: ProductType, idx: number) => {
+            return (
+              <div
+                key={idx}
+                className='relative group border overflow-hidden p-5 flex h-[150px] items-center justify-between w-[300px] rounded-xl'
+              >
+                <div className='w-[80px] h-[80px]'>
+                  <img
+                    src={product.image[0]}
+                    className='w-full h-full object-contain'
+                  />
+                </div>
+                <div className='flex flex-col items-start gap-2'>
+                  <h2 className='text-lg text-eerieBlack w-[150px]'>
+                    {truncateTitle(product.title)}
+                  </h2>
+                  <span className='text-[13px] text-sonicSilver capitalize'>
+                    {product.type}
+                  </span>
+                  <div className='flex items-center gap-2'>
+                    <div className='flex items-center font-medium text-salmonPink'>
+                      <LuDollarSign />
+                      <span>{product.discountedprice || product.price}</span>
                     </div>
-                  )}
+                    {product.discountedprice && (
+                      <div className='flex items-center relative text-sm'>
+                        <LuDollarSign className='text-[11px] text-sonicSilver' />
+                        <span className='text-[12px] text-sonicSilver'>
+                          {product.price}
+                        </span>
+                        <div className='w-full absolute top-[9px] h-[1px] left-[1px] bg-sonicSilver' />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className='absolute translate-x-10 group-hover:translate-x-0 transition-all duration-300 ease-out right-1 top-[10px] flex flex-col items-center gap-1.5'>
-                <div
-                  className='border p-1 rounded icon-style'
-                  onClick={() => dispatch(addToWatchList(product))}
-                >
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    stroke='gray'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    fill={`${checkIsInWatchList(product.id) ? 'gray' : 'none'}`}
-                    className='w-[17.5px] h-[17.5px]'
+                <div className='absolute translate-x-10 group-hover:translate-x-0 transition-all duration-300 ease-out right-1 top-[10px] flex flex-col items-center gap-1.5'>
+                  <div
+                    className='border p-1 rounded icon-style'
+                    onClick={() => dispatch(addToWatchList(product))}
                   >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z'
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      stroke='gray'
+                      viewBox='0 0 24 24'
+                      strokeWidth={1.5}
+                      fill={`${
+                        checkIsInWatchList(product.id) ? 'gray' : 'none'
+                      }`}
+                      className='w-[17.5px] h-[17.5px]'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z'
+                      />
+                    </svg>
+                  </div>
+                  <Link
+                    href={`/products/${product.id}`}
+                    className='border rounded p-1 icon-style'
+                  >
+                    <IoEyeOutline className='text-[17px] text-sonicSilver' />
+                  </Link>
+                  <div className='border p-1 rounded icon-style'>
+                    <IoGitCompareOutline
+                      onClick={() => dispatch(addProductToCompare(product))}
+                      className='text-[17px] text-sonicSilver'
                     />
-                  </svg>
-                </div>
-                <Link
-                  href={`/products/${product.id}`}
-                  className='border rounded p-1 icon-style'
-                >
-                  <IoEyeOutline className='text-[17px] text-sonicSilver' />
-                </Link>
-                <div className='border p-1 rounded icon-style'>
-                  <IoGitCompareOutline
-                    onClick={() => dispatch(addProductToCompare(product))}
-                    className='text-[17px] text-sonicSilver'
-                  />
-                </div>
-                <div className='border p-1 rounded icon-style'>
-                  <IoBagAddOutline
-                    className='text-sonicSilver text-[17px]'
-                    onClick={() => dispatch(addItemToCart(product as any))}
-                  />
+                  </div>
+                  <div className='border p-1 rounded icon-style'>
+                    <IoBagAddOutline
+                      className='text-sonicSilver text-[17px]'
+                      onClick={() => dispatch(addItemToCart(product as any))}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+      </div>
       <Toaster />
     </section>
   )

@@ -171,7 +171,10 @@ const productSlice = createSlice({
       )
     },
     setSearchVal: (state, { payload }) => {
-      state.searchVal = payload
+      state.searchVal = payload.slice(0, 45)
+    },
+    clearSearch: (state) => {
+      state.searchVal = ''
     },
   },
   extraReducers: (builder) => {
@@ -224,4 +227,5 @@ export const {
   closeTab,
   addProductToCompare,
   setSearchVal,
+  clearSearch,
 } = productSlice.actions
