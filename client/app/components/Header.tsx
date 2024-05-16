@@ -63,15 +63,25 @@ const Header = () => {
         </div>
         <div className='max-md:hidden'></div>
       </div>
-      <div className='flex items-center px-28 justify-between border-b pt-3 pb-5 max-lg:flex-col max-sm:gap-2'>
+      <div className='flex items-center px-28 justify-between border-b pt-3 pb-5 max-md:flex-col max-sm:gap-2 max-md:gap-3'>
         <Link href='/'>
           <h1 className='text-[26px] font-bold'>Anon</h1>
         </Link>
-        <p className='text-xl flex items-center max-md:text-[18px] max-sm:text-sm flex-wrap justify-center gap-2 welcome-text'>
-          <span>Welcome to</span>
-          <span className='text-salmonPink font-medium'>Anon</span>
-          <span>ecommerce platform!</span>
-        </p>
+
+        <div className='relative h-[38px] w-1/2 max-md:w-[90%] max-sm:w-full rounded-[9px] flex items-center justify-between'>
+          <input
+            id='search'
+            type='text'
+            className='absolute w-full h-full border  max-sm:placeholder:text-sm rounded-[9px] px-4 placeholder:text-sonicSilver placeholder:opacity-90'
+            placeholder='Enter your product name...'
+          />
+          <label
+            htmlFor='search'
+            className='absolute right-3 top-2.5 cursor-pointer'
+          >
+            <CiSearch className='text-lg text-sonicSilver' />
+          </label>
+        </div>
 
         <div className='flex items-center gap-4 max-lg:hidden'>
           <Link href={returnRoute()}>
