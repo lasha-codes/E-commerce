@@ -37,6 +37,7 @@ const ShoppingCart = () => {
   const { cartOpen, cartProducts }: tabsTypes = useSelector(
     (state: any) => state.tabs
   )
+  const { user } = useSelector((state: any) => state.user)
 
   let cartCount = 0
   let totalPrice = 0
@@ -58,6 +59,9 @@ const ShoppingCart = () => {
   )
 
   const makePayment = async () => {
+    if (!user.username) {
+      return toast.error('U must authenticate before making the payment')
+    }
     const response = await axios.post('/products/calculate-sales', {
       products: cartProducts,
     })
