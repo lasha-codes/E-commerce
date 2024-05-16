@@ -6,7 +6,7 @@ import { FaCirclePlus } from 'react-icons/fa6'
 import { IoIosClose } from 'react-icons/io'
 import { Toaster, toast } from 'sonner'
 import { IoCloseOutline } from 'react-icons/io5'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 
 const AddArticle = () => {
@@ -17,10 +17,6 @@ const AddArticle = () => {
   const [summary, setSummary] = useState<string>('')
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
   const { user } = useSelector((state: any) => state.user)
-  const dispatch = useDispatch()
-  const currentYear = new Date().getFullYear()
-  const currentDate = new Date().getDate()
-  const currentDay = new Date().getDay()
 
   const typesArr = [
     'UI/UX',

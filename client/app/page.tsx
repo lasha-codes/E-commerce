@@ -7,7 +7,7 @@ import Products from './components/Products'
 import FooterNav from './components/FooterNav'
 import ShoppingCart from './components/ShoppingCart'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
   closeCart,
   closeSidebar,
@@ -16,6 +16,20 @@ import {
 import SideBar from './components/SideBar'
 import WatchList from './components/WatchList'
 import NewProducts from './components/NewProducts'
+import SearchedComponents from './components/SearchedComponents'
+
+interface ProductType {
+  id: number
+  title: string
+  price: number
+  image: string[]
+  discountedprice: number | null
+  count: number
+  description: string
+  type: string
+  gender: string
+  rating: number[]
+}
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -25,6 +39,12 @@ const Home = () => {
     watchListOpen,
   }: { cartOpen: boolean; sideBarOpen: boolean; watchListOpen: boolean } =
     useSelector((state: any) => state.tabs)
+  const {
+    searchVal,
+    products,
+  }: { searchVal: string; products: ProductType[] } = useSelector(
+    (state: any) => state.product
+  )
 
   const checkTabOpened = () => {
     if (cartOpen || sideBarOpen || watchListOpen) {
@@ -62,12 +82,27 @@ const Home = () => {
       <Swiper />
 
       <ProductsSlider />
-      <div className='flex items-start justify-center'>
-        <div className='flex flex-col gap-10'>
-          <Products />
-          <NewProducts />
+
+      {searchVal ? (
+        <SearchedComponents
+          productsCopy={
+            searchVal.length === 0
+              ? products
+              : products.filter((product: ProductType) => {
+                  return product.title
+                    .toLowerCase()
+                    .includes(searchVal.toLowerCase())
+                })
+          }
+        />
+      ) : (
+        <div className='flex items-start justify-center'>
+          <div className='flex flex-col gap-10'>
+            <Products />
+            <NewProducts />
+          </div>
         </div>
-      </div>
+      )}
 
       <FooterNav />
       <ShoppingCart />

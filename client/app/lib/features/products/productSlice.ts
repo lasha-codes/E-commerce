@@ -14,6 +14,7 @@ const initialState: {
   compareProducts: string[]
   firstCompareOpened: boolean
   secondCompareOpened: boolean
+  searchVal: string
 } = {
   products: [],
   productReviews: [],
@@ -26,6 +27,7 @@ const initialState: {
   compareProducts: ['', ''],
   firstCompareOpened: false,
   secondCompareOpened: false,
+  searchVal: '',
 }
 
 interface productTypes {
@@ -168,6 +170,9 @@ const productSlice = createSlice({
         JSON.stringify(state.compareProducts)
       )
     },
+    setSearchVal: (state, { payload }) => {
+      state.searchVal = payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductToDB.pending, (state) => {
@@ -218,4 +223,5 @@ export const {
   removeProductFromComparison,
   closeTab,
   addProductToCompare,
+  setSearchVal,
 } = productSlice.actions

@@ -6,6 +6,7 @@ import { IoBagHandleOutline } from 'react-icons/io5'
 import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { openCart, openWatchList } from '../lib/features/tabs/tabsSlice'
+import { setSearchVal } from '../lib/features/products/productSlice'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,9 @@ const Header = () => {
 
   const { cartProducts, watchList } = useSelector((state: any) => state.tabs)
   const { user, isLoaded } = useSelector((state: any) => state.user)
+  const { searchVal } = useSelector((state: any) => state.product)
+
+  console.log(searchVal)
 
   let cartCount = 0
   cartProducts &&
@@ -70,6 +74,10 @@ const Header = () => {
 
         <div className='relative h-[38px] w-1/2 max-md:w-[90%] max-sm:w-full rounded-[9px] flex items-center justify-between'>
           <input
+            value={searchVal}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              dispatch(setSearchVal(e.target.value))
+            }
             id='search'
             type='text'
             className='absolute w-full h-full border  max-sm:placeholder:text-sm rounded-[9px] px-4 placeholder:text-sonicSilver placeholder:opacity-90'
