@@ -96,7 +96,7 @@ const Home = () => {
           }
         />
       ) : (
-        <div className='flex items-start justify-center'>
+        <div className='flex items-start justify-center px-10'>
           <div className='flex flex-col gap-10'>
             <Products />
             <NewProducts />
