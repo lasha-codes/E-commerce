@@ -20,14 +20,26 @@ interface ProductType {
 }
 
 const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
-  const { searchVal }: { searchVal: string; products: ProductType[] } =
-    useSelector((state: any) => state.product)
+  const { watchList }: { watchList: ProductType[] } = useSelector(
+    (state: any) => state.tabs
+  )
 
   const truncateTitle = (title: string) => {
     if (title.length > 11) {
       return `${title.slice(0, 11)}...`
     } else {
       return title
+    }
+  }
+
+  const checkIsInWatchList = (productId: number) => {
+    const findById = watchList.find((product: ProductType) => {
+      return product.id === productId
+    })
+    if (findById) {
+      return true
+    } else {
+      return false
     }
   }
 
@@ -76,7 +88,9 @@ const SearchedComponents: React.FC<any> = ({ productsCopy }) => {
                     fill='none'
                     viewBox='0 0 24 24'
                     strokeWidth={1.5}
-                    stroke={'gray'}
+                    stroke={`${
+                      checkIsInWatchList(product.id) ? 'gray' : 'none'
+                    }`}
                     className='w-[17.5px] h-[17.5px]'
                   >
                     <path
